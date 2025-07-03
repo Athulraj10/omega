@@ -1,0 +1,2 @@
+export const TRANSLATION_FILE_PATH =
+  process.env.REACT_APP_TRANSLATION_FILE_PATH;
