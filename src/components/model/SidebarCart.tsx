@@ -6,7 +6,7 @@ import Link from "next/link";
 import QuantitySelector from "../quantity-selector/QuantitySelector";
 
 const SidebarCart = ({ closeCart, isCartOpen }: any) => {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useSelector((state: RootState) => state?.cart?.items || []);
   const [subTotal, setSubTotal] = useState(0);
   const [vat, setVat] = useState(0);
   const dispatch = useDispatch();

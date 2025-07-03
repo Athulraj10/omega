@@ -7,10 +7,8 @@ import { RootState } from "@/store";
 import FeatureTools from "@/theme/ThemeSwitcher";
 
 function Header() {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
-  const wishlistItems = useSelector(
-    (state: RootState) => state.wishlist.wishlist
-  );
+  const cartItems = useSelector((state: RootState) => state?.cart);
+  const wishlistItems = useSelector((state: RootState) => state.wishlist);
   return (
     <header className="gi-header">
       {/* <FeatureTools />  right side bar change colors function */}

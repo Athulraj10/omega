@@ -94,8 +94,8 @@ const CheckOut = ({
   }>({});
   const dispatch = useDispatch();
   const router = useRouter();
-  const cartItems = useSelector((state: RootState) => state.cart.items);
-  const orders = useSelector((state: RootState) => state.cart.orders);
+  const cartItems = useSelector((state: RootState) => state?.cart?.items || []);
+  const orders = useSelector((state: RootState) => state?.cart?.orders || []);
   const isLogin = useSelector(
     (state: RootState) => state.registration.isAuthenticated
   );

@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 import { showSuccessToast } from "../toast-popup/Toastify";
 import { RootState } from "@/store";
-import { addWishlist, removeWishlist } from "@/store/reducers/wishlistSlice";
+// import { addWishlist, removeWishlist } from "@/store/reducers/wishlistSlice";
 import { addCompare, removeCompareItem } from "@/store/reducers/compareSlice";
 
 interface Item {
@@ -37,7 +37,7 @@ const ItemCard = ({ data }: any) => {
   const wishlistItems = useSelector(
     (state: RootState) => state.wishlist.wishlist
   );
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useSelector((state: RootState) => state?.cart?.items || []);
 
   useEffect(() => {
     const itemsFromLocalStorage =
@@ -76,12 +76,12 @@ const ItemCard = ({ data }: any) => {
 
   const handleWishlist = (data: Item) => {
     if (!isInWishlist(data)) {
-      dispatch(addWishlist(data));
+      // dispatch(addWishlist(data));
       showSuccessToast("Add product in Wishlist Successfully!", {
         icon: false,
       });
     } else {
-      dispatch(removeWishlist(data.id));
+      // dispatch(removeWishlist(data.id));
       showSuccessToast("Remove product on Wishlist Successfully!", {
         icon: false,
       });

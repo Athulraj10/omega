@@ -17,7 +17,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const [dropdownState, setDropdownState] = useState(null);
-  const { selectedCategory } = useSelector((state: RootState) => state.filter);
+  const { selectedCategory } = useSelector((state: RootState) => state?.filter || []);
   const { data, error } = useSWR(`/api/shopcategory`, fetcher, {
     onSuccess,
     onError,

@@ -36,7 +36,7 @@ interface Option {
 
 const QuickViewModal = ({ show, handleClose, data }) => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useSelector((state: RootState) => state?.cart?.items || []);
   const [quantity, setQuantity] = useState(1);
 
   const options: Option[] = [

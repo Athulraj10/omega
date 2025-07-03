@@ -14,9 +14,9 @@ function HeaderTwo({ cartItems, wishlistItems }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const isAuthenticated = useSelector(
-    (state: RootState) => state.registration.isAuthenticated
+    (state: RootState) => state?.registration?.isAuthenticated
   );
-  const { searchTerm } = useSelector((state: RootState) => state.filter);
+  const { searchTerm } = useSelector((state: RootState) => state?.filter || []);
   const [searchInput, setSearchInput] = useState(searchTerm || "");
 
   useEffect(() => {
@@ -170,7 +170,7 @@ function HeaderTwo({ cartItems, wishlistItems }) {
                       <span className="gi-btn-title">Wishlist</span>
                       <span className="gi-btn-stitle">
                         <b className="gi-wishlist-count">
-                          {wishlistItems.length}
+                          {wishlistItems?.length}
                         </b>
                         -items
                       </span>
@@ -191,7 +191,7 @@ function HeaderTwo({ cartItems, wishlistItems }) {
                     <div className="gi-btn-desc">
                       <span className="gi-btn-title">Cart</span>
                       <span className="gi-btn-stitle">
-                        <b className="gi-cart-count">{cartItems.length}</b>
+                        <b className="gi-cart-count">{cartItems?.length}</b>
                         -items
                       </span>
                     </div>

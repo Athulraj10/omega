@@ -30,7 +30,7 @@ const Cart = ({
   hasPaginate = false,
   onError = () => {},
 }) => {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useSelector((state: RootState) => state?.cart?.items || []);
   const dispatch = useDispatch();
   const [filteredCountryData, setFilteredCountryData] = useState<Country[]>([]);
   const [filteredStateData, setFilteredStateData] = useState<State[]>([]);
