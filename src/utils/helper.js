@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 export const url = process.env.REACT_APP_API_ENDPOINT;
 
+export const COMPANY_NAME = "Omega"
+
 //GET LOCAL STORAGE ITEM
 export const getLocalStorageItem = (key) => localStorage.getItem(key);
 

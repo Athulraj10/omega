@@ -10,6 +10,7 @@ import { Form } from "react-bootstrap";
 import * as formik from "formik";
 import * as yup from "yup";
 import { login } from "@/store/reducers/registrationSlice";
+import { COMPANY_NAME } from "@/utils/helper";
 
 interface Country {
   id: string;
@@ -204,7 +205,7 @@ const RegisterPage = ({ onSuccess = () => {}, onError = () => {} }) => {
             <h2 className="gi-title">
               Register<span></span>
             </h2>
-            <p>Best place to buy and sell digital products.</p>
+            <p>{COMPANY_NAME} Best place to buy and sell digital products.</p>
           </div>
           <div className="row">
             <div className="gi-register-wrapper">
@@ -216,13 +217,7 @@ const RegisterPage = ({ onSuccess = () => {}, onError = () => {} }) => {
                     onSubmit={onSubmit}
                     initialValues={initialValues}
                   >
-                    {({
-                      handleSubmit,
-                      handleChange,
-                      values,
-                      touched,
-                      errors,
-                    }) => (
+                    {({handleSubmit,handleChange,values,touched,errors}) => (
                       <>
                         <Form noValidate onSubmit={handleSubmit}>
                           <span className="gi-register-wrap gi-register-half">
