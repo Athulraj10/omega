@@ -17,8 +17,7 @@ export const metadata: Metadata = {
     template: "%s | OMEGA ADMIN",
     default: "Omega Admin",
   },
-  description:
-    "Omage admin dashboard.",
+  description: "Omage admin dashboard.",
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -27,14 +26,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body>
         <Providers>
           <NextTopLoader color="#5750F1" showSpinner={false} />
-
-          {/* <div className="flex min-h-screen">
-            <div className="w-full bg-gray-2 dark:bg-[#020d1a]"> */}
-              {/* <main className="isolate mx-auto w-full max-w-screen-2xl overflow-hidden p-4 md:p-6 2xl:p-10"> */}
-                {children}
-              {/* </main> */}
-            {/* </div>
-          </div> */}
+          {children}
         </Providers>
       </body>
     </html>
