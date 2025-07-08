@@ -1,4 +1,4 @@
-import { getDefaultState } from "../../../utils/helper";
+import { getDefaultState } from "@/utils/helper";
 import {
   LOGIN,
   LOGIN_FAILURE,

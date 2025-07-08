@@ -1,13 +1,3 @@
-// =====================Logout===========================
-export const LOGOUT = "LOGOUT";
-export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
-export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
-
-// ==================== GET AUTH DETAIL ===========================
-export const AUTH_DETAIL = "AUTH_DETAIL";
-export const AUTH_DETAIL_SUCCESS = "AUTH_DETAIL_SUCCESS";
-export const AUTH_DETAIL_FAILURE = "AUTH_DETAIL_FAILURE";
-
 // ==================== LOGIN HISTORY ===========================
 export const LOGIN_HISTORY = "LOGIN_HISTORY";
 export const LOGIN_HISTORY_SUCCESS = "LOGIN_HISTORY_SUCCESS";

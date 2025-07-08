@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import LoginReducer from "./auth/loginReducer";
+import LogoutReducer from "./auth/logoutReducer";
 // import TwoFactorAuthencation from "./auth/twoAuthenticationReducer";
 // import Logout from "./auth/logoutReducer";
 // import LoginHistory from "./auth/loginHistoryReducer";
@@ -13,6 +14,7 @@ import LoginReducer from "./auth/loginReducer";
 
 const appReducer = combineReducers({
   auth: LoginReducer,
+  Logout: LogoutReducer,
   // TwoFactorAuthencation,
   // Logout,
   // LoginHistory,

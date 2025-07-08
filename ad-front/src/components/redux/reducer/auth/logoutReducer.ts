@@ -1,10 +1,21 @@
-import { LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILURE } from "../../action/types";
+import {
+  LOGOUT,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
+  logoutActionType,
+} from "../../action/types/logoutTypes";
 
-const INIT_STATE = {
+interface LogOutState {
+  loading: Boolean;
+}
+const INIT_STATE: LogOutState = {
   loading: false,
 };
 
-const logoutReducer = (state = INIT_STATE, action) => {
+const logoutReducer = (
+  state = INIT_STATE,
+  action: logoutActionType,
+): LogOutState => {
   switch (action.type) {
     case LOGOUT:
       return { ...state, loading: true };
