@@ -1,5 +1,4 @@
-const Transformer = require("object-transformer");
-const { OAuth2Client } = require("google-auth-library");
+const bcrypt = require("bcrypt");
 const Response = require("../../services/Response");
 const {
   ACTIVE,
@@ -15,8 +14,7 @@ const { makeRandomNumber, AppName } = require("../../services/Helper");
 const { User, Otp } = require("../../models");
 const formatUserData = require("../../services/formatUserData");
 const { issueAdmin } = require("../../services/Admin_jwtToken");
-const { loginValidation } = require("../../services/AdminValidation");
-
+const { loginValidation, logoutAndBlockValidation } = require("../../services/AdminValidation");
 
 module.exports = {
   login: async (req, res) => {
@@ -55,7 +53,6 @@ module.exports = {
                 ]
               })
                 .populate("currency_id")
-                .populate("wallet_id")
                 .sort({ last_login: -1 });
             }
 
@@ -75,7 +72,12 @@ module.exports = {
                   if (isPassword) {
                     const payload = {
                       id: user._id,
+                      role: user.role,
+                      level: user.roleLevel,
+                      exp: Math.floor(Date.now() / 1000) +
+                        60 * 60 * 6 * process.env.SUPER_ADMIN_TOKEN_EXP
                     };
+
                     const token = issueAdmin(payload);
                     const meta = { token };
 
@@ -213,13 +215,14 @@ module.exports = {
   logout: async (req, res) => {
     try {
       const requestParams = req.body;
-      logoutValidation(requestParams, res, async (validate) => {
+      console.log({ requestParams })
+      logoutAndBlockValidation(requestParams, res, async (validate) => {
         if (validate) {
           let browser_ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-
+          console.log(requestParams)
           const system_ip = req.clientIp;
           await User.updateOne(
-            { username: requestParams.username.toLowerCase() },
+            { _id: requestParams.id },
             {
               $set: {
                 token: null,

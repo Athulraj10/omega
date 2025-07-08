@@ -11,6 +11,7 @@ const {
   DELETE,
   USER_WALLET,
   PROFILE_PIC,
+  ROLES,
 } = require("../../services/Constants");
 const { makeRandomNumber } = require("../../services/Helper");
 // const Mailer = require("../../services/Mailer");
@@ -19,6 +20,7 @@ const { User, Otp } = require("../../models");
 const { issueUser } = require("../../services/User_jwtToken");
 const formatUserData = require("../../services/formatUserData");
 const { forgotPasswordValidation, resetPasswordValidation, logoutAndBlockValidation } = require("../../services/AdminValidation");
+const { loginValidation } = require("../../services/UserValidation");
 
 
 module.exports = {
@@ -200,8 +202,12 @@ module.exports = {
             let user;
 
             if (filters.length > 0) {
-              user = await User.findOne({ $or: filters })
-                .populate("currency_id")
+              user = await User.findOne({
+                $and: [
+                  { $or: filters },
+                  { role: ROLES.USER.name }
+                ]
+              })
                 .populate("wallet_id")
                 .sort({ last_login: -1 });
             }

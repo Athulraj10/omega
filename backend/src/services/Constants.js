@@ -31,5 +31,12 @@ module.exports = {
     PRODUCT_MANAGER: { name: "product_manager", level: 3 },
     MARKETING_MANAGER: { name: "marketing_manager", level: 4 },
     ADMIN: { name: "admin", level: 5 },
-  }
+  },
+  USER_MODEL: {
+    EMAIL_VERIFY_OTP_EXPIRY_MINUTE: 10,
+  },
+  USER_WALLET: {
+    COIN: 3000,
+    DIAMOND: 3000
+  },
 };

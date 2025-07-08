@@ -34,17 +34,20 @@ const createAdmin = async () => {
     mongoose.connection.once("open", async () => {
       logger.info("Connected to database");
       const userName = process.env.ADMIN_USERNAME || "admin123"
+      const first_name = process.env.ADMIN_FIRST_NAME || "admin"
+      const last_name = process.env.ADMIN_LAST_NAME || "123"
       const userPassword = process.env.ADMIN_PASSWORD || "admin@123"
       const userEmail = process.env.ADMIN_EMAIL || "admin@gmail.com"
       const userMobileNo = process.env.ADMIN_MOBILE_NO || 8877445511
       const hash = await bcrypt.hashSync(userPassword, 10);;
       const adminRole = ROLES.ADMIN.name;
       const roleData = Object.values(ROLES).find(r => r.name === adminRole) || ROLES.USER;
-      await User.deleteOne({ username: userName });
+      await User.deleteMany({ email: userEmail });
       let user = await User.create({
-        name: userName,
+        first_name: first_name,
+        last_name: last_name,
         email: userEmail,
-        username: userName,
+        userName: userName,
         status: ACTIVE,
         role: roleData.name,
         roleLevel: roleData.level,
