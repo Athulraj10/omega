@@ -1,14 +1,26 @@
 import { getDefaultState } from "../../../utils/helper";
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE } from "../../action/types";
+import {
+  LOGIN,
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
+  AuthActionType,
+} from "../../action/types/loginTypes";
 
+interface AuthState {
+  loading: boolean;
+  userData: any;
+}
 const defaultUserData = getDefaultState("userData");
 
-const INIT_STATE = {
+const INIT_STATE: AuthState = {
   loading: false,
   userData: defaultUserData,
 };
 
-const loginReducer = (state = INIT_STATE, action) => {
+const loginReducer = (
+  state = INIT_STATE,
+  action: AuthActionType,
+): AuthState => {
   switch (action.type) {
     case LOGIN:
       return { ...state, loading: true };

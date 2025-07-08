@@ -1,14 +1,7 @@
-// =====================Login===========================
-export const LOGIN = "LOGIN";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";
-
-
 // =====================Logout===========================
 export const LOGOUT = "LOGOUT";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
-
 
 // ==================== GET AUTH DETAIL ===========================
 export const AUTH_DETAIL = "AUTH_DETAIL";
@@ -19,7 +12,6 @@ export const AUTH_DETAIL_FAILURE = "AUTH_DETAIL_FAILURE";
 export const LOGIN_HISTORY = "LOGIN_HISTORY";
 export const LOGIN_HISTORY_SUCCESS = "LOGIN_HISTORY_SUCCESS";
 export const LOGIN_HISTORY_FAILURE = "LOGIN_HISTORY_FAILURE";
-
 
 // =====================TWO AUTHENTICATION===========================
 export const TWO_AUTHENTICATION = "TWO_AUTHENTICATION";
@@ -42,8 +34,6 @@ export const GET_CURRENCY = "GET_CURRENCY";
 export const GET_CURRENCY_SUCCESS = "GET_CURRENCY_SUCCESS";
 export const GET_CURRENCY_FAILURE = "GET_CURRENCY_FAILURE";
 
-
-
 //  =====================GLobal Currency Value===========================
 export const GLOBAL_CURRENCY_VALUE = "GLOBAL_CURRENCY_VALUE";
 export const GLOBAL_CURRENCY_VALUE_SUCCESS = "GLOBAL_CURRENCY_VALUE_SUCCESS";
@@ -53,4 +43,3 @@ export const GLOBAL_CURRENCY_VALUE_SUCCESS = "GLOBAL_CURRENCY_VALUE_SUCCESS";
 export const LAYERCURRENCY = "LAYERCURRENCY";
 export const LAYERCURRENCY_SUCCESS = "LAYERCURRENCY_SUCCESS";
 export const LAYERCURRENCY_FAILURE = "LAYERCURRENCY_FAILURE";
-
