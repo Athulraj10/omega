@@ -5,12 +5,15 @@ const http = require("http");
 const cors = require("cors");
 const path = require('path');
 
+require('dotenv').config();
+
+const { config } = require('./src/config/configAll.js');
+
 const createApp = () => {
-  require('dotenv').config();
 
   const app = express();
   const server = http.createServer(app);
-  const port = process.env.PORT || 8080;
+  const port = config.port;
 
   // import i18n
   const i18n = require("./src/i18n/i18n");

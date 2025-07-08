@@ -1,8 +1,9 @@
+const { config } = require("./configAll");
 
 module.exports.getConfig = () => {
   const config = {
     'MODE': 'development',
-    'MONGO_CONNECTION_STRING': process.env.MONGO_CONNECTION_STRING
+    'MONGO_CONNECTION_STRING': config.MONGO_CONNECTION_STRING
   };
 
   // Modify for Production

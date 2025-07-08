@@ -1,23 +1,20 @@
-import "@/css/satoshi.css";
-import "@/css/style.css";
+// import "jsvectormap/dist/jsvectormap.css";
+// import "@/css/satoshi.css";
+// import "@/css/style.css";
+// import "flatpickr/dist/flatpickr.min.css";
 
-import { Sidebar } from "@/components/Layouts/sidebar";
-
-import "flatpickr/dist/flatpickr.min.css";
-import "jsvectormap/dist/jsvectormap.css";
-
-import { Header } from "@/components/Layouts/header";
+import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
-import type { PropsWithChildren } from "react";
 import { Providers } from "./providers";
-
+import ClientLayoutWrapper from "./ClientLayoutWrapper";
+import { ToastContainer } from "react-toastify";
 export const metadata: Metadata = {
   title: {
     template: "%s | OMEGA ADMIN",
     default: "Omega Admin",
   },
-  description: "Omage admin dashboard.",
+  description: "Omege admin dashboard.",
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -26,7 +23,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body>
         <Providers>
           <NextTopLoader color="#5750F1" showSpinner={false} />
-          {children}
+          <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
+          <ToastContainer />
         </Providers>
       </body>
     </html>
