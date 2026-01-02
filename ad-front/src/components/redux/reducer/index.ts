@@ -1,29 +1,26 @@
 import { combineReducers } from "redux";
 import LoginReducer from "./auth/loginReducer";
 import LogoutReducer from "./auth/logoutReducer";
-// import TwoFactorAuthencation from "./auth/twoAuthenticationReducer";
-// import Logout from "./auth/logoutReducer";
-// import LoginHistory from "./auth/loginHistoryReducer";
-// import GetAuthDetail from "./auth/authDetailReducer";
-
-// import AddCurrency from "./currency/addCurrencyReducer";
-// import GetCurrency from "./currency/getCurrencyReducer";
-// import currencyLayerReducer from "./currency/getLayerCurrencyReducer";
-// import globalCurrencyValueReducer from "./currency/globalCurrencyValueReducer";
-// import ChangeBetfairCurrency from "./currency/changeBetfairCurrency";
+import profileReducer from "./auth/profileReducer";
+import productReducer from "./products/productReducer";
+import sellerReducer from "./seller";
+import userReducer from "./users/userReducer";
+import categoryReducer from "./categories/categoryReducer";
+import bannerReducer from "./banner/bannerReducer";
+import { heroSliderReducer } from "./banner/heroSliderReducer";
+import dashboardReducer from "./dashboard/dashboardReducer";
 
 const appReducer = combineReducers({
   auth: LoginReducer,
   Logout: LogoutReducer,
-  // TwoFactorAuthencation,
-  // Logout,
-  // LoginHistory,
-  // GetAuthDetail,
-  // AddCurrency,
-  // GetCurrency,
-  // currencyLayerReducer,
-  // globalCurrencyValueReducer,
-  // ChangeBetfairCurrency,
+  profile: profileReducer,
+  products: productReducer,
+  sellers: sellerReducer,
+  users: userReducer,
+  categories: categoryReducer,
+  banner: bannerReducer,
+  heroSlider: heroSliderReducer,
+  dashboard: dashboardReducer,
 });
 
 export type RootState = ReturnType<typeof appReducer>;

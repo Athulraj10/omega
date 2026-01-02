@@ -50,7 +50,6 @@ const userSchema = new mongoose.Schema(
     },
     mobile_no: {
       type: Number,
-      maxLength: 15,
     },
     device_code: {
       type: String,
@@ -106,6 +105,14 @@ const userSchema = new mongoose.Schema(
     roleLevel: {
       type: Number,
       default: ROLES.ADMIN.level,
+    },
+    companyName: {
+      type: String,
+      maxLength: 100,
+    },
+    address: {
+      type: String,
+      maxLength: 255,
     },
 
   },

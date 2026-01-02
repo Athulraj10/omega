@@ -2,35 +2,7 @@ import { toast, ToastOptions, Id } from "react-toastify";
 import React from "react";
 
 // Use .env.local for Next.js; fallback is provided for clarity
-export const url: string = process.env.NEXT_PUBLIC_API_ENDPOINT || "";
-
-// ======== LocalStorage Helpers ========
-export function getLocalStorageItem(key: string): string | null {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem(key);
-  }
-  return null;
-}
-
-export function setLocalStorageItem(key: string, value: string): void {
-  localStorage.setItem(key, value);
-}
-
-export function removeLocalStorageItem(key: string): void {
-  localStorage.removeItem(key);
-}
-
-export function getDefaultState<T = any>(keyName: string): T | null {
-  const storedValue = localStorage.getItem(keyName);
-  if (storedValue !== null && storedValue !== undefined) {
-    try {
-      return JSON.parse(storedValue);
-    } catch (error) {
-      console.error("Error parsing localStorage value:", error);
-    }
-  }
-  return null;
-}
+export const url: string = process.env.NEXT_PUBLIC_API_ENDPOINT || "http://localhost:8001";
 
 // ======== Toast UI Components ========
 interface ToastComponentProps {

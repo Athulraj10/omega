@@ -1,28 +1,35 @@
-const { userTokenAuth } = require('../../middlewares/user');
+const { userTokenAuth } = require("../../middlewares/user")
+const CartController = require("../../controllers/app/cartController")
 
-const router = require('express').Router();
+const router = require("express").Router()
 
+router.use(userTokenAuth)
 
-router.use(userTokenAuth);
+// Get user's cart
+router.get("/", CartController.getCart)
 
-router.get('/', (req, res) => {
-    res.send('Get user cart');
-});
+// Add item to cart
+router.post("/add", CartController.addToCart)
 
-router.post('/add', (req, res) => {
-    res.send('Add product to cart');
-});
+// Update cart item quantity
+router.put("/update/:productId", CartController.updateQuantity)
 
-router.put('/update/:productId', (req, res) => {
-    res.send(`Update product ${req.params.productId} quantity`);
-});
+// Remove item from cart
+router.delete("/remove/:productId", CartController.removeFromCart)
 
-router.delete('/remove/:productId', (req, res) => {
-    res.send(`Remove product ${req.params.productId} from cart`);
-});
+// Clear cart
+router.delete("/clear", CartController.clearCart)
 
-router.delete('/clear', (req, res) => {
-    res.send('Clear cart');
-});
+// Apply coupon to cart
+router.post("/apply-coupon", CartController.applyCoupon)
 
-module.exports = router;
+// Remove coupon from cart
+router.delete("/remove-coupon", CartController.removeCoupon)
+
+// Get cart count
+router.get("/count", CartController.getCartCount)
+
+// Merge guest cart with user cart
+router.post("/merge-guest", CartController.mergeGuestCart)
+
+module.exports = router

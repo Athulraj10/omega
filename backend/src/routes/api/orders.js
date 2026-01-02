@@ -1,22 +1,27 @@
-const router = require('express').Router();
-const { userTokenAuth } = require('../../middlewares/user');
+const express = require("express");
+const router = express.Router();
+const OrderController = require("../../controllers/app/orderController");
+const { userTokenAuth } = require("../../middlewares/user");
 
+// User routes (require authentication)
 router.use(userTokenAuth);
 
-router.post('/checkout', (req, res) => {
-    res.send('Place order');
-});
+// Create a new order
+router.post("/", OrderController.createOrder);
 
-router.get('/', (req, res) => {
-    res.send('Get user orders');
-});
+// Get user's order history with pagination and filtering
+router.get("/", OrderController.getUserOrders);
 
-router.get('/:id', (req, res) => {
-    res.send(`Get details of order ${req.params.id}`);
-});
+// Get order statistics for user
+router.get("/stats", OrderController.getOrderStats);
 
-router.put('/:id/cancel', (req, res) => {
-    res.send(`Cancel order ${req.params.id}`);
-});
+// Get order by order number
+router.get("/number/:orderNumber", OrderController.getOrderByNumber);
+
+// Get single order by ID (must be last to avoid catching other routes)
+router.get("/:id", OrderController.getOrderById);
+
+// Cancel order
+router.patch("/:id/cancel", OrderController.cancelOrder);
 
 module.exports = router;

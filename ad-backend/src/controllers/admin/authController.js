@@ -29,7 +29,7 @@ module.exports = {
           const system_ip = req.clientIp;
           {
             console.log("not google login");
-            let isPassword = true;
+            let isPassword = false; // FIXED: Initialize as false for security
             const filters = [];
 
             if (requestParams.email) {
@@ -39,9 +39,9 @@ module.exports = {
               filters.push({ mobile_no: requestParams.mobile_no });
             }
 
-            if (requestParams.device_code) {
-              filters.push({ device_code: requestParams.device_code.toLowerCase() });
-            }
+            // if (requestParams.device_code) {
+            //   filters.push({ device_code: requestParams.device_code.toLowerCase() });
+            // }
 
             let user;
 
@@ -55,19 +55,28 @@ module.exports = {
                 .populate("currency_id")
                 .sort({ last_login: -1 });
             }
-
+console.log({user})
             if (user) {
               if (user.email_verify === null) {
                 Response.errorResponseWithoutData(res, res.locals.__("emailNotVerified"), FAIL);
               } else {
                 if (user?.status === ACTIVE) {
-                  if (requestParams.password) {
+                  // FIXED: Always require password validation
+                  if (requestParams.password && user.password) {
                     const comparePassword = await bcrypt.compare(requestParams.password, user.password);
-                    if (comparePassword) {
-                      isPassword = true;
-                    } else {
-                      isPassword = false;
-                    }
+                    isPassword = comparePassword; // Set based on actual comparison result
+                    console.log('🔐 Password comparison result:', { 
+                      provided: !!requestParams.password, 
+                      stored: !!user.password, 
+                      match: comparePassword 
+                    });
+                  } else {
+                    // FIXED: If no password provided or user has no password, authentication fails
+                    isPassword = false;
+                    console.log('❌ Password validation failed:', { 
+                      provided: !!requestParams.password, 
+                      stored: !!user.password 
+                    });
                   }
                   if (isPassword) {
                     const payload = {
@@ -236,6 +245,31 @@ module.exports = {
       });
     } catch (error) {
       return Response.errorResponseWithoutData(res, res.locals.__("internalError"), INTERNAL_SERVER);
+    }
+  },
+
+  updateProfile: async (req, res) => {
+    try {
+      const { id, name, email, password, userName, first_name, last_name } = req.body;
+      if (!id || !name || !email) {
+        return Response.errorResponseWithoutData(res, "Missing required fields", FAIL);
+      }
+      const updateData = { name, email };
+      if (userName) updateData.userName = userName;
+      if (first_name) updateData.first_name = first_name;
+      if (last_name) updateData.last_name = last_name;
+      if (password) {
+        const bcrypt = require("bcryptjs");
+        updateData.password = await bcrypt.hash(password, 10);
+      }
+      const updatedUser = await User.findByIdAndUpdate(id, { $set: updateData }, { new: true });
+      if (!updatedUser) {
+        return Response.errorResponseWithoutData(res, "User not found", FAIL);
+      }
+      const userData = formatUserData(updatedUser);
+      return Response.successResponseData(res, userData, SUCCESS, "Profile updated successfully");
+    } catch (error) {
+      return Response.errorResponseData(res, error.message, INTERNAL_SERVER);
     }
   },
 };

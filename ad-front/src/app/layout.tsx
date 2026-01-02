@@ -1,7 +1,7 @@
-// import "jsvectormap/dist/jsvectormap.css";
-// import "@/css/satoshi.css";
-// import "@/css/style.css";
-// import "flatpickr/dist/flatpickr.min.css";
+import "jsvectormap/dist/jsvectormap.css";
+import "@/css/satoshi.css";
+import "@/css/style.css";
+import "flatpickr/dist/flatpickr.min.css";
 
 import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
@@ -20,11 +20,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body suppressHydrationWarning>
         <Providers>
           <NextTopLoader color="#5750F1" showSpinner={false} />
           <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
-          <ToastContainer />
         </Providers>
       </body>
     </html>

@@ -31,5 +31,6 @@ module.exports = {
     PRODUCT_MANAGER: { name: "product_manager", level: 3 },
     MARKETING_MANAGER: { name: "marketing_manager", level: 4 },
     ADMIN: { name: "admin", level: 5 },
+    SELLER: { name: "seller", level: 6 },
   }
 };

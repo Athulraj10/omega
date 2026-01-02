@@ -17,9 +17,10 @@ module.exports.issueAdmin = function (payload) {
 // Verifies admin token
 module.exports.verify = function (token, callback) {
   try {
-    return jwt.verify(token, process.env.JWT_SECRETKEY, {}, callback);
+    return jwt.verify(token, process.env.JWT_SECRETKEY,  { algorithm: "HS512" }, callback);
   } catch (err) {
-    return "error";
+    console.log({err})
+    return false;
   }
 };
 

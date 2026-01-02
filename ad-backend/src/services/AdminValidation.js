@@ -13,6 +13,7 @@ module.exports = {
     const schema = Joi.object({
       email: Joi.string().trim().required(),
       password: Joi.string().trim().required(),
+      device_code: Joi.string().trim().required(),
     });
     const { error } = schema.validate(req);
     if (error) {

@@ -5,12 +5,19 @@ const product = require('./products');
 const userCart = require('./cart');
 const userWishlist = require('./wishlist');
 const userOrders = require('./orders');
+const banners = require('./banners');
+const deals = require('./deals');
+const categories = require('./categories');
+const addresses = require('./addresses');
 
 router.use('/v1', authentication)
 router.use('/v1/products', product)
 router.use('/v1/cart', userCart)
 router.use('/v1/wishlist', userWishlist)
 router.use('/v1/orders', userOrders)
-
+router.use('/v1/banners', banners)
+router.use('/v1/deals', deals)
+router.use('/v1/categories', categories)
+router.use('/v1/addresses', addresses)
 
 module.exports = router

@@ -6,8 +6,8 @@ export interface LoginPayload {
   data: {
     email: string;
     password: string;
+    device_code: string;
   };
-  callback: (data: any) => void;
 }
 export interface LoginAction {
   type: typeof LOGIN;
@@ -19,6 +19,7 @@ export interface LoginSuccessAction {
 }
 export interface LoginFailureAction {
   type: typeof LOGIN_FAILURE;
+  payload?: string;
 }
 // =====================Login===========================
 export type AuthActionType =

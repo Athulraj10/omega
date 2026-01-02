@@ -1,34 +1,42 @@
 import { toast } from "react-toastify";
 import { takeEvery, call, put, all } from "redux-saga/effects";
-import API from "../../../../utils/api";
+import API from "@/utils/api";
 import {
   notifyDanger,
   notifySuccess,
   notifyWarning,
-  setLocalStorageItem,
-} from "../../../../utils/helper";
+} from "@/utils/helper";
 import { loginFailure, loginSuccess } from "../../action/auth/loginAction";
 import { LoginAction, LOGIN } from "../../action/types/loginTypes";
 
 function* loginRequest(action: LoginAction) {
   try {
-    // const { data } = yield API.post("admin/login", action?.payload?.data);
-    const { data } = yield call(API.post, "admin/login", action.payload.data);
+    const { data } = yield API.post("admin/login", action?.payload?.data);
+    // const { data } = yield call(API.post, "admin/login", action.payload.data);
+    console.log('🔐 Login response:', data);
+    
     if (data?.meta?.code === 200) {
-      yield put(loginSuccess(data?.data));
       const modifiedData = {
         ...data?.data,
         token: data?.meta?.token,
       };
-      yield call(action?.payload?.callback, modifiedData);
+      yield put(loginSuccess(modifiedData));
       notifySuccess(data?.meta?.message);
     } else {
-      yield put(loginFailure());
-      notifyWarning(data?.meta?.message);
+      console.log('❌ Login failed:', data.meta.message);
+      // Show the actual error message from the backend
+      notifyWarning(data?.meta?.message || "Login failed");
+      yield put(loginFailure(data?.meta?.message || "Login failed"));
     }
-  } catch (error) {
+  } catch (error: any) {
+    // console.error('💥 Login error:', error);
     yield put(loginFailure());
-    notifyDanger("Internal Server Error.");
+    
+    // Show appropriate error message
+    const errorMessage = error?.response?.data?.meta?.message || 
+                        error?.message || 
+                        "Internal Server Error.";
+    notifyDanger(errorMessage);
   }
 }
 

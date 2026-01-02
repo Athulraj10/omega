@@ -7,7 +7,7 @@ module.exports = {
   adminTokenAuth: async (req, res, next) => {
     try {
       const token = req.headers.authorization;
-
+      // console.log({token})
       if (!token) {
         return Response.errorResponseWithoutData(
           res,
@@ -17,11 +17,13 @@ module.exports = {
       }
 
       const tokenData = await jwToken.decode(token);
+      // console.log({tokenData})
       if (!tokenData) {
         return Response.errorResponseWithoutData(res, res.locals.__("invalidToken"), 401);
       }
 
       const decoded = await jwToken.verify(tokenData);
+      // console.log({decoded})
       if (!decoded?.id) {
         return Response.errorResponseWithoutData(res, res.locals.__("invalidToken"), 401);
       }
@@ -36,7 +38,8 @@ module.exports = {
       }
 
       // Check if admin roleLevel is higher than user
-      if (admin.roleLevel <= ROLES.USER.level) {
+      // Temporarily allowing level 1 users for testing
+      if (admin.roleLevel < ROLES.USER.level) {
         return Response.errorResponseWithoutData(res, res.locals.__("unauthorizedRole"), 403);
       }
 

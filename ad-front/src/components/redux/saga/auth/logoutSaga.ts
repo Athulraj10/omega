@@ -5,10 +5,10 @@ import {
   notifyDanger,
   notifySuccess,
   notifyWarning,
-  removeLocalStorageItem,
 } from "../../../../utils/helper";
 import { logoutFailure, logoutSuccess } from "../../action/auth/logoutAction";
 import { LogoutAction, LOGOUT } from "../../action/types/logoutTypes";
+import { removeLocalStorageItem } from "@/utils/helperWindows";
 
 function* logoutRequest(action: LogoutAction) {
   try {

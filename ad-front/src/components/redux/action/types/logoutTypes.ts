@@ -4,7 +4,8 @@ export const LOGOUT_SUCCESS = "Logout_SUCCESS";
 export const LOGOUT_FAILURE = "Logout_FAILURE";
 export interface LogoutPayload {
   data: {
-    userId: string;
+    id: string;
+    action_type: string;
   };
   callback: (data: any) => void;
 }

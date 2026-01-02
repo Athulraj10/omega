@@ -3,15 +3,15 @@ const mongoose = require("mongoose");
 const axios = require("axios");
 const bcrypt = require("bcrypt");
 require("dotenv").config({ path: "../../.env" });
-const { User, UserLoginHistory, Sports } = require("./../models");
+const { User, UserLoginHistory } = require("./../models");
 const logger = require("../logger/logger");
-config = require("../config/config").getConfig();
+// config = require("../config/config").getConfig();
 const { slugName } = require("./../services/Helper");
 const { ACTIVE, ROLES } = require("../services/Constants");
 const createAdmin = async () => {
   try {
-    const url = config.MONGO_CONNECTION_STRING;
-    logger.info("process.env.MONGO_CONNECTION_STRING :::" + process.env.MONGO_CONNECTION_STRING);
+    const url = process.env.MONGO_CONNECTION_STRING;
+    logger.info("process.env.MONGO_CONNECTION_STRING :::" + process.envMONGO_CONNECTION_STRING);
     //const pemFilePath = process.env.PEM_FILE_PATH;
     const projectRoot = path.resolve(__dirname, "../..");
 
