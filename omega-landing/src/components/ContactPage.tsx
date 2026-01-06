@@ -132,10 +132,10 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-xl font-semibold text-gray-700 mb-1">Phone</h3>
                       <a
-                        href="tel:+919876543210"
+                        href="tel:+971 555451188"
                         className="text-gray-600 hover:text-[#5caf90] transition-colors"
                       >
-                        +91 987 654 3210
+                       contact no:+971 555451188
                       </a>
                     </div>
                   </div>
@@ -150,7 +150,7 @@ export default function ContactPage() {
                         href="mailto:info@omegafreshfish.com"
                         className="text-gray-600 hover:text-[#5caf90] transition-colors"
                       >
-                        info@omegafreshfish.com
+                       omegaseafoods.enquiries@gmail.com
                       </a>
                     </div>
                   </div>
@@ -162,7 +162,9 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-xl font-semibold text-gray-700 mb-1">Address</h3>
                       <p className="text-gray-600">
-                        Dubai, United Arab Emirates
+                      Store No.4, AD Ports Building. ICAD III
+Musaffah, Abu Dhabi
+United Arab Emirates
                       </p>
                     </div>
                   </div>

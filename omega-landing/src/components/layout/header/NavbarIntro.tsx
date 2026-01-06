@@ -9,13 +9,13 @@ export default function NavbarIntro() {
         <div className="flex items-center justify-between py-2">
           {/* Left side - Contact info */}
           <div className="hidden lg:flex items-center gap-6 text-sm text-gray-600">
-            <Link href="tel:+919876543210" className="flex items-center gap-2 hover:text-[#5caf90] transition-colors">
+            <Link href="tel:+971555451188" className="flex items-center gap-2 hover:text-[#5caf90] transition-colors">
               <span>📞</span>
-              <span>+91 987 654 3210</span>
+              <span>+971 555451188 (Contact No.)</span>
             </Link>
-            <Link href="https://wa.me/919876543210" className="flex items-center gap-2 hover:text-[#5caf90] transition-colors">
+            <Link href="https://wa.me/+971555451188" className="flex items-center gap-2 hover:text-[#5caf90] transition-colors">
               <span>💬</span>
-              <span>+91 987 654 3210</span>
+              <span>+971 555451188</span>
             </Link>
           </div>
 
