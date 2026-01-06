@@ -14,6 +14,18 @@ interface Fish {
   bodyPhase: number;
 }
 
+interface FishGeometry {
+  vertices: number[];
+  normals: number[];
+  texCoords: number[];
+  indices: number[];
+  positionBuffer?: WebGLBuffer | null;
+  normalBuffer?: WebGLBuffer | null;
+  texCoordBuffer?: WebGLBuffer | null;
+  indexBuffer?: WebGLBuffer | null;
+  buffer?: boolean;
+}
+
 export default function WebGLAquarium() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const glRef = useRef<WebGLRenderingContext | null>(null);
@@ -26,7 +38,7 @@ export default function WebGLAquarium() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    const gl = (canvas.getContext("webgl") || canvas.getContext("experimental-webgl")) as WebGLRenderingContext | null;
     if (!gl) {
       setIsSupported(false);
       return;
@@ -167,7 +179,7 @@ export default function WebGLAquarium() {
     const timeLoc = gl.getUniformLocation(program, "u_time");
 
     // Create fish geometry - realistic fish shape
-    const createFishGeometry = (size: number) => {
+    const createFishGeometry = (size: number): FishGeometry => {
       const vertices: number[] = [];
       const normals: number[] = [];
       const texCoords: number[] = [];
@@ -325,7 +337,7 @@ export default function WebGLAquarium() {
 
     // Initialize fish
     const fishCount = 15;
-    const fishGeometries: { [key: number]: any } = {};
+    const fishGeometries: { [key: number]: FishGeometry } = {};
 
     // Pre-create geometries and buffers for different sizes
     const sizeKeys = [3, 4, 5, 6, 7];
@@ -542,22 +554,22 @@ export default function WebGLAquarium() {
         // Get geometry (use closest size bucket)
         const sizeKey = Math.min(7, Math.max(3, Math.round(fish.size * 10)));
         const geometry = fishGeometries[sizeKey];
-        if (!geometry || !geometry.buffer) continue;
+        if (!geometry || !geometry.buffer || !geometry.positionBuffer || !geometry.normalBuffer || !geometry.texCoordBuffer || !geometry.indexBuffer) continue;
 
         // Bind and draw
-        gl.bindBuffer(gl.ARRAY_BUFFER, geometry.positionBuffer);
+        gl.bindBuffer(gl.ARRAY_BUFFER, geometry.positionBuffer ?? null);
         gl.enableVertexAttribArray(positionLoc);
         gl.vertexAttribPointer(positionLoc, 3, gl.FLOAT, false, 0, 0);
 
-        gl.bindBuffer(gl.ARRAY_BUFFER, geometry.normalBuffer);
+        gl.bindBuffer(gl.ARRAY_BUFFER, geometry.normalBuffer ?? null);
         gl.enableVertexAttribArray(normalLoc);
         gl.vertexAttribPointer(normalLoc, 3, gl.FLOAT, false, 0, 0);
 
-        gl.bindBuffer(gl.ARRAY_BUFFER, geometry.texCoordBuffer);
+        gl.bindBuffer(gl.ARRAY_BUFFER, geometry.texCoordBuffer ?? null);
         gl.enableVertexAttribArray(texCoordLoc);
         gl.vertexAttribPointer(texCoordLoc, 2, gl.FLOAT, false, 0, 0);
 
-        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, geometry.indexBuffer);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, geometry.indexBuffer ?? null);
         gl.drawElements(gl.TRIANGLES, geometry.indices.length, gl.UNSIGNED_SHORT, 0);
       }
 
