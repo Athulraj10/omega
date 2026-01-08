@@ -11,7 +11,7 @@ export interface HeroSlider {
   buttonLink?: string;
   device: string;
   type?: string;
-  status: boolean;
+  status: string;
   isDefault?: boolean;
   image: string;
   imageUrl?: string;

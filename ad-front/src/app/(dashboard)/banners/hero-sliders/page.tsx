@@ -504,7 +504,7 @@ const HeroSlidersPage = () => {
                       <label className="relative inline-flex cursor-pointer items-center">
                         <input
                           type="checkbox"
-                          checked={slider.status}
+                          checked={slider.status === "active" ? true : false}
                           onChange={() => handleToggleStatus(slider._id)}
                           className="sr-only peer"
                         />
@@ -677,7 +677,7 @@ const HeroSlidersPage = () => {
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                               Status
                             </label>
-                            <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(selectedSliderForReview.status)}`}>
+                            <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(selectedSliderForReview.status === "active" ? true : false)}`}>
                               {selectedSliderForReview.status ? 'Active' : 'Inactive'}
                             </span>
                           </div>
@@ -802,7 +802,7 @@ const HeroSlidersPage = () => {
                       backgroundColor={selectedSliderForReview.backgroundColor}
                       textColor={selectedSliderForReview.textColor}
                       animation={selectedSliderForReview.animation}
-                      device={previewDevice}
+                      device={previewDevice as "desktop" | "mobile" | "tablet" | "all"}
                     />
 
                     {/* Preview Info */}

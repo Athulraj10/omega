@@ -11,6 +11,7 @@ interface HeroSliderPreviewProps {
   backgroundColor?: string;
   textColor?: string;
   animation?: string;
+  device?: 'desktop' | 'mobile' | 'tablet' | 'all';
 }
 
 const HeroSliderPreview: React.FC<HeroSliderPreviewProps> = ({
@@ -22,7 +23,8 @@ const HeroSliderPreview: React.FC<HeroSliderPreviewProps> = ({
   buttonText,
   backgroundColor = '#ffffff',
   textColor = '#000000',
-  animation = 'fade'
+  animation = 'fade',
+  device = 'desktop'
 }) => {
   return (
     <div className="sticky top-4">
@@ -99,6 +101,10 @@ const HeroSliderPreview: React.FC<HeroSliderPreviewProps> = ({
       
       {/* Preview Settings */}
       <div className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <div className="flex items-center justify-between">
+          <span>Device:</span>
+          <span className="font-medium capitalize">{device}</span>
+        </div>
         <div className="flex items-center justify-between">
           <span>Animation:</span>
           <span className="font-medium capitalize">{animation}</span>

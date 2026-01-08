@@ -333,10 +333,9 @@ module.exports = {
       const sliders = await HeroSlider.find(filterQuery)
         .sort(sortQuery)
         .skip(skip)
-        .limit(limit)
-        .populate('createdBy', 'name email')
-        .populate('updatedBy', 'name email')
-        .populate('approvedBy', 'name email');
+        .limit(limit);
+        // Note: populate removed because Admin model doesn't exist
+        // If needed, can populate with User model after fixing schema references
 
       // Transform sliders to include proper image URLs
       const useS3 = process.env.S3_ENABLE === Constants.S3_ENABLE;
@@ -483,10 +482,9 @@ module.exports = {
       const { id } = req.params;
       console.log('🔍 Get hero slider by ID:', id);
 
-      const slider = await HeroSlider.findById(id)
-        .populate('createdBy', 'name email')
-        .populate('updatedBy', 'name email')
-        .populate('approvedBy', 'name email');
+      const slider = await HeroSlider.findById(id);
+        // Note: populate removed because Admin model doesn't exist
+        // If needed, can populate with User model after fixing schema references
 
       if (!slider) {
         return Response.errorResponseWithoutData(
@@ -690,8 +688,9 @@ module.exports = {
         id,
         updateData,
         { new: true, runValidators: true }
-      ).populate('createdBy', 'name email')
-       .populate('updatedBy', 'name email');
+      );
+        // Note: populate removed because Admin model doesn't exist
+        // If needed, can populate with User model after fixing schema references
 
       if (!updatedSlider) {
         return Response.errorResponseWithoutData(
