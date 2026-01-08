@@ -33,6 +33,12 @@ api.interceptors.request.use(
       console.log('⚠️ No token found, making unauthenticated request');
     }
     
+    // Don't override Content-Type for FormData - let axios set it automatically with boundary
+    if (config.data instanceof FormData) {
+      delete config.headers['Content-Type'];
+      console.log('📎 FormData detected, letting axios set Content-Type with boundary');
+    }
+    
     return config;
   },
   (error: AxiosError) => {

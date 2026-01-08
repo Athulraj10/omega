@@ -6,6 +6,7 @@ const Response = require('../../services/Response');
 const {
   removeOldImage,
   s3MediaUrl,
+  mediaUrl,
   base64ImageUpload,
 } = require('../../services/S3Bucket');
 const { default: mongoose } = require("mongoose");
@@ -16,13 +17,27 @@ module.exports = {
   async addBanner(req, res) {
     try {
       const requestParams = req.body;
+      
+      console.log('📥 Received banner creation request:', {
+        hasFile: !!req.file,
+        bodyFields: Object.keys(requestParams),
+        fileInfo: req.file ? {
+          originalname: req.file.originalname,
+          mimetype: req.file.mimetype,
+          size: req.file.size,
+          path: req.file.path
+        } : null
+      });
+      
       if (!req.file) {
+        console.error('❌ No file uploaded');
         return Response.errorResponseWithoutData(
           res,
           "Image file is required",
           Constants.BAD_REQUEST
         );
       }
+      
       // Handle uploaded file
       const uploadedFile = req.file;
       const extension = uploadedFile.originalname.split('.').pop();
@@ -32,36 +47,73 @@ module.exports = {
       let formattedDate = `${currentDate.getDate()}-${(
         currentDate.getMonth() + 1
       ).toString().padStart(2, "0")}-${currentDate.getFullYear()}`;
+      
+      console.log('🔄 Processing image:', { imageName, formattedDate, extension });
+      
       // Convert file to base64 for S3 upload
-      const fileBuffer = fs.readFileSync(uploadedFile.path);
+      let fileBuffer;
+      try {
+        fileBuffer = fs.readFileSync(uploadedFile.path);
+      } catch (readError) {
+        console.error('❌ Error reading uploaded file:', readError);
+        return Response.errorResponseWithoutData(
+          res,
+          "Failed to read uploaded file",
+          Constants.INTERNAL_SERVER
+        );
+      }
+      
       const base64Image = fileBuffer.toString('base64');
       const dataURI = `data:${uploadedFile.mimetype};base64,${base64Image}`;
-      // Upload to S3
+      
+      console.log('📤 Uploading to storage...');
+      // Upload to S3 or local storage
       const bucketRes = await base64ImageUpload(
         imageName,
         `${Constants.BANNER}/${formattedDate}`,
         dataURI,
         res
       );
+      
       // Clean up uploaded file
-      fs.unlinkSync(uploadedFile.path);
-      const bannerObj = {
-        image: imageName,
-        titleLine1: requestParams?.titleLine1 || "",
-        titleLine2: requestParams?.titleLine2 || "",
-        offerText: requestParams?.offerText || "",
-        offerHighlight: requestParams?.offerHighlight || "",
-        buttonText: requestParams?.buttonText || "Shop now",
-        device: requestParams?.device || "desktop",
-        status: requestParams?.status || "1",
-        isDefault: requestParams?.isDefault || false,
-        ...(requestParams?.key !== 'betxfair' && { whiteLabelId: requestParams?.key })
+      try {
+        if (fs.existsSync(uploadedFile.path)) {
+          fs.unlinkSync(uploadedFile.path);
+          console.log('✅ Cleaned up temporary file');
+        }
+      } catch (cleanupError) {
+        console.warn('⚠️ Failed to cleanup temp file:', cleanupError);
       }
-      if (bucketRes) {
+      
+      if (bucketRes && (bucketRes.code === 200 || bucketRes === true)) {
+        console.log('✅ Image uploaded successfully');
+        
+        const bannerObj = {
+          image: imageName,
+          titleLine1: requestParams?.titleLine1 || "",
+          titleLine2: requestParams?.titleLine2 || "",
+          offerText: requestParams?.offerText || "",
+          offerHighlight: requestParams?.offerHighlight || "",
+          buttonText: requestParams?.buttonText || "Shop now",
+          device: requestParams?.device || "desktop",
+          status: requestParams?.status || "1",
+          isDefault: requestParams?.isDefault || false,
+          ...(requestParams?.key !== 'betxfair' && { whiteLabelId: requestParams?.key })
+        };
+        
         const newBanner = await Banner.create(bannerObj);
+        console.log('✅ Banner created in database:', newBanner._id);
+        
+        const useS3 = process.env.S3_ENABLE === Constants.S3_ENABLE;
+        const imageUrl = useS3 
+          ? s3MediaUrl(Constants.BANNER, formattedDate, newBanner.image)
+          : mediaUrl(Constants.BANNER, formattedDate, newBanner.image);
+        
+        console.log('🖼️ Generated image URL:', imageUrl);
+        
         const bannerData = {
           _id: newBanner._id,
-          image: s3MediaUrl(Constants.BANNER, formattedDate, newBanner.image),
+          image: imageUrl,
           titleLine1: newBanner.titleLine1,
           titleLine2: newBanner.titleLine2,
           offerText: newBanner.offerText,
@@ -72,24 +124,27 @@ module.exports = {
           isDefault: newBanner.isDefault,
           createdAt: newBanner.createdAt,
         };
+        
         return Response.successResponseData(
           res,
           bannerData,
           Constants.SUCCESS,
-          res.locals.__("bannerAdded")
+          res.locals.__("bannerAdded") || "Banner added successfully"
         );
       } else {
+        console.error('❌ Image upload failed:', bucketRes);
         return Response.errorResponseWithoutData(
           res,
-          res.locals.__("failedToUpload"),
+          res.locals.__("failedToUpload") || "Failed to upload image",
           Constants.FAIL
         );
       }
     } catch (error) {
-      console.log('❌ Banner creation error:', error);
+      console.error('❌ Banner creation error:', error);
+      console.error('Error stack:', error.stack);
       return Response.errorResponseWithoutData(
         res,
-        res.locals.__("internalError"),
+        res.locals.__("internalError") || "Internal server error",
         Constants.INTERNAL_SERVER
       );
     }
@@ -109,6 +164,7 @@ module.exports = {
         bannerFilter.whiteLabelId = { $in: whiteLabelIds };
       }
       const banners = await Banner.find(bannerFilter).sort({ createdAt: -1 });
+      const useS3 = process.env.S3_ENABLE === Constants.S3_ENABLE;
       const bannerDatas = banners.map((data) => {
         const date = new Date(data?.createdAt);
         var formattedDate = `${date.getDate()}-${(date.getMonth() + 1)
@@ -116,7 +172,9 @@ module.exports = {
           .padStart(2, "0")}-${date.getFullYear()}`;
         return {
           _id: data?._id,
-          image: s3MediaUrl(Constants.BANNER, formattedDate, data?.image),
+          image: useS3 
+            ? s3MediaUrl(Constants.BANNER, formattedDate, data?.image)
+            : mediaUrl(Constants.BANNER, formattedDate, data?.image),
           titleLine1: data?.titleLine1,
           titleLine2: data?.titleLine2,
           offerText: data?.offerText,
@@ -149,7 +207,8 @@ module.exports = {
   async updateBanner(req, res) {
     try {
       const requestParams = req.body;
-      const bannerId = requestParams?.id;
+      // Get ID from route params (PUT /:id) or fallback to body
+      const bannerId = req.params?.id || requestParams?.id;
       if (!bannerId) {
         return Response.errorResponseWithoutData(
           res,
@@ -305,33 +364,43 @@ module.exports = {
           Constants.NOT_FOUND
         );
       }
+      
+      // Extract just the filename if banner.image is a full URL
+      let imageFilename = banner?.image || '';
+      if (imageFilename.includes('/')) {
+        // Extract filename from path (e.g., "Banner/7-01-2026/filename.png" or full URL)
+        const parts = imageFilename.split('/');
+        imageFilename = parts[parts.length - 1]; // Get last part (filename)
+      }
+      
       const date = new Date(banner?.createdAt);
       var formattedDate = `${date.getDate()}-${(date.getMonth() + 1)
         .toString()
         .padStart(2, "0")}-${date.getFullYear()}`;
-      const bucketRes = await removeOldImage(
-        banner?.image,
-        `${Constants.BANNER}/${formattedDate}`
-      );
-      if (bucketRes) {
-        await Banner.deleteOne({ _id: requestParams });
-        Response.successResponseWithoutData(
-          res,
-          res.locals.__("bannerDeleted"),
-          Constants.SUCCESS
+      
+      // Try to remove the image, but don't fail if it doesn't work
+      try {
+        await removeOldImage(
+          imageFilename,
+          `${Constants.BANNER}/${formattedDate}`
         );
-      } else {
-        return Response.errorResponseWithoutData(
-          res,
-          res.locals.__("failedToDelete"),
-          Constants.BAD_REQUEST
-        );
+      } catch (imageError) {
+        console.log('⚠️ Failed to remove image file, continuing with banner deletion:', imageError);
+        // Continue with deletion even if image removal fails
       }
+      
+      // Delete the banner record
+      await Banner.deleteOne({ _id: requestParams });
+      return Response.successResponseWithoutData(
+        res,
+        res.locals.__("bannerDeleted") || "Banner deleted successfully",
+        Constants.SUCCESS
+      );
     } catch (error) {
-      console.log(error, "error");
+      console.log('❌ Banner deletion error:', error);
       return Response.errorResponseWithoutData(
         res,
-        res.locals.__("internalError"),
+        res.locals.__("internalError") || "Internal server error",
         Constants.INTERNAL_SERVER
       );
     }

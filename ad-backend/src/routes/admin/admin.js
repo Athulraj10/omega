@@ -8,6 +8,7 @@ const userController = require("../../controllers/admin/userController");
 const categoryController = require("../../controllers/admin/categoryController");
 const currencyController = require("../../controllers/admin/currencyController");
 const dashboardController = require("../../controllers/admin/dashboardController");
+const reviewController = require("../../controllers/admin/reviewController");
 const heroSliderRoutes = require("./heroSlider");
 const bannerRoutes = require('./banner');
 const dealsRoutes = require('./deals');
@@ -117,6 +118,11 @@ router.patch("/products/:id/status", adminTokenAuth, productController.updatePro
 router.get("/products/check-sku", adminTokenAuth, productController.checkSKUAvailability);
 router.get("/products/generate-sku", adminTokenAuth, productController.generateSKU);
 router.get("/products/analytics", adminTokenAuth, productController.getProductAnalytics);
+
+// Review routes
+router.get("/reviews", reviewController.getReviews);
+router.get("/reviews/:id", reviewController.getReviewById);
+router.delete("/reviews/:id", adminTokenAuth, reviewController.deleteReview);
 
 // Seller routes
 router.get("/sellers", adminTokenAuth, sellerController.getSellers);

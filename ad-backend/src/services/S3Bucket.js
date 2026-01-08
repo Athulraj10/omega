@@ -36,11 +36,13 @@ module.exports = {
             }
           });
         } else {
-          const newLocation = path.join(__dirname, "../../public/uploads") + "/" + storagePath + "/";
+          // Save to src/uploads (where the server serves from)
+          const newLocation = path.join(__dirname, "../../src/uploads") + "/" + storagePath + "/";
           if (!fs.existsSync(newLocation)) {
             fs.mkdirSync(newLocation, { recursive: true });
           }
           fs.writeFileSync(`${newLocation}/${fileName}`, decodedImage);
+          console.log('💾 Saved file to:', `${newLocation}/${fileName}`);
           return resolve({ code: 200 });
         }
       } catch (error) {
@@ -82,7 +84,7 @@ module.exports = {
         }
       } else {
         const filePath =
-          path.join(__dirname, "../../public/uploads") +
+          path.join(__dirname, "../../src/uploads") +
           "/" +
           storagePath +
           "/";
@@ -103,7 +105,18 @@ module.exports = {
 
   mediaUrl: (folder, date, filename) => {
     if (filename && filename !== "") {
-      return `${process.env.API_URL}public/uploads/${folder}/${date}/${filename}`;
+      // Server serves static files from /uploads route
+      // Files are stored in src/uploads/Banner/DD-MM-YYYY/filename.png
+      // So the URL should be: API_URL/uploads/Banner/DD-MM-YYYY/filename.png
+      let apiUrl = process.env.API_URL || 'http://localhost:8001';
+      
+      // If API_URL is "fake" or invalid, use default localhost
+      if (!apiUrl || apiUrl === 'fake' || !apiUrl.startsWith('http')) {
+        apiUrl = 'http://localhost:8001';
+      }
+      
+      const baseUrl = apiUrl.endsWith('/') ? apiUrl.slice(0, -1) : apiUrl; // Remove trailing slash
+      return `${baseUrl}/uploads/${folder}/${date}/${filename}`;
     }
     return "";
   },

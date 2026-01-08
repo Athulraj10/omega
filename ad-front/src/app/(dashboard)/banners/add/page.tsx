@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import api from '@/utils/api';
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import BannerPreview from '@/components/BannerPreview';
 
@@ -103,19 +103,36 @@ const AddBannerPage = () => {
 
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:8001/admin/banners', data, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
+      setError('');
+      
+      console.log('📤 Uploading banner with FormData:', {
+        titleLine1: formData.titleLine1,
+        device: formData.device,
+        hasImage: !!formData.image,
+        imageName: formData.image?.name,
+        imageSize: formData.image?.size
       });
       
-      toast.success('Banner created successfully!');
-      router.push('/banners/list');
+      // Don't set Content-Type header - axios will set it automatically with boundary for FormData
+      const response = await api.post('/admin/banners', data);
+      
+      console.log('✅ Banner created successfully:', response.data);
+      
+      // Handle both response formats
+      if (response.data?.meta?.code === 200 || response.data?.success) {
+        toast.success('Banner created successfully!');
+        // Wait a bit before redirecting to ensure the backend processed everything
+        setTimeout(() => {
+          router.push('/banners/list');
+        }, 500);
+      } else {
+        const errorMsg = response.data?.meta?.message || response.data?.message || 'Error creating banner';
+        setError(errorMsg);
+        toast.error(errorMsg);
+      }
     } catch (err: any) {
-      console.error('Failed to create banner:', err);
-      const errorMessage = err.response?.data?.message || 'Error creating banner';
+      console.error('❌ Failed to create banner:', err);
+      const errorMessage = err.response?.data?.meta?.message || err.response?.data?.message || 'Error creating banner';
       setError(errorMessage);
       toast.error(errorMessage);
     } finally {

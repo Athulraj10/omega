@@ -102,18 +102,42 @@ export default function AddProduct() {
       } else {
         const prod = products.find((p: any) => p._id === id);
         if (prod) {
+          // Extract IDs from populated objects if they exist
+          const sellerId = typeof prod.seller === 'object' && prod.seller?._id 
+            ? prod.seller._id 
+            : (typeof prod.seller === 'string' ? prod.seller : "");
+          
+          const categoryId = typeof prod.category === 'object' && prod.category?._id 
+            ? prod.category._id 
+            : (typeof prod.category === 'string' ? prod.category : "");
+          
+          const subcategoryId = typeof prod.subcategory === 'object' && prod.subcategory?._id 
+            ? prod.subcategory._id 
+            : (typeof prod.subcategory === 'string' ? prod.subcategory : "");
+
+          console.log('📝 Editing product:', {
+            id: prod._id,
+            name: prod.name,
+            seller: prod.seller,
+            sellerId,
+            category: prod.category,
+            categoryId,
+            subcategory: prod.subcategory,
+            subcategoryId
+          });
+
           setFormData({
             name: prod.name || "",
             description: prod.description || "",
             price: prod.price?.toString() || "",
-            category: prod.category || "",
-            subcategory: prod.subcategory || "",
+            category: categoryId,
+            subcategory: subcategoryId,
             stock: prod.stock?.toString() || "",
             minimumOrder: prod.minimumOrder?.toString() || "1",
             status: prod.status || "1",
             sku: prod.sku || "",
             discountPrice: prod.discountPrice?.toString() || "",
-            seller: prod.seller || "",
+            seller: sellerId,
             sale: prod.sale || "",
             location: prod.location || "Online",
             brand: prod.brand || "",
@@ -135,6 +159,40 @@ export default function AddProduct() {
           });
         }
       }
+    } else {
+      // Reset form when not in edit mode
+      setEditId(null);
+      setFormData({
+        name: "",
+        description: "",
+        price: "",
+        category: "",
+        subcategory: "",
+        stock: "",
+        minimumOrder: "1",
+        status: "1",
+        sku: "",
+        discountPrice: "",
+        seller: "",
+        sale: "",
+        location: "Online",
+        brand: "",
+        weight: "",
+        rating: "0",
+        availability: "Available",
+        metaTitle: "",
+        metaDescription: "",
+        keywords: "",
+        features: "",
+        tags: "",
+        isOnSale: false,
+        saleStartDate: "",
+        saleEndDate: "",
+        discountPercentage: "",
+        lowStockThreshold: "5",
+        trackInventory: true,
+        images: [],
+      });
     }
   }, [searchParams, products, dispatch]);
 

@@ -24,7 +24,10 @@ export default function ListBanners() {
       dispatch(fetchBannersRequest());
     }
   }, [dispatch, mounted]);
-  console.log(banners);
+  // Log banner images for debugging
+  if (banners.length > 0) {
+    console.log('📋 Banners with image URLs:', banners.map(b => ({ id: b._id, image: b.image })));
+  }
 
   const handleAddBanner = () => {
     router.push('/banners/add');
@@ -175,11 +178,43 @@ export default function ListBanners() {
                       <div className="flex items-center gap-3">
                         <div className="relative h-16 w-24 rounded-md overflow-hidden">
                           <img
-                            src={banner.image}
+                            src={(() => {
+                              const img = banner.image || '';
+                              const apiEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:8001';
+                              
+                              if (!img) {
+                                return '/images/product/product-01.png';
+                              }
+                              
+                              // If already absolute URL (starts with http/https)
+                              if (img.startsWith('http://') || img.startsWith('https://')) {
+                                return img;
+                              }
+                              
+                              // Remove "fake" prefix if present (from backend env config)
+                              let cleanImg = img.replace(/^fake\/?/, '').trim();
+                              
+                              // Ensure it starts with / for proper path construction
+                              if (!cleanImg.startsWith('/')) {
+                                cleanImg = '/' + cleanImg;
+                              }
+                              
+                              // Construct absolute URL
+                              const absoluteUrl = `${apiEndpoint}${cleanImg}`;
+                              console.log('🖼️ Image URL:', { original: img, cleaned: cleanImg, absolute: absoluteUrl });
+                              return absoluteUrl;
+                            })()}
                             alt="Banner"
                             className="h-full w-full object-cover"
                             onError={(e) => {
+                              console.error('❌ Image load error:', {
+                                original: banner.image,
+                                attempted: e.currentTarget.src
+                              });
                               e.currentTarget.src = '/images/product/product-01.png';
+                            }}
+                            onLoad={(e) => {
+                              console.log('✅ Image loaded successfully:', e.currentTarget.src);
                             }}
                           />
                         </div>

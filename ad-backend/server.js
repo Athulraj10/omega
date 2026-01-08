@@ -19,8 +19,9 @@ const createApp = () => {
   const i18n = require("./src/i18n/i18n");
 
   // Middleware setup
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
+  // Increase body size limit to handle base64 images (50MB limit)
+  app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+  app.use(bodyParser.json({ limit: '50mb' }));
   app.use(morgan(":method :url :status :res[content-length] - :response-time ms"));
   app.use(i18n);
 

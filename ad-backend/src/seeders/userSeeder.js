@@ -51,7 +51,7 @@ const createUsers = async () => {
           last_name: "Seller",
           email: "john.seller@gmail.com",
           userName: "johnseller",
-          mobile_no: "+971555451188",
+          mobile_no: "9876543210",
           password: "seller@123",
         },
         {

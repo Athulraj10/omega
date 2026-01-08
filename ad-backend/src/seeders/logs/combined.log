@@ -20,3 +20,7 @@
 {"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-15 21:44:15"}
 {"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::undefined","service":"backend","timestamp":"2025-07-15 21:55:03"}
 {"level":"info","message":"Connected to database","service":"backend","timestamp":"2025-07-15 21:55:03"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::undefined","service":"backend","timestamp":"2026-01-07 21:23:41"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2026-01-07 21:23:41"}
+{"level":"info","message":"process.env.MONGO_CONNECTION_STRING :::undefined","service":"backend","timestamp":"2026-01-07 21:25:33"}
+{"level":"info","message":"Connected to database","service":"backend","timestamp":"2026-01-07 21:25:33"}

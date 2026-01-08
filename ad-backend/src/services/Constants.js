@@ -19,6 +19,7 @@ module.exports = {
   NOT_VERIFIED: "0",
   S3_ENABLE: "true",
   PROFILE_PIC: "profilePicture",
+  BANNER: "Banner",
 
   CURRENCY_MAP: {
     AED: { name: "United Arab Emirates Dirham", symbol: "د.إ" },

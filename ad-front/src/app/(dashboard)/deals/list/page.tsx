@@ -118,15 +118,18 @@ export default function DealsList() {
   const fetchCategories = async () => {
     try {
       setLoadingCategories(true);
-      const response = await fetch('/api/admin/categories/for-product');
-      const result = await response.json();
+      const response = await api.get('/admin/categories/for-product');
+      const result = response.data;
 
-      if (result.success) {
+      // Handle both response formats: {success: true, data: {...}} or {meta: {code: 200}, data: {...}}
+      const responseData = result.data || result;
+      
+      if (result.success || result.meta?.code === 200) {
         const allCategories: Array<{id: string; name: string}> = [];
         
         // Add main categories
-        if (result.data.mainCategories) {
-          result.data.mainCategories.forEach((mainCat: any) => {
+        if (responseData.mainCategories) {
+          responseData.mainCategories.forEach((mainCat: any) => {
             allCategories.push({
               id: mainCat.id,
               name: mainCat.name
@@ -145,8 +148,8 @@ export default function DealsList() {
         }
         
         // Add standalone categories
-        if (result.data.standaloneCategories) {
-          result.data.standaloneCategories.forEach((cat: any) => {
+        if (responseData.standaloneCategories) {
+          responseData.standaloneCategories.forEach((cat: any) => {
             allCategories.push({
               id: cat.id,
               name: cat.name
@@ -156,7 +159,7 @@ export default function DealsList() {
         
         setCategories(allCategories);
       } else {
-        console.error('Failed to fetch categories:', result.message);
+        console.error('Failed to fetch categories:', result.message || result.meta?.message);
       }
     } catch (error) {
       console.error('Error fetching categories:', error);

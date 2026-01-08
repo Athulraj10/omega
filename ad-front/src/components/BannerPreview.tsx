@@ -24,6 +24,31 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({
   textColor,
   animation,
 }) => {
+  // Fix image URL to ensure it's absolute
+  const getImageUrl = () => {
+    if (!image) return '';
+    
+    const apiEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:8001';
+    
+    // If already absolute URL or base64
+    if (image.startsWith('http://') || image.startsWith('https://') || image.startsWith('data:')) {
+      return image;
+    }
+    
+    // Remove "fake" prefix if present
+    let cleanImg = image.replace(/^fake\/?/, '').trim();
+    
+    // Ensure it starts with / for proper path construction
+    if (!cleanImg.startsWith('/')) {
+      cleanImg = '/' + cleanImg;
+    }
+    
+    // Construct absolute URL
+    return `${apiEndpoint}${cleanImg}`;
+  };
+
+  const imageUrl = getImageUrl();
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-4">
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Banner Preview</h3>
@@ -31,15 +56,15 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({
       <div 
         className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg"
         style={{
-          backgroundImage: image ? `url(${image})` : 'none',
-          backgroundColor: image ? 'transparent' : backgroundColor,
+          backgroundImage: imageUrl ? `url(${imageUrl})` : 'none',
+          backgroundColor: imageUrl ? 'transparent' : backgroundColor,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
         }}
       >
         {/* Overlay for better text readability */}
-        {image && (
+        {imageUrl && (
           <div 
             className="absolute inset-0"
             style={{

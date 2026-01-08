@@ -99,16 +99,23 @@ function* addBannerSaga(action: ReturnType<typeof addBannerRequest>): Generator<
 function* updateBannerSaga(action: ReturnType<typeof updateBannerRequest>): Generator<any, void, any> {
   try {
     const { id, ...data } = action.payload;
+    console.log('📤 Updating banner:', { id, data });
     const response: any = yield call(bannerAPI.updateBanner, id, data);
-    if (response.data.success) {
-      yield put(updateBannerSuccess(response.data.data));
+    console.log('📥 Update banner response:', response);
+    
+    // Check for success based on meta.code (backend uses Response.successResponseWithoutData)
+    if (response.data?.meta?.code === 200 || response.data?.success) {
+      // Refresh banners list
+      yield put(fetchBannersRequest());
+      yield put(updateBannerSuccess({ ...data, _id: id } as any));
       toast.success('Banner updated successfully');
     } else {
-      yield put(updateBannerFailure(response.data.message || 'Failed to update banner'));
-      toast.error(response.data.message || 'Failed to update banner');
+      yield put(updateBannerFailure(response.data?.meta?.message || response.data?.message || 'Failed to update banner'));
+      toast.error(response.data?.meta?.message || response.data?.message || 'Failed to update banner');
     }
   } catch (error: any) {
-    const errorMessage = error.response?.data?.message || 'Failed to update banner';
+    console.error('❌ Banner update error:', error);
+    const errorMessage = error.response?.data?.meta?.message || error.response?.data?.message || 'Failed to update banner';
     yield put(updateBannerFailure(errorMessage));
     toast.error(errorMessage);
   }
@@ -116,16 +123,23 @@ function* updateBannerSaga(action: ReturnType<typeof updateBannerRequest>): Gene
 
 function* deleteBannerSaga(action: ReturnType<typeof deleteBannerRequest>): Generator<any, void, any> {
   try {
+    console.log('🗑️ Deleting banner:', action.payload);
     const response: any = yield call(bannerAPI.deleteBanner, action.payload);
-    if (response.data.success) {
+    console.log('📥 Delete banner response:', response);
+    
+    // Backend uses Response.successResponseWithoutData which has meta.code
+    if (response.data?.meta?.code === 200 || response.data?.success) {
       yield put(deleteBannerSuccess(action.payload));
       toast.success('Banner deleted successfully');
+      // Refresh banners list after deletion
+      yield put(fetchBannersRequest());
     } else {
-      yield put(deleteBannerFailure(response.data.message || 'Failed to delete banner'));
-      toast.error(response.data.message || 'Failed to delete banner');
+      yield put(deleteBannerFailure(response.data?.meta?.message || response.data?.message || 'Failed to delete banner'));
+      toast.error(response.data?.meta?.message || response.data?.message || 'Failed to delete banner');
     }
   } catch (error: any) {
-    const errorMessage = error.response?.data?.message || 'Failed to delete banner';
+    console.error('❌ Banner delete error:', error);
+    const errorMessage = error.response?.data?.meta?.message || error.response?.data?.message || 'Failed to delete banner';
     yield put(deleteBannerFailure(errorMessage));
     toast.error(errorMessage);
   }
