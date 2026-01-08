@@ -12,6 +12,7 @@ const reviewController = require("../../controllers/admin/reviewController");
 const heroSliderRoutes = require("./heroSlider");
 const bannerRoutes = require('./banner');
 const dealsRoutes = require('./deals');
+const reportRoutes = require('./report');
 
 const {
   login,
@@ -200,5 +201,8 @@ router.patch("/currencies/:id/status", adminTokenAuth, currencyController.update
 router.use("/", heroSliderRoutes);
 router.use('/banners', bannerRoutes);
 router.use('/deals', dealsRoutes);
+
+// Report routes
+router.use('/reports', reportRoutes);
 
 module.exports = router;
