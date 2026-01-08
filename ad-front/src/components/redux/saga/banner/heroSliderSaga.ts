@@ -75,7 +75,56 @@ const heroSliderAPI = {
     
     return api.post('/admin/hero-sliders', formData);
   },
-  updateHeroSlider: (id: string, data: any) => api.put(`/admin/hero-sliders/${id}`, data),
+  updateHeroSlider: (id: string, data: any) => {
+    // Convert base64 image to file and send as FormData if image is provided
+    const formData = new FormData();
+    
+    console.log('📤 Original update data:', data);
+    
+    // Add all text fields
+    Object.keys(data).forEach(key => {
+      if (key !== 'image' && key !== 'id') {
+        formData.append(key, data[key]?.toString() || '');
+      }
+    });
+    
+    // Convert base64 image to file if provided
+    if (data.image && data.image.startsWith('data:')) {
+      try {
+        const base64Data = data.image.split(',')[1];
+        const byteCharacters = atob(base64Data);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        
+        // Determine MIME type from base64 string
+        const mimeType = data.image.match(/data:([^;]+)/)?.[1] || 'image/jpeg';
+        
+        // Get file extension from MIME type
+        const extension = mimeType.split('/')[1] || 'jpg';
+        const filename = `hero-slider-update.${extension}`;
+        
+        // Create a File object instead of Blob
+        const file = new File([byteArray], filename, { type: mimeType });
+        
+        formData.append('image', file);
+        console.log('✅ Update image converted and added to FormData:', filename, 'File size:', file.size);
+      } catch (error) {
+        console.error('❌ Error converting base64 to file for update:', error);
+      }
+    } else {
+      console.log('⚠️ No update image data found or invalid format');
+    }
+    
+    // Log FormData contents for debugging
+    for (let [key, value] of formData.entries()) {
+      console.log(`📋 Update FormData - ${key}:`, value instanceof File ? `File: ${value.name}` : value);
+    }
+    
+    return api.put(`/admin/hero-sliders/${id}`, formData);
+  },
   deleteHeroSlider: (id: string) => api.delete(`/admin/hero-sliders/${id}`),
   toggleHeroSliderStatus: (id: string) => api.patch(`/admin/hero-sliders/${id}/status`),
   reorderHeroSliders: (ids: string[]) => api.post('/admin/hero-sliders/reorder', { ids }),
@@ -96,7 +145,11 @@ function* fetchHeroSlidersSaga(): Generator<any, void, any> {
     console.log('📦 Hero slider response:', response);
     
     if (response.data?.meta?.code === 200 || response.data?.success) {
-      yield put(fetchHeroSlidersSuccess(response.data.data));
+      // Backend returns { data: { sliders: [...], pagination: {...}, analytics: {...} } }
+      const responseData = response.data.data || response.data;
+      const sliders = responseData.sliders || responseData || [];
+      yield put(fetchHeroSlidersSuccess(sliders));
+      console.log('✅ Fetched hero sliders:', sliders.length);
     } else {
       yield put(fetchHeroSlidersFailure(response.data?.meta?.message || 'Failed to fetch hero sliders'));
     }
@@ -140,16 +193,22 @@ function* addHeroSliderSaga(action: ReturnType<typeof addHeroSliderRequest>): Ge
 function* updateHeroSliderSaga(action: ReturnType<typeof updateHeroSliderRequest>): Generator<any, void, any> {
   try {
     const { id, ...data } = action.payload;
+    console.log('📤 Updating hero slider:', id, data);
     const response: any = yield call(heroSliderAPI.updateHeroSlider, id, data);
+    console.log('📥 Update hero slider response:', response);
+    
     if (response.data?.meta?.code === 200 || response.data?.success) {
       yield put(updateHeroSliderSuccess(response.data.data));
       toast.success('Hero slider updated successfully');
+      // Refresh the list after update
+      yield put(fetchHeroSlidersRequest());
     } else {
       yield put(updateHeroSliderFailure(response.data?.meta?.message || 'Failed to update hero slider'));
       toast.error(response.data?.meta?.message || 'Failed to update hero slider');
     }
   } catch (error: any) {
-    const errorMessage = error.response?.data?.message || 'Failed to update hero slider';
+    console.error('❌ Hero slider update error:', error);
+    const errorMessage = error.response?.data?.message || error.response?.data?.meta?.message || 'Failed to update hero slider';
     yield put(updateHeroSliderFailure(errorMessage));
     toast.error(errorMessage);
   }

@@ -8,7 +8,7 @@ const path = require("path");
 // Multer configuration for hero sliders
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const uploadPath = path.join(__dirname, "../../uploads/hero-sliders/");
+    const uploadPath = path.join(__dirname, "../../src/uploads/hero-sliders/");
     
     // Ensure directory exists
     const fs = require('fs');

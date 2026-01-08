@@ -41,7 +41,7 @@ export interface CreateHeroSliderData {
   animation?: string;
   autoplayDelay?: number;
   sortOrder?: number;
-  status?: boolean;
+  status?: string;
 }
 
 export interface UpdateHeroSliderData extends Partial<CreateHeroSliderData> {

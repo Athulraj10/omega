@@ -27,7 +27,7 @@ const AddHeroSliderPage = () => {
     animation: 'fade',
     autoplayDelay: 2500,
     sortOrder: 1,
-    status: true,
+    status: "active",
     device: 'desktop',
   });
 
@@ -327,7 +327,7 @@ const AddHeroSliderPage = () => {
                 <input
                   type="checkbox"
                   name="status"
-                  checked={formData.status}
+                  checked={formData.status === "active" ? true : false}
                   onChange={handleInputChange}
                   className="rounded border-gray-300 text-primary focus:ring-primary"
                 />

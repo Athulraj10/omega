@@ -444,10 +444,32 @@ const HeroSlidersPage = () => {
                       <div className="flex items-center gap-3">
                         <div className="relative h-16 w-24 rounded-md overflow-hidden">
                           <img
-                            src={slider.imageUrl || slider.image}
+                            src={(() => {
+                              const img = slider.imageUrl || slider.image || '';
+                              const apiEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:8001';
+                              
+                              if (!img) return '/images/product/product-01.png';
+                              
+                              // If already absolute URL or base64
+                              if (img.startsWith('http://') || img.startsWith('https://') || img.startsWith('data:')) {
+                                return img;
+                              }
+                              
+                              // Remove "fake" prefix if present
+                              let cleanImg = img.replace(/^fake\/?/, '').trim();
+                              
+                              // Ensure it starts with / for proper path construction
+                              if (!cleanImg.startsWith('/')) {
+                                cleanImg = '/' + cleanImg;
+                              }
+                              
+                              // Construct absolute URL
+                              return `${apiEndpoint}${cleanImg}`;
+                            })()}
                             alt="Hero Slider"
                             className="h-full w-full object-cover"
                             onError={(e) => {
+                              console.error('❌ Hero slider image load error:', slider.imageUrl || slider.image);
                               e.currentTarget.src = '/images/product/product-01.png';
                             }}
                           />

@@ -1,19 +1,24 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter, useParams } from 'next/navigation';
-import { updateHeroSliderRequest, UpdateHeroSliderData } from '@/components/redux/action/banner/heroSliderAction';
+import { RootState } from '@/components/redux/store';
+import { updateHeroSliderRequest, fetchHeroSlidersRequest, UpdateHeroSliderData, HeroSlider } from '@/components/redux/action/banner/heroSliderAction';
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import { toast } from 'react-toastify';
+import api from '@/utils/api';
 
 const EditHeroSliderPage = () => {
   const router = useRouter();
   const params = useParams();
   const dispatch = useDispatch();
+  const { heroSliders } = useSelector((state: RootState) => state.heroSlider);
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(true);
   const [error, setError] = useState('');
   const [imagePreview, setImagePreview] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [formData, setFormData] = useState<UpdateHeroSliderData>({
     id: '',
     titleLine1: '',
@@ -29,15 +34,103 @@ const EditHeroSliderPage = () => {
     autoplayDelay: 2500,
     sortOrder: 1,
     status: true,
+    device: 'desktop',
   });
 
   useEffect(() => {
-    if (params.id) {
-      setFormData(prev => ({ ...prev, id: params.id as string }));
-      // Here you would fetch the existing slider data
-      // For now, we'll use placeholder data
+    const sliderId = params.id as string;
+    if (sliderId) {
+      fetchSliderData(sliderId);
     }
-  }, [params.id]);
+  }, [params.id, dispatch]);
+
+  // Watch for heroSliders updates and populate form if we're still fetching
+  useEffect(() => {
+    const sliderId = params.id as string;
+    if (sliderId && fetching && heroSliders && heroSliders.length > 0 && !formData.id) {
+      const slider = heroSliders.find((s: HeroSlider) => s._id === sliderId);
+      if (slider) {
+        populateFormData(slider);
+        setFetching(false);
+      }
+    }
+  }, [heroSliders, params.id, fetching, formData.id]);
+
+  const fetchSliderData = async (sliderId: string) => {
+    try {
+      setFetching(true);
+      setError('');
+      
+      // First, try to get from Redux store
+      if (heroSliders && heroSliders.length > 0) {
+        const slider = heroSliders.find((s: HeroSlider) => s._id === sliderId);
+        if (slider) {
+          populateFormData(slider);
+          setFetching(false);
+          return;
+        }
+      }
+      
+      // If not in store, fetch all hero sliders
+      dispatch(fetchHeroSlidersRequest());
+      
+      // Also try fetching directly from API as fallback
+      fetchSliderFromAPI(sliderId);
+    } catch (error) {
+      console.error('Error fetching hero slider:', error);
+      setError('Failed to load hero slider data');
+      setFetching(false);
+    }
+  };
+
+  const fetchSliderFromAPI = async (sliderId: string) => {
+    try {
+      const response = await api.get(`/admin/hero-sliders/${sliderId}`);
+      const sliderData = response.data;
+      
+      if (sliderData.meta?.code === 200 || sliderData.success) {
+        const slider = sliderData.data || sliderData;
+        populateFormData(slider);
+      } else {
+        setError('Hero slider not found');
+      }
+    } catch (error: any) {
+      console.error('Error fetching hero slider from API:', error);
+      setError(error.response?.data?.message || 'Failed to load hero slider data');
+    } finally {
+      setFetching(false);
+    }
+  };
+
+  const populateFormData = (slider: any) => {
+    console.log('📋 Populating form with hero slider:', slider);
+    const imgUrl = slider.imageUrl || slider.image || '';
+    
+    setFormData({
+      id: slider._id,
+      titleLine1: slider.titleLine1 || slider.title || '',
+      titleLine2: slider.titleLine2 || '',
+      offerText: slider.offerText || '',
+      offerHighlight: slider.offerHighlight || '',
+      buttonText: slider.buttonText || 'Shop Now',
+      buttonLink: slider.buttonLink || '/',
+      image: '', // Don't prefill base64, use imageUrl for preview
+      backgroundColor: slider.backgroundColor || '#ffffff',
+      textColor: slider.textColor || '#000000',
+      animation: slider.animation || 'fade',
+      autoplayDelay: slider.autoplayDelay || 2500,
+      sortOrder: slider.sortOrder || 1,
+      status: slider.status === 'active' || slider.status === true || slider.status === '1',
+      device: slider.device || 'desktop',
+    });
+    
+    // Set image preview URL
+    if (imgUrl) {
+      console.log('🖼️ Setting image preview:', imgUrl);
+      setImageUrl(imgUrl);
+      setImagePreview(imgUrl);
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -64,6 +157,11 @@ const EditHeroSliderPage = () => {
     e.preventDefault();
     setError('');
 
+    if (!formData.id) {
+      setError('Hero slider ID is missing');
+      return;
+    }
+
     if (!formData.titleLine1.trim()) {
       setError('Title Line 1 is required');
       return;
@@ -71,16 +169,77 @@ const EditHeroSliderPage = () => {
 
     try {
       setLoading(true);
-      dispatch(updateHeroSliderRequest(formData));
-      toast.success('Hero slider updated successfully!');
-      router.push('/banners/hero-sliders');
-    } catch (error) {
-      setError('Failed to update hero slider');
-      toast.error('Failed to update hero slider');
-    } finally {
+      setError('');
+      
+      // Prepare update data - backend expects id in the action payload
+      const updateData = {
+        id: formData.id,
+        titleLine1: formData.titleLine1,
+        titleLine2: formData.titleLine2,
+        offerText: formData.offerText,
+        offerHighlight: formData.offerHighlight,
+        buttonText: formData.buttonText,
+        buttonLink: formData.buttonLink,
+        device: formData.device || 'desktop',
+        backgroundColor: formData.backgroundColor,
+        textColor: formData.textColor,
+        animation: formData.animation,
+        autoplayDelay: formData.autoplayDelay,
+        sortOrder: formData.sortOrder,
+        status: formData.status ? 'active' : 'inactive',
+        image: formData.image, // base64 image if changed
+      };
+      
+      await dispatch(updateHeroSliderRequest(updateData));
+      setLoading(false);
+      
+      // Wait a bit for the saga to complete
+      setTimeout(() => {
+        router.push('/banners/hero-sliders');
+      }, 1000);
+    } catch (error: any) {
+      console.error('Failed to update hero slider:', error);
+      const errorMessage = error.response?.data?.message || 'Error updating hero slider';
+      setError(errorMessage);
+      toast.error(errorMessage);
       setLoading(false);
     }
   };
+
+  if (fetching) {
+    return (
+      <div suppressHydrationWarning>
+        <Breadcrumb pageName="Edit Hero Slider" />
+        <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-stroke-dark dark:bg-box-dark sm:px-7.5 xl:pb-1">
+          <div className="flex items-center justify-center py-8">
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error && !formData.id) {
+    return (
+      <div suppressHydrationWarning>
+        <Breadcrumb pageName="Edit Hero Slider" />
+        <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-stroke-dark dark:bg-box-dark sm:px-7.5 xl:pb-1">
+          <div className="text-center py-8">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 max-w-md mx-auto">
+              <p className="text-red-800 font-medium mb-2">Error Loading Hero Slider</p>
+              <p className="text-red-600 text-sm">{error}</p>
+              <button
+                onClick={() => router.push('/banners/hero-sliders')}
+                className="mt-3 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 text-sm"
+              >
+                Back to List
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div suppressHydrationWarning>
@@ -110,13 +269,40 @@ const EditHeroSliderPage = () => {
                 onChange={handleImageChange}
                 className="w-full px-3 py-2 border border-stroke rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
               />
-              {imagePreview && (
+              {(imagePreview || imageUrl) && (
                 <div className="mt-2">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Current Image:</p>
                   <img
-                    src={imagePreview}
+                    src={(() => {
+                      const img = imagePreview || imageUrl || '';
+                      const apiEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:8001';
+                      
+                      if (!img) return '';
+                      
+                      // If already absolute URL or base64
+                      if (img.startsWith('http://') || img.startsWith('https://') || img.startsWith('data:')) {
+                        return img;
+                      }
+                      
+                      // Remove "fake" prefix if present
+                      let cleanImg = img.replace(/^fake\/?/, '').trim();
+                      
+                      // Ensure it starts with / for proper path construction
+                      if (!cleanImg.startsWith('/')) {
+                        cleanImg = '/' + cleanImg;
+                      }
+                      
+                      // Construct absolute URL
+                      return `${apiEndpoint}${cleanImg}`;
+                    })()}
                     alt="Preview"
-                    className="w-32 h-32 object-cover rounded border"
+                    className="w-full max-w-md h-auto object-contain rounded border"
+                    onError={(e) => {
+                      console.error('Image load error:', imagePreview || imageUrl);
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
                   />
+                  <p className="text-xs text-gray-400 italic mt-2">Upload a new file to replace the current image</p>
                 </div>
               )}
             </div>
@@ -238,6 +424,24 @@ const EditHeroSliderPage = () => {
                 onChange={handleInputChange}
                 className="w-full h-12 border border-stroke rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
               />
+            </div>
+
+            {/* Device */}
+            <div>
+              <label className="block text-sm font-medium text-black dark:text-white mb-2">
+                Device
+              </label>
+              <select
+                name="device"
+                value={formData.device || 'desktop'}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-stroke rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <option value="desktop">Desktop</option>
+                <option value="mobile">Mobile</option>
+                <option value="tablet">Tablet</option>
+                <option value="all">All Devices</option>
+              </select>
             </div>
 
             {/* Animation */}

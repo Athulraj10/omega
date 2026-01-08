@@ -6,6 +6,7 @@ const Response = require("../../services/Response");
 const {
   removeOldImage,
   s3MediaUrl,
+  mediaUrl,
   base64ImageUpload,
 } = require("../../services/S3Bucket");
 const { default: mongoose } = require("mongoose");
@@ -78,11 +79,23 @@ module.exports = {
 
         // Convert file to base64 for S3 upload
         const fs = require('fs');
-        const fileBuffer = fs.readFileSync(uploadedFile.tempFilePath);
+        const filePath = uploadedFile.path; // Multer saves to .path, not .tempFilePath
+        console.log('📄 Reading file from:', filePath);
+        
+        if (!fs.existsSync(filePath)) {
+          console.error('❌ File not found at:', filePath);
+          return Response.errorResponseWithoutData(
+            res,
+            "Uploaded file not found",
+            Constants.INTERNAL_SERVER
+          );
+        }
+        
+        const fileBuffer = fs.readFileSync(filePath);
         const base64Image = fileBuffer.toString('base64');
         const dataURI = `data:${uploadedFile.mimetype};base64,${base64Image}`;
 
-        // Upload to S3
+        // Upload to S3 or local storage
         const bucketRes = await base64ImageUpload(
           imageName,
           `hero-sliders/${formattedDate}`,
@@ -90,12 +103,24 @@ module.exports = {
           res
         );
 
-        if (bucketRes) {
-          imageUrl = s3MediaUrl(`hero-sliders`, formattedDate, imageName);
+        const useS3 = process.env.S3_ENABLE === Constants.S3_ENABLE;
+        
+        if (bucketRes && (bucketRes.code === 200 || bucketRes === true)) {
+          imageUrl = useS3 
+            ? s3MediaUrl(`hero-sliders`, formattedDate, imageName)
+            : mediaUrl(`hero-sliders`, formattedDate, imageName);
+          console.log('✅ Image uploaded successfully:', imageUrl);
         }
 
         // Clean up uploaded file
-        fs.unlinkSync(uploadedFile.tempFilePath);
+        try {
+          if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+            console.log('✅ Cleaned up temporary file');
+          }
+        } catch (cleanupError) {
+          console.warn('⚠️ Failed to cleanup temp file:', cleanupError);
+        }
       }
 
       // Handle mobile image upload
@@ -121,7 +146,18 @@ module.exports = {
         ).toString().padStart(2, "0")}-${currentDate.getFullYear()}`;
 
         const fs = require('fs');
-        const fileBuffer = fs.readFileSync(uploadedFile.tempFilePath);
+        const filePath = uploadedFile.path; // Multer saves to .path, not .tempFilePath
+        
+        if (!fs.existsSync(filePath)) {
+          console.error('❌ Mobile image file not found at:', filePath);
+          return Response.errorResponseWithoutData(
+            res,
+            "Uploaded mobile image file not found",
+            Constants.INTERNAL_SERVER
+          );
+        }
+        
+        const fileBuffer = fs.readFileSync(filePath);
         const base64Image = fileBuffer.toString('base64');
         const dataURI = `data:${uploadedFile.mimetype};base64,${base64Image}`;
 
@@ -132,11 +168,24 @@ module.exports = {
           res
         );
 
-        if (bucketRes) {
-          mobileImageUrl = s3MediaUrl(`hero-sliders`, formattedDate, imageName);
+        const useS3 = process.env.S3_ENABLE === Constants.S3_ENABLE;
+        
+        if (bucketRes && (bucketRes.code === 200 || bucketRes === true)) {
+          mobileImageUrl = useS3 
+            ? s3MediaUrl(`hero-sliders`, formattedDate, imageName)
+            : mediaUrl(`hero-sliders`, formattedDate, imageName);
+          console.log('✅ Mobile image uploaded successfully:', mobileImageUrl);
         }
 
-        fs.unlinkSync(uploadedFile.tempFilePath);
+        // Clean up uploaded file
+        try {
+          if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+            console.log('✅ Cleaned up mobile temp file');
+          }
+        } catch (cleanupError) {
+          console.warn('⚠️ Failed to cleanup mobile temp file:', cleanupError);
+        }
       }
 
       // Prepare slider data
@@ -289,6 +338,50 @@ module.exports = {
         .populate('updatedBy', 'name email')
         .populate('approvedBy', 'name email');
 
+      // Transform sliders to include proper image URLs
+      const useS3 = process.env.S3_ENABLE === Constants.S3_ENABLE;
+      const transformedSliders = sliders.map((slider) => {
+        const sliderObj = slider.toObject();
+        const date = new Date(slider.createdAt);
+        const formattedDate = `${date.getDate()}-${(date.getMonth() + 1)
+          .toString()
+          .padStart(2, "0")}-${date.getFullYear()}`;
+        
+        // Generate image URLs if image is just a filename
+        if (sliderObj.image && !sliderObj.image.startsWith('http')) {
+          // Extract filename from path if it contains path separators
+          let imageFilename = sliderObj.image;
+          if (imageFilename.includes('/')) {
+            const parts = imageFilename.split('/');
+            imageFilename = parts[parts.length - 1];
+          }
+          
+          sliderObj.imageUrl = useS3
+            ? s3MediaUrl('hero-sliders', formattedDate, imageFilename)
+            : mediaUrl('hero-sliders', formattedDate, imageFilename);
+          sliderObj.image = sliderObj.imageUrl; // Use imageUrl as primary image
+        } else {
+          sliderObj.imageUrl = sliderObj.imageUrl || sliderObj.image;
+        }
+        
+        // Generate mobile image URL if needed
+        if (sliderObj.mobileImage && !sliderObj.mobileImage.startsWith('http')) {
+          let mobileImageFilename = sliderObj.mobileImage;
+          if (mobileImageFilename.includes('/')) {
+            const parts = mobileImageFilename.split('/');
+            mobileImageFilename = parts[parts.length - 1];
+          }
+          
+          sliderObj.mobileImageUrl = useS3
+            ? s3MediaUrl('hero-sliders', formattedDate, mobileImageFilename)
+            : mediaUrl('hero-sliders', formattedDate, mobileImageFilename);
+        } else {
+          sliderObj.mobileImageUrl = sliderObj.mobileImageUrl || sliderObj.mobileImage;
+        }
+        
+        return sliderObj;
+      });
+
       // Get total count
       const totalCount = await HeroSlider.countDocuments(filterQuery);
 
@@ -316,7 +409,7 @@ module.exports = {
       ]);
 
       const responseData = {
-        sliders,
+        sliders: transformedSliders,
         pagination: {
           currentPage: page,
           totalPages: Math.ceil(totalCount / limit),
@@ -403,9 +496,46 @@ module.exports = {
         );
       }
 
+      // Transform slider to include proper image URLs
+      const useS3 = process.env.S3_ENABLE === Constants.S3_ENABLE;
+      const sliderObj = slider.toObject();
+      const date = new Date(slider.createdAt);
+      const formattedDate = `${date.getDate()}-${(date.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}-${date.getFullYear()}`;
+      
+      // Generate image URLs if image is just a filename
+      if (sliderObj.image && !sliderObj.image.startsWith('http')) {
+        let imageFilename = sliderObj.image;
+        if (imageFilename.includes('/')) {
+          const parts = imageFilename.split('/');
+          imageFilename = parts[parts.length - 1];
+        }
+        sliderObj.imageUrl = useS3
+          ? s3MediaUrl('hero-sliders', formattedDate, imageFilename)
+          : mediaUrl('hero-sliders', formattedDate, imageFilename);
+        sliderObj.image = sliderObj.imageUrl;
+      } else {
+        sliderObj.imageUrl = sliderObj.imageUrl || sliderObj.image;
+      }
+      
+      // Generate mobile image URL if needed
+      if (sliderObj.mobileImage && !sliderObj.mobileImage.startsWith('http')) {
+        let mobileImageFilename = sliderObj.mobileImage;
+        if (mobileImageFilename.includes('/')) {
+          const parts = mobileImageFilename.split('/');
+          mobileImageFilename = parts[parts.length - 1];
+        }
+        sliderObj.mobileImageUrl = useS3
+          ? s3MediaUrl('hero-sliders', formattedDate, mobileImageFilename)
+          : mediaUrl('hero-sliders', formattedDate, mobileImageFilename);
+      } else {
+        sliderObj.mobileImageUrl = sliderObj.mobileImageUrl || sliderObj.mobileImage;
+      }
+
       return Response.successResponseData(
         res,
-        slider,
+        sliderObj,
         Constants.SUCCESS,
         "Hero slider retrieved successfully"
       );
@@ -443,7 +573,7 @@ module.exports = {
       // Handle image updates
       let updateData = { ...requestParams };
 
-      if (req.files && req.files.image) {
+      if (req.files && req.files.image && req.files.image.length > 0) {
         const uploadedFile = req.files.image[0]; // Get the first file from the array
         const extension = uploadedFile.originalname.split('.').pop();
         const randomNumber = await makeRandomNumber(5);
@@ -455,7 +585,18 @@ module.exports = {
         ).toString().padStart(2, "0")}-${currentDate.getFullYear()}`;
 
         const fs = require('fs');
-        const fileBuffer = fs.readFileSync(uploadedFile.tempFilePath);
+        const filePath = uploadedFile.path; // Multer saves to .path, not .tempFilePath
+        
+        if (!fs.existsSync(filePath)) {
+          console.error('❌ Update image file not found at:', filePath);
+          return Response.errorResponseWithoutData(
+            res,
+            "Uploaded image file not found",
+            Constants.INTERNAL_SERVER
+          );
+        }
+        
+        const fileBuffer = fs.readFileSync(filePath);
         const base64Image = fileBuffer.toString('base64');
         const dataURI = `data:${uploadedFile.mimetype};base64,${base64Image}`;
 
@@ -466,15 +607,28 @@ module.exports = {
           res
         );
 
-        if (bucketRes) {
-          updateData.imageUrl = s3MediaUrl(`hero-sliders`, formattedDate, imageName);
+        const useS3 = process.env.S3_ENABLE === Constants.S3_ENABLE;
+        
+        if (bucketRes && (bucketRes.code === 200 || bucketRes === true)) {
+          updateData.imageUrl = useS3
+            ? s3MediaUrl(`hero-sliders`, formattedDate, imageName)
+            : mediaUrl(`hero-sliders`, formattedDate, imageName);
+          updateData.image = imageName; // Store filename for future reference
         }
 
-        fs.unlinkSync(uploadedFile.tempFilePath);
+        // Clean up uploaded file
+        try {
+          if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+            console.log('✅ Cleaned up temporary update file');
+          }
+        } catch (cleanupError) {
+          console.warn('⚠️ Failed to cleanup temp file:', cleanupError);
+        }
       }
 
       // Handle mobile image updates
-      if (req.files && req.files.mobileImage) {
+      if (req.files && req.files.mobileImage && req.files.mobileImage.length > 0) {
         const uploadedFile = req.files.mobileImage[0]; // Get the first file from the array
         const extension = uploadedFile.originalname.split('.').pop();
         const randomNumber = await makeRandomNumber(5);
@@ -486,7 +640,18 @@ module.exports = {
         ).toString().padStart(2, "0")}-${currentDate.getFullYear()}`;
 
         const fs = require('fs');
-        const fileBuffer = fs.readFileSync(uploadedFile.tempFilePath);
+        const filePath = uploadedFile.path; // Multer saves to .path, not .tempFilePath
+        
+        if (!fs.existsSync(filePath)) {
+          console.error('❌ Update mobile image file not found at:', filePath);
+          return Response.errorResponseWithoutData(
+            res,
+            "Uploaded mobile image file not found",
+            Constants.INTERNAL_SERVER
+          );
+        }
+        
+        const fileBuffer = fs.readFileSync(filePath);
         const base64Image = fileBuffer.toString('base64');
         const dataURI = `data:${uploadedFile.mimetype};base64,${base64Image}`;
 
@@ -497,11 +662,24 @@ module.exports = {
           res
         );
 
-        if (bucketRes) {
-          updateData.mobileImageUrl = s3MediaUrl(`hero-sliders`, formattedDate, imageName);
+        const useS3 = process.env.S3_ENABLE === Constants.S3_ENABLE;
+        
+        if (bucketRes && (bucketRes.code === 200 || bucketRes === true)) {
+          updateData.mobileImageUrl = useS3
+            ? s3MediaUrl(`hero-sliders`, formattedDate, imageName)
+            : mediaUrl(`hero-sliders`, formattedDate, imageName);
+          updateData.mobileImage = imageName; // Store filename for future reference
         }
 
-        fs.unlinkSync(uploadedFile.tempFilePath);
+        // Clean up uploaded file
+        try {
+          if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+            console.log('✅ Cleaned up mobile temporary update file');
+          }
+        } catch (cleanupError) {
+          console.warn('⚠️ Failed to cleanup mobile temp file:', cleanupError);
+        }
       }
 
       // Add update metadata
@@ -515,9 +693,54 @@ module.exports = {
       ).populate('createdBy', 'name email')
        .populate('updatedBy', 'name email');
 
+      if (!updatedSlider) {
+        return Response.errorResponseWithoutData(
+          res,
+          "Failed to update hero slider",
+          Constants.INTERNAL_SERVER
+        );
+      }
+
+      // Transform slider to include proper image URLs
+      const useS3 = process.env.S3_ENABLE === Constants.S3_ENABLE;
+      const sliderObj = updatedSlider.toObject();
+      const date = new Date(updatedSlider.createdAt);
+      const formattedDate = `${date.getDate()}-${(date.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}-${date.getFullYear()}`;
+      
+      // Generate image URLs if image is just a filename
+      if (sliderObj.image && !sliderObj.image.startsWith('http')) {
+        let imageFilename = sliderObj.image;
+        if (imageFilename.includes('/')) {
+          const parts = imageFilename.split('/');
+          imageFilename = parts[parts.length - 1];
+        }
+        sliderObj.imageUrl = useS3
+          ? s3MediaUrl('hero-sliders', formattedDate, imageFilename)
+          : mediaUrl('hero-sliders', formattedDate, imageFilename);
+        sliderObj.image = sliderObj.imageUrl;
+      } else {
+        sliderObj.imageUrl = sliderObj.imageUrl || sliderObj.image;
+      }
+      
+      // Generate mobile image URL if needed
+      if (sliderObj.mobileImage && !sliderObj.mobileImage.startsWith('http')) {
+        let mobileImageFilename = sliderObj.mobileImage;
+        if (mobileImageFilename.includes('/')) {
+          const parts = mobileImageFilename.split('/');
+          mobileImageFilename = parts[parts.length - 1];
+        }
+        sliderObj.mobileImageUrl = useS3
+          ? s3MediaUrl('hero-sliders', formattedDate, mobileImageFilename)
+          : mediaUrl('hero-sliders', formattedDate, mobileImageFilename);
+      } else {
+        sliderObj.mobileImageUrl = sliderObj.mobileImageUrl || sliderObj.mobileImage;
+      }
+
       return Response.successResponseData(
         res,
-        updatedSlider,
+        sliderObj,
         Constants.SUCCESS,
         "Hero slider updated successfully"
       );
