@@ -248,27 +248,66 @@ console.log({user})
     }
   },
 
+  getProfile: async (req, res) => {
+    try {
+      const adminId = req.authAdminId || req.body.id;
+      if (!adminId) {
+        return Response.errorResponseWithoutData(res, "User ID is required", FAIL);
+      }
+
+      const user = await User.findById(adminId)
+        .select('-password -token')
+        .populate("currency_id");
+      
+      if (!user) {
+        return Response.errorResponseWithoutData(res, "User not found", FAIL);
+      }
+
+      const userData = formatUserData(user);
+      return Response.successResponseData(res, userData, SUCCESS, "Profile retrieved successfully");
+    } catch (error) {
+      console.error('❌ Get profile error:', error);
+      return Response.errorResponseData(res, error.message, INTERNAL_SERVER);
+    }
+  },
+
   updateProfile: async (req, res) => {
     try {
-      const { id, name, email, password, userName, first_name, last_name } = req.body;
-      if (!id || !name || !email) {
-        return Response.errorResponseWithoutData(res, "Missing required fields", FAIL);
+      const adminId = req.authAdminId || req.body.id;
+      const { name, email, password, userName, first_name, last_name, phoneNumber, bio } = req.body;
+      
+      if (!adminId) {
+        return Response.errorResponseWithoutData(res, "User ID is required", FAIL);
       }
-      const updateData = { name, email };
+
+      const updateData = {};
+      if (name) updateData.name = name;
+      if (email) updateData.email = email.toLowerCase();
       if (userName) updateData.userName = userName;
       if (first_name) updateData.first_name = first_name;
       if (last_name) updateData.last_name = last_name;
+      if (phoneNumber) updateData.mobile_no = phoneNumber;
+      if (bio !== undefined) updateData.bio = bio;
+      
       if (password) {
         const bcrypt = require("bcryptjs");
         updateData.password = await bcrypt.hash(password, 10);
       }
-      const updatedUser = await User.findByIdAndUpdate(id, { $set: updateData }, { new: true });
+
+      const updatedUser = await User.findByIdAndUpdate(
+        adminId, 
+        { $set: updateData }, 
+        { new: true }
+      ).select('-password -token').populate("currency_id");
+      
       if (!updatedUser) {
         return Response.errorResponseWithoutData(res, "User not found", FAIL);
       }
+
       const userData = formatUserData(updatedUser);
       return Response.successResponseData(res, userData, SUCCESS, "Profile updated successfully");
     } catch (error) {
+      console.error('❌ Update profile error:', error);
       return Response.errorResponseData(res, error.message, INTERNAL_SERVER);
     }
   },

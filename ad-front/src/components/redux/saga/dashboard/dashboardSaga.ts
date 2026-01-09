@@ -49,14 +49,16 @@ function* fetchRecentUsersSaga(action: any): Generator<any, void, any> {
     const response = yield call(API.get, `/admin/dashboard/users${params}`);
     console.log('📥 Recent users response:', response.data);
     
-    if (response.data.success) {
-      yield put(fetchRecentUsersSuccess(response.data.data));
+    // Handle both Response.success and Response.successResponseData formats
+    if (response.data.success || response.data.meta?.code === 200) {
+      const users = response.data.data || response.data;
+      yield put(fetchRecentUsersSuccess(Array.isArray(users) ? users : []));
     } else {
-      yield put(fetchRecentUsersFailure(response.data.message || 'Failed to fetch recent users'));
+      yield put(fetchRecentUsersFailure(response.data.meta?.message || response.data.message || 'Failed to fetch recent users'));
     }
   } catch (error: any) {
     console.error('❌ Error in fetchRecentUsersSaga:', error);
-    yield put(fetchRecentUsersFailure(error.response?.data?.message || 'Failed to fetch recent users'));
+    yield put(fetchRecentUsersFailure(error.response?.data?.meta?.message || error.response?.data?.message || 'Failed to fetch recent users'));
   }
 }
 
@@ -109,14 +111,16 @@ function* fetchDeviceUsageSaga(action: any): Generator<any, void, any> {
     const response = yield call(API.get, `/admin/dashboard/device-usage?timeFrame=${timeFrame}`);
     console.log('📥 Device usage response:', response.data);
     
-    if (response.data.success) {
-      yield put(fetchDeviceUsageSuccess(response.data.data));
+    // Handle both Response.success and Response.successResponseData formats
+    if (response.data.success || response.data.meta?.code === 200) {
+      const deviceData = response.data.data || response.data;
+      yield put(fetchDeviceUsageSuccess(Array.isArray(deviceData) ? deviceData : []));
     } else {
-      yield put(fetchDeviceUsageFailure(response.data.message || 'Failed to fetch device usage'));
+      yield put(fetchDeviceUsageFailure(response.data.meta?.message || response.data.message || 'Failed to fetch device usage'));
     }
   } catch (error: any) {
     console.error('❌ Error in fetchDeviceUsageSaga:', error);
-    yield put(fetchDeviceUsageFailure(error.response?.data?.message || 'Failed to fetch device usage'));
+    yield put(fetchDeviceUsageFailure(error.response?.data?.meta?.message || error.response?.data?.message || 'Failed to fetch device usage'));
   }
 }
 

@@ -19,6 +19,7 @@ const {
   login,
   resetPassword,
   logout,
+  getProfile,
   updateProfile,
 } = require("../../controllers/admin/authController");
 const {
@@ -107,9 +108,10 @@ const handleMulterError = (error, req, res, next) => {
 };
 
 router.post("/login", login);
+router.get("/profile", adminTokenAuth, getProfile);
+router.post("/update-profile", adminTokenAuth, updateProfile);
 router.post("/reset-password", adminTokenAuth, resetPassword);
 router.post("/logout", adminTokenAuth, logout);
-router.post("/update-profile", adminTokenAuth, updateProfile);
 
 // Product routes
 router.get("/products", productController.getProducts);

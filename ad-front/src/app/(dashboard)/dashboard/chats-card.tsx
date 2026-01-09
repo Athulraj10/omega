@@ -16,69 +16,28 @@ export function ChatsCard() {
     dispatch(fetchRecentUsers(10));
   }, [dispatch]);
 
-  // Use dynamic data if available, otherwise fallback to static data
-  const data = recentUsers.length > 0 ? recentUsers : [
-    {
-      name: "Jacob Jones",
-      profile: "/images/user/user-01.png",
-      isActive: true,
-      lastMessage: {
-        content: "See you tomorrow at the meeting!",
-        type: "text",
-        timestamp: "2024-12-19T14:30:00Z",
-        isRead: false,
+  // Transform backend data to match UI format
+  const transformedUsers = recentUsers.map((user: any) => {
+    // Backend returns user objects directly from getRecentUsers
+    return {
+      id: user.id || user._id,
+      name: user.name || `${user.first_name || ""} ${user.last_name || ""}`.trim() || user.email || "Unknown User",
+      profile: user.profile || user.profile_pic || "/images/user/user-01.png",
+      isActive: user.isActive !== undefined 
+        ? user.isActive 
+        : (user.lastActive && (user.lastActive instanceof Date ? user.lastActive.getTime() > (Date.now() - 5 * 60 * 1000) : new Date(user.lastActive).getTime() > (Date.now() - 5 * 60 * 1000))),
+      lastMessage: user.lastMessage || {
+        content: user.lastMessage?.content || "Welcome to our platform!",
+        type: user.lastMessage?.type || "text",
+        timestamp: user.lastMessage?.timestamp || user.lastActive || user.joinedDate || user.createdAt || new Date().toISOString(),
+        isRead: user.lastMessage?.isRead !== undefined ? user.lastMessage.isRead : true,
       },
-      unreadCount: 3,
-    },
-    {
-      name: "Wilium Smith",
-      profile: "/images/user/user-03.png",
-      isActive: true,
-      lastMessage: {
-        content: "Thanks for the update",
-        type: "text",
-        timestamp: "2024-12-19T10:15:00Z",
-        isRead: true,
-      },
-      unreadCount: 0,
-    },
-    {
-      name: "Johurul Haque",
-      profile: "/images/user/user-04.png",
-      isActive: false,
-      lastMessage: {
-        content: "What's up?",
-        type: "text",
-        timestamp: "2024-12-19T10:15:00Z",
-        isRead: true,
-      },
-      unreadCount: 0,
-    },
-    {
-      name: "M. Chowdhury",
-      profile: "/images/user/user-05.png",
-      isActive: false,
-      lastMessage: {
-        content: "Where are you now?",
-        type: "text",
-        timestamp: "2024-12-19T10:15:00Z",
-        isRead: true,
-      },
-      unreadCount: 2,
-    },
-    {
-      name: "Akagami",
-      profile: "/images/user/user-07.png",
-      isActive: false,
-      lastMessage: {
-        content: "Hey, how are you?",
-        type: "text",
-        timestamp: "2024-12-19T10:15:00Z",
-        isRead: true,
-      },
-      unreadCount: 0,
-    },
-  ];
+      unreadCount: user.unreadCount || 0,
+    };
+  });
+
+  // Always use backend data - no static fallback
+  const data = transformedUsers;
 
   return (
     <div className="col-span-12 rounded-[10px] bg-white py-6 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-4">
@@ -87,8 +46,15 @@ export function ChatsCard() {
       </h2>
 
       {loading.recentUsers && (
-        <div className="px-7.5 py-3 text-sm text-gray-500">
+        <div className="px-7.5 py-3 text-sm text-gray-500 flex items-center gap-2">
+          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
           Loading users...
+        </div>
+      )}
+
+      {!loading.recentUsers && data.length === 0 && (
+        <div className="px-7.5 py-3 text-sm text-gray-500">
+          No recent users found
         </div>
       )}
 
