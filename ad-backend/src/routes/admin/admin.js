@@ -13,6 +13,7 @@ const heroSliderRoutes = require("./heroSlider");
 const bannerRoutes = require('./banner');
 const dealsRoutes = require('./deals');
 const reportRoutes = require('./report');
+const settingsRoutes = require('./settings');
 
 const {
   login,
@@ -204,5 +205,8 @@ router.use('/deals', dealsRoutes);
 
 // Report routes
 router.use('/reports', reportRoutes);
+
+// Settings routes
+router.use('/settings', settingsRoutes);
 
 module.exports = router;
