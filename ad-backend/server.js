@@ -4,10 +4,12 @@ const bodyParser = require('body-parser');
 const http = require("http");
 const cors = require("cors");
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');
 
 require('dotenv').config();
 
 const { config } = require('./src/config/configAll.js');
+const swaggerSpec = require('./src/config/swagger.js');
 
 const createApp = () => {
 
@@ -46,6 +48,21 @@ const createApp = () => {
   // Socket.io setup
   // const { createSocketServer } = require("./src/socket/index");
   // const io = createSocketServer(server);
+
+  // Swagger Documentation
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+    explorer: true,
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'Omega E-commerce API Documentation',
+    swaggerOptions: {
+      persistAuthorization: true,
+      displayRequestDuration: true,
+      filter: true,
+      showExtensions: true,
+      showCommonExtensions: true,
+      tryItOutEnabled: true
+    }
+  }));
 
   // Routes
   const indexRoute = require("./src/routes");
