@@ -16,10 +16,16 @@ const UserWallet = require("./userWallet");
 const Wishlist = require("./wishlist");
 const Banner = require("./banner");
 const HeroSlider = require("./heroSlider");
+const ProductSettings = require("./productSettings");
+const TaxSettings = require("./taxSettings");
+const ShippingSettings = require("./shippingSettings");
 
 module.exports = {
   User,
   Banner,
   HeroSlider,
+  ProductSettings,
+  TaxSettings,
+  ShippingSettings,
   UserLoginHistory, Address, Cart, Category, Currency, Notification, Order, Otp, Product, Review, UserTransaction, UserWallet, Wishlist
 };
