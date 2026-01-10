@@ -1,4 +1,3 @@
-import About4 from '@/app/Components/About/About4';
 import BreadCumb from '@/app/Components/Common/BreadCumb';
 import CtaBanner1 from '@/app/Components/CtaBanner/CtaBanner1';
 import CtaBanner3 from '@/app/Components/CtaBanner/CtaBanner3';
@@ -13,8 +12,7 @@ const page = () => {
             <BreadCumb
                 bgimg="/assets/img/bg/breadcumb.jpg"
                 Title="About Us"
-            ></BreadCumb>  
-            <About4></About4>
+            ></BreadCumb>
             <CtaBanner1></CtaBanner1>
             <Team3></Team3>
             <CtaBanner3></CtaBanner3>
