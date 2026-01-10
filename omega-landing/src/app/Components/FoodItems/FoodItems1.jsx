@@ -50,8 +50,8 @@ const FoodItems1 = () => {
         <section className="best-food-items-section fix section-padding bg-color2">
         <div className="best-food-wrapper">
             {/* <div className="shape1 float-bob-y d-none d-xxl-block"><img src="/assets/img/shape/bestFoodItemsShape1_1.png"
-                    alt="shape" /></div>
-            <div className="shape2 float-bob-x d-none d-xxl-block"><img src="/assets/img/shape/bestFoodItemsShape1_2.png"
+                    alt="shape"  height={200} width={200}  /></div>
+            <div className="shape2  float-bob-x d-none d-xxl-block"><img height={200} width={200}  src="/assets/img/shape/bestFoodItemsShape1_2.png"
                     alt="shape" /></div> */}
             <div className="container">
                 <div className="title-area">
