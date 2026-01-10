@@ -206,3 +206,5 @@ productSettingsSchema.statics.getSettings = async function () {
 
 module.exports = mongoose.model("ProductSettings", productSettingsSchema);
 
+
+

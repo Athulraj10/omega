@@ -26,3 +26,5 @@ router.delete("/shipping/methods/:methodId", adminTokenAuth, settingsController.
 
 module.exports = router;
 
+
+

@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link";
+import Image from "next/image";
 import Slider from "react-slick";
 
 const FoodItems1 = () => {
@@ -71,9 +72,10 @@ const FoodItems1 = () => {
                             <div key={i} className="swiper-slide">
                                 <div className="single-food-items">
                                     <div className="item-thumb">
-                                        <img src={item.img} height={200} width={200}  object-fit="cover"  alt="thumb" />
-                                        <div className="circle-shape"><img className="cir36"
-                                                src="/assets/img/food-items/circleShape.png" alt="shape" /></div>
+                                        <Image src={item.img} width={158} height={158} alt="thumb" className="food-item-img" />
+                                        <div className="circle-shape">
+                                            <Image className="cir36" src="/assets/img/food-items/circleShape.png" width={174} height={174} alt="shape" />
+                                        </div>
                                     </div>
                                     <div className="item-content">
                                         <Link href="/menu">

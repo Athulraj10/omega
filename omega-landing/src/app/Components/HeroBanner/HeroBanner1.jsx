@@ -43,10 +43,9 @@ const HeroBanner1 = () => {
             <div className="swiper banner-slider">
                 <div className="swiper-wrapper">
 
-                {/* <Slider  {...settings}>  */}
                 {heroContent.map((item, i) => (
                     <div key={i} className="swiper-slide">
-                        <div className="banner-wrapper style1 bg-img">
+                        <div className="banner-wrapper style1 bg-img" style={{backgroundImage: `url(${item.img})`}}>
                              {/* <div className="shape1_1 d-none d-xxl-block" data-animation="slideInLeft" data-duration="2s"
                                 data-delay=".3s"><Image src="/assets/img/shape/bannerShape1_1.svg" alt="img" width={189} height={103}   /></div> 
                              <div className="shape1_2 d-none d-xxl-block" data-animation="slideInLeft" data-duration="2s"
@@ -61,14 +60,14 @@ const HeroBanner1 = () => {
                             <div className="overlay"></div>
                             <div className="banner-container">
                                 <div className="container">
-                                    <div className="row">
+                                    <div className="row align-items-center">
                                         <div className="col-12 col-xl-6 d-none d-xxl-block order-1">
                                             <div className="banner-thumb-area" data-tilt data-animation="slideInLeft"
                                                 data-duration="2s" data-delay=".9s">
                                             </div>
                                         </div>
-                                        <div className="col-12 col-xxl-6 order-2">
-                                            <div className="banner-title-area">
+                                        <div className="col-12 col-lg-10 col-xl-8 col-xxl-6 order-2 mx-auto">
+                                            <div className="banner-title-area text-center text-xxl-end">
                                                 <div className="banner-style1">
                                                     <div className="section-title">
                                                         <h6 className="sub-title" data-animation="slideInLeft"
@@ -77,9 +76,6 @@ const HeroBanner1 = () => {
                                                             data-duration="2s" data-delay=".5s">
                                                             {item.title}
                                                         </h1>
-                                                        <Link className="theme-btn" href="/menu"
-                                                            data-animation="slideInLeft" data-duration="2s"
-                                                            data-delay=".7s">{item.btnname} <i className="bi bi-arrow-right"></i></Link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,7 +86,6 @@ const HeroBanner1 = () => {
                         </div>
                     </div>
                     ))}
-                    {/* </Slider> */}
 
                 </div>
 

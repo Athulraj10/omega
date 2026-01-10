@@ -1,9 +1,6 @@
 "use client"
 import { useEffect } from "react";
 import loadBackgroudImages from "../Common/loadBackgroudImages";
-import Link from "next/link";
-import Image from "next/image";
-
 const Offer1 = () => {
 
     useEffect(() => {
@@ -33,7 +30,7 @@ const Offer1 = () => {
             <div className="container">
                 <div className="row gy-4">
                 {offerItems.map((item, i) => (
-                    <div key={i} className="col-6">
+                    <div key={i} className="col-12 col-md-6">
                         <div className="offer-card style1-line wow fadeInUp" style={{backgroundImage: `url(${item.img})`}} data-wow-delay="0.2s">  
                             <div className="offer-content-line">
                                 <div className="offer-title-wrapper-line">

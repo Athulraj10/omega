@@ -278,3 +278,5 @@ shippingSettingsSchema.statics.getSettings = async function () {
 
 module.exports = mongoose.model("ShippingSettings", shippingSettingsSchema);
 
+
+

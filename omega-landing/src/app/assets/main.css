@@ -1373,6 +1373,24 @@ textarea.form-control:focus {
   background-size: cover;
 }
 
+/* Mobile responsive banner image */
+@media (max-width: 767px) {
+  .banner-wrapper.style1.bg-img {
+    background-size: 150% auto;
+    background-position: center top;
+    background-attachment: scroll;
+    min-height: 500px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .banner-wrapper.style1.bg-img {
+    background-size: 120% auto;
+    background-position: center;
+    background-attachment: scroll;
+  }
+}
+
 .bg-white {
   background-color: var(--white);
 }
@@ -5440,8 +5458,21 @@ input.main-search-input::placeholder {
 }
 /* Banner Mobile Responsive Styles */
 @media (max-width: 767px) {
+  .banner-wrapper.style1 {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .banner-container {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
   .banner-style1 {
-    padding: 100px 0 75px;
+    padding: 60px 0 40px;
     max-width: 100%;
   }
   
@@ -5455,14 +5486,15 @@ input.main-search-input::placeholder {
   }
   
   .banner-style1 .section-title .title {
-    font-size: 42px;
-    line-height: 52px;
-    margin-bottom: 25px;
+    font-size: 32px;
+    line-height: 42px;
+    margin-bottom: 20px;
   }
   
   .banner-style1 .section-title .sub-title {
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 13px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
   }
   
   .banner-container .row {
@@ -5473,9 +5505,46 @@ input.main-search-input::placeholder {
     padding-left: 15px;
     padding-right: 15px;
   }
+  
+  .banner-style1 .section-title .theme-btn {
+    font-size: 14px;
+    padding: 12px 24px;
+  }
 }
 
-@media (min-width: 768px) and (max-width: 1399px) {
+@media (min-width: 768px) and (max-width: 991px) {
+  .banner-wrapper.style1 {
+    min-height: 600px;
+  }
+  
+  .banner-container {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .banner-style1 {
+    padding: 100px 0 120px;
+    max-width: 100%;
+  }
+  
+  .banner-title-area {
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .banner-style1 .section-title {
+    text-align: center !important;
+  }
+  
+  .banner-style1 .section-title .title {
+    font-size: 48px;
+    line-height: 58px;
+    margin-bottom: 25px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1399px) {
   .banner-style1 {
     padding: 120px 0 150px;
     max-width: 100%;
@@ -5497,16 +5566,27 @@ input.main-search-input::placeholder {
 }
 
 @media (min-width: 1400px) {
-  .banner-title-area {
-    text-align: right;
+  .banner-wrapper.style1 {
+    min-height: 700px;
   }
   
-  .banner-style1 .section-title {
-    text-align: right;
+  .banner-container {
+    min-height: 700px;
+    display: flex;
+    align-items: center;
   }
   
   .banner-container .row {
     align-items: center;
+  }
+  
+  /* Text alignment handled by component classes - right on xxl */
+  .banner-title-area.text-center.text-xxl-end {
+    text-align: right;
+  }
+  
+  .banner-title-area.text-center.text-xxl-end .section-title {
+    text-align: right;
   }
 }
 
@@ -9523,14 +9603,31 @@ input.main-search-input::placeholder {
 .single-food-items .item-thumb {
   position: relative;
   margin-top: -120px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 174px;
+  height: 174px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.single-food-items .item-thumb img {
+.single-food-items .item-thumb img,
+.single-food-items .item-thumb .food-item-img {
   position: relative;
   z-index: 2;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  object-fit: cover;
+  width: 158px;
+  height: 158px;
 }
 .single-food-items .item-thumb .circle-shape {
   position: absolute;
-  top: -5px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
@@ -9538,6 +9635,17 @@ input.main-search-input::placeholder {
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
+  width: 174px;
+  height: 174px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+.single-food-items .item-thumb .circle-shape img {
+  width: 174px;
+  height: 174px;
+  object-fit: contain;
 }
 .single-food-items .item-content {
   margin-top: 24px;
