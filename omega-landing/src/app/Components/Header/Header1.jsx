@@ -44,7 +44,7 @@ export default function Header1({ variant }) {
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.3) !important;
       }
       .cs_top_header {
-        background: rgba(0, 0, 0, 0.1);
+        background:rgba(13, 58, 94, 0.48) !important;
       }
       .cs_main_header {
         background: rgba(0, 0, 0, 0.1);
@@ -65,18 +65,14 @@ export default function Header1({ variant }) {
                 <li style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
                   <i className="bi bi-geo-alt-fill" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)', marginRight: '6px' }}></i>Abu Dhabi, UAE
                 </li>
-                {/* <li><i className="bi bi-alarm"></i>9.00 am - 5.00 pm</li> */}
-              </ul>
+               </ul>
             </div>
             <div className="cs_top_header_right">
             <div className="cs_header_social_links_wrap">
                 <div className="cs_header_social_links top-header-social-icon" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
                 Follow Us:
                   <ul>
-                    {/* <li><a href="#"><i className="bi bi-facebook"></i></a></li>
-                    <li><a href="#"><i className="bi bi-twitter"></i></a></li>
-                    <li><a href="#"><i className="bi bi-linkedin"></i></a></li> */}
-                    <li><a target="_blank" href="https://www.instagram.com/omega_seafoods/?igsh=amYzcjVwNndiNDQ1&utm_source=qr#" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}><i className="bi bi-instagram"></i></a></li>
+                      <li><a target="_blank" href="https://www.instagram.com/omega_seafoods/?igsh=amYzcjVwNndiNDQ1&utm_source=qr#" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}><i className="bi bi-instagram"></i></a></li>
                 </ul>
                 </div>
               </div>

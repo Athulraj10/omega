@@ -56,9 +56,9 @@ const Blog1 = () => {
         {img:'/assets/img/blog/blogThumb1_3.jpg', title:'Quick Cravings Unraveling Fast Food Delights'},            
       ]; 
 
-    return (
+    return(
         <section className="blog-section section-padding fix">
-        <div className="burger-shape">
+        {/* <div className="burger-shape">
         <Image src="/assets/img/blog/burger-shape.png" alt="img" width={183} height={154}   />
         </div>
         <div className="pizza-shape">
@@ -121,7 +121,7 @@ const Blog1 = () => {
                 <div onClick={previous} className="arrow-prev"><i className="bi bi-arrow-left"></i></div>
                 <div onClick={next} className="arrow-next"><i className="bi bi-arrow-right"></i></div>
             </div>
-        </div>
+        </div> */}
     </section>
     );
 };

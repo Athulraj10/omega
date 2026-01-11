@@ -14364,7 +14364,8 @@ margin-bottom: 0 !important;
   display: flex;
   align-items: center;
   gap: 20px;
-  background: linear-gradient(135deg, rgba(59, 88, 152, 0.80) 0%, rgba(45, 62, 80, 0.80) 100%);
+  /* background: linear-gradient(135deg, rgba(59, 88, 152, 0.80) 0%, rgba(45, 62, 80, 0.80) 100%); */
+  background: #79a1bb98 ;
   padding: 20px 30px;
   border-radius: 0;
   position: relative;

@@ -9,14 +9,14 @@ const FoodItem1 = () => {
         {
             id: 'Frozen fish',
             name: 'Frozen fish',
-            icon: '/assets/img/menu/menuIcon1_1.png',
+            icon: '/assets/img/menu/frozen/LOGO.png',
             tabId: 'pills-Frozen fish',
             ariaControls: 'pills-Frozen fish'
         },
         {
             id: 'Spices',
             name: 'Spices',
-            icon: '/assets/img/menu/menuIcon1_2.png',
+            icon: '/assets/img/menu/spices/logo.png',
             tabId: 'pills-Spices',
             ariaControls: 'pills-Spices'
         },
@@ -41,38 +41,40 @@ const FoodItem1 = () => {
         'Frozen fish': [
             { img: "/assets/img/menu/Frozen/frozen1.png", title: "Frozen Shrimps U-15", content: "Origin : oman", },
             { img: "/assets/img/menu/Frozen/frozen2.png", title: "Frozen Black Pomfret", content: "Origin: UAE", },
-            { img: "/assets/img/menu/Frozen/frozen3.png", title: "Chicken Pizza", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/Frozen/frozen4.png", title: "Chicken Noodles", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/Frozen/frozen5.png", title: "Grilled Chicken", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/Frozen/frozen6.png", title: "Egg and Cucumber", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/Frozen/frozen7.png", title: "Chicken White Rice", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/Frozen/frozen8.png", title: "Spatial Barger", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/Frozen/frozen9.png", title: "Vegetables Burger", content: "It's a testament to our.", },
-            // { img: "/assets/img/menu/Frozen/frozen10.png", title: "Brief Chicken", content: "It's a testament to our.", }
+            { img: "/assets/img/menu/Frozen/frozen3.png", title: "Frozen Salmon 2-3", content: "Origin: Norway",  },
+            { img: "/assets/img/menu/Frozen/frozen4.png", title: "Frozen Shark", content: "Origin: UAE",  },
+            { img: "/assets/img/menu/Frozen/frozen5.png", title: "Frozen Mackerel", content: "Origin: Oman", },
+
+            { img: "/assets/img/menu/Frozen/frozen6.png", title: "Frozen Squid", content: "Origin: UAE", },
+            { img: "/assets/img/menu/Frozen/frozen7.png", title: "Frozen Hamour", content: "Origin: UAE",  },
+            { img: "/assets/img/menu/Frozen/frozen8.png", title: "Frozen Seabream", content: "Origin: Europe", },
+            { img: "/assets/img/menu/Frozen/frozen9.png", title: "Frozen Sherry", content: "Origin: UAE", },
+            { img: "/assets/img/menu/Frozen/frozen10.png", title: "Frozen Jesh", content: "Origin: UAE", }
         ],
         "Spices": [
-            { img: "/assets/img/menu/menuThumb1_3.png", title: "Chicken Pizza", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_4.png", title: "Chicken Noodles", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_5.png", title: "Grilled Chicken", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/menuThumb1_1.png", title: "Chinese Pasta", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/menuThumb1_2.png", title: "Chicken Fried Rice", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/menuThumb1_6.png", title: "Egg and Cucumber", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/menuThumb1_8.png", title: "Spatial Barger", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/menuThumb1_9.png", title: "Vegetables Burger", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/menuThumb1_7.png", title: "Chicken White Rice", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_10.png", title: "Brief Chicken", content: "It's a testament to our.", }
+            { img: "/assets/img/menu/Spices/spices1.png", title: "Black Pepper", content: "India",  },
+            { img: "/assets/img/menu/Spices/spices2.png", title: "Cinnamon", content: "India",  },
+            { img: "/assets/img/menu/Spices/spices3.png", title: "Chilli Powder", content: "India", },
+            { img: "/assets/img/menu/Spices/spices4.png", title: "Paprika", content: "India", },
+            { img: "/assets/img/menu/Spices/spices5.png", title: "Turmeric", content: "India", },
+
+            { img: "/assets/img/menu/Spices/spices6.png", title: "Garlic Powder", content: "India", },
+            { img: "/assets/img/menu/Spices/spices7.png", title: "Coriander Powder", content: "India", },
+            { img: "/assets/img/menu/Spices/spices8.png", title: "Cardamom", content: "India", },
+            { img: "/assets/img/menu/Spices/spices9.png", title: "Cloves", content: "India",  },
+            { img: "/assets/img/menu/Spices/spices10.png", title: "Fish Masala", content: "India", }
         ],
         "Fruits": [
-            { img: "/assets/img/menu/menuThumb1_1.png", title: "Chinese Pasta", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_5.png", title: "Grilled Chicken", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_2.png", title: "Chicken Fried Rice", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_3.png", title: "Chicken Pizza", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/menuThumb1_4.png", title: "Chicken Noodles", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/menuThumb1_9.png", title: "Vegetables Burger", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_10.png", title: "Brief Chicken", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_6.png", title: "Egg and Cucumber", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_7.png", title: "Chicken White Rice", content: "It's a testament to our.", },
-            { img: "/assets/img/menu/menuThumb1_8.png", title: "Spatial Barger", content: "It's a testament to our.",  }
+            { img: "/assets/img/menu/Fruits/fruit1.png", title: "Apple", content: "India",  },
+            { img: "/assets/img/menu/Fruits/fruit5.png", title: "Blueberry", content: "India",  },
+            { img: "/assets/img/menu/Fruits/fruit2.png", title: "Avocado", content: "India",  },
+            { img: "/assets/img/menu/Fruits/fruit3.png", title: "Blue Grapes", content: "India", },
+            { img: "/assets/img/menu/Fruits/fruit4.png", title: "Banana", content: "India", },
+            { img: "/assets/img/menu/Fruits/fruit9.png", title: "Tender coconut", content: "India",  },
+            { img: "/assets/img/menu/Fruits/fruit10.png", title: "Mango", content: "India",  },
+            { img: "/assets/img/menu/Fruits/fruit6.png", title: "Kiwi", content: "India",  },
+            { img: "/assets/img/menu/Fruits/fruit7.png", title: "Orange", content: "India", },
+            { img: "/assets/img/menu/Fruits/fruit8.png", title: "Strawberry", content: "India",  }
         ],
         "Vegitables": [
             { img: "/assets/img/menu/menuThumb1_2.png", title: "Chicken Fried Rice", content: "It's a testament to our.",  },

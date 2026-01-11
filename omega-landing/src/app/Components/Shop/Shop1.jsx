@@ -44,8 +44,8 @@ const Shop1 = () => {
                                         <div className="progress"></div>
                                     </div>
                                     <div className="range-input">
-                                        <input type="range" className="range-min" min="0" max="10000" value="2500" />
-                                        <input type="range" className="range-max" min="100" max="10000" value="7500" />
+                                        <input type="range" className="range-min" min="0" max="10000" defaultValue="2500" />
+                                        <input type="range" className="range-max" min="100" max="10000" defaultValue="7500" />
                                     </div>
                                     <div className="range-items">
                                         <div className="price-input">

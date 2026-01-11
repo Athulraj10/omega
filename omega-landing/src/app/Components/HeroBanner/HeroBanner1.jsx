@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const HeroBanner1 = () => {
 
@@ -34,48 +35,125 @@ const HeroBanner1 = () => {
         ]
       };  
 
+    const headings = [
+        'Four decades of trusted quality and service',
+        'Freshness you can see. Quality you can taste.',
+        'Only the best makes it to you.',
+    ];
+
+    const [displayedText, setDisplayedText] = useState(headings[0]);
+    const [currentHeadingIndex, setCurrentHeadingIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [isTyping, setIsTyping] = useState(false);
+
+    useEffect(() => {
+        let timeout;
+        const currentHeading = headings[currentHeadingIndex];
+        
+        if (!isDeleting && !isTyping && displayedText === currentHeading) {
+            // Display full text, wait 2 seconds, then start deleting
+            timeout = setTimeout(() => {
+                setIsDeleting(true);
+            }, 2000);
+        } else if (isDeleting) {
+            // Delete letters one by one from right to left
+            if (displayedText.length > 0) {
+                timeout = setTimeout(() => {
+                    setDisplayedText(prev => prev.slice(0, -1));
+                }, 50); // Delete speed
+            } else {
+                // Finished deleting, move to next heading and start typing
+                setIsDeleting(false);
+                const nextIndex = (currentHeadingIndex + 1) % headings.length;
+                setCurrentHeadingIndex(nextIndex);
+                setIsTyping(true);
+                // Start typing the first character immediately
+                setDisplayedText(headings[nextIndex][0]);
+            }
+        } else if (isTyping) {
+            // Type letters one by one from left to right
+            if (displayedText.length < currentHeading.length) {
+                timeout = setTimeout(() => {
+                    setDisplayedText(currentHeading.slice(0, displayedText.length + 1));
+                }, 100); // Typing speed
+            } else {
+                // Finished typing
+                setIsTyping(false);
+            }
+        }
+
+        return () => {
+            if (timeout) clearTimeout(timeout);
+        };
+    }, [displayedText, currentHeadingIndex, isDeleting, isTyping]);
+
     const heroContent = [
-        {img:'/assets/img/banner/banner1.webp', subtitle:'WELCOME FRESHEAT', title:'SPICY FRIED CHICKEN', btnname:'ORDER NOW'},
+        {subtitle:'WELCOME FRESHEAT', btnname:'ORDER NOW'},
       ]; 
 
     return (
-        <div className="slider-area">
-            <div className="swiper banner-slider">
-                <div className="swiper-wrapper">
+        <>
+            <style dangerouslySetInnerHTML={{__html: `
+                @keyframes blink {
+                    0%, 50% { opacity: 1; }
+                    51%, 100% { opacity: 0; }
+                }
+                .typewriter-cursor {
+                    display: inline-block;
+                    width: 2px;
+                    height: 1em;
+                    background-color: currentColor;
+                    margin-left: 4px;
+                    animation: blink 1s infinite;
+                }
+            `}} />
+            <div className="slider-area">
+                <div className="swiper banner-slider">
+                    <div className="swiper-wrapper">
 
-                {heroContent.map((item, i) => (
-                    <div key={i} className="swiper-slide">
-                        <div className="banner-wrapper style1 bg-img" style={{backgroundImage: `url(${item.img})`}}>
-                             {/* <div className="shape1_1 d-none d-xxl-block" data-animation="slideInLeft" data-duration="2s"
-                                data-delay=".3s"><Image src="/assets/img/shape/bannerShape1_1.svg" alt="img" width={189} height={103}   /></div> 
-                             <div className="shape1_2 d-none d-xxl-block" data-animation="slideInLeft" data-duration="2s"
-                                data-delay=".3s"><Image src="/assets/img/shape/bannerShape1_2.svg" alt="img" width={189} height={209}   /></div>
-                            <div className="shape1_3 d-none d-xxl-block" data-animation="slideInLeft" data-duration="3s"
-                                data-delay="2s"><Image src="/assets/img/shape/bannerShape1_3.svg" alt="img" width={182} height={137}   /></div>
-                            <div className="shape1_4 d-none d-xxl-block" data-animation="slideInLeft" data-duration="2s"
-                                data-delay=".3s"><Image src="/assets/img/shape/bannerShape1_4.svg" alt="img" width={160} height={152}   /></div>
-                            <div className="shape1_5 d-none d-xxl-block" data-animation="slideInLeft" data-duration="2s"
-                                data-delay=".3s"><Image src="/assets/img/shape/bannerShape1_5.svg" alt="img" width={115} height={137}   /></div> */}
-                            {/* <div className="shape1_6 d-none d-xxl-block cir36"><Image src="/assets/img/shape/bannerShape1_6.svg" alt="img" width={75} height={75}   /></div>  */}
-                            <div className="overlay"></div>
-                            <div className="banner-container">
-                                <div className="container">
-                                    <div className="row align-items-center">
-                                        <div className="col-12 col-xl-6 d-none d-xxl-block order-1">
-                                            <div className="banner-thumb-area" data-tilt data-animation="slideInLeft"
-                                                data-duration="2s" data-delay=".9s">
+                    {heroContent.map((item, i) => (
+                        <div key={i} className="swiper-slide">
+                            <div className="banner-wrapper style1 position-relative">
+                                <video 
+                                    className="w-100 h-100" 
+                                    style={{
+                                        objectFit: 'cover',
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        width: '100%',
+                                        height: '100%',
+                                        zIndex: 0
+                                    }}
+                                    autoPlay 
+                                    loop 
+                                    muted 
+                                    playsInline
+                                >
+                                    <source src="/assets/img/banner/banner.mp4" type="video/mp4" />
+                                </video>
+                                <div className="overlay"></div>
+                                <div className="banner-container" style={{position: 'relative', zIndex: 1}}>
+                                    <div className="container">
+                                        <div className="row align-items-center">
+                                            <div className="col-12 col-xl-6 d-none d-xxl-block order-1">
+                                                <div className="banner-thumb-area" data-tilt data-animation="slideInLeft"
+                                                    data-duration="2s" data-delay=".9s">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="col-12 col-lg-10 col-xl-8 col-xxl-6 order-2 mx-auto">
-                                            <div className="banner-title-area text-center text-xxl-end">
-                                                <div className="banner-style1">
-                                                    <div className="section-title">
-                                                        <h6 className="sub-title" data-animation="slideInLeft"
-                                                            data-duration="2s" data-delay=".3s"> {item.subtitle} </h6>
-                                                        <h1 className="title" data-animation="slideInLeft"
-                                                            data-duration="2s" data-delay=".5s">
-                                                            {item.title}
-                                                        </h1>
+                                            <div className="col-12 col-lg-10 col-xl-8 col-xxl-6 order-2 mx-auto">
+                                                <div className="banner-title-area text-center text-xxl-end">
+                                                    <div className="banner-style1">
+                                                        <div className="section-title">
+                                                            <h6 className="sub-title" data-animation="slideInLeft"
+                                                                data-duration="2s" data-delay=".3s"> {item.subtitle} </h6>
+                                                            <h4 className="title" data-animation="slideInLeft"
+                                                                data-duration="2s" data-delay=".5s"
+                                                               >
+                                                                {displayedText}
+                                                                <span className="typewriter-cursor"></span>
+                                                            </h4>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,16 +162,11 @@ const HeroBanner1 = () => {
                                 </div>
                             </div>
                         </div>
+                        ))}
                     </div>
-                    ))}
-
                 </div>
-
-                {/* <div className="arrow-prev"><Image src="/assets/img/icon/arrowPrev.svg" alt="img" width={40} height={40}   /></div>
-                <div className="arrow-next"><Image src="/assets/img/icon/arrowNext.svg" alt="img" width={40} height={40}   /></div>
-                <div className="pagination-className swiper-pagination"></div> */}
             </div>
-        </div>
+        </>
     );
 };
 
