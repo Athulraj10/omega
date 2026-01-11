@@ -3,9 +3,11 @@ import Link from "next/link";
 
 const FoodItemCard = ({img,title,content,price}) => {
     return (
-        <div className="single-menu-items">
+        <div className="single-menu-items border border-gray-200 rounded-lg">
         <div className="details">
-            <div className="menu-item-thumb"><Image src={img} alt="img" width={80} height={80}   /></div>
+            <div className="menu-item-thumb">
+                <Image src={img} alt="img" width={180} height={180}   />
+                </div>
             <div className="menu-content">
                 <Link href="/menu">
                     <h3>{title}</h3>

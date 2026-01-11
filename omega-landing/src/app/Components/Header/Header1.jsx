@@ -31,6 +31,25 @@ export default function Header1({ variant }) {
 
   return (
     <div>
+    <style dangerouslySetInnerHTML={{__html: `
+      .cs_top_header .cs_top_nav li,
+      .cs_top_header .cs_top_nav li i,
+      .cs_top_header .top-header-social-icon,
+      .cs_top_header .top-header-social-icon a,
+      .cs_top_header .top-header-social-icon a i,
+      .header-contact-info .phone-icon-wrapper i,
+      .header-contact-info .call-us-text,
+      .header-contact-info .phone-number {
+        color: #fff !important;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.3) !important;
+      }
+      .cs_top_header {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .cs_main_header {
+        background: rgba(0, 0, 0, 0.1);
+      }
+    `}} />
     <header
       className={`cs_site_header header_style_2 cs_style_1 header_sticky_style1 ${
         variant ? variant : ''
@@ -42,20 +61,22 @@ export default function Header1({ variant }) {
         <div className="container">
           <div className="cs_top_header_in">
             <div className="cs_top_header_left header-info">
-              <ul className="cs_top_nav d-flex flex-wrap align-items-center cs_fs_12 text-white m-0 p-0">
-                <li><i className="bi bi-geo-alt-fill"></i>Abu Dhabi, UAE</li>
+              <ul className="cs_top_nav d-flex flex-wrap align-items-center cs_fs_12 m-0 p-0" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
+                <li style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
+                  <i className="bi bi-geo-alt-fill" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)', marginRight: '6px' }}></i>Abu Dhabi, UAE
+                </li>
                 {/* <li><i className="bi bi-alarm"></i>9.00 am - 5.00 pm</li> */}
               </ul>
             </div>
             <div className="cs_top_header_right">
             <div className="cs_header_social_links_wrap">
-                <div className="cs_header_social_links top-header-social-icon">
+                <div className="cs_header_social_links top-header-social-icon" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
                 Follow Us:
                   <ul>
                     {/* <li><a href="#"><i className="bi bi-facebook"></i></a></li>
                     <li><a href="#"><i className="bi bi-twitter"></i></a></li>
                     <li><a href="#"><i className="bi bi-linkedin"></i></a></li> */}
-                    <li><a target="_blank" href="https://www.instagram.com/omega_seafoods/?igsh=amYzcjVwNndiNDQ1&utm_source=qr#"><i className="bi bi-instagram"></i></a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/omega_seafoods/?igsh=amYzcjVwNndiNDQ1&utm_source=qr#" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}><i className="bi bi-instagram"></i></a></li>
                 </ul>
                 </div>
               </div>
@@ -90,16 +111,13 @@ export default function Header1({ variant }) {
             <div className="cs_main_header_right">
               <div className="header-right-section">
                 <div className="header-reserve-section">
-                  <Link href="/contact" className="reserve-btn">
-                    Reserve
-                  </Link>
                   <div className="header-contact-info">
                     <div className="phone-icon-wrapper">
-                      <i className="bi bi-telephone-fill"></i>
+                      <i className="bi bi-telephone-fill" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}></i>
                     </div>
                     <div className="contact-text">
-                      <span className="call-us-text">Call Us</span>
-                      <span className="phone-number">+971 56 888 8888</span>
+                      <span className="call-us-text" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>Call Us</span>
+                      <span className="phone-number" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>+971 56 888 8888</span>
                     </div>
                   </div>
                 </div>

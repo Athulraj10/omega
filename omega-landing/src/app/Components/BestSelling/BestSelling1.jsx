@@ -12,7 +12,7 @@ const BestSelling1 = () => {
       ]; 
 
     return (
-        <section className="popular-dishes-section fix section-padding">
+        <section className="popular-dishes-section fix section-padding border border-2 border-gray-300" style={{ backgroundColor: 'white' }}>
         <div className="popular-dishes-wrapper style1">
             <div className="shape1 d-none d-xxl-block"><Image src="/assets/img/shape/popularDishesShape1_1.png" alt="img" width={164} height={183}   />
             </div>
@@ -30,7 +30,8 @@ const BestSelling1 = () => {
                 </div>
                 <div className="dishes-card-wrap style1">
                 {foodItems.map((item, i) => (
-                    <div key={i} className="dishes-card style1 wow fadeInUp" data-wow-delay="0.2s">
+                    <div key={i} className="dishes-card style1 wow fadeInUp border border-2 border-gray-300" data-wow-delay="0.2s" style={{ backgroundColor: '#fff' }} >
+                        
                         <div className="dishes-thumb">
                         <Image src={item.img} alt="img" width={158} height={158}   />
                         </div>
@@ -40,10 +41,10 @@ const BestSelling1 = () => {
                         <p>{item.content}</p>
                         <h6>{item.price}</h6>
                         <div className="social-profile">
-                            <span className="plus-btn"> <Link href="/shop/wishlist"> <i className="bi bi-heart"></i></Link></span>
+                            {/* <span className="plus-btn"> <Link href="/shop/wishlist"> <i className="bi bi-heart"></i></Link></span>
                             <ul>
                                 <li><Link href="/shop/cart"><i className="bi bi-basket2"></i></Link></li>
-                            </ul>
+                            </ul> */}
                         </div>
                     </div>
                     ))}
