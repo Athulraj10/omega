@@ -62,32 +62,22 @@ const Team1 = () => {
                 <div className="title-area">
                     <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
                     <Image className="me-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
-                        OUR CHEFE<Image className="ms-1"
+                        We offer the best<Image className="ms-1"
                             src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
                     </div>
                     <h2 className="title  wow fadeInUp" data-wow-delay="0.7s">
-                        Meet Our Expert Chefe
+                        Quality food and service categories
                     </h2>
                 </div>
-                <div className="chefe-card-wrap style1 pb-5">
+                <div className="pb-5">
                     <div className="row">
                     {teamItems.map((item, i) => (
                         <div key={i} className="col-lg-6 col-xl-4">
-                            <div className="chefe-card style1 wow fadeInUp" data-wow-delay="0.2s">
-                                <div className="chefe-thumb">
-                                <Image src={item.img} alt="img" width={310} height={297}   />
+                            <div className="" data-wow-delay="0.2s">
+                                <div className="border border-gray-200 rounded-lg">
+                                <Image src={item.img} alt="img" width={350} height={300}   />
                                 </div>
-                                <div className="icon">
-                                    <Link className="hovered-icon" href={item.facebook}><i className="bi bi-facebook"></i></Link>
-                                    <a href="#"><i className="bi bi-share"></i></a>
-                                    <Link className="hovered-icon" href={item.linkedin}><i className="bi bi-linkedin"></i></Link>
-                                </div>
-                                <div className="chefe-content">
-                                    <Link href="/chef/chef-details">
-                                        <h3>{item.title}</h3>
-                                    </Link>
-                                    <p>{item.content}</p>
-                                </div>
+                              
                             </div>
                         </div>
                         ))}

@@ -16,7 +16,7 @@ const BestSelling1 = () => {
         <div className="popular-dishes-wrapper style1">
             <div className="shape1 d-none d-xxl-block"><Image src="/assets/img/shape/popularDishesShape1_1.png" alt="img" width={164} height={183}   />
             </div>
-            <div className="shape2 float-bob-y d-none d-xxl-block"><Image src="/assets/img/shape/popularDishesShape1_2.png" alt="img" width={239} height={149}   /></div>
+            <div className="shape2 float-bob-y d-none d-xxl-block"><Image src="/assets/img/shape/popularDishesShape1_2.png" alt="img" width={250} height={199}   /></div>
             <div className="container">
                 <div className="title-area">
                     <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">

@@ -21,10 +21,12 @@ const About1 = () => {
          
          
          
-            {/* <div className="shape1 d-none d-xxl-block"><Image src={aboutContent.img1} alt="img" width={432} height={552}   /></div> */}
+            {/* <div className="shape1 d-none d-xxl-block"><Image src={aboutContent.img1} alt="img" width={432} height={552}   /></div>
+            <div className="shape4 d-none d-xxl-block"><Image src={aboutContent.img3} alt="img" width={432} height={552}   /></div>  */}
+            
+            
             {/* <div className="shape2 d-none d-xxl-block"><Image src="/assets/img/shape/aboutShape1_2.png" alt="img" width={181} height={289}   /></div> */}
-            {/* <div className="shape4 d-none d-xxl-block"><Image src={aboutContent.img3} alt="img" width={432} height={552}   /></div>  */}
-            {/* <div className="shape5 d-none d-xxl-block"><Image src="/assets/img/shape/aboutShape1_5.png" alt="img" width={173} height={277}   /></div> */}
+            <div className="shape5 d-none d-xxl-block"><Image src="/assets/img/shape/aboutShape1_5.png" alt="img" width={173} height={277}   /></div>
          
          
             <div className="container">
