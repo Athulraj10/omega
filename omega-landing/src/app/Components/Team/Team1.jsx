@@ -37,9 +37,9 @@ const Team1 = () => {
       }; 
 
     const teamItems = [
-        {img:'/assets/img/chefe/chefeThumb1_1.png', title:'Ralph Edwards', content:'Chef Lead', facebook:'#', linkedin:'#'},
-        {img:'/assets/img/chefe/chefeThumb1_2.png', title:'Leslie Alexander', content:'Chef Assistant', facebook:'#', linkedin:'#'},
-        {img:'/assets/img/chefe/chefeThumb1_3.png', title:'Ronald Richards', content:'Chef Assistant', facebook:'#', linkedin:'#'},
+      {img:'/assets/img/chefe/chefeThumb1_3.png', title:'Ronald Richards', content:'Chef Assistant', facebook:'#', linkedin:'#'},
+      {img:'/assets/img/chefe/chefeThumb1_2.png', title:'Leslie Alexander', content:'Chef Assistant', facebook:'#', linkedin:'#'},
+      {img:'/assets/img/chefe/chefeThumb1_1.png', title:'Ralph Edwards', content:'Chef Lead', facebook:'#', linkedin:'#'},
       ]; 
 
       const logoItems = [
@@ -74,10 +74,15 @@ const Team1 = () => {
                     {teamItems.map((item, i) => (
                         <div key={i} className="col-lg-6 col-xl-4">
                             <div className="" data-wow-delay="0.2s">
-                                <div className="border border-gray-200 rounded-lg">
-                                <Image src={item.img} alt="img" width={350} height={300}   />
+                                <div className="">
+                                <Image src={item.img} alt="img" width={350} height={300} />
                                 </div>
-                              
+                              <div className="chefe-content">
+                                    <Link href="/chef/chef-details">
+                                        <h3>{item.title}</h3>
+                                    </Link>
+                                    <p>{item.content}</p>
+                                </div>
                             </div>
                         </div>
                         ))}

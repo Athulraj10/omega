@@ -78,7 +78,7 @@ body {
   font-weight: normal;
   line-height: 28px;
   color: var(--text);
-  background-color: var(--white);
+  background-color: #79a1bb;
   padding: 0;
   margin: 0;
   overflow-x: hidden;
@@ -7768,8 +7768,9 @@ input.main-search-input::placeholder {
 /* 25.Cta */
 .cta-wrapper.style1 {
   position: relative;
+  background-color: #79a1bb;
   background-image: url(/assets/img/bg/ctaBG1_1.jpg);
-  background-position: center;
+  background-position: calc(80% + 60%) center;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -7790,7 +7791,7 @@ input.main-search-input::placeholder {
 }
 .cta-wrapper.style2 {
   position: relative;
-  background-image: url(/assets/img/bg/ctaBG2_1.jpg);
+  /* background-image: url(/assets/img/bg/ctaBG2_1.jpg); */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -7920,7 +7921,7 @@ input.main-search-input::placeholder {
 .cta-wrap.style3 {
   position: relative;
   overflow: hidden;
-  background-image: url(/assets/img/bg/ctaBG3_1.jpg);
+  /* background-image: url(/assets/img/bg/ctaBG3_1.jpg); */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
