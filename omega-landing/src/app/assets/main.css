@@ -7770,7 +7770,7 @@ input.main-search-input::placeholder {
   position: relative;
   background-color: #79a1bb;
   background-image: url(/assets/img/bg/ctaBG1_1.jpg);
-  background-position: calc(80% + 60%) center;
+  background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
 }
