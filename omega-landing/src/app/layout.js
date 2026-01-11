@@ -18,13 +18,13 @@ const roboto = Roboto({
 export const metadata = {
   title: {
     absolute: '',
-    default: 'Fresheat - Food & Restaurant NextJS Template',
-    template: '%s | Fresheat - Food & Restaurant NextJS Template',
+    default: 'Omega SeaFoods',
+    template: '%s | Omega SeaFoods',
   },
-  description: 'Fresheat - Food & Restaurant NextJS Template',
+  description: 'Omega SeaFoods',
   openGraph: {
-    title: 'Fresheat - Food & Restaurant NextJS Template',
-    description: 'Fresheat - Food & Restaurant NextJS Template',
+    title: 'Omega SeaFoods',
+    description: 'Omega SeaFoods',
   },
 };
 
