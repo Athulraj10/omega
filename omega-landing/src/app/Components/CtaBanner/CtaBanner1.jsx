@@ -16,15 +16,15 @@ const CtaBanner1 = () => {
                     <div className="row">
                         <div className="col-xl-6 order-2 order-xl-1">
                             <div className="cta-content">
-                                <h6 className="wow fadeInUp" data-wow-delay="0.5s">WELCOME OMEGA FRESH Food</h6>
-                                <h3 className="wow fadeInUp" data-wow-delay="0.7s">TODAY SPECIAL OFFER</h3>
+                                <h6 className="wow fadeInUp text-white" data-wow-delay="0.5s">WELCOME OMEGA FRESH Food</h6>
+                                <h3 className="wow fadeInUp text-white" data-wow-delay="0.7s">TODAY SPECIAL OFFER</h3>
                                 <p className="wow fadeInUp" data-wow-delay="0.8s">limited Time Offer</p>
                            </div>
                         </div>
                         <div className="col-xl-6 order-1 order-xl-2">
-                            {/* <div className="cta-thumb"> */}
-                            {/* <Image className="img-fluid float-bob-x" src="/assets/img/cta/ctaThumb1_1.png" alt="img" width={656} height={326}   /> */}
-                            {/* </div> */}
+                            {/* <div className="cta-thumb">
+                            <Image className="img-fluid float-bob-x" src="/assets/img/cta/ctaThumb1_1.png" alt="img" width={656} height={326}   />
+                            </div> */}
                         </div>
                     </div>
 

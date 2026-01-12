@@ -63,8 +63,8 @@
   --border: #373737;
   --border-2: #D2D2D1;
   --border-3: #ffffff17;
-  --title-font: "Epilogue", sans-serif;
-  --body-font: "Roboto", sans-serif;
+  --title-font: "Josefin Sans", sans-serif;
+  --body-font: "Josefin Sans", sans-serif;
   --icon-font: "Font Awesome 6 Pro";
 }
 
@@ -5184,10 +5184,10 @@ input.main-search-input::placeholder {
 }
 
 /* 16.Banner */
-.banner-wrapper.style1 {
+/* .banner-wrapper.style1 {
   position: relative;
   background-image: url(/assets/img/bg/bannerBG1_1.jpg);
-}
+} */
 .banner-wrapper.style1 .shape1_1 {
   position: absolute;
   top: 35px;

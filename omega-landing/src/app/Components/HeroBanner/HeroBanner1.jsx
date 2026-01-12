@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const HeroBanner1 = () => {
 
@@ -113,8 +114,8 @@ const HeroBanner1 = () => {
 
                     {heroContent.map((item, i) => (
                         <div key={i} className="swiper-slide">
-                            <div className="banner-wrapper style1 position-relative">
-                                <video 
+                            <div className="style1 position-relative">
+                                {/* <video 
                                     className="w-100 h-100" 
                                     style={{
                                         objectFit: 'cover',
@@ -131,9 +132,10 @@ const HeroBanner1 = () => {
                                     playsInline
                                 >
                                     <source src="/assets/img/banner/banner.mp4" type="video/mp4" />
-                                </video>
+                                </video> */}
+                                <Image src="/assets/img/banner/banner1.webp" alt="banner" width={1920} height={800}  />
                                 <div className="overlay"></div>
-                                <div className="banner-container" style={{position: 'relative', zIndex: 1}}>
+                                {/* <div className="banner-container" style={{position: 'relative', zIndex: 1}}>
                                     <div className="container">
                                         <div className="row align-items-center">
                                             <div className="col-12 col-xl-6 d-none d-xxl-block order-1">
@@ -159,7 +161,7 @@ const HeroBanner1 = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         ))}
