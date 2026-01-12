@@ -16,21 +16,21 @@ const FoodItem1 = () => {
         {
             id: 'Spices',
             name: 'Spices',
-            icon: '/assets/img/menu/spices/logo.png',
+            icon: '/assets/img/menu/spices/LOGO.png',
             tabId: 'pills-Spices',
             ariaControls: 'pills-Spices'
         },
         {
             id: 'Fruits',
             name: 'Fruits',
-            icon: '/assets/img/menu/menuIcon1_3.png',
+            icon: '/assets/img/menu/Fruits/LOGO.png',
             tabId: 'pills-Fruits',
             ariaControls: 'pills-Fruits'
         },
         {
             id: 'Vegitables',
             name: 'Vegetables',
-            icon: '/assets/img/menu/menuIcon1_4.png',
+            icon: '/assets/img/menu/Vegetables/LOGO.png',
             tabId: 'pills-Vegitables',
             ariaControls: 'pills-Vegitables'
         }
@@ -39,17 +39,17 @@ const FoodItem1 = () => {
     // Products organized by category
     const productsByCategory = {
         'Frozen fish': [
-            { img: "/assets/img/menu/Frozen/frozen1.png", title: "Frozen Shrimps U-15", content: "Origin : oman", },
+            { img: "/assets/img/menu/Frozen/frozen1.png", title: "Frozen Shrimps 30-40", content: "Origin : oman", },
             { img: "/assets/img/menu/Frozen/frozen2.png", title: "Frozen Black Pomfret", content: "Origin: UAE", },
             { img: "/assets/img/menu/Frozen/frozen3.png", title: "Frozen Salmon 2-3", content: "Origin: Norway",  },
             { img: "/assets/img/menu/Frozen/frozen4.png", title: "Frozen Shark", content: "Origin: UAE",  },
-            { img: "/assets/img/menu/Frozen/frozen5.png", title: "Frozen Mackerel", content: "Origin: Oman", },
+            { img: "/assets/img/menu/Frozen/frozen5.png", title: "Frozen Mussels", content: "Origin: Oman", },
 
             { img: "/assets/img/menu/Frozen/frozen6.png", title: "Frozen Squid", content: "Origin: UAE", },
-            { img: "/assets/img/menu/Frozen/frozen7.png", title: "Frozen Hamour", content: "Origin: UAE",  },
+            { img: "/assets/img/menu/Frozen/frozen7.png", title: "Frozen Crab Meat Sticks", content: "Origin: UAE",  },
             { img: "/assets/img/menu/Frozen/frozen8.png", title: "Frozen Seabream", content: "Origin: Europe", },
-            { img: "/assets/img/menu/Frozen/frozen9.png", title: "Frozen Sherry", content: "Origin: UAE", },
-            { img: "/assets/img/menu/Frozen/frozen10.png", title: "Frozen Jesh", content: "Origin: UAE", }
+            { img: "/assets/img/menu/Frozen/frozen9.png", title: "Frozen Lobester", content: "Origin: UAE", },
+            { img: "/assets/img/menu/Frozen/frozen10.png", title: "Frozen king fish", content: "Origin: UAE", }
         ],
         "Spices": [
             { img: "/assets/img/menu/Spices/spices1.png", title: "Black Pepper", content: "India",  },
@@ -77,16 +77,16 @@ const FoodItem1 = () => {
             { img: "/assets/img/menu/Fruits/fruit8.png", title: "Strawberry", content: "India",  }
         ],
         "Vegitables": [
-            { img: "/assets/img/menu/menuThumb1_2.png", title: "Chicken Fried Rice", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_1.png", title: "Chinese Pasta", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_3.png", title: "Chicken Pizza", content: "It's a testament to our.",},
-            { img: "/assets/img/menu/menuThumb1_4.png", title: "Chicken Noodles", content: "It's a testament to our.",},
-            { img: "/assets/img/menu/menuThumb1_5.png", title: "Grilled Chicken", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_6.png", title: "Egg and Cucumber", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_9.png", title: "Vegetables Burger", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_7.png", title: "Chicken White Rice", content: "It's a testament to our.",},
-            { img: "/assets/img/menu/menuThumb1_8.png", title: "Spatial Barger", content: "It's a testament to our.",  },
-            { img: "/assets/img/menu/menuThumb1_10.png", title: "Brief Chicken", content: "It's a testament to our.",  }
+            { img: "/assets/img/menu/Vegetables/vegitable2.png", title: "Cabbage", content: "India",  },
+            { img: "/assets/img/menu/Vegetables/vegitable1.png", title: "Broccoli", content: "India",  },
+            { img: "/assets/img/menu/Vegetables/vegitable3.png", title: "Carrot", content: "India",},
+            { img: "/assets/img/menu/Vegetables/vegitable4.png", title: "Corn", content: "India",},
+            { img: "/assets/img/menu/Vegetables/vegitable5.png", title: "Cucumber", content: "India",  },
+            { img: "/assets/img/menu/Vegetables/vegitable6.png", title: "Leafy mix", content: "India",  },
+            { img: "/assets/img/menu/Vegetables/vegitable9.png", title: "Pumpkin", content: "India",  },
+            { img: "/assets/img/menu/Vegetables/vegitable7.png", title: "Onion", content: "India",},
+            { img: "/assets/img/menu/Vegetables/vegitable8.png", title: "Potato", content: "India",  },
+            { img: "/assets/img/menu/Vegetables/vegitable10.png", title: "Tomato", content: "India",  }
         ]
     };
 
@@ -119,7 +119,7 @@ const FoodItem1 = () => {
                                     src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20} />
                         </div>
                         <h2 className="title wow fadeInUp" data-wow-delay="0.7s">
-                            Fresheat Foods Menu
+                            Omega Foods Foods Menu
                         </h2>
                     </div>
 
@@ -142,7 +142,7 @@ const FoodItem1 = () => {
                                             aria-controls={category.ariaControls}
                                             aria-selected={isActive === category.id}
                                         >
-                                            <Image src={category.icon} alt={category.name} width={36} height={36} />
+                                            <Image src={category.icon} alt={category.name} width={isActive === category.id ? 70 : 60} height={isActive === category.id ? 70 : 60}  />
                                             {category.name}
                                         </button>
                             </li>

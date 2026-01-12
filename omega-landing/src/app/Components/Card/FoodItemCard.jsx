@@ -6,7 +6,7 @@ const FoodItemCard = ({img,title,content,price}) => {
         <div className="single-menu-items border border-gray-200 rounded-lg">
         <div className="details">
             <div className="menu-item-thumb">
-                <Image src={img} alt="img" width={180} height={140}   />
+                <Image src={img} alt="img" width={170} height={130}   />
                 </div>
             <div className="menu-content">
                 <Link href="/menu">

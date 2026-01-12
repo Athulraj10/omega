@@ -89,7 +89,7 @@ const HeroBanner1 = () => {
     }, [displayedText, currentHeadingIndex, isDeleting, isTyping]);
 
     const heroContent = [
-        {subtitle:'WELCOME FRESHEAT', btnname:'ORDER NOW'},
+        {subtitle:'WELCOME Omega Foods', btnname:'ORDER NOW'},
       ]; 
 
     return (

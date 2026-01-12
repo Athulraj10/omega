@@ -60,28 +60,36 @@ const Testimonial1 = () => {
         };
 
     const tesItems = [
-        {img:'/assets/img/testimonial/testimonialProfile1_1.png', title:'Albert Flores', designation:'Web Designer', content:'Penatibus magnis dis point parturient montes nascetur ridiculus mus Ut id lorem ac enim the vestibulum blandit nec sit amet felis. Fusce quis diam odio Cras mattis mi quis tincidunt'},
-        {img:'/assets/img/testimonial/testimonialProfile1_1.png', title:'Albert Flores', designation:'Web Designer', content:'Penatibus magnis dis point parturient montes nascetur ridiculus mus Ut id lorem ac enim the vestibulum blandit nec sit amet felis. Fusce quis diam odio Cras mattis mi quis tincidunt'},
-        {img:'/assets/img/testimonial/testimonialProfile1_1.png', title:'Albert Flores', designation:'Web Designer', content:'Penatibus magnis dis point parturient montes nascetur ridiculus mus Ut id lorem ac enim the vestibulum blandit nec sit amet felis. Fusce quis diam odio Cras mattis mi quis tincidunt'},
+        {img:'/assets/img/testimonial/testimonialProfile1_1.png', title:'Al Mansoor', designation:'', content:'we are very happy with the quality of the products and the service we received from Omega Foods'},
+        {img:'/assets/img/testimonial/testimonialProfile1_1.png', title:'Shahid Jafrial', designation:'', content:'Fresh and healthy products, delivered on time'},
+        {img:'/assets/img/testimonial/testimonialProfile1_1.png', title:'Diya ', designation:'', content:'Excellent customer service and a wide variety of products'},
       ]; 
 
     return (
     <section className="testimonial-section fix bg-color3">
-        <div className="testimonial-wrapper style1 section-padding ">
-            <div className="shape"><Image src="/assets/img/testimonial/testimonialThumb1_1.png" alt="img" width={885} height={747}   /></div>
+        <div className="testimonial-wrapper style1 section-padding" style={{ position: 'relative', minHeight: '100vh' }}>
+            <div className="shape" style={{ position: 'absolute', top: 0, left: 0, width: '50%', height: '100%', zIndex: 0 }}>
+                <Image 
+                    src="/assets/img/testimonial/testimonialThumb1_1.png" 
+                    alt="img" 
+                    fill
+                    style={{ objectFit: 'contain', objectPosition: 'center' }}
+                    sizes="50vw"
+                    priority
+                />
+            </div>
             <div className="shape2"><Image src="/assets/img/shape/testimonialShape1_1.png" alt="img" width={224} height={401}   /></div>
             <div className="container">
-                <div className="row d-flex justify-content-center">
+                <div className="row d-flex justify-content-center align-items-center">
                     <div className="col-xl-5 d-flex align-items-center justify-content-center">
-                        <div className="video-wrap cir36 ">
-                            <a onClick={handelClick} className="play-btn popup-video"><Image src="/assets/img/shape/player.svg" alt="img" width={152} height={152}   /></a>
-                        </div>
+                        {/* Image is displayed via background shape div */}
                     </div>
-                    <div className="col-xl-7">
+                    <div className="col-xl-7" style={{ position: 'relative', zIndex: 1 }}>
                         <div className="title-area">
                             <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
                             <Image className="me-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
-                                Testimonials<Image className="ms-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
+                                Omega Foods 
+                            <Image className="ms-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
                             </div>
                             <h2 className="title text-white wow fadeInUp" data-wow-delay="0.7s">
                                 What our Clients Say
@@ -96,7 +104,7 @@ const Testimonial1 = () => {
                                         <div className="testimonial-card style1">
                                             <div className="testimonial-header">
                                                 <div className="fancy-box">
-                                                    <div className="item1"><Image src={item.img} alt="img" width={100} height={100}   /></div>
+                                                    {/* <div className="item1"><Image src={item.img} alt="img" width={100} height={100}   /></div> */}
                                                     <div className="item2">
                                                         <h6>{item.title}</h6>
                                                         <p>{item.designation}</p>
@@ -124,7 +132,7 @@ const Testimonial1 = () => {
             </div>
         </div>
 
-        <div className="marquee-wrapper style-2 text-slider section-padding">
+        {/* <div className="marquee-wrapper style-2 text-slider section-padding">
             <div className="marquee-inner to-left">
                 <ul className="marqee-list d-flex">
                     <li className="marquee-item style-2">
@@ -145,13 +153,13 @@ const Testimonial1 = () => {
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> */}
 
-        <VideoModal
+        {/* <VideoModal
             isTrue={toggle}
             iframeSrc={iframeSrc}
             handelClose={handelClose}        
-        ></VideoModal> 
+        ></VideoModal>  */}
     </section>
     );
 };
