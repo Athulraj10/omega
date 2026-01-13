@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "react-slick";
+import { gallery1Items } from "@/data/products";
 
 const Gallery1 = () => {
 
@@ -35,17 +36,6 @@ const Gallery1 = () => {
           }
         ]
       }; 
-    
-    const logoItems = [
-        {img:'/assets/img/gallery/galleryThumb1_5.jpg'},
-        {img:'/assets/img/gallery/galleryThumb1_1.jpg'},
-        {img:'/assets/img/gallery/galleryThumb1_2.jpg'},
-        {img:'/assets/img/gallery/galleryThumb1_3.jpg'},
-        {img:'/assets/img/gallery/galleryThumb1_4.jpg'},
-        {img:'/assets/img/gallery/galleryThumb1_5.jpg'},
-        {img:'/assets/img/gallery/galleryThumb1_1.jpg'},
-        {img:'/assets/img/gallery/galleryThumb1_2.jpg'},        
-      ]; 
 
     return (
         <div className="gallery-section">
@@ -55,8 +45,8 @@ const Gallery1 = () => {
                     <div className="swiper gallerySliderOne">
                         <div className="swiper-wrapper cs_slider_gap_301 gallery-slider-area">
                         <Slider {...settings}>
-                        {logoItems.map((item, i) => (
-                            <div key={i} className="swiper-slide">
+                        {gallery1Items.map((item) => (
+                            <div key={item.id} className="swiper-slide">
                                 <div className="gallery-thumb">
                                     <Link href="/menu">
                                     <Image src={item.img} alt="img" width={295} height={292}   />

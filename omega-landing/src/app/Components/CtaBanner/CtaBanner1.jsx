@@ -1,7 +1,10 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const CtaBanner1 = () => {
+    const pathname = usePathname();
     return (
         <section className="cta-section fix pt-5">
         <div className="cta-wrapper style1 p-0">
@@ -29,7 +32,7 @@ const CtaBanner1 = () => {
                                 <div className="cta-thumb mb-4">
                                     <Image 
                                         className="img-fluid rounded" 
-                                        src="/assets/img/cta/seafood packing (1).jpg" 
+                                        src="/assets/img/cta/processing no bg (1).webp" 
                                         alt="Precision in Processing" 
                                         width={600} 
                                         height={400}
@@ -63,6 +66,7 @@ const CtaBanner1 = () => {
                                 </h4>
                                 <p style={{ color: '#1a365d', fontSize: '1rem', lineHeight: '1.6', position: 'relative' }}>
                                     We use insulated boxes to keep seafood fresh and safe during transport.
+                                    {pathname !== '/about' && (
                                     <Image 
                                         className="img-fluid rounded" 
                                         src="/assets/img/cta/boat picture.webp" 
@@ -83,6 +87,7 @@ const CtaBanner1 = () => {
                                             zIndex: 1
                                         }} 
                                     />
+                                    )}
                                 </p>
                             </div>
                         </div>

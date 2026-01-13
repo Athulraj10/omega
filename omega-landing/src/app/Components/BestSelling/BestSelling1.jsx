@@ -5,7 +5,7 @@ import { getAllProducts } from "../../../data/products";
 const BestSelling1 = () => {
     // Get all products and select first 5 as best selling
     const allProducts = getAllProducts();
-    const foodItems = allProducts.slice(0, 5); 
+    const foodItems = allProducts.slice(5, 10); 
 
     return (
         <section className="popular-dishes-section fix section-padding border border-2 border-gray-300" style={{ backgroundColor: 'white' }}>
@@ -15,11 +15,7 @@ const BestSelling1 = () => {
             <div className="shape2 float-bob-y d-none d-xxl-block"><Image src="/assets/img/shape/popularDishesShape1_2.png" alt="img" width={250} height={199}   /></div>
             <div className="container">
                 <div className="title-area">
-                    <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
-                    <Image className="me-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
-                        POPULAR DISHES<Image className="ms-1"
-                            src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
-                    </div>
+                
                     <h2 className="title wow fadeInUp" data-wow-delay="0.7s">
                         Best selling Dishes
                     </h2>

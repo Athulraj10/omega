@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
+import { foodItems1Products } from "@/data/products";
 
 const FoodItems1 = () => {
 
@@ -36,19 +37,8 @@ const FoodItems1 = () => {
         ]
       }; 
 
-      const foodItems = [
-        {img:'/assets/img/food-items/item1_1.png', title:'Chicken Pizza', content:'The registration fee', price:'$26.99'},
-        {img:'/assets/img/food-items/item1_2.png', title:'Egg and Cucumber', content:'The registration fee', price:'$28.00'},
-        {img:'/assets/img/food-items/item1_3.png', title:'Chicken Fried Rice', content:'The registration fee', price:'$100.99'},
-        {img:'/assets/img/food-items/item1_4.png', title:'Chicken Leg Piece', content:'The registration fee', price:'$20.99'},
-        {img:'/assets/img/food-items/item1_1.png', title:'Chicken Pizza', content:'The registration fee', price:'$26.99'},
-        {img:'/assets/img/food-items/item1_2.png', title:'Egg and Cucumber', content:'The registration fee', price:'$28.00'},
-        {img:'/assets/img/food-items/item1_3.png', title:'Chicken Fried Rice', content:'The registration fee', price:'$100.99'},
-        {img:'/assets/img/food-items/item1_4.png', title:'Chicken Leg Piece', content:'The registration fee', price:'$20.99'},        
-      ]; 
-
     return (
-        <section className="best-food-items-section fix section-padding" style={{ backgroundColor: '#fff' }}>
+        <section className="best-food-items-section fix p-5" style={{ backgroundColor: '#fff' }}>
         <div className="best-food-wrapper">
             {/* <div className="shape1 float-bob-y d-none d-xxl-block"><img src="/assets/img/shape/bestFoodItemsShape1_1.png"
                     alt="shape"  height={200} width={200}  /></div>
@@ -56,29 +46,29 @@ const FoodItems1 = () => {
                     alt="shape" /></div> */}
             <div className="container">
                 <div className="title-area">
-                    <h2 className="title wow fadeInUp" data-wow-delay="0.7s">
-                        Popular Food Items
+                    <h2 className="title wow fadeInUp text-center" data-wow-delay="0.7s">
+                        Popular Fresh Fish
                     </h2>
                 </div>
                 <div className="slider-area mb-n40">
                     <div className="swiper bestFoodItems-slider">
                         <div className="swiper-wrapper cs_slider_gap_301 food-slider-item">
                         <Slider {...settings}>
-                        {foodItems.map((item, i) => (
-                            <div key={i} className="swiper-slide shadow">
-                                <div className="single-food-items" style={{ backgroundColor: '#fff' }}>
-                                    <div className="item-thumb">
-                                        <Image src={item.img} width={158} height={158} alt="thumb" className="food-item-img" />
+                        {foodItems1Products.map((item) => (
+                            <div key={item.id} className="swiper-slide shadow rounded-3 mb-5 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl cursor-pointer">
+                                <div className="single-food-items transition-all duration-300" style={{ backgroundColor: '#fff' }}>
+                                    <div className="item-thumb overflow-hidden">
+                                        <Image src={item.img} width={158} height={158} alt="thumb" className="food-item-img transition-transform duration-300 hover:scale-110" />
                                         <div className="circle-shape">
                                             <Image className="cir36" src="/assets/img/food-items/circleShape.png" width={174} height={174} alt="shape" />
                                         </div>
                                     </div>
                                     <div className="item-content">
                                         <Link href="/menu">
-                                            <h3>{item.title}</h3>
+                                            <h3 className="transition-colors duration-300 hover:text-orange-500">{item.title}</h3>
                                         </Link>
                                         <div className="text">{item.content}</div>
-                                        <h6>{item.price}</h6>
+                                        <h6 className="transition-colors duration-300 hover:text-orange-600">{item.price}</h6>
                                     </div>
                                 </div>
                             </div>

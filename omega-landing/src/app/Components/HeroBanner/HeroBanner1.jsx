@@ -38,55 +38,36 @@ const HeroBanner1 = () => {
 
     const headings = [
         'Four decades of trusted quality and service',
-        'Freshness you can see. Quality you can taste.',
-        'Only the best makes it to you.',
+        'Freshness you can see. <br> Quality you can taste.',
+        'Only the best makes it to you. <br>',
     ];
 
     const [displayedText, setDisplayedText] = useState(headings[0]);
     const [currentHeadingIndex, setCurrentHeadingIndex] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
-    const [isTyping, setIsTyping] = useState(false);
+    const [isSliding, setIsSliding] = useState(false);
 
     useEffect(() => {
-        let timeout;
-        const currentHeading = headings[currentHeadingIndex];
-        
-        if (!isDeleting && !isTyping && displayedText === currentHeading) {
-            // Display full text, wait 2 seconds, then start deleting
-            timeout = setTimeout(() => {
-                setIsDeleting(true);
-            }, 2000);
-        } else if (isDeleting) {
-            // Delete letters one by one from right to left
-            if (displayedText.length > 0) {
-                timeout = setTimeout(() => {
-                    setDisplayedText(prev => prev.slice(0, -1));
-                }, 50); // Delete speed
-            } else {
-                // Finished deleting, move to next heading and start typing
-                setIsDeleting(false);
+        const interval = setInterval(() => {
+            // Start sliding out animation
+            setIsSliding(true);
+            
+            // After slide out, change the text and slide in
+            setTimeout(() => {
                 const nextIndex = (currentHeadingIndex + 1) % headings.length;
                 setCurrentHeadingIndex(nextIndex);
-                setIsTyping(true);
-                // Start typing the first character immediately
-                setDisplayedText(headings[nextIndex][0]);
-            }
-        } else if (isTyping) {
-            // Type letters one by one from left to right
-            if (displayedText.length < currentHeading.length) {
-                timeout = setTimeout(() => {
-                    setDisplayedText(currentHeading.slice(0, displayedText.length + 1));
-                }, 100); // Typing speed
-            } else {
-                // Finished typing
-                setIsTyping(false);
-            }
-        }
+                setDisplayedText(headings[nextIndex]);
+            }, 600); // Half of animation duration
+            
+            // Reset animation state after animation completes
+            setTimeout(() => {
+                setIsSliding(false);
+            }, 900); // Full animation duration
+        }, 3000); // Change heading every 3 seconds
 
         return () => {
-            if (timeout) clearTimeout(timeout);
+            clearInterval(interval);
         };
-    }, [displayedText, currentHeadingIndex, isDeleting, isTyping]);
+    }, [currentHeadingIndex]);
 
     const heroContent = [
         {subtitle:'WELCOME Omega Foods', btnname:'ORDER NOW'},
@@ -95,17 +76,41 @@ const HeroBanner1 = () => {
     return (
         <>
             <style dangerouslySetInnerHTML={{__html: `
-                @keyframes blink {
-                    0%, 50% { opacity: 1; }
-                    51%, 100% { opacity: 0; }
+                @keyframes slideInFromRight {
+                    0% {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
                 }
-                .typewriter-cursor {
+                @keyframes slideOutToLeft {
+                    0% {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: translateX(-100%);
+                        opacity: 0;
+                    }
+                }
+                .heading-slide-in {
+                    animation: slideInFromRight 0.6s ease-out forwards;
+                }
+                .heading-slide-out {
+                    animation: slideOutToLeft 0.6s ease-out forwards;
+                }
+                .heading-wrapper {
                     display: inline-block;
-                    width: 2px;
-                    height: 1em;
-                    background-color: currentColor;
-                    margin-left: 4px;
-                    animation: blink 1s infinite;
+                    width: 100%;
+                }
+                .heading-container {
+                    position: relative;
+                    overflow: hidden;
+                    display: inline-block;
+                    width: 100%;
                 }
             `}} />
             <div className="slider-area">
@@ -167,8 +172,9 @@ const HeroBanner1 = () => {
                                                                 data-duration="2s" data-delay=".5s"
                                                                 style={{ fontSize: '36px', lineHeight: '1.3', marginBottom: '20px' }}
                                                                >
-                                                                {displayedText}
-                                                                <span className="typewriter-cursor"></span>
+                                                                <div className="heading-container">
+                                                                    <span className={`heading-wrapper ${isSliding ? 'heading-slide-in' : ''}`} dangerouslySetInnerHTML={{ __html: displayedText }}></span>
+                                                                </div>
                                                             </h4>
                                                         </div>
                                                     </div>

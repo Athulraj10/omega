@@ -17,7 +17,7 @@ const page = () => {
     <div>
       <BreadCumb
         bgimg="/assets/img/bg/breadcumb.jpg"
-        Title="Shop Details"
+        Title="Product Details"
       />
       <Suspense fallback={<div>Loading...</div>}>
         <ShopDetailsContent />

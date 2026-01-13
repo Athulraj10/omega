@@ -124,25 +124,7 @@ const Shop1 = () => {
                                         </form>
                                     </div>
                                 </div>
-                                <div className="single-sidebar-widget">
-                                    <h5 className="widget-title">Categories</h5>
-                                    <ul className="tagcloud">
-                                        {categories.map((category) => (
-                                            <li key={category.id}>
-                                                <a
-                                                    href="#"
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        handleCategoryClick(category.id);
-                                                    }}
-                                                    className={selectedCategory === category.id ? "active" : ""}
-                                                >
-                                                    {category.name}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                              
                                 <div className="single-sidebar-widget">
                                     <h5 className="widget-title">Filter By Price</h5>
                                     <div className="range__barcustom">
@@ -228,6 +210,53 @@ const Shop1 = () => {
                         <div className="col-xl-9 col-lg-8 order-1 order-md-2 wow fadeInUp" data-wow-delay=".5s">
                             <div className="sort-bar">
                                 <div className="row g-sm-0 gy-20 justify-content-between align-items-center">
+                                   
+                                   
+                                <div className="single-sidebar-widget">
+                                    <ul className="tagcloud" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', listStyle: 'none', padding: 0, margin: 0 }}>
+                                        {categories.map((category) => {
+                                            const isActive = selectedCategory === category.id;
+                                            return (
+                                                <li key={category.id} style={{ listStyle: 'none' }}>
+                                                    <a
+                                                        href="#"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            handleCategoryClick(category.id);
+                                                        }}
+                                                        className={isActive ? "active" : ""}
+                                                        style={{
+                                                            color: '#1e3a8a',
+                                                            backgroundColor: isActive ? '#f5f5f0' : 'transparent',
+                                                            padding: '8px 16px',
+                                                            borderRadius: '4px',
+                                                            textDecoration: 'none',
+                                                            display: 'inline-block',
+                                                            transition: 'all 0.3s ease',
+                                                            border: '1px solid #1e3a8a',
+                                                            cursor: 'pointer'
+                                                        }}
+                                                        onMouseEnter={(e) => {
+                                                            if (!isActive) {
+                                                                e.currentTarget.style.backgroundColor = '#f5f5f0';
+                                                            }
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            if (!isActive) {
+                                                                e.currentTarget.style.backgroundColor = 'transparent';
+                                                            }
+                                                        }}
+                                                    >
+                                                        {category.name}
+                                                    </a>
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                </div>
+
+
+                                   
                                     <div className="col-md">
                                         <p className="woocommerce-result-count">
                                             Showing {startIndex + 1} - {Math.min(endIndex, filteredProducts.length)} of {filteredProducts.length} Results

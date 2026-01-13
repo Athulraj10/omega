@@ -61,7 +61,7 @@ export default function Header1({ variant }) {
               <div className="cs_main_header_left">
                 <Link className="cs_site_branding" href="/">
                   <Image
-                    src="/assets/img/logo/logoWhite.svg"
+                    src="/assets/img/logo/logoWhite.png"
                     alt="Omega Foods"
                     width={167}
                     height={58}

@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import Slider from "react-slick";
+import { testimonial2Items } from "@/data/products";
 
 const Testimonial2 = () => {
 
@@ -46,20 +47,10 @@ const Testimonial2 = () => {
             sliderRef.current.slickPrev();
           }; 
 
-
-    const tesItems = [
-        {img:'/assets/img/testimonial/testimonialProfile2_1.png', content:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classNameical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock !'},
-        {img:'/assets/img/testimonial/testimonialProfile2_2.png', content:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classNameical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock !'},
-        {img:'/assets/img/testimonial/testimonialProfile2_3.png', content:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classNameical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock !'},
-      ]; 
-
     return (
         <section className="testimonial-section fix section-padding bg-white">
         <div className="vagetable-shape">
         <Image src="/assets/img/testimonial/vagetable-shape.png" alt="img" width={150} height={253}   />
-        </div>
-        <div className="chili-shape">
-        <Image src="/assets/img/testimonial/chili-shape.png" alt="img" width={239} height={149}   />
         </div>
         <div className="testimonial-wrapper style2">
             <div className="container">
@@ -68,10 +59,7 @@ const Testimonial2 = () => {
                     <div className="row gx-80 gy-5">
                         <div className="col-xl-7 order-2 order-xl-1">
                             <div className="title-area">
-                                <div className="sub-title text-start wow fadeInUp" data-wow-delay="0.5s">
-                                <Image className="me-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
-                                    TESTIMONIALS<Image className="ms-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
-                                </div>
+                                
                                 <h2 className="title  text-start wow fadeInUp" data-wow-delay="0.7s">
                                     what have lots of happy customer feedback
                                 </h2>
@@ -81,8 +69,8 @@ const Testimonial2 = () => {
                                 <div className="swiper testimonialSliderTwo">
                                     <div className="swiper-wrapper">
                                     <Slider ref={sliderRef} {...settings}>
-                                    {tesItems.map((item, i) => (
-                                        <div key={i} className="swiper-slide">
+                                    {testimonial2Items.map((item) => (
+                                        <div key={item.id} className="swiper-slide">
                                             <div className="testimonial-card style2">
                                                 <div className="quote"><Image src="/assets/img/icon/quote.svg" alt="img" width={50} height={37}   />
                                                 </div>
@@ -108,7 +96,7 @@ const Testimonial2 = () => {
                         </div>
                         <div className="col-xl-5 order-1 order-xl-2">
                             <div className="testimonial-thumb">
-                            <Image src="/assets/img/testimonial/testimonialThumb2_1.png" alt="img" width={561} height={547}   />
+                            <Image src="/assets/img/testimonial/testimonialThumb2_1.png" className="rounded" alt="img" width={670} height={460}   />
                             </div>
                         </div>
                     </div>

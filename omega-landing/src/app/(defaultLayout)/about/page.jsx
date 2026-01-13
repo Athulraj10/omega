@@ -8,7 +8,7 @@ const page = () => {
   return (
     <div>
             <BreadCumb
-                bgimg="/assets/img/bg/breadcumb.jpg"
+                bgimg="/assets/img/bg/aboutus profile.webp"
                 Title="About Us"
             ></BreadCumb>
             <CtaBanner1></CtaBanner1>

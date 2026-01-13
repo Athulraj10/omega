@@ -177,3 +177,46 @@ export const getProductById = (productId) => {
     return allProducts.find(product => product.id === productId) || null;
 };
 
+// FoodItems1 component products data
+export const foodItems1Products = [
+    { id: 'fooditem1-1', img: '/assets/img/food-items/item1_1.png', title: 'Chicken Pizza', content: 'The registration fee', price: '$26.99' },
+    { id: 'fooditem1-2', img: '/assets/img/food-items/item1_2.png', title: 'Egg and Cucumber', content: 'The registration fee', price: '$28.00' },
+    { id: 'fooditem1-3', img: '/assets/img/food-items/item1_3.png', title: 'Chicken Fried Rice', content: 'The registration fee', price: '$100.99' },
+    { id: 'fooditem1-4', img: '/assets/img/food-items/item1_4.png', title: 'Chicken Leg Piece', content: 'The registration fee', price: '$20.99' },
+    { id: 'fooditem1-5', img: '/assets/img/food-items/item1_1.png', title: 'Chicken Pizza', content: 'The registration fee', price: '$26.99' },
+    { id: 'fooditem1-6', img: '/assets/img/food-items/item1_2.png', title: 'Egg and Cucumber', content: 'The registration fee', price: '$28.00' },
+    { id: 'fooditem1-7', img: '/assets/img/food-items/item1_3.png', title: 'Chicken Fried Rice', content: 'The registration fee', price: '$100.99' },
+    { id: 'fooditem1-8', img: '/assets/img/food-items/item1_4.png', title: 'Chicken Leg Piece', content: 'The registration fee', price: '$20.99' },
+];
+
+// Testimonial2 component data
+export const testimonial2Items = [
+    {
+        id: 'testimonial2-1',
+        img:getAvatarUrl("testimonial2-1"),
+        content: 'Excellent quality! The fish was fresh and perfectly frozen. Will definitely order again. The delivery was fast and the packaging was excellent. Highly recommend Omega SeaFoods for all your seafood needs!'
+    },
+    {
+        id: 'testimonial2-2',
+        img:getAvatarUrl("westimonial2-2"),
+        content: 'Amazing taste and texture. Very satisfied with the quality and packaging. The spices I ordered were authentic and fresh. Perfect for my cooking needs. Great service and fast delivery!'
+    },
+    {
+        id: 'testimonial2-3',
+        img:getAvatarUrl("bestimonial2-3"),
+        content: 'Fresh and delicious! The fruits arrived in perfect condition. Sweet and juicy, exactly as described. Premium quality products that exceeded my expectations. Will definitely order again soon!'
+    },
+];
+
+// Gallery1 component data
+export const gallery1Items = [
+    { id: 'gallery1-1', img: '/assets/img/gallery/galleryThumb1_5.jpg' },
+    { id: 'gallery1-2', img: '/assets/img/gallery/galleryThumb1_1.jpg' },
+    { id: 'gallery1-3', img: '/assets/img/gallery/galleryThumb1_2.jpg' },
+    { id: 'gallery1-4', img: '/assets/img/gallery/galleryThumb1_3.jpg' },
+    { id: 'gallery1-5', img: '/assets/img/gallery/galleryThumb1_4.jpg' },
+    { id: 'gallery1-6', img: '/assets/img/gallery/galleryThumb1_5.jpg' },
+    { id: 'gallery1-7', img: '/assets/img/gallery/galleryThumb1_1.jpg' },
+    { id: 'gallery1-8', img: '/assets/img/gallery/galleryThumb1_2.jpg' },
+];
+

@@ -73,7 +73,9 @@ const ShopDetails = ({ productId }) => {
                                                     position: 'relative',
                                                     padding: 0,
                                                     margin: 0,
-                                                    display: 'block'
+                                                    display: 'block',
+                                                    cursor: 'pointer',
+                                                    borderRadius: '10px',
                                                 }}
                                             />
                                             <div className="circle-shape d-none d-md-block" style={{ position: 'absolute', zIndex: 1, top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
@@ -158,7 +160,7 @@ const ShopDetails = ({ productId }) => {
                                                 ADD TO wishlist<i className="bi bi-heart-fill"></i>
                                             </Link> */}
                                         </div>
-                                        <div className="share">
+                                        {/* <div className="share">
                                             <h6>share with friends</h6>
                                             <ul className="social-media">
                                                 <li>
@@ -182,7 +184,7 @@ const ShopDetails = ({ productId }) => {
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
