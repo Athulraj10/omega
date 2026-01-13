@@ -1,5 +1,4 @@
 import BreadCumb from '@/app/Components/Common/BreadCumb';
-import ShopList from '@/app/Components/Shop/ShopList';
 import React from 'react';
 
 const page = () => {
@@ -9,7 +8,6 @@ const page = () => {
                 bgimg="/assets/img/bg/breadcumb.jpg"
                 Title="Shop List"
             ></BreadCumb>        
-            <ShopList></ShopList>        
     </div>
   );
 };
