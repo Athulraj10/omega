@@ -49,16 +49,41 @@ const ShopDetails = ({ productId }) => {
                         <div className="container">
                             <div className="row gx-60">
                                 <div className="col-lg-6">
-                                    <div className="product-big-img bg-color2">
-                                        <div className="dishes-thumb">
-                                            <Image src={product.img} alt={product.title} width={304} height={302} />
-                                            <div className="circle-shape d-none d-md-block">
+                                    <div className="product-big-img bg-color2" style={{ padding: 0, margin: 0 }}>
+                                        <div className="dishes-thumb" style={{ 
+                                            position: 'relative', 
+                                            display: 'flex', 
+                                            alignItems: 'center', 
+                                            justifyContent: 'center',
+                                            padding: 0,
+                                            margin: 0,
+                                            width: '100%',
+                                            height: '100%'
+                                        }}>
+                                            <Image 
+                                                src={product.img} 
+                                                alt={product.title} 
+                                                width={304} 
+                                                height={302}
+                                                style={{ 
+                                                    objectFit: 'contain',
+                                                    width: '100%',
+                                                    height: 'auto',
+                                                    zIndex: 2,
+                                                    position: 'relative',
+                                                    padding: 0,
+                                                    margin: 0,
+                                                    display: 'block'
+                                                }}
+                                            />
+                                            <div className="circle-shape d-none d-md-block" style={{ position: 'absolute', zIndex: 1, top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                                                 <Image
                                                     className="cir36"
                                                     src="/assets/img/food-items/circleShape2.png"
                                                     alt="img"
                                                     width={324}
                                                     height={324}
+                                                    style={{ width: '100%', height: 'auto' }}
                                                 />
                                             </div>
                                         </div>
@@ -85,10 +110,10 @@ const ShopDetails = ({ productId }) => {
 
                                         <div className="product-info mb-3">
                                             <p className="text mb-2">
-                                                <strong>Origin:</strong> {product.content}
+                                                <strong>{product.content}</strong> 
                                             </p>
                                             <p className="text mb-2">
-                                                <strong>Category:</strong> {product.categoryId}
+                                                <strong>Category: {product.categoryId}</strong> 
                                             </p>
                                         </div>
 
@@ -100,6 +125,7 @@ const ShopDetails = ({ productId }) => {
                                                 <div className="qty-wrapper">
                                                     <input
                                                         type="number"
+                                                        readOnly
                                                         className="qty-input"
                                                         step="1"
                                                         min="1"
@@ -109,7 +135,7 @@ const ShopDetails = ({ productId }) => {
                                                         onChange={(e) => setQuantity(Math.max(1, Math.min(100, parseInt(e.target.value) || 1)))}
                                                         title="Qty"
                                                     />
-                                                    <button
+                                                    {/* <button
                                                         className="quantity-plus qty-btn"
                                                         onClick={() => handleQuantityChange(1)}
                                                         type="button"
@@ -122,15 +148,15 @@ const ShopDetails = ({ productId }) => {
                                                         type="button"
                                                     >
                                                         <i className="bi bi-dash-lg"></i>
-                                                    </button>
+                                                    </button> */}
                                                 </div>
                                             </div>
-                                            <Link href="/shop/cart" className="theme-btn cart-btn0">
+                                            {/* <Link href="/shop/cart" className="theme-btn cart-btn0">
                                                 Add to Cart <i className="bi bi-basket3-fill bg-transparent text-white"></i>
                                             </Link>
                                             <Link href="/shop/wishlist" className="theme-btn style5 border-0">
                                                 ADD TO wishlist<i className="bi bi-heart-fill"></i>
-                                            </Link>
+                                            </Link> */}
                                         </div>
                                         <div className="share">
                                             <h6>share with friends</h6>
@@ -178,13 +204,32 @@ const ShopDetails = ({ productId }) => {
                                             {reviews.map((review) => (
                                                 <li key={review.id} className="review comment-item">
                                                     <div className="post-comment">
-                                                        <div className="comment-avater">
+                                                        <div className="comment-avater" style={{ 
+                                                            width: '96px', 
+                                                            height: '96px', 
+                                                            borderRadius: '50%', 
+                                                            overflow: 'hidden', 
+                                                            flexShrink: 0,
+                                                            position: 'relative',
+                                                            display: 'inline-block'
+                                                        }}>
                                                             <Image
                                                                 src={review.avatar}
                                                                 alt={review.name}
                                                                 width={96}
                                                                 height={96}
-                                                                style={{ borderRadius: '50%', objectFit: 'cover' }}
+                                                                unoptimized={review.avatar.startsWith('https://')}
+                                                                style={{ 
+                                                                    borderRadius: '50%', 
+                                                                    objectFit: 'cover',
+                                                                    width: '96px',
+                                                                    height: '96px',
+                                                                    display: 'block',
+                                                                    margin: 0,
+                                                                    padding: 0,
+                                                                    minWidth: '96px',
+                                                                    minHeight: '96px'
+                                                                }}
                                                             />
                                                         </div>
                                                         <div className="comment-content">
@@ -209,7 +254,7 @@ const ShopDetails = ({ productId }) => {
                                             ))}
                                         </ul>
                                     </div>
-                                    <div className="comment-form">
+                                    {/* <div className="comment-form">
                                         <div className="form-title">
                                             <h3 className="inner-title">Add a Review</h3>
                                             <p>Your email address will not be published. Required fields are marked *</p>
@@ -261,7 +306,7 @@ const ShopDetails = ({ productId }) => {
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

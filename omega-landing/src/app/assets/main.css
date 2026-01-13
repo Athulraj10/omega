@@ -2333,7 +2333,7 @@ textarea.form-control:focus {
 .comment-list .comment-item .post-comment {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 20px;
 }
 .comment-list .comment-item .post-comment .comment-content .name {

@@ -1,29 +1,41 @@
-// Review templates with diverse names and avatars
+// Helper function to generate avatar URL from name
+const getAvatarUrl = (name, background = null) => {
+    const colors = [
+        '0D8ABC', '7B9F35', '946D57', '2C5F2D', '1C1C1E',
+        'FF6B6B', '4ECDC4', '45B7D1', 'FFA07A', '98D8C8',
+        'F7DC6F', 'BB8FCE', '85C1E2', 'F8B739', '52BE80'
+    ];
+    const bgColor = background || colors[Math.abs(name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % colors.length];
+    const encodedName = encodeURIComponent(name);
+    return `https://ui-avatars.com/api/?name=${encodedName}&size=96&background=${bgColor}&color=fff&bold=true&format=png`;
+};
+
+// Review templates with diverse names and online avatars
 const reviewTemplates = [
     // Muslim names
-    { name: "Ahmed Al-Rashid", avatar: "/assets/img/blog/comment-author1.png", rating: 5, date: "March 15, 2024 at 3:45 pm" },
-    { name: "Fatima Hassan", avatar: "/assets/img/blog/comment-author2.png", rating: 5, date: "March 18, 2024 at 11:20 am" },
-    { name: "Mohammed Ali", avatar: "/assets/img/blog/comment-author1.png", rating: 4, date: "March 20, 2024 at 2:37 pm" },
-    { name: "Aisha Khan", avatar: "/assets/img/blog/comment-author2.png", rating: 5, date: "March 22, 2024 at 9:15 am" },
-    { name: "Omar Abdullah", avatar: "/assets/img/blog/comment-author1.png", rating: 5, date: "March 25, 2024 at 4:30 pm" },
+    { name: "Ahmed Al-Rashid", avatar: getAvatarUrl("Ahmed Al-Rashid", "0D8ABC"), rating: 5, date: "March 15, 2024 at 3:45 pm" },
+    { name: "Fatima Hassan", avatar: getAvatarUrl("Fatima Hassan", "FF6B6B"), rating: 5, date: "March 18, 2024 at 11:20 am" },
+    { name: "Mohammed Ali", avatar: getAvatarUrl("Mohammed Ali", "4ECDC4"), rating: 4, date: "March 20, 2024 at 2:37 pm" },
+    { name: "Aisha Khan", avatar: getAvatarUrl("Aisha Khan", "45B7D1"), rating: 5, date: "March 22, 2024 at 9:15 am" },
+    { name: "Omar Abdullah", avatar: getAvatarUrl("Omar Abdullah", "FFA07A"), rating: 5, date: "March 25, 2024 at 4:30 pm" },
     // Hindu names
-    { name: "Priya Sharma", avatar: "/assets/img/blog/comment-author2.png", rating: 5, date: "March 16, 2024 at 1:20 pm" },
-    { name: "Rajesh Kumar", avatar: "/assets/img/blog/comment-author1.png", rating: 4, date: "March 19, 2024 at 10:45 am" },
-    { name: "Anjali Patel", avatar: "/assets/img/blog/comment-author2.png", rating: 5, date: "March 21, 2024 at 3:10 pm" },
-    { name: "Vikram Singh", avatar: "/assets/img/blog/comment-author1.png", rating: 5, date: "March 23, 2024 at 2:00 pm" },
-    { name: "Kavita Reddy", avatar: "/assets/img/blog/comment-author2.png", rating: 4, date: "March 26, 2024 at 11:30 am" },
+    { name: "Priya Sharma", avatar: getAvatarUrl("Priya Sharma", "98D8C8"), rating: 5, date: "March 16, 2024 at 1:20 pm" },
+    { name: "Rajesh Kumar", avatar: getAvatarUrl("Rajesh Kumar", "F7DC6F"), rating: 4, date: "March 19, 2024 at 10:45 am" },
+    { name: "Anjali Patel", avatar: getAvatarUrl("Anjali Patel", "BB8FCE"), rating: 5, date: "March 21, 2024 at 3:10 pm" },
+    { name: "Vikram Singh", avatar: getAvatarUrl("Vikram Singh", "85C1E2"), rating: 5, date: "March 23, 2024 at 2:00 pm" },
+    { name: "Kavita Reddy", avatar: getAvatarUrl("Kavita Reddy", "F8B739"), rating: 4, date: "March 26, 2024 at 11:30 am" },
     // Christian names
-    { name: "Sarah Johnson", avatar: "/assets/img/blog/comment-author2.png", rating: 5, date: "March 17, 2024 at 5:00 pm" },
-    { name: "Michael Brown", avatar: "/assets/img/blog/comment-author1.png", rating: 5, date: "March 19, 2024 at 8:15 am" },
-    { name: "Emily Davis", avatar: "/assets/img/blog/comment-author2.png", rating: 4, date: "March 22, 2024 at 12:45 pm" },
-    { name: "David Wilson", avatar: "/assets/img/blog/comment-author1.png", rating: 5, date: "March 24, 2024 at 6:20 pm" },
-    { name: "Jessica Martinez", avatar: "/assets/img/blog/comment-author2.png", rating: 5, date: "March 27, 2024 at 10:00 am" },
+    { name: "Sarah Johnson", avatar: getAvatarUrl("Sarah Johnson", "52BE80"), rating: 5, date: "March 17, 2024 at 5:00 pm" },
+    { name: "Michael Brown", avatar: getAvatarUrl("Michael Brown", "7B9F35"), rating: 5, date: "March 19, 2024 at 8:15 am" },
+    { name: "Emily Davis", avatar: getAvatarUrl("Emily Davis", "946D57"), rating: 4, date: "March 22, 2024 at 12:45 pm" },
+    { name: "David Wilson", avatar: getAvatarUrl("David Wilson", "2C5F2D"), rating: 5, date: "March 24, 2024 at 6:20 pm" },
+    { name: "Jessica Martinez", avatar: getAvatarUrl("Jessica Martinez", "1C1C1E"), rating: 5, date: "March 27, 2024 at 10:00 am" },
     // Arabic names
-    { name: "Khalid Al-Mansoori", avatar: "/assets/img/blog/comment-author1.png", rating: 5, date: "March 18, 2024 at 2:30 pm" },
-    { name: "Layla Al-Zahra", avatar: "/assets/img/blog/comment-author2.png", rating: 5, date: "March 20, 2024 at 4:15 pm" },
-    { name: "Yusuf Al-Hashimi", avatar: "/assets/img/blog/comment-author1.png", rating: 4, date: "March 23, 2024 at 1:50 pm" },
-    { name: "Noor Al-Dosari", avatar: "/assets/img/blog/comment-author2.png", rating: 5, date: "March 25, 2024 at 3:40 pm" },
-    { name: "Tariq Al-Otaibi", avatar: "/assets/img/blog/comment-author1.png", rating: 5, date: "March 28, 2024 at 11:10 am" }
+    { name: "Khalid Al-Mansoori", avatar: getAvatarUrl("Khalid Al-Mansoori", "0D8ABC"), rating: 5, date: "March 18, 2024 at 2:30 pm" },
+    { name: "Layla Al-Zahra", avatar: getAvatarUrl("Layla Al-Zahra", "FF6B6B"), rating: 5, date: "March 20, 2024 at 4:15 pm" },
+    { name: "Yusuf Al-Hashimi", avatar: getAvatarUrl("Yusuf Al-Hashimi", "4ECDC4"), rating: 4, date: "March 23, 2024 at 1:50 pm" },
+    { name: "Noor Al-Dosari", avatar: getAvatarUrl("Noor Al-Dosari", "45B7D1"), rating: 5, date: "March 25, 2024 at 3:40 pm" },
+    { name: "Tariq Al-Otaibi", avatar: getAvatarUrl("Tariq Al-Otaibi", "FFA07A"), rating: 5, date: "March 28, 2024 at 11:10 am" }
 ];
 
 // Helper function to generate reviews for a product

@@ -83,22 +83,24 @@ const FoodItem1 = () => {
                                     <div className="col-lg-6">
                                                     {left.map((product, index) => (
                                     <FoodItemCard
-                                                            key={index}
+                                                            key={product.id || index}
                                                             img={product.img}
                                                             title={product.title}
                                                             content={product.content}
                                                             price={product.price}
+                                                            productId={product.id}
                                                         />
                                                     ))}
                                     </div>
                                     <div className="col-lg-6">
                                                     {right.map((product, index) => (
                                     <FoodItemCard
-                                                            key={index}
+                                                            key={product.id || index}
                                                             img={product.img}
                                                             title={product.title}
                                                             content={product.content}
                                                             price={product.price}
+                                                            productId={product.id}
                                                         />
                                                     ))}
                                     </div>

@@ -1,15 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getAllProducts } from "../../../data/products";
 
 const BestSelling1 = () => {
-
-    const foodItems = [
-        {img:'/assets/img/dishes/dishes1_1.png', title:'Chicken Fried Rice', content:'The registration fee', price:'$100.99'},    
-        {img:'/assets/img/dishes/dishes1_2.png', title:'Chinese Pasta', content:'The registration fee', price:'$15.99'},    
-        {img:'/assets/img/dishes/dishes1_3.png', title:'Chicken Pizza', content:'The registration fee', price:'$26.99'},    
-        {img:'/assets/img/dishes/dishes1_4.png', title:'Chicken Noodles', content:'The registration fee', price:'$39.00'},    
-        {img:'/assets/img/dishes/dishes1_5.png', title:'Grilled Chicken', content:'The registration fee', price:'$20.99'},    
-      ]; 
+    // Get all products and select first 5 as best selling
+    const allProducts = getAllProducts();
+    const foodItems = allProducts.slice(0, 5); 
 
     return (
         <section className="popular-dishes-section fix section-padding border border-2 border-gray-300" style={{ backgroundColor: 'white' }}>
@@ -29,13 +25,17 @@ const BestSelling1 = () => {
                     </h2>
                 </div>
                 <div className="dishes-card-wrap style1">
-                {foodItems.map((item, i) => (
-                    <div key={i} className="dishes-card style1 wow fadeInUp border border-2 border-gray-300" data-wow-delay="0.2s" style={{ backgroundColor: '#fff' }} >
+                {foodItems.map((item, i) => {
+                    const detailUrl = `/shop/shop-details?id=${item.id}`;
+                    return (
+                    <div key={item.id || i} className="dishes-card style1 wow fadeInUp border border-2 border-gray-300" data-wow-delay="0.2s" style={{ backgroundColor: '#fff' }} >
                         
                         <div className="dishes-thumb">
-                        <Image src={item.img} alt="img" width={158} height={158}   />
+                            <Link href={detailUrl}>
+                                <Image src={item.img} alt={item.title} width={158} height={158} style={{ cursor: 'pointer' }} />
+                            </Link>
                         </div>
-                        <Link href="/menu">
+                        <Link href={detailUrl}>
                             <h3>{item.title}</h3>
                         </Link>
                         <p>{item.content}</p>
@@ -47,10 +47,11 @@ const BestSelling1 = () => {
                             </ul> */}
                         </div>
                     </div>
-                    ))}
+                    );
+                })}
                 </div>
                 <div className="btn-wrapper  wow fadeInUp" data-wow-delay="0.9s">
-                    <Link className="theme-btn" href="/menu2">VIEW ALL ITEM <i className="bi bi-arrow-right"></i></Link>
+                    <Link className="theme-btn" href="/shop">VIEW ALL ITEM <i className="bi bi-arrow-right"></i></Link>
                 </div>
             </div>
         </div>

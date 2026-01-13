@@ -23,9 +23,9 @@ const ShopCard = ({img, title, content, price, productId}) => {
                 </div>
                 <div className="text">{content}</div>
                 <h6>{price}</h6>
-                <Link href={detailUrl} className="theme-btn style6">
+                {/* <Link href={detailUrl} className="theme-btn style6">
                     Order Now <i className="bi bi-basket2"></i>
-                </Link>
+                </Link> */}
             </div>
         </div>
     );
