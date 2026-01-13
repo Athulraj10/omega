@@ -16,7 +16,7 @@ const Footer1 = () => {
             <div className="shape4" style={{ 
                 overflow: 'hidden', 
             }}>
-                <Image src="/assets/img/footer/fruitsImage.png" alt="img" width={300} height={300} style={{ width: '100%', height: 'auto', objectFit: 'contain' }}   />
+                {/* <Image src="/assets/img/footer/fruitsImage.png" alt="img" width={300} height={300} style={{ width: '100%', height: 'auto', objectFit: 'contain' }}   /> */}
             </div>
             <div className="container">
                 <div className="footer-top">
@@ -51,7 +51,8 @@ const Footer1 = () => {
                     </div>
                 </div>
 
-                <div className="row">
+                <div className="row justify-content-center text-center">
+
                  
                     <div className="col-xl-3 col-lg-4 col-md-6 ps-xl-5 wow fadeInUp" data-wow-delay=".4s">
                         <div className="single-footer-widget">
@@ -65,12 +66,7 @@ const Footer1 = () => {
                                         About Us
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link href="/gallery">
-                                    <i className="bi bi-chevron-double-right"></i>
-                                        Our Gallery
-                                    </Link>
-                                </li>
+                         
                                
                                 <li>
                                     <Link href="/faq">
@@ -93,63 +89,48 @@ const Footer1 = () => {
                                 <h3>Our Menu</h3>
                             </div>
                             <ul className="list-area">
-                                <li>
-                                    <Link href="/menu">
+                            <li>
+                                <Link href="/shop">
                                     <i className="bi bi-chevron-double-right"></i>
-                                        Burger King
+                                        Seafood
                                     </Link>
                                 </li>
                                 <li>
-                                <Link href="/menu">
+                                <Link href="/shop">
                                     <i className="bi bi-chevron-double-right"></i>
-                                        Pizza king
+                                        Fruits
+                                    </Link>
+                                </li>  <li>
+                                <Link href="/shop">
+                                    <i className="bi bi-chevron-double-right"></i>
+                                        Spices
                                     </Link>
                                 </li>
+                              
                                 <li>
-                                <Link href="/menu">
-                                    <i className="bi bi-chevron-double-right"></i>
-                                        Fresh Food
-                                    </Link>
-                                </li>
-                                <li>
-                                <Link href="/menu">
+                                <Link href="/shop">
                                     <i className="bi bi-chevron-double-right"></i>
                                         Vegetable
                                     </Link>
                                 </li>
-                                <li>
-                                <Link href="/menu">
-                                    <i className="bi bi-chevron-double-right"></i>
-                                        Desserts
-                                    </Link>
-                                </li>
+                              
                             </ul>
                         </div>
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-6 ps-xl-5 wow fadeInUp" data-wow-delay=".4s">
-                        <div className="single-footer-widget">
+                        <div className="single-footer-widget text-white">
                             <div className="widget-head">
                                 <h3>Contact Us</h3>
                             </div>
                             <ul className="list-area">
                                 <li className="mb-2">
-                                    Monday – Friday: <span className="text-theme-color2"> 8am – 4pm </span>
+                                    Monday – Friday: <span className="text-white"> 8am – 4pm </span>
                                 </li>
                                 <li>
-                                    Saturday: <span className="text-theme-color2"> 8am – 12am </span>
+                                    Saturday: <span className="text-white"> 8am – 12am </span>
                                 </li>
                             </ul>
-                            <form className="mt-4">
-                                <div className="form-control">
-                                    <input className="email" type="email" placeholder="Your email address" /> 
-                                    <button type="submit" className="submit-btn"><i className="bi bi-arrow-right"></i></button>
-                                </div>
-                                <div className="form-control style2 mt-3">
-                                    <input id="checkbox" name="checkbox" type="checkbox" />
-                                    <label htmlFor="checkbox">I agree to the <a href="#">Privacy Policy.
-                                        </a></label>
-                                </div>
-                            </form>
+                          
                         </div>
                     </div>
                 </div>

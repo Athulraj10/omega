@@ -1,182 +1,123 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Nav from './Nav';
 import Link from 'next/link';
 import Image from 'next/image';
+
 export default function Header1({ variant }) {
   const [mobileToggle, setMobileToggle] = useState(false);
-  const [isSticky, setIsSticky] = useState();
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [searchToggle, setSearchToggle] = useState(false);
-  const [isScrollingDown, setIsScrollingDown] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      const scrollThreshold = 50;
-      
-      if (currentScrollPos > scrollThreshold) {
-        if (currentScrollPos > prevScrollPos) {
-          // Scrolling down
-          setIsSticky('cs-gescout_sticky');
-          setIsScrollingDown(true);
-        } else {
-          // Scrolling up but still scrolled
-          setIsSticky('cs-gescout_show cs-gescout_sticky');
-          setIsScrollingDown(false);
-        }
-      } else {
-        // At the top
-        setIsSticky();
-        setIsScrollingDown(false);
-      }
-      setPrevScrollPos(currentScrollPos);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    // Initial check
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [prevScrollPos]);
 
   return (
     <div>
-    <style dangerouslySetInnerHTML={{__html: `
-      .cs_top_header .cs_top_nav li,
-      .cs_top_header .cs_top_nav li i,
-      .cs_top_header .top-header-social-icon,
-      .cs_top_header .top-header-social-icon a,
-      .cs_top_header .top-header-social-icon a i,
-      .header-contact-info .phone-icon-wrapper i,
-      .header-contact-info .call-us-text,
-      .header-contact-info .phone-number {
-        color: #fff !important;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.3) !important;
-      }
-      .cs_top_header {
-        background:#1a365d !important;
-      }
-      .cs_main_header {
-        background: #1a365d;
-      }
-      ${isScrollingDown ? `
-        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky,
-        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_top_header,
-        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_main_header {
-          background: #1a365d !important;
-          background-color: #1a365d !important;
-        }
-        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_nav_list li a,
-        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_nav_list li,
-        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_nav ul li a,
-        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_nav ul li,
-        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs-munu_toggle span,
-        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs-munu_toggle span::before,
-        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs-munu_toggle span::after {
-          color: #fff !important;
-        }
-      ` : ''}
-    `}} />
-    <header
-      className={`cs_site_header header_style_2 cs_style_1 header_sticky_style1 ${
-        variant ? variant : ''
-      } cs_sticky_header cs_site_header_full_width ${
-        mobileToggle ? 'cs_mobile_toggle_active' : ''
-      } ${isSticky ? isSticky : ''} ${isScrollingDown ? 'scrolling-down' : ''}`}
-      style={isScrollingDown ? { backgroundColor: '#1a365d', background: '#1a365d' } : { backgroundColor: '#1a365d', background: '#1a365d' }}
-    >
-      <div 
-        className="cs_top_header"
-        style={isScrollingDown ? { backgroundColor: '#1a365d', background: '#1a365d' } : { backgroundColor: '#1a365d', background: '#1a365d' }}
-      >
-        <div className="container">
-          <div className="cs_top_header_in">
-            <div className="cs_top_header_left header-info">
-              <ul className="cs_top_nav d-flex flex-wrap align-items-center cs_fs_12 m-0 p-0" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
-                <li style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
-                  <i className="bi bi-geo-alt-fill" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)', marginRight: '6px' }}></i>Abu Dhabi, UAE
-                </li>
-               </ul>
-            </div>
-            <div className="cs_top_header_right">
-            <div className="cs_header_social_links_wrap">
-                <div className="cs_header_social_links top-header-social-icon" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
-                Follow Us:
-                  <ul>
-                      <li><a target="_blank" href="https://www.instagram.com/omega_seafoods/?igsh=amYzcjVwNndiNDQ1&utm_source=qr#" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}><i className="bi bi-instagram"></i></a></li>
+     <header
+  className={`cs_site_header header_style_2 cs_style_1 cs_site_header_full_width text-white ${
+    variant ? variant : ''
+  } ${mobileToggle ? 'cs_mobile_toggle_active' : ''}`}
+  style={{ backgroundColor: '#1a365d', color: '#fff' }}
+>
+
+
+        {/* Top Header */}
+        {/* <div className="cs_top_header" style={{ backgroundColor: '#1a365d' }}>
+          <div className="container">
+            <div className="cs_top_header_in">
+              <div className="cs_top_header_left header-info">
+                <ul className="cs_top_nav d-flex align-items-center cs_fs_12 m-0 p-0 text-white">
+                  <li>
+                    <i className="bi bi-geo-alt-fill me-2"></i>
+                    Abu Dhabi, UAE
+                  </li>
                 </ul>
+              </div>
+
+              <div className="cs_top_header_right">
+                <div className="cs_header_social_links">
+                  <span className="text-white me-2">Follow Us:</span>
+                  <ul>
+                    <li>
+                      <a
+                        href="https://www.instagram.com/omega_seafoods/"
+                        target="_blank"
+                        className="text-white"
+                      >
+                        <i className="bi bi-instagram"></i>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
+
             </div>
           </div>
-        </div>
-      </div>      
+        </div> */}
 
-      <div 
-        className="cs_main_header"
-        style={isScrollingDown ? { backgroundColor: '#1a365d', background: '#1a365d' } : { backgroundColor: '#1a365d', background: '#1a365d' }}
-      >
-        <div className="container">
-          <div className="cs_main_header_in">
-            <div className="cs_main_header_left">
-              <Link className="cs_site_branding" href="/">
-                <Image src="/assets/img/logo/logoWhite.svg" alt="img" width={167} height={58}   />
-              </Link>
+        {/* Main Header */}
+        <div className="cs_main_header" style={{ backgroundColor: '#1a365da7' ,color:'#fff'}}>
+          <div className="container">
+            <div className="cs_main_header_in">
+
+              {/* Logo */}
+              <div className="cs_main_header_left">
+                <Link className="cs_site_branding" href="/">
+                  <Image
+                    src="/assets/img/logo/logoWhite.svg"
+                    alt="Omega Foods"
+                    width={167}
+                    height={58}
+                  />
+                </Link>
               </div>
+
+              {/* Navigation */}
               <div className="cs_main_header_center">
                 <div className="cs_nav cs_primary_font fw-medium">
                   <span
-                    className={
-                      mobileToggle
-                        ? 'cs-munu_toggle cs_teggle_active'
-                        : 'cs-munu_toggle'
-                    }
+                    className={`cs-munu_toggle ${mobileToggle ? 'cs_teggle_active' : ''}`}
                     onClick={() => setMobileToggle(!mobileToggle)}
+                    style={{ color: '#fff' }}
                   >
                     <span></span>
                   </span>
                   <Nav setMobileToggle={setMobileToggle} />
                 </div>
-            </div>
-            <div className="cs_main_header_right">
-              <div className="header-right-section">
-                <div className="header-reserve-section">
-                  <div className="header-contact-info">
-                    <div className="phone-icon-wrapper">
-                      <i className="bi bi-telephone-fill" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}></i>
-                    </div>
-                    <div className="contact-text">
-                      <span className="call-us-text" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>Call Us</span>
-                      <span className="phone-number" style={{ color: '#fff', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>+971 56 888 8888</span>
-                    </div>
+              </div>
+
+              {/* Contact */}
+              <div className="cs_main_header_right">
+                <div className="header-contact-info text-white d-flex align-items-center">
+                  <i className="bi bi-telephone-fill me-2"></i>
+                  <div>
+                    <span className="d-block fs-12">Call Us</span>
+                    <strong>+971 56 888 8888</strong>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <div className={`search-wrap ${searchToggle ? 'active' : ''}`} >
-            <div className="search-inner">
-                <i onClick={() => setSearchToggle(!searchToggle)} className="bi bi-x-lg search-close" id="search-close"></i>
-                <div className="search-cell">
-                    <form method="get">
-                        <div className="search-field-holder">
-                            <input type="search" className="main-search-input" placeholder="Search..." />
-                        </div>
-                    </form>
-                </div>
-            </div>
+      {/* Search */}
+      <div className={`search-wrap ${searchToggle ? 'active' : ''}`}>
+        <div className="search-inner">
+          <i
+            onClick={() => setSearchToggle(false)}
+            className="bi bi-x-lg search-close"
+          ></i>
+          <div className="search-cell">
+            <input
+              type="search"
+              className="main-search-input"
+              placeholder="Search..."
+            />
+          </div>
         </div>
+      </div>
 
-        <div className="cs_site_header_spacing_130"></div>
-
+      {/* Header spacing */}
+      <div className="cs_site_header_spacing_130"></div>
     </div>
-
   );
 }

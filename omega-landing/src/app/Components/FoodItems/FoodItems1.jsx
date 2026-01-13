@@ -56,10 +56,6 @@ const FoodItems1 = () => {
                     alt="shape" /></div> */}
             <div className="container">
                 <div className="title-area">
-                    <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
-                        <img className="me-1" src="/assets/img/icon/titleIcon.svg" alt="icon" />Best Food <img
-                            src="/assets/img/icon/titleIcon.svg" alt="icon" />
-                    </div>
                     <h2 className="title wow fadeInUp" data-wow-delay="0.7s">
                         Popular Food Items
                     </h2>

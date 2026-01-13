@@ -114,7 +114,7 @@ const HeroBanner1 = () => {
 
                     {heroContent.map((item, i) => (
                         <div key={i} className="swiper-slide">
-                            <div className="style1 position-relative">
+                            <div className="style1 position-relative" style={{ minHeight: '600px', overflow: 'hidden' }}>
                                 {/* <video 
                                     className="w-100 h-100" 
                                     style={{
@@ -133,9 +133,23 @@ const HeroBanner1 = () => {
                                 >
                                     <source src="/assets/img/banner/banner.mp4" type="video/mp4" />
                                 </video> */}
-                                <Image src="/assets/img/banner/banner1.webp" alt="banner" width={1920} height={800}  />
-                                <div className="overlay"></div>
-                                {/* <div className="banner-container" style={{position: 'relative', zIndex: 1}}>
+                                <Image 
+                                    src="/assets/img/banner/banner1.webp" 
+                                    alt="banner" 
+                                    width={1920} 
+                                    height={1000}
+                                    style={{
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover',
+                                        zIndex: 0
+                                    }}
+                                />
+                                <div className="overlay" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}></div>
+                                <div className="banner-container" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, display: 'flex', alignItems: 'center'}}>
                                     <div className="container">
                                         <div className="row align-items-center">
                                             <div className="col-12 col-xl-6 d-none d-xxl-block order-1">
@@ -148,9 +162,10 @@ const HeroBanner1 = () => {
                                                     <div className="banner-style1">
                                                         <div className="section-title">
                                                             <h6 className="sub-title" data-animation="slideInLeft"
-                                                                data-duration="2s" data-delay=".3s"> {item.subtitle} </h6>
+                                                                data-duration="2s" data-delay=".3s" style={{ fontSize: '14px', lineHeight: '1.5' }}> {item.subtitle} </h6>
                                                             <h4 className="title" data-animation="slideInLeft"
                                                                 data-duration="2s" data-delay=".5s"
+                                                                style={{ fontSize: '36px', lineHeight: '1.3', marginBottom: '20px' }}
                                                                >
                                                                 {displayedText}
                                                                 <span className="typewriter-cursor"></span>
@@ -161,7 +176,7 @@ const HeroBanner1 = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div> */}
+                                </div>
                             </div>
                         </div>
                         ))}

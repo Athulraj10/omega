@@ -29,7 +29,7 @@ const CtaBanner1 = () => {
                                 <div className="cta-thumb mb-4">
                                     <Image 
                                         className="img-fluid rounded" 
-                                        src="/assets/img/cta/processing no background.webp" 
+                                        src="/assets/img/cta/seafood packing (1).jpg" 
                                         alt="Precision in Processing" 
                                         width={600} 
                                         height={400}
@@ -51,7 +51,7 @@ const CtaBanner1 = () => {
                                 <div className="cta-thumb mb-4">
                                     <Image 
                                         className="img-fluid rounded" 
-                                        src="/assets/img/cta/storage no background.webp" 
+                                        src="/assets/img/cta/packed fish in chiller.webp" 
                                         alt="Secure Packaging" 
                                         width={600} 
                                         height={400}

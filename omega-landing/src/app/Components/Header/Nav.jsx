@@ -4,17 +4,17 @@ export default function Nav({ setMobileToggle }) {
   return (
     <ul className="cs_nav_list fw-medium flex gap-6">
       <li >
-        <Link href="/">Home</Link>
+        <Link href="/" className="text-white">Home</Link>
       </li>
 
       <li >
-        <Link href="/shop" onClick={() => setMobileToggle(false)}>
+        <Link href="/shop" onClick={() => setMobileToggle(false)} className="text-white">
         Products
         </Link>
       </li>
 
       <li >
-        <Link href="/about">About Us</Link>
+        <Link href="/about" className="text-white">About Us</Link>
         {/* <DropDown>
           <ul>
           <li>
@@ -79,7 +79,7 @@ export default function Nav({ setMobileToggle }) {
 
 
       <li >
-        <Link href="/blog" onClick={() => setMobileToggle(false)}>
+        <Link href="/blog" onClick={() => setMobileToggle(false)} className="text-white">
           Blog
         </Link></li>
 
@@ -87,7 +87,7 @@ export default function Nav({ setMobileToggle }) {
   
      
       <li >
-        <Link href="/contact" onClick={() => setMobileToggle(false)}>
+        <Link href="/contact" onClick={() => setMobileToggle(false)} className="text-white">
         Contact
         </Link>
       </li>
