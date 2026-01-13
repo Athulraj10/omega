@@ -100,8 +100,8 @@ const Testimonial1 = () => {
                                 <div className="swiper-wrapper">
                                 <Slider ref={sliderRef} {...settings}>
                                 {tesItems.map((item, i) => (
-                                    <div key={i} className="swiper-slide">
-                                        <div className="testimonial-card style1">
+                                    <div key={i} className="swiper-slide" >
+                                        <div className="testimonial-card style1 m-2" style={{ minHeight: '300px' }}>
                                             <div className="testimonial-header">
                                                 <div className="fancy-box">
                                                     {/* <div className="item1"><Image src={item.img} alt="img" width={100} height={100}   /></div> */}

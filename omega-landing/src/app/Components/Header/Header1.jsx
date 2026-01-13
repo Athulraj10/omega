@@ -16,7 +16,6 @@ export default function Header1({ variant }) {
       const scrollThreshold = 50;
       
       if (currentScrollPos > scrollThreshold) {
-        // User has scrolled past threshold
         if (currentScrollPos > prevScrollPos) {
           // Scrolling down
           setIsSticky('cs-gescout_sticky');
@@ -59,46 +58,27 @@ export default function Header1({ variant }) {
       }
       .cs_top_header {
         background:rgba(13, 58, 94, 0.48) !important;
-        transition: background-color 0.3s ease;
       }
       .cs_main_header {
         background: rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s ease;
       }
-      /* Dark blue background when scrolling down - more specific selectors */
-      header.cs_site_header.scrolling-down.cs-gescout_sticky,
-      header.cs_site_header.scrolling-down.cs-gescout_sticky .cs_top_header,
-      header.cs_site_header.scrolling-down.cs-gescout_sticky .cs_main_header,
-      .cs_site_header.header_style_2.cs_style_1.scrolling-down.cs-gescout_sticky,
-      .cs_site_header.header_style_2.cs_style_1.scrolling-down.cs-gescout_sticky .cs_top_header,
-      .cs_site_header.header_style_2.cs_style_1.scrolling-down.cs-gescout_sticky .cs_main_header,
-      .cs_site_header.cs-gescout_sticky.scrolling-down,
-      .cs_site_header.cs-gescout_sticky.scrolling-down .cs_top_header,
-      .cs_site_header.cs-gescout_sticky.scrolling-down .cs_main_header,
-      .cs_site_header.scrolling-down .cs_top_header,
-      .cs_site_header.scrolling-down .cs_main_header {
-        background: #0d3a5e !important;
-        background-color: #0d3a5e !important;
-        background-image: none !important;
-      }
-      /* White text when scrolling down */
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs_top_header .cs_top_nav li,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs_top_header .cs_top_nav li i,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs_top_header .top-header-social-icon,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs_top_header .top-header-social-icon a,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs_top_header .top-header-social-icon a i,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs_nav_list li a,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs_nav_list li,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs_nav ul li a,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs_nav ul li,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs-munu_toggle span,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs-munu_toggle span::before,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .cs-munu_toggle span::after,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .header-contact-info .phone-icon-wrapper i,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .header-contact-info .call-us-text,
-      .cs_site_header.scrolling-down.cs-gescout_sticky .header-contact-info .phone-number {
-        color: #fff !important;
-      }
+      ${isScrollingDown ? `
+        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky,
+        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_top_header,
+        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_main_header {
+          background: #0d3a5e !important;
+          background-color: #0d3a5e !important;
+        }
+        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_nav_list li a,
+        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_nav_list li,
+        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_nav ul li a,
+        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_nav ul li,
+        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs-munu_toggle span,
+        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs-munu_toggle span::before,
+        .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs-munu_toggle span::after {
+          color: #fff !important;
+        }
+      ` : ''}
     `}} />
     <header
       className={`cs_site_header header_style_2 cs_style_1 header_sticky_style1 ${
@@ -106,7 +86,7 @@ export default function Header1({ variant }) {
       } cs_sticky_header cs_site_header_full_width ${
         mobileToggle ? 'cs_mobile_toggle_active' : ''
       } ${isSticky ? isSticky : ''} ${isScrollingDown ? 'scrolling-down' : ''}`}
-      style={isScrollingDown ? { backgroundColor: '#0d3a5e' } : {}}
+      style={isScrollingDown ? { backgroundColor: '#0d3a5e', background: '#0d3a5e' } : {}}
     >
       <div 
         className="cs_top_header"

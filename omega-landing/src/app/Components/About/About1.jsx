@@ -14,7 +14,7 @@ const About1 = () => {
       } 
 
     return (
-        <section className="about-us-section fix section-padding pb-0">
+        <section className="about-us-section fix section-padding pb-5">
         <div className="about-wrapper style1">
             <div className="shape3 d-none d-xxl-block"><Image src={aboutContent.img2} alt="img" className="cir36" width={280} height={350}   /></div>
             <div className="shape6 d-none d-xxl-block"><Image src={aboutContent.img4} alt="img" className="cir36" width={280} height={350}   /></div>

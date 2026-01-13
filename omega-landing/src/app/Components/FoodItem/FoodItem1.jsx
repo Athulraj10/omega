@@ -2,93 +2,9 @@
 import { useState } from "react";
 import FoodItemCard from "../Card/FoodItemCard";
 import Image from "next/image";
+import { categories, productsByCategory } from "../../../data/products";
 
 const FoodItem1 = () => {
-    // Categories with icons and labels
-    const categories = [
-        {
-            id: 'Frozen fish',
-            name: 'Frozen fish',
-            icon: '/assets/img/menu/frozen/LOGO.png',
-            tabId: 'pills-Frozen fish',
-            ariaControls: 'pills-Frozen fish'
-        },
-        {
-            id: 'Spices',
-            name: 'Spices',
-            icon: '/assets/img/menu/spices/LOGO.png',
-            tabId: 'pills-Spices',
-            ariaControls: 'pills-Spices'
-        },
-        {
-            id: 'Fruits',
-            name: 'Fruits',
-            icon: '/assets/img/menu/Fruits/LOGO.png',
-            tabId: 'pills-Fruits',
-            ariaControls: 'pills-Fruits'
-        },
-        {
-            id: 'Vegitables',
-            name: 'Vegetables',
-            icon: '/assets/img/menu/Vegetables/LOGO.png',
-            tabId: 'pills-Vegitables',
-            ariaControls: 'pills-Vegitables'
-        }
-    ];
-
-    // Products organized by category
-    const productsByCategory = {
-        'Frozen fish': [
-            { img: "/assets/img/menu/Frozen/frozen1.png", title: "Frozen Shrimps 30-40", content: "Origin : oman", },
-            { img: "/assets/img/menu/Frozen/frozen2.png", title: "Frozen Black Pomfret", content: "Origin: UAE", },
-            { img: "/assets/img/menu/Frozen/frozen3.png", title: "Frozen Salmon 2-3", content: "Origin: Norway",  },
-            { img: "/assets/img/menu/Frozen/frozen4.png", title: "Frozen Shark", content: "Origin: UAE",  },
-            { img: "/assets/img/menu/Frozen/frozen5.png", title: "Frozen Mussels", content: "Origin: Oman", },
-
-            { img: "/assets/img/menu/Frozen/frozen6.png", title: "Frozen Squid", content: "Origin: UAE", },
-            { img: "/assets/img/menu/Frozen/frozen7.png", title: "Frozen Crab Meat Sticks", content: "Origin: UAE",  },
-            { img: "/assets/img/menu/Frozen/frozen8.png", title: "Frozen Seabream", content: "Origin: Europe", },
-            { img: "/assets/img/menu/Frozen/frozen9.png", title: "Frozen Lobester", content: "Origin: UAE", },
-            { img: "/assets/img/menu/Frozen/frozen10.png", title: "Frozen king fish", content: "Origin: UAE", }
-        ],
-        "Spices": [
-            { img: "/assets/img/menu/Spices/spices1.png", title: "Black Pepper", content: "India",  },
-            { img: "/assets/img/menu/Spices/spices2.png", title: "Cinnamon", content: "India",  },
-            { img: "/assets/img/menu/Spices/spices3.png", title: "Chilli Powder", content: "India", },
-            { img: "/assets/img/menu/Spices/spices4.png", title: "Paprika", content: "India", },
-            { img: "/assets/img/menu/Spices/spices5.png", title: "Turmeric", content: "India", },
-
-            { img: "/assets/img/menu/Spices/spices6.png", title: "Garlic Powder", content: "India", },
-            { img: "/assets/img/menu/Spices/spices7.png", title: "Coriander Powder", content: "India", },
-            { img: "/assets/img/menu/Spices/spices8.png", title: "Cardamom", content: "India", },
-            { img: "/assets/img/menu/Spices/spices9.png", title: "Cloves", content: "India",  },
-            { img: "/assets/img/menu/Spices/spices10.png", title: "Fish Masala", content: "India", }
-        ],
-        "Fruits": [
-            { img: "/assets/img/menu/Fruits/fruit1.png", title: "Apple", content: "India",  },
-            { img: "/assets/img/menu/Fruits/fruit5.png", title: "Blueberry", content: "India",  },
-            { img: "/assets/img/menu/Fruits/fruit2.png", title: "Avocado", content: "India",  },
-            { img: "/assets/img/menu/Fruits/fruit3.png", title: "Blue Grapes", content: "India", },
-            { img: "/assets/img/menu/Fruits/fruit4.png", title: "Banana", content: "India", },
-            { img: "/assets/img/menu/Fruits/fruit9.png", title: "Tender coconut", content: "India",  },
-            { img: "/assets/img/menu/Fruits/fruit10.png", title: "Mango", content: "India",  },
-            { img: "/assets/img/menu/Fruits/fruit6.png", title: "Kiwi", content: "India",  },
-            { img: "/assets/img/menu/Fruits/fruit7.png", title: "Orange", content: "India", },
-            { img: "/assets/img/menu/Fruits/fruit8.png", title: "Strawberry", content: "India",  }
-        ],
-        "Vegitables": [
-            { img: "/assets/img/menu/Vegetables/vegitable2.png", title: "Cabbage", content: "India",  },
-            { img: "/assets/img/menu/Vegetables/vegitable1.png", title: "Broccoli", content: "India",  },
-            { img: "/assets/img/menu/Vegetables/vegitable3.png", title: "Carrot", content: "India",},
-            { img: "/assets/img/menu/Vegetables/vegitable4.png", title: "Corn", content: "India",},
-            { img: "/assets/img/menu/Vegetables/vegitable5.png", title: "Cucumber", content: "India",  },
-            { img: "/assets/img/menu/Vegetables/vegitable6.png", title: "Leafy mix", content: "India",  },
-            { img: "/assets/img/menu/Vegetables/vegitable9.png", title: "Pumpkin", content: "India",  },
-            { img: "/assets/img/menu/Vegetables/vegitable7.png", title: "Onion", content: "India",},
-            { img: "/assets/img/menu/Vegetables/vegitable8.png", title: "Potato", content: "India",  },
-            { img: "/assets/img/menu/Vegetables/vegitable10.png", title: "Tomato", content: "India",  }
-        ]
-    };
 
     const [isActive, setIsActive] = useState('Frozen fish');
 

@@ -3,7 +3,12 @@ import Link from "next/link";
 
 const Footer1 = () => {
     return (
-        <footer className="footer-section bg-title fix">
+        <footer className="footer-section fix" style={{
+            backgroundImage: 'url(/assets/img/footer/footer.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+        }}>
         <div className="footer-widgets-wrapper">
             <div className="shape1 float-bob-y d-none d-xxl-block"> <Image src="/assets/img/footer/mussels.png" alt="img" width={300} height={300}   /></div>
             {/* <div className="shape2 d-none d-xxl-block"><Image src="/assets/img/shape/footerShape1_2.png" alt="img" width={300} height={300}   /></div> */}
