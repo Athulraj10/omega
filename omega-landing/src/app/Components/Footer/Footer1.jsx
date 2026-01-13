@@ -52,28 +52,7 @@ const Footer1 = () => {
                 </div>
 
                 <div className="row">
-                    <div className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                        <div className="single-footer-widget">
-                            {/* <div className="widget-head">
-                                <Link href="/">
-                                    <Image src="/assets/img/logo/logoWhite.svg" alt="img" width={167} height={58}   />
-                                </Link>
-                            </div> */}
-                            {/* <div className="footer-content">
-                                <p>
-                                    Phasellus ultricies aliquam volutpat ullamcorper laoreet neque, a lacinia
-                                    curabitur
-                                    lacinia mollis
-                                </p>
-                                <div className="social-icon d-flex align-items-center">
-                                    <a href="#"><i className="bi bi-facebook"></i></a>
-                                    <a href="#"><i className="bi bi-twitter-x"></i></a>
-                                    <a href="#"><i className="bi bi-linkedin"></i></a>
-                                    <a href="#"><i className="bi bi-youtube"></i></a>
-                                </div>
-                            </div> */}
-                        </div>
-                    </div>
+                 
                     <div className="col-xl-3 col-lg-4 col-md-6 ps-xl-5 wow fadeInUp" data-wow-delay=".4s">
                         <div className="single-footer-widget">
                             <div className="widget-head">
@@ -92,12 +71,7 @@ const Footer1 = () => {
                                         Our Gallery
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link href="/blog">
-                                    <i className="bi bi-chevron-double-right"></i>
-                                        Our Blogs
-                                    </Link>
-                                </li>
+                               
                                 <li>
                                     <Link href="/faq">
                                     <i className="bi bi-chevron-double-right"></i>

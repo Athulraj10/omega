@@ -57,17 +57,17 @@ export default function Header1({ variant }) {
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.3) !important;
       }
       .cs_top_header {
-        background:rgba(13, 58, 94, 0.48) !important;
+        background:#1a365d !important;
       }
       .cs_main_header {
-        background: rgba(0, 0, 0, 0.1);
+        background: #1a365d;
       }
       ${isScrollingDown ? `
         .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky,
         .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_top_header,
         .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_main_header {
-          background: #0d3a5e !important;
-          background-color: #0d3a5e !important;
+          background: #1a365d !important;
+          background-color: #1a365d !important;
         }
         .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_nav_list li a,
         .cs_site_header.header_style_2.cs_style_1.header_sticky_style1.scrolling-down.cs-gescout_sticky .cs_nav_list li,
@@ -86,11 +86,11 @@ export default function Header1({ variant }) {
       } cs_sticky_header cs_site_header_full_width ${
         mobileToggle ? 'cs_mobile_toggle_active' : ''
       } ${isSticky ? isSticky : ''} ${isScrollingDown ? 'scrolling-down' : ''}`}
-      style={isScrollingDown ? { backgroundColor: '#0d3a5e', background: '#0d3a5e' } : {}}
+      style={isScrollingDown ? { backgroundColor: '#1a365d', background: '#1a365d' } : { backgroundColor: '#1a365d', background: '#1a365d' }}
     >
       <div 
         className="cs_top_header"
-        style={isScrollingDown ? { backgroundColor: '#0d3a5e', background: '#0d3a5e' } : {}}
+        style={isScrollingDown ? { backgroundColor: '#1a365d', background: '#1a365d' } : { backgroundColor: '#1a365d', background: '#1a365d' }}
       >
         <div className="container">
           <div className="cs_top_header_in">
@@ -117,7 +117,7 @@ export default function Header1({ variant }) {
 
       <div 
         className="cs_main_header"
-        style={isScrollingDown ? { backgroundColor: '#0d3a5e', background: '#0d3a5e' } : {}}
+        style={isScrollingDown ? { backgroundColor: '#1a365d', background: '#1a365d' } : { backgroundColor: '#1a365d', background: '#1a365d' }}
       >
         <div className="container">
           <div className="cs_main_header_in">

@@ -1,4 +1,3 @@
-// Helper function to generate avatar URL from name
 const getAvatarUrl = (name, background = null) => {
     const colors = [
         '0D8ABC', '7B9F35', '946D57', '2C5F2D', '1C1C1E',
@@ -10,27 +9,22 @@ const getAvatarUrl = (name, background = null) => {
     return `https://ui-avatars.com/api/?name=${encodedName}&size=96&background=${bgColor}&color=fff&bold=true&format=png`;
 };
 
-// Review templates with diverse names and online avatars
 const reviewTemplates = [
-    // Muslim names
     { name: "Ahmed Al-Rashid", avatar: getAvatarUrl("Ahmed Al-Rashid", "0D8ABC"), rating: 5, date: "March 15, 2024 at 3:45 pm" },
     { name: "Fatima Hassan", avatar: getAvatarUrl("Fatima Hassan", "FF6B6B"), rating: 5, date: "March 18, 2024 at 11:20 am" },
     { name: "Mohammed Ali", avatar: getAvatarUrl("Mohammed Ali", "4ECDC4"), rating: 4, date: "March 20, 2024 at 2:37 pm" },
     { name: "Aisha Khan", avatar: getAvatarUrl("Aisha Khan", "45B7D1"), rating: 5, date: "March 22, 2024 at 9:15 am" },
     { name: "Omar Abdullah", avatar: getAvatarUrl("Omar Abdullah", "FFA07A"), rating: 5, date: "March 25, 2024 at 4:30 pm" },
-    // Hindu names
     { name: "Priya Sharma", avatar: getAvatarUrl("Priya Sharma", "98D8C8"), rating: 5, date: "March 16, 2024 at 1:20 pm" },
     { name: "Rajesh Kumar", avatar: getAvatarUrl("Rajesh Kumar", "F7DC6F"), rating: 4, date: "March 19, 2024 at 10:45 am" },
     { name: "Anjali Patel", avatar: getAvatarUrl("Anjali Patel", "BB8FCE"), rating: 5, date: "March 21, 2024 at 3:10 pm" },
     { name: "Vikram Singh", avatar: getAvatarUrl("Vikram Singh", "85C1E2"), rating: 5, date: "March 23, 2024 at 2:00 pm" },
     { name: "Kavita Reddy", avatar: getAvatarUrl("Kavita Reddy", "F8B739"), rating: 4, date: "March 26, 2024 at 11:30 am" },
-    // Christian names
     { name: "Sarah Johnson", avatar: getAvatarUrl("Sarah Johnson", "52BE80"), rating: 5, date: "March 17, 2024 at 5:00 pm" },
     { name: "Michael Brown", avatar: getAvatarUrl("Michael Brown", "7B9F35"), rating: 5, date: "March 19, 2024 at 8:15 am" },
     { name: "Emily Davis", avatar: getAvatarUrl("Emily Davis", "946D57"), rating: 4, date: "March 22, 2024 at 12:45 pm" },
     { name: "David Wilson", avatar: getAvatarUrl("David Wilson", "2C5F2D"), rating: 5, date: "March 24, 2024 at 6:20 pm" },
     { name: "Jessica Martinez", avatar: getAvatarUrl("Jessica Martinez", "1C1C1E"), rating: 5, date: "March 27, 2024 at 10:00 am" },
-    // Arabic names
     { name: "Khalid Al-Mansoori", avatar: getAvatarUrl("Khalid Al-Mansoori", "0D8ABC"), rating: 5, date: "March 18, 2024 at 2:30 pm" },
     { name: "Layla Al-Zahra", avatar: getAvatarUrl("Layla Al-Zahra", "FF6B6B"), rating: 5, date: "March 20, 2024 at 4:15 pm" },
     { name: "Yusuf Al-Hashimi", avatar: getAvatarUrl("Yusuf Al-Hashimi", "4ECDC4"), rating: 4, date: "March 23, 2024 at 1:50 pm" },
@@ -38,7 +32,6 @@ const reviewTemplates = [
     { name: "Tariq Al-Otaibi", avatar: getAvatarUrl("Tariq Al-Otaibi", "FFA07A"), rating: 5, date: "March 28, 2024 at 11:10 am" }
 ];
 
-// Helper function to generate reviews for a product
 const generateReviews = (productTitle, category, reviewIndices) => {
     const reviewComments = {
         'Frozen fish': [
@@ -83,7 +76,6 @@ const generateReviews = (productTitle, category, reviewIndices) => {
     }));
 };
 
-// Categories with icons and labels
 export const categories = [
     {
         id: 'Frozen fish',
@@ -115,7 +107,6 @@ export const categories = [
     }
 ];
 
-// Products organized by category
 export const productsByCategory = {
     'Frozen fish': [
         { id: 'frozen-1', img: "/assets/img/menu/Frozen/frozen1.png", title: "Frozen Shrimps 30-40", content: "Origin : oman", price: "$24.00", description: "Premium frozen shrimps sourced from Oman. Perfect size 30-40 count per pound. Freshly frozen to preserve quality and taste.", reviews: generateReviews("Frozen Shrimps 30-40", "Frozen fish", [0, 5, 10, 15]) },
@@ -167,7 +158,6 @@ export const productsByCategory = {
     ]
 };
 
-// Helper function to get all products as a flat array with category info
 export const getAllProducts = () => {
     const allProducts = [];
     Object.entries(productsByCategory).forEach(([categoryId, products]) => {
@@ -178,12 +168,10 @@ export const getAllProducts = () => {
     return allProducts;
 };
 
-// Helper function to get products by category
 export const getProductsByCategory = (categoryId) => {
     return productsByCategory[categoryId] || [];
 };
 
-// Helper function to get a product by ID
 export const getProductById = (productId) => {
     const allProducts = getAllProducts();
     return allProducts.find(product => product.id === productId) || null;

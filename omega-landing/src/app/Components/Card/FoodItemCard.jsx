@@ -5,7 +5,7 @@ const FoodItemCard = ({ img, title, content, price, productId }) => {
   const detailUrl = productId ? `/shop/shop-details?id=${productId}` : "/shop";
 
   return (
-    <div className="single-menu-items border border-gray-200 rounded-lg p-4">
+    <div className="single-menu-items rounded-lg p-4 shadow">
       <div className="details flex items-center gap-4">
         {/* Image */}
         <div className="menu-item-thumb flex-shrink-0">
@@ -14,7 +14,7 @@ const FoodItemCard = ({ img, title, content, price, productId }) => {
               src={img}
               alt={title}
               width={170}
-              height={130}
+              height={110}
               className="cursor-pointer rounded"
             />
           </Link>

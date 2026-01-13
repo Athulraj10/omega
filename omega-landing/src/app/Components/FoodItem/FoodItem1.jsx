@@ -29,11 +29,11 @@ const FoodItem1 = () => {
             <div className="container">
                 <div className="food-menu-tab-wrapper style-bg border border-gray-200 rounded-lg">
                     <div className="title-area">
-                        <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
+                        {/* <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
                                 <Image className="me-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20} />
                             FOOD MENU<Image className="ms-1"
                                     src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20} />
-                        </div>
+                        </div> */}
                         <h2 className="title wow fadeInUp" data-wow-delay="0.7s">
                             Omega Foods Foods Menu
                         </h2>

@@ -14,7 +14,7 @@ const About1 = () => {
       } 
 
     return (
-        <section className="about-us-section fix section-padding pb-5">
+        <section className="about-us-section fix section-padding p-0 border border-gray-300 shadow">
         <div className="about-wrapper style1">
             <div className="shape3 d-none d-xxl-block"><Image src={aboutContent.img2} alt="img" className="cir36" width={280} height={350}   /></div>
             <div className="shape6 d-none d-xxl-block"><Image src={aboutContent.img4} alt="img" className="cir36" width={280} height={350}   /></div>
@@ -35,10 +35,9 @@ const About1 = () => {
                         <div className="col-12">
                             <div className="title-area">
                                 <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
-                                <Image className="me-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
-                                    {aboutContent.subtitle}<Image className="ms-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
+                                    {aboutContent.subtitle}
                                 </div>
-                                <h2 className="title wow fadeInUp" data-wow-delay="0.7s">
+                                <h2 className="title wow fadeInUp text-md" data-wow-delay="0.7s">
                                 {aboutContent.title}
                                 </h2>
                                 <div className="text wow fadeInUp" data-wow-delay="0.8s">{aboutContent.content}</div>

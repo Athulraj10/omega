@@ -17,13 +17,13 @@ const page = () => {
         <div className='bg-color2'>
             <HeroBanner1></HeroBanner1>
             <FoodItems1></FoodItems1>
-            <Offer1></Offer1>
             <About1></About1>
-            <BestSelling1></BestSelling1>
+            <Team1></Team1>
+            {/* <BestSelling1></BestSelling1> */}
             <CtaBanner1></CtaBanner1>
             <FoodItem1></FoodItem1>
-            <Timer1></Timer1>
-            <Team1></Team1>
+            {/* <Timer1></Timer1> */}
+            <Offer1></Offer1>
             <Testimonial1></Testimonial1>
             <Blog1></Blog1>
             {/* <Gallery1></Gallery1> */}

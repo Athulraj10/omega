@@ -54,16 +54,17 @@ const Team1 = () => {
       ]; 
 
     return (
-<section className="chefe-section fix section-padding">
+<section className="chefe-section fix p-3 border border-blue-300">
         <div className="chefe-wrapper style1">
             <div className="shape1 d-none d-xxl-block"><Image className="float-bob-y" src="/assets/img/shape/chefeShape1_1.png" alt="img" width={167} height={132}   /></div>
             <div className="shape2 d-none d-xxl-block"><Image className="float-bob-x" src="/assets/img/shape/chefeShape1_2.png" alt="img" width={142} height={90}   /></div>
             <div className="container">
                 <div className="title-area">
                     <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
-                    <Image className="me-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
-                        We offer the best<Image className="ms-1"
-                            src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
+                    {/* <Image className="me-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   /> */}
+                        We offer the best
+                        {/* <Image className="ms-1"
+                            src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   /> */}
                     </div>
                     <h2 className="title  wow fadeInUp" data-wow-delay="0.7s">
                         Quality food and service categories
@@ -75,7 +76,7 @@ const Team1 = () => {
                         <div key={i} className="col-lg-6 col-xl-4">
                             <div className="" data-wow-delay="0.2s">
                                 <div className="">
-                                <Image src={item.img} alt="img" width={400} height={300} />
+                                <Image src={item.img} className="shadow rounded-3" alt="img" width={400} height={300} />
                                 </div>
                               <div className="mt-3 justify-content-center chefe-content">
                                         <h3 className="text-center">{item.title}</h3>

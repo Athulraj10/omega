@@ -69,8 +69,8 @@ const FoodItems1 = () => {
                         <div className="swiper-wrapper cs_slider_gap_301 food-slider-item">
                         <Slider {...settings}>
                         {foodItems.map((item, i) => (
-                            <div key={i} className="swiper-slide">
-                                <div className="single-food-items border border-2 border-gray-300" style={{ backgroundColor: '#fff' }}>
+                            <div key={i} className="swiper-slide shadow">
+                                <div className="single-food-items" style={{ backgroundColor: '#fff' }}>
                                     <div className="item-thumb">
                                         <Image src={item.img} width={158} height={158} alt="thumb" className="food-item-img" />
                                         <div className="circle-shape">
