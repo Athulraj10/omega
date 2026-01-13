@@ -7718,7 +7718,7 @@ input.main-search-input::placeholder {
 }
 .single-menu-items h6 {
   color: var(--title);
-  text-align: right;
+  text-align: left;
   font-family: var(--title-font);
   font-size: 18px;
   font-style: normal;
