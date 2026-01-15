@@ -25,13 +25,30 @@ const Offer1 = () => {
       ]; 
 
     return (
+        <>
+            <style dangerouslySetInnerHTML={{__html: `
+                .offer-section .offer-card {
+                    max-width: 10%;
+                    margin: 0 auto;
+                    padding: 20px;
+                }
+                .offer-section .row {
+                    gap: 1rem;
+                }
+                @media (min-width: 768px) {
+                    .offer-section .col-md-6 {
+                        padding-left: .5rem;
+                        padding-right: .5rem;
+                    }
+                }
+            `}} />
         <div className="offer-section fix bg-color2">
         <div className="offer-wrapper">
             <div className="container">
-                <div className="row gy-4">
+                <div className="row" style={{ gap: 'calc(2rem + 20px)' }}>
                 {offerItems.map((item, i) => (
-                    <div key={i} className="col-12 col-md-6">
-                        <div className="offer-card style1-line wow fadeInUp" style={{backgroundImage: `url(${item.img})`}} data-wow-delay="0.2s">  
+                    <div key={i} className="col-12 col-md-6" style={{ padding: '1rem' }}>
+                        <div className="offer-card style1-line wow fadeInUp" style={{backgroundImage: `url(${item.img})`, maxWidth: '70%', margin: '0 auto', padding: '20px'}} data-wow-delay="0.2s">  
                             <div className="offer-content-line">
                                 <div className="offer-title-wrapper-line">
                                     <i className={`bi ${item.icon} offer-icon-line`}></i>
@@ -47,6 +64,7 @@ const Offer1 = () => {
             </div>
         </div>
     </div>
+    </>
     );
 };
 

@@ -66,17 +66,33 @@ const Testimonial1 = () => {
       ]; 
 
     return (
+    <>
+        <style dangerouslySetInnerHTML={{__html: `
+            .testimonial-image-wrapper {
+                border-radius: 20px !important;
+                overflow: hidden !important;
+                position: relative !important;
+            }
+            .testimonial-image-wrapper img,
+            .testimonial-image-wrapper picture,
+            .testimonial-image-wrapper picture img {
+                border-radius: 20px !important;
+            }
+        `}} />
     <section className="testimonial-section fix bg-color3">
         <div className="testimonial-wrapper style1 section-padding" style={{ position: 'relative', minHeight: '100vh' }}>
-            <div className="shape" style={{ position: 'absolute', top: 0, left: 0, width: '50%', height: '100%', zIndex: 0 }}>
-                <Image 
-                    src="/assets/img/testimonial/testimonialThumb1_1.png" 
-                    alt="img" 
-                    fill
-                    style={{ objectFit: 'contain', objectPosition: 'center' }}
-                    sizes="50vw"
-                    priority
-                />
+            <div className="shape" style={{ position: 'absolute', top: -50, left: 0, width: '50%', height: '100%', zIndex: 0, display: 'flex', alignItems: 'center' }}>
+                <div className="testimonial-image-wrapper" style={{ width: '100%', height: '100%', position: 'relative' }}>
+                    <Image 
+                        src="/assets/img/testimonial/testimonialThumb1_1.png" 
+                        className=""
+                        alt="img" 
+                        fill
+                        style={{ objectFit: 'contain', objectPosition: 'left center' }}
+                        sizes="50vw"
+                        priority
+                    />
+                </div>
             </div>
             <div className="shape2"><Image src="/assets/img/shape/testimonialShape1_1.png" alt="img" width={224} height={401}   /></div>
             <div className="container">
@@ -86,12 +102,10 @@ const Testimonial1 = () => {
                     </div>
                     <div className="col-xl-7" style={{ position: 'relative', zIndex: 1 }}>
                         <div className="title-area">
-                            <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
-                            <Image className="me-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
+                            <div className="sub-title text-center wow fadeInUp " style={{ color: '#0D5189' }} data-wow-delay="0.5s">
                                 Omega Foods 
-                            <Image className="ms-1" src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   />
                             </div>
-                            <h2 className="title text-white wow fadeInUp" data-wow-delay="0.7s">
+                            <h2 className="title" style={{ color: '#0D5189' }} data-wow-delay="0.7s">
                                 What our Clients Say
                             </h2>
                         </div>
@@ -161,6 +175,7 @@ const Testimonial1 = () => {
             handelClose={handelClose}        
         ></VideoModal>  */}
     </section>
+    </>
     );
 };
 

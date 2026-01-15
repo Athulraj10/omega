@@ -38,6 +38,21 @@ const FoodItems1 = () => {
       }; 
 
     return (
+        <>
+            <style dangerouslySetInnerHTML={{__html: `
+                .best-food-items-section .title-area .title {
+                    color: #0D5189 !important;
+                }
+                .best-food-items-section .single-food-items .item-content h3 {
+                    color: #0D5189 !important;
+                }
+                .best-food-items-section .single-food-items .item-content .text {
+                    color: #0D5189 !important;
+                }
+                .best-food-items-section .single-food-items .item-content h6 {
+                    color: #0D5189 !important;
+                }
+            `}} />
         <section className="best-food-items-section fix p-5" style={{ backgroundColor: '#fff' }}>
         <div className="best-food-wrapper">
             {/* <div className="shape1 float-bob-y d-none d-xxl-block"><img src="/assets/img/shape/bestFoodItemsShape1_1.png"
@@ -46,7 +61,7 @@ const FoodItems1 = () => {
                     alt="shape" /></div> */}
             <div className="container">
                 <div className="title-area">
-                    <h2 className="title wow fadeInUp text-center" data-wow-delay="0.7s">
+                    <h2 className="title wow fadeInUp text-center" data-wow-delay="0.7s" style={{ color: '#0D5189' }}>
                         Popular Fresh Fish
                     </h2>
                 </div>
@@ -65,10 +80,10 @@ const FoodItems1 = () => {
                                     </div>
                                     <div className="item-content">
                                         <Link href="/menu">
-                                            <h3 className="transition-colors duration-300 hover:text-orange-500">{item.title}</h3>
+                                            <h3 className="transition-colors duration-300 hover:text-orange-500" style={{ color: '#0D5189' }}>{item.title}</h3>
                                         </Link>
-                                        <div className="text">{item.content}</div>
-                                        <h6 className="transition-colors duration-300 hover:text-orange-600">{item.price}</h6>
+                                        <div className="text" style={{ color: '#0D5189' }}>{item.content}</div>
+                                        <h6 className="transition-colors duration-300 hover:text-orange-600" style={{ color: '#0D5189' }}>{item.price}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -83,6 +98,7 @@ const FoodItems1 = () => {
             </div>
         </div>
     </section>
+    </>
     );
 };
 

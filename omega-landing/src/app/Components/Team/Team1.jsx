@@ -54,8 +54,8 @@ const Team1 = () => {
       ]; 
 
     return (
-<section className="chefe-section fix p-5 border border-blue-300">
-        <div className="chefe-wrapper style1">
+<section className="chefe-section fix p-5 border border-blue-300 m-5 border-top-0">
+        <div className="chefe-wrapper style1 mb-3">
             <div className="shape1 d-none d-xxl-block"><Image className="float-bob-y" src="/assets/img/shape/chefeShape1_1.png" alt="img" width={167} height={132}   /></div>
             <div className="shape2 d-none d-xxl-block"><Image className="float-bob-x" src="/assets/img/shape/chefeShape1_2.png" alt="img" width={142} height={90}   /></div>
             <div className="container">
@@ -66,7 +66,7 @@ const Team1 = () => {
                         {/* <Image className="ms-1"
                             src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   /> */}
                     </div>
-                    <h2 className="title  wow fadeInUp" data-wow-delay="0.7s">
+                    <h2 className="title  wow fadeInUp mb-5" style={{ color: '#0D5189' }} data-wow-delay="0.7s">
                         Quality food and service categories
                     </h2>
                 </div>
@@ -79,7 +79,7 @@ const Team1 = () => {
                                 <Image src={item.img} className="shadow rounded-3" alt="img" width={400} height={300} />
                                 </div>
                               <div className="mt-3 justify-content-center chefe-content">
-                                        <h3 className="text-center">{item.title}</h3>
+                                        <h3 className="text-center" style={{ color: '#0D5189' }}>{item.title} </h3>
                                     {/* <div className="text-center" style={{ fontSize: '14px' }}>{item.content}</div> */}
                                 </div>
                             </div>

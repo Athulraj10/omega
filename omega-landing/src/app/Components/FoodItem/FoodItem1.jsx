@@ -30,8 +30,8 @@ const FoodItem1 = () => {
                 <div className="food-menu-tab-wrapper style-bg border border-gray-200 rounded-lg">
                     <div className="title-area">
                    
-                        <h2 className="title wow fadeInUp" data-wow-delay="0.7s">
-                            Omega Foods Foods Menu
+                        <h2 className="title wow fadeInUp" style={{ color: '#0D5189' }} data-wow-delay="0.7s">
+                            Omega Foods Menu
                         </h2>
                     </div>
 
@@ -55,7 +55,7 @@ const FoodItem1 = () => {
                                             aria-selected={isActive === category.id}
                                         >
                                             <Image src={category.icon} alt={category.name} width={isActive === category.id ? 70 : 60} height={isActive === category.id ? 70 : 60}  />
-                                            {category.name}
+                                            <span style={{ color: '#0D5189' }}>{category.name}</span>
                                         </button>
                             </li>
                                 ))}

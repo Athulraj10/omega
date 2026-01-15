@@ -14,12 +14,12 @@ export default function Header1({ variant }) {
   className={`cs_site_header header_style_2 cs_style_1 cs_site_header_full_width text-white ${
     variant ? variant : ''
   } ${mobileToggle ? 'cs_mobile_toggle_active' : ''}`}
-  style={{ backgroundColor: '#1a365d', color: '#fff' }}
+  style={{ backgroundColor: '#0D5189', color: '#fff' }}
 >
 
 
         {/* Top Header */}
-        {/* <div className="cs_top_header" style={{ backgroundColor: '#1a365d' }}>
+        {/* <div className="cs_top_header" style={{ backgroundColor: '#0D5189' }}>
           <div className="container">
             <div className="cs_top_header_in">
               <div className="cs_top_header_left header-info">
@@ -53,7 +53,7 @@ export default function Header1({ variant }) {
         </div> */}
 
         {/* Main Header */}
-        <div className="cs_main_header" style={{ backgroundColor: '#1a365da7' ,color:'#fff'}}>
+        <div className="cs_main_header" style={{ backgroundColor: '#0D5189a7' ,color:'#fff'}}>
           <div className="container">
             <div className="cs_main_header_in">
 

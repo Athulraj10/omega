@@ -132,7 +132,9 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
     }
 
     return (
-        <footer className="footer-section fix" style={{
+        <>
+           
+        <footer className="footer-section fix p-5" style={{
             backgroundImage: `url(${data.backgroundImage || '/assets/img/footer/footer.png'})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -147,53 +149,11 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
                     height={300}   
                 />
             </div>
-            <div className="shape4" style={{ 
-                overflow: 'hidden', 
-            }}>
-                {/* <Image src="/assets/img/footer/fruitsImage.png" alt="img" width={300} height={300} style={{ width: '100%', height: 'auto', objectFit: 'contain' }}   /> */}
-            </div>
+           
             <div className="container">
-                <div className="footer-top">
-                    <div className="row gy-4">
-                        <div className="col-lg-4">
-                            <div className="fancy-box">
-                                <div className="item1">
-                                    <i className={data.contactInfo.address.icon}></i>
-                                </div>
-                                <div className="item2">
-                                    <h6>{data.contactInfo.address.title}</h6>
-                                    <p>{data.contactInfo.address.value}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 d-flex justify-content-start justify-content-lg-end">
-                            <div className="fancy-box">
-                                <div className="item1">
-                                    <i className={data.contactInfo.email.icon}></i>
-                                </div>
-                                <div className="item2">
-                                    <h6>{data.contactInfo.email.title}</h6>
-                                    <p>{data.contactInfo.email.value}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 d-flex justify-content-start justify-content-lg-end">
-                            <div className="fancy-box">
-                                <div className="item1">
-                                    <i className={data.contactInfo.phone.icon}></i>
-                                </div>
-                                <div className="item2">
-                                    <h6>{data.contactInfo.phone.title}</h6>
-                                    <p>{data.contactInfo.phone.value}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div className="row justify-content-center text-center">
-                    <div className="col-xl-3 col-lg-4 col-md-6 ps-xl-5 wow fadeInUp" data-wow-delay=".4s">
-                        <div className="single-footer-widget">
+                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".4s">
+                        <div className="single-footer-widget d-flex flex-column align-items-center">
                             <div className="widget-head">
                                 <h3>{data.quickLinks.title}</h3>
                             </div>
@@ -209,13 +169,13 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
                             </ul>
                         </div>
                     </div>
-                    <div className="col-xl-3 col-lg-4 col-md-6 ps-xl-5 wow fadeInUp" data-wow-delay=".4s">
-                        <div className="single-footer-widget">
+                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".4s">
+                        <div className="single-footer-widget d-flex flex-column align-items-center">
                             <div className="widget-head">
                                 <h3>{data.menu.title}</h3>
                             </div>
                             <ul className="list-area">
-                                {data.menu.links.map((link, index) => (
+                                {data.menu.links.slice(0, 4).map((link, index) => (
                                     <li key={index}>
                                         <Link href={link.href}>
                                             <i className={link.icon}></i>
@@ -224,19 +184,54 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
                                     </li>
                                 ))}
                             </ul>
+                           
                         </div>
                     </div>
-                    <div className="col-xl-3 col-lg-4 col-md-6 ps-xl-5 wow fadeInUp" data-wow-delay=".4s">
-                        <div className="single-footer-widget text-white">
+                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".4s">
+                        <div className="single-footer-widget text-white d-flex flex-column align-items-center">
                             <div className="widget-head">
-                                <h3>{data.contactUs.title}</h3>
+                                <h3>Products</h3>
                             </div>
                             <ul className="list-area">
+                            {data.menu.links.length > 4 && (
+                                <ul className="list-area ">
+                                    {data.menu.links.slice(4).map((link, index) => (
+                                        <li key={index + 4}>
+                                            <Link href={link.href}>
+                                                <i className={link.icon}></i>
+                                                {link.text}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".4s">
+                        <div className="single-footer-widget text-white d-flex flex-column align-items-center">
+                            <div className="widget-head">
+                                <h3>Contact Info</h3>
+                            </div>
+                            <ul className="list-area">
+                                <li>
+                                    <i className={data.contactInfo.address.icon}></i>
+                                    <span className="text-white">{data.contactInfo.address.value}</span>
+                                </li>
                                 {data.contactUs.hours.map((hour, index) => (
                                     <li key={index} className={index === 0 ? "mb-2" : ""}>
                                         {hour.day}: <span className="text-white">{hour.time}</span>
                                     </li>
                                 ))}
+                                <li>
+                                    <i className={data.contactInfo.email.icon}></i>
+                                    <a href={`mailto:${data.contactInfo.email.value}`} className="text-white">{data.contactInfo.email.value}</a>
+                                </li>
+                                <li>
+                                    <i className={data.contactInfo.phone.icon}></i>
+                                    <a href={`tel:${data.contactInfo.phone.value}`} className="text-white">{data.contactInfo.phone.value}</a>
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -253,6 +248,7 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
             </div>
         </div>
     </footer>
+    </>
     );
 };
 

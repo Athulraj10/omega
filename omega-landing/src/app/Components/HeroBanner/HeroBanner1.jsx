@@ -70,56 +70,18 @@ const HeroBanner1 = () => {
     }, [currentHeadingIndex]);
 
     const heroContent = [
-        {subtitle:'WELCOME Omega Foods', btnname:'ORDER NOW'},
+        {subtitle:'WELCOME Omega Foods'},
       ]; 
 
     return (
         <>
-            <style dangerouslySetInnerHTML={{__html: `
-                @keyframes slideInFromRight {
-                    0% {
-                        transform: translateX(100%);
-                        opacity: 0;
-                    }
-                    100% {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                }
-                @keyframes slideOutToLeft {
-                    0% {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translateX(-100%);
-                        opacity: 0;
-                    }
-                }
-                .heading-slide-in {
-                    animation: slideInFromRight 0.6s ease-out forwards;
-                }
-                .heading-slide-out {
-                    animation: slideOutToLeft 0.6s ease-out forwards;
-                }
-                .heading-wrapper {
-                    display: inline-block;
-                    width: 100%;
-                }
-                .heading-container {
-                    position: relative;
-                    overflow: hidden;
-                    display: inline-block;
-                    width: 100%;
-                }
-            `}} />
             <div className="slider-area">
                 <div className="swiper banner-slider">
                     <div className="swiper-wrapper">
 
                     {heroContent.map((item, i) => (
                         <div key={i} className="swiper-slide">
-                            <div className="style1 position-relative" style={{ minHeight: '600px', overflow: 'hidden' }}>
+                            <div className="style1 position-relative" style={{ minHeight: '600px', overflow: 'visible !important' }}>
                                 {/* <video 
                                     className="w-100 h-100" 
                                     style={{
@@ -154,7 +116,7 @@ const HeroBanner1 = () => {
                                     }}
                                 />
                                 <div className="overlay" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}></div>
-                                <div className="banner-container" style={{position: 'absolute', top: -150, left: 0, width: '100%', height: '100%', zIndex: 2, display: 'flex', alignItems: 'center'}}>
+                                <div className="banner-container" style={{position: 'absolute', top: -100, left: 0, width: '100%', height: '100%', zIndex: 2, display: 'flex', alignItems: 'center'}}>
                                     <div className="container">
                                         <div className="row align-items-center">
                                             <div className="col-12 col-xl-6 d-none d-xxl-block order-1">
@@ -165,17 +127,16 @@ const HeroBanner1 = () => {
                                             <div className="col-12 col-lg-10 col-xl-8 col-xxl-6 order-2 mx-auto">
                                                 <div className="banner-title-area text-center text-xxl-end">
                                                     <div className="banner-style1">
-                                                        <div className="section-title">
-                                                            <h6 className="sub-title" data-animation="slideInLeft"
-                                                                data-duration="2s" data-delay=".3s" style={{ fontSize: '14px', lineHeight: '1.5' }}> {item.subtitle} </h6>
-                                                            <h4 className="title" data-animation="slideInLeft"
+                                    <h6 className="" data-animation="" data-duration="2s" data-delay=".3s" style={{ fontSize: '14px', lineHeight: '1.5', marginBottom: '10px', color: 'white' }}> {item.subtitle} </h6>
+                                                        <div className="section-title" style={{ position: 'relative', height: '120px' }}>
+                                                            <div className="title" data-animation="slideInLeft"
                                                                 data-duration="2s" data-delay=".5s"
-                                                                style={{ fontSize: '36px', lineHeight: '1.3', marginBottom: '20px' }}
+                                                                style={{ fontSize: '36px', lineHeight: '1.3', marginBottom: '20px', position: 'absolute', top: 0, left: 0, width: '100%', color: 'white' }}
                                                                >
-                                                                <div className="heading-container">
-                                                                    <span className={`heading-wrapper ${isSliding ? 'heading-slide-in' : ''}`} dangerouslySetInnerHTML={{ __html: displayedText }}></span>
+                                                                <div className="heading-container" style={{ height: '100px', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
+                                                                    <span className={`heading-wrapper ${isSliding ? 'heading-slide-in' : ''}`} style={{ width: '100%', color: 'white' }} dangerouslySetInnerHTML={{ __html: displayedText }}></span>
                                                                 </div>
-                                                            </h4>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

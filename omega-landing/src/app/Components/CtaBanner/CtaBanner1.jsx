@@ -14,10 +14,10 @@ const CtaBanner1 = () => {
                     <div className="row mb-5">
                         <div className="col-12">
                             <div className="cta-content text-center">
-                                <h3 className="wow fadeInUp" data-wow-delay="0.5s" style={{ color: '#1a365d', fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1.5rem' }}>
+                                <h3 className="wow fadeInUp" data-wow-delay="0.5s" style={{ color: '#0D5189', fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1.5rem' }}>
                                     Ensuring Freshness & Quality in Every Step
                                 </h3>
-                                <p className="wow fadeInUp" data-wow-delay="0.7s" style={{ color: '#1a365d', fontSize: '1.1rem', lineHeight: '1.8', maxWidth: '900px', margin: '0 auto' }}>
+                                <p className="wow fadeInUp" data-wow-delay="0.7s" style={{ color: '#0D5189', fontSize: '1.1rem', lineHeight: '1.8', maxWidth: '900px', margin: '0 auto' }}>
                                     At Omega Seafoods, we adhere to the highest standards of hygiene and quality. From careful handling of freshly caught fish to expert packaging in insulated Styrofoam boxes, our dedicated team works diligently in a state-of-the-art facility to ensure that every product meets our strict freshness and safety standards.
                                 </p>
                             </div>
@@ -39,10 +39,10 @@ const CtaBanner1 = () => {
                                         style={{ objectFit:  'cover', width: '100%', height: '350px' }}
                                     />
                                 </div>
-                                <h4 style={{ color: '#1a365d', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                                <h4 style={{ color: '#0D5189', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
                                     Precision in Processing
                                 </h4>
-                                <p style={{ color: '#1a365d', fontSize: '1rem', lineHeight: '1.6' }}>
+                                <p style={{ color: '#0D5189', fontSize: '1rem', lineHeight: '1.6' }}>
                                     Our team carefully prepares and inspect fresh fish to maintain top quality.
                                 </p>
                             </div>
@@ -61,10 +61,10 @@ const CtaBanner1 = () => {
                                         style={{ objectFit: 'cover', width: '100%', height: '350px' }}
                                     />
                                 </div>
-                                <h4 style={{ color: '#1a365d', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                                <h4 style={{ color: '#0D5189', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
                                     Secure Packaging
                                 </h4>
-                                <p style={{ color: '#1a365d', fontSize: '1rem', lineHeight: '1.6', position: 'relative' }}>
+                                <p style={{ color: '#0D5189', fontSize: '1rem', lineHeight: '1.6', position: 'relative' }}>
                                     We use insulated boxes to keep seafood fresh and safe during transport.
                                     {pathname !== '/about' && (
                                     <Image 

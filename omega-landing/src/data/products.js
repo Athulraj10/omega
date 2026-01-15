@@ -179,15 +179,11 @@ export const getProductById = (productId) => {
 
 // FoodItems1 component products data
 export const foodItems1Products = [
-    { id: 'fooditem1-1', img: '/assets/img/food-items/item1_1.png', title: 'Chicken Pizza', content: 'The registration fee', price: '$26.99' },
-    { id: 'fooditem1-2', img: '/assets/img/food-items/item1_2.png', title: 'Egg and Cucumber', content: 'The registration fee', price: '$28.00' },
-    { id: 'fooditem1-3', img: '/assets/img/food-items/item1_3.png', title: 'Chicken Fried Rice', content: 'The registration fee', price: '$100.99' },
-    { id: 'fooditem1-4', img: '/assets/img/food-items/item1_4.png', title: 'Chicken Leg Piece', content: 'The registration fee', price: '$20.99' },
-    { id: 'fooditem1-5', img: '/assets/img/food-items/item1_1.png', title: 'Chicken Pizza', content: 'The registration fee', price: '$26.99' },
-    { id: 'fooditem1-6', img: '/assets/img/food-items/item1_2.png', title: 'Egg and Cucumber', content: 'The registration fee', price: '$28.00' },
-    { id: 'fooditem1-7', img: '/assets/img/food-items/item1_3.png', title: 'Chicken Fried Rice', content: 'The registration fee', price: '$100.99' },
-    { id: 'fooditem1-8', img: '/assets/img/food-items/item1_4.png', title: 'Chicken Leg Piece', content: 'The registration fee', price: '$20.99' },
-];
+    { id: 'fooditem1-1', img: '/assets/img/food-items/item1_1.png', title: 'Fresh Shrimps', content: 'Oman'},
+    { id: 'fooditem1-2', img: '/assets/img/food-items/item1_2.png', title: 'Fresh Red Snapper', content: 'UAE'},
+    { id: 'fooditem1-3', img: '/assets/img/food-items/item1_3.png', title: 'Fresh Salmon ', content: 'Norway'},
+    { id: 'fooditem1-4', img: '/assets/img/food-items/item1_4.png', title: 'Fresh Seabream', content: 'Europe'},
+   ];
 
 // Testimonial2 component data
 export const testimonial2Items = [

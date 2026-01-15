@@ -34,13 +34,13 @@ const About1 = () => {
                     <div className="row">
                         <div className="col-12">
                             <div className="title-area">
-                                <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
+                                <div className="sub-title text-center wow fadeInUp " style={{ color: '#0D5189' }} data-wow-delay="0.5s">
                                     {aboutContent.subtitle}
                                 </div>
-                                <h2 className="title wow fadeInUp text-md" data-wow-delay="0.7s">
+                                <h2 className="title wow fadeInUp text-md" style={{ color: '#0D5189' }} data-wow-delay="0.7s">
                                 {aboutContent.title}
                                 </h2>
-                                <div className="text wow fadeInUp" data-wow-delay="0.8s">{aboutContent.content}</div>
+                                <div className="text wow fadeInUp" style={{ color: '#0D5189' }} data-wow-delay="0.8s">{aboutContent.content}</div>
                               
                             </div>
                         </div>

@@ -23,10 +23,10 @@ const FoodItemCard = ({ img, title, content, price, productId }) => {
         {/* Content */}
         <div className="menu-content">
           <Link href={detailUrl}>
-            <h4 className="font-semibold text-lg">{title}</h4>
+            <h4 className="font-semibold text-lg" style={{ color: '#0D5189' }}>{title}</h4>
           </Link>
-          <p className="text-sm text-gray-600">{content}</p>
-          <h6 className="font-bold mt-1">{price}</h6>
+          <p className="text-sm text-gray-600" style={{ color: '#0D5189' }}>{content}</p>
+          <h6 className="font-bold mt-1" style={{ color: '#0D5189' }}>{price}</h6>
         </div>
       </div>
     </div>

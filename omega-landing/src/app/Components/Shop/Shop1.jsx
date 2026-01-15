@@ -15,7 +15,6 @@ const Shop1 = () => {
     const productsPerPage = 12;
 
     const allProducts = getAllProducts();
-
     // Get recent products (last 4 products)
     const recentProducts = allProducts.slice(-4);
 
@@ -38,7 +37,7 @@ const Shop1 = () => {
 
         // Filter by price range
         filtered = filtered.filter(product => {
-            const price = parseFloat(product.price.replace("$", ""));
+            const price = parseFloat(product?.price?.replace("$", ""));
             return price >= minPrice && price <= maxPrice;
         });
 
