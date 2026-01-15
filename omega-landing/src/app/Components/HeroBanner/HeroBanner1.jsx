@@ -154,7 +154,7 @@ const HeroBanner1 = () => {
                                     }}
                                 />
                                 <div className="overlay" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}></div>
-                                <div className="banner-container" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, display: 'flex', alignItems: 'center'}}>
+                                <div className="banner-container" style={{position: 'absolute', top: -150, left: 0, width: '100%', height: '100%', zIndex: 2, display: 'flex', alignItems: 'center'}}>
                                     <div className="container">
                                         <div className="row align-items-center">
                                             <div className="col-12 col-xl-6 d-none d-xxl-block order-1">

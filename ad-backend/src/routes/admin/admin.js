@@ -14,6 +14,7 @@ const bannerRoutes = require('./banner');
 const dealsRoutes = require('./deals');
 const reportRoutes = require('./report');
 const settingsRoutes = require('./settings');
+const footerController = require("../../controllers/admin/footerController");
 
 const {
   login,

@@ -5882,8 +5882,11 @@ input.main-search-input::placeholder {
   background-size: cover;
 }
 .breadcumb-wrapper .breadcumb-content {
-  padding: 250px 0;
+  padding: 100px 0;
   text-align: center;
+}
+.breadcumb-wrapper .breadcumb-content.breadcumb-about {
+  padding: 250px 0;
 }
 .breadcumb-wrapper .breadcumb-content .breadcumb-title {
   color: var(--white);

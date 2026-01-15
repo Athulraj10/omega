@@ -19,6 +19,7 @@ const HeroSlider = require("./heroSlider");
 const ProductSettings = require("./productSettings");
 const TaxSettings = require("./taxSettings");
 const ShippingSettings = require("./shippingSettings");
+const Footer = require("./footer");
 
 module.exports = {
   User,
@@ -27,5 +28,6 @@ module.exports = {
   ProductSettings,
   TaxSettings,
   ShippingSettings,
+  Footer,
   UserLoginHistory, Address, Cart, Category, Currency, Notification, Order, Otp, Product, Review, UserTransaction, UserWallet, Wishlist
 };

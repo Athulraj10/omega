@@ -34,9 +34,9 @@ const CtaBanner1 = () => {
                                         className="img-fluid rounded" 
                                         src="/assets/img/cta/processing no bg (1).webp" 
                                         alt="Precision in Processing" 
-                                        width={600} 
-                                        height={400}
-                                        style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                                        width={500} 
+                                        height={300}
+                                        style={{ objectFit:  'cover', width: '100%', height: '350px' }}
                                     />
                                 </div>
                                 <h4 style={{ color: '#1a365d', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
@@ -56,9 +56,9 @@ const CtaBanner1 = () => {
                                         className="img-fluid rounded" 
                                         src="/assets/img/cta/packed fish in chiller.webp" 
                                         alt="Secure Packaging" 
-                                        width={600} 
-                                        height={400}
-                                        style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                                        width={500} 
+                                        height={300}
+                                        style={{ objectFit: 'cover', width: '100%', height: '350px' }}
                                     />
                                 </div>
                                 <h4 style={{ color: '#1a365d', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>

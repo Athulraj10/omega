@@ -54,7 +54,7 @@ const Team1 = () => {
       ]; 
 
     return (
-<section className="chefe-section fix p-3 border border-blue-300">
+<section className="chefe-section fix p-5 border border-blue-300">
         <div className="chefe-wrapper style1">
             <div className="shape1 d-none d-xxl-block"><Image className="float-bob-y" src="/assets/img/shape/chefeShape1_1.png" alt="img" width={167} height={132}   /></div>
             <div className="shape2 d-none d-xxl-block"><Image className="float-bob-x" src="/assets/img/shape/chefeShape1_2.png" alt="img" width={142} height={90}   /></div>
