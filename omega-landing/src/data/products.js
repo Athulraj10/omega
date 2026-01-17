@@ -229,7 +229,7 @@ export const productsByCategory = {
   "Frozen fish": [
     {
       id: "frozen-1",
-      img: "/assets/img/menu/Frozen/frozen12.png",
+      img: "/assets/img/menu/Frozen/frozen1.png",
       title: "Frozen Shrimps 30-40",
       content: "Origin : oman",
       price: "$24.00",
@@ -243,7 +243,7 @@ export const productsByCategory = {
     },
     {
       id: "frozen-2",
-      img: "/assets/img/menu/Frozen/frozen12.png",
+      img: "/assets/img/menu/Frozen/frozen2.png",
       title: "Frozen Black Pomfret",
       content: "Origin: UAE",
       price: "$28.00",
@@ -257,7 +257,7 @@ export const productsByCategory = {
     },
     {
       id: "frozen-3",
-      img: "/assets/img/menu/Frozen/frozen12.png",
+      img: "/assets/img/menu/Frozen/frozen3.png",
       title: "Frozen Salmon 2-3",
       content: "Origin: Norway",
       price: "$32.00",
@@ -271,7 +271,7 @@ export const productsByCategory = {
     },
     {
       id: "frozen-4",
-      img: "/assets/img/menu/Frozen/frozen12.png",
+      img: "/assets/img/menu/Frozen/frozen4.png",
       title: "Frozen Shark",
       content: "Origin: UAE",
       price: "$35.00",
@@ -281,7 +281,7 @@ export const productsByCategory = {
     },
     {
       id: "frozen-5",
-      img: "/assets/img/menu/Frozen/frozen12.png",
+      img: "/assets/img/menu/Frozen/frozen5.png",
       title: "Frozen Mussels",
       content: "Origin: Oman",
       price: "$20.00",
@@ -291,7 +291,7 @@ export const productsByCategory = {
     },
     {
       id: "frozen-6",
-      img: "/assets/img/menu/Frozen/frozen12.png",
+      img: "/assets/img/menu/Frozen/frozen6.png",
       title: "Frozen Squid",
       content: "Origin: UAE",
       price: "$26.00",
@@ -301,7 +301,7 @@ export const productsByCategory = {
     },
     {
       id: "frozen-7",
-      img: "/assets/img/menu/Frozen/frozen12.png",
+      img: "/assets/img/menu/Frozen/frozen7.png",
       title: "Frozen Crab Meat Sticks",
       content: "Origin: UAE",
       price: "$30.00",
@@ -315,7 +315,7 @@ export const productsByCategory = {
     },
     {
       id: "frozen-8",
-      img: "/assets/img/menu/Frozen/frozen12.png",
+      img: "/assets/img/menu/Frozen/frozen8.png",
       title: "Frozen Seabream",
       content: "Origin: Europe",
       price: "$40.00",
@@ -329,7 +329,7 @@ export const productsByCategory = {
     },
     {
       id: "frozen-9",
-      img: "/assets/img/menu/Frozen/frozen12.png",
+      img: "/assets/img/menu/Frozen/frozen9.png",
       title: "Frozen Lobester",
       content: "Origin: UAE",
       price: "$58.00",
@@ -343,7 +343,7 @@ export const productsByCategory = {
     },
     {
       id: "frozen-10",
-      img: "/assets/img/menu/Frozen/frozen12.png",
+      img: "/assets/img/menu/Frozen/frozen10.png",
       title: "Frozen king fish",
       content: "Origin: UAE",
       price: "$45.00",
