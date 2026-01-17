@@ -28,17 +28,24 @@ const Offer1 = () => {
         <>
             <style dangerouslySetInnerHTML={{__html: `
                 .offer-section .offer-card {
-                    max-width: 10%;
+                    max-width: 100%;
                     margin: 0 auto;
                     padding: 20px;
                 }
                 .offer-section .row {
                     gap: 1rem;
+                    display: flex;
+                    flex-wrap: wrap;
                 }
                 @media (min-width: 768px) {
+                    .offer-section .row {
+                        flex-wrap: nowrap;
+                    }
                     .offer-section .col-md-6 {
                         padding-left: .5rem;
                         padding-right: .5rem;
+                        flex: 0 0 50%;
+                        max-width: 50%;
                     }
                 }
             `}} />
@@ -47,8 +54,8 @@ const Offer1 = () => {
             <div className="container">
                 <div className="row" style={{ gap: 'calc(2rem + 20px)' }}>
                 {offerItems.map((item, i) => (
-                    <div key={i} className="col-12 col-md-6" style={{ padding: '1rem' }}>
-                        <div className="offer-card style1-line wow fadeInUp" style={{backgroundImage: `url(${item.img})`, maxWidth: '70%', margin: '0 auto', padding: '20px'}} data-wow-delay="0.2s">  
+                    <div key={i} className="col-12 col-md-6 col-lg-6" style={{ padding: '1rem', flex: '0 0 auto', minWidth: 0 }}>
+                        <div className="offer-card style1-line wow fadeInUp" style={{backgroundImage: `url(${item.img})`, maxWidth: '100%', margin: '0 auto', padding: '20px', width: '100%'}} data-wow-delay="0.2s">  
                             <div className="offer-content-line">
                                 <div className="offer-title-wrapper-line">
                                     <i className={`bi ${item.icon} offer-icon-line`}></i>

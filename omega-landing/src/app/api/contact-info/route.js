@@ -22,7 +22,7 @@ export async function GET(request) {
         },
         phone: {
           title: "Call Us",
-          value: "+971 56 888 8888",
+          value: "+971 55 545 1188",
           icon: "/assets/img/icon/phone.png",
           description: "24/7/365 priority Live Chat and ticketing support for all your seafood needs."
         },
@@ -61,7 +61,7 @@ export async function GET(request) {
         },
         phone: {
           title: "اتصل بنا",
-          value: "+971 56 888 8888",
+          value: "+971 55 545 1188",
           icon: "/assets/img/icon/phone.png",
           description: "دعم مباشر على مدار الساعة لجميع احتياجاتك من المأكولات البحرية."
         },

@@ -159,7 +159,7 @@ Please respond to the customer at: ${email}
             </div>
             <div class="footer">
               <p>Omega Seafoods - Premium Seafood Delivered Fresh</p>
-              <p>Abu Dhabi, UAE | info@omegafoods.com | +971 56 888 8888</p>
+              <p>Abu Dhabi, UAE | info@omegafoods.com | +971 55 545 1188</p>
             </div>
           </div>
         </body>

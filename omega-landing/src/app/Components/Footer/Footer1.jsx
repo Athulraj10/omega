@@ -80,7 +80,7 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
             phone: {
                 icon: "bi bi-telephone-fill",
                 title: "call",
-                value: "+971 56 888 8888"
+                value: "+971 55 545 1188"
             }
         },
         quickLinks: {

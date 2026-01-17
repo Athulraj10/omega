@@ -37,12 +37,18 @@ const HeroBanner1 = () => {
       };  
 
     const headings = [
-        'Four decades of trusted quality and service',
-        'Freshness you can see. <br> Quality you can taste.',
-        'Only the best makes it to you. <br>',
+        'Four decades of <strong>(trusted)</strong> <br> quality and service',
+        '(Freshness) you can see. <br> Quality you can (taste).',
+        'Only the (best) makes it to you. <br>',
     ];
 
-    const [displayedText, setDisplayedText] = useState(headings[0]);
+    // Function to process text and style bracketed content
+    const processHeading = (text) => {
+        // Replace text in brackets with styled spans
+        return text.replace(/\(([^)]+)\)/g, '<span style="color: #0D5189;">$1</span>');
+    };
+
+    const [displayedText, setDisplayedText] = useState(processHeading(headings[0]));
     const [currentHeadingIndex, setCurrentHeadingIndex] = useState(0);
     const [isSliding, setIsSliding] = useState(false);
 
@@ -55,7 +61,7 @@ const HeroBanner1 = () => {
             setTimeout(() => {
                 const nextIndex = (currentHeadingIndex + 1) % headings.length;
                 setCurrentHeadingIndex(nextIndex);
-                setDisplayedText(headings[nextIndex]);
+                setDisplayedText(processHeading(headings[nextIndex]));
             }, 600); // Half of animation duration
             
             // Reset animation state after animation completes
@@ -75,69 +81,61 @@ const HeroBanner1 = () => {
 
     return (
         <>
-            <div className="slider-area">
+            <div className="slider-area border-bottom">
                 <div className="swiper banner-slider">
                     <div className="swiper-wrapper">
 
+                   
                     {heroContent.map((item, i) => (
                         <div key={i} className="swiper-slide">
                             <div className="style1 position-relative" style={{ minHeight: '600px', overflow: 'visible !important' }}>
-                                {/* <video 
-                                    className="w-100 h-100" 
-                                    style={{
-                                        objectFit: 'cover',
-                                        position: 'absolute',
-                                        top: 0,
-                                        left: 0,
-                                        width: '100%',
-                                        height: '100%',
-                                        zIndex: 0
-                                    }}
-                                    autoPlay 
-                                    loop 
-                                    muted 
-                                    playsInline
-                                >
-                                    <source src="/assets/img/banner/banner.mp4" type="video/mp4" />
-                                </video> */}
-                                <Image 
-                                    src="/assets/img/banner/banner1.webp" 
-                                    alt="banner" 
-                                    width={1920} 
-                                    height={1000}
-                                    style={{
-                                        position: 'absolute',
-                                        top: 0,
-                                        left: 0,
-                                        width: '100%',
-                                        height: '100%',
-                                        objectFit: 'cover',
-                                        zIndex: 0
-                                    }}
-                                />
-                                <div className="overlay" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}></div>
-                                <div className="banner-container" style={{position: 'absolute', top: -100, left: 0, width: '100%', height: '100%', zIndex: 2, display: 'flex', alignItems: 'center'}}>
+                                <div className="banner-background" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: '#ffffff', zIndex: 0 }}></div>
+                                <div className="banner-container" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, display: 'flex', alignItems: 'center'}}>
                                     <div className="container">
                                         <div className="row align-items-center">
-                                            <div className="col-12 col-xl-6 d-none d-xxl-block order-1">
-                                                <div className="banner-thumb-area" data-tilt data-animation="slideInLeft"
-                                                    data-duration="2s" data-delay=".9s">
-                                                </div>
-                                            </div>
-                                            <div className="col-12 col-lg-10 col-xl-8 col-xxl-6 order-2 mx-auto">
-                                                <div className="banner-title-area text-center text-xxl-end">
-                                                    <div className="banner-style1">
-                                    <h6 className="" data-animation="" data-duration="2s" data-delay=".3s" style={{ fontSize: '14px', lineHeight: '1.5', marginBottom: '10px', color: 'white' }}> {item.subtitle} </h6>
-                                                        <div className="section-title" style={{ position: 'relative', height: '120px' }}>
-                                                            <div className="title" data-animation="slideInLeft"
-                                                                data-duration="2s" data-delay=".5s"
-                                                                style={{ fontSize: '36px', lineHeight: '1.3', marginBottom: '20px', position: 'absolute', top: 0, left: 0, width: '100%', color: 'white' }}
+                                            {/* Left side - Animated text */}
+                                            <div className="col-12 col-lg-6 order-1">
+                                                <div className="banner-title-area-left" style={{ padding: '40px 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                                    <div className="banner-style1" style={{ textAlign: 'left', width: '100%' }}>
+                                                        <div className="welcome-text" style={{ marginBottom: '70px', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+                                                            <h1 style={{ fontSize: '70px', color: '#0D5189', fontWeight: '700', fontFamily: 'inherit', textTransform: 'uppercase', letterSpacing: '2px', lineHeight: '1.1', margin: 0 }}>
+                                                                Welcome
+                                                            </h1>
+                                                            <div style={{ display: 'flex', flexDirection: 'column', fontSize: '27px', color: '#0D5189', fontWeight: '600', fontFamily: 'inherit', textTransform: 'uppercase', letterSpacing: '6.5px', lineHeight: '1.8' }}>
+                                                                <span style={{ color: '#0D5189' }}>to Omega SeaFoods</span>
+                                                                {/* <span style={{ color: '#0D5189' }}>SeaFoods</span> */}
+                                                            </div>
+                                                        </div>
+                                                        <div className="section-title" style={{ position: 'relative', height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+                                                            <div className="title"
+                                                                style={{ fontSize: '36px', lineHeight: '1.3', marginBottom: '20px', color: '#0D5189', fontWeight: '600', fontFamily: 'inherit' }}
                                                                >
-                                                                <div className="heading-container" style={{ height: '100px', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
-                                                                    <span className={`heading-wrapper ${isSliding ? 'heading-slide-in' : ''}`} style={{ width: '100%', color: 'white' }} dangerouslySetInnerHTML={{ __html: displayedText }}></span>
+                                                                <div className="heading-container" style={{ height: '100px', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', justifyContent: 'flex-start' }}>
+                                                                    <span className={`heading-wrapper ${isSliding ? 'heading-slide-in' : ''}`} style={{ width: '100%', color: '#000000', textAlign: 'left', fontFamily: 'inherit' }} dangerouslySetInnerHTML={{ __html: displayedText }}></span>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/* Right side - Banner Image */}
+                                            <div className="col-12 col-lg-6 order-2">
+                                                <div className="banner-image-area" style={{ padding: '40px 0', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                    <div style={{ position: 'relative', width: '100%', maxWidth: '600px' ,padding: '40px'}}>
+                                                        <Image
+                                                            src="/assets/img/banner/banner2.webp"
+                                                            alt="Tasty and Fresh Seafood"
+                                                            width={600}
+                                                            height={400}
+                                                            style={{
+                                                                width: '100%',
+                                                                height: 'auto',
+                                                                objectFit: 'contain',
+                                                                display: 'block',
+                                                                
+                                                            }}
+                                                            priority
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>

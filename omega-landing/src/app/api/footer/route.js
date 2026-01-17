@@ -31,7 +31,7 @@ const getDefaultFooterData = () => ({
         phone: {
           icon: "bi bi-telephone-fill",
           title: "call",
-          value: "+971 56 888 8888"
+          value: "+971 55 545 1188"
         }
       },
       quickLinks: {
@@ -79,7 +79,7 @@ const getDefaultFooterData = () => ({
         phone: {
           icon: "bi bi-telephone-fill",
           title: "اتصل",
-          value: "+971 56 888 8888"
+          value: "+971 55 545 1188"
         }
       },
       quickLinks: {

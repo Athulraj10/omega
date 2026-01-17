@@ -15,7 +15,7 @@ const FoodItemCard = ({ img, title, content, price, productId }) => {
               alt={title}
               width={170}
               height={110}
-              className="cursor-pointer rounded"
+              className=""
             />
           </Link>
         </div>

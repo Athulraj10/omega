@@ -11,10 +11,10 @@ export default function Header1({ variant }) {
   return (
     <div>
      <header
-  className={`cs_site_header header_style_2 cs_style_1 cs_site_header_full_width text-white ${
+  className={`cs_site_header header_style_2 cs_style_1 cs_site_header_full_width ${
     variant ? variant : ''
   } ${mobileToggle ? 'cs_mobile_toggle_active' : ''}`}
-  style={{ backgroundColor: '#0D5189', color: '#fff' }}
+  style={{ backgroundColor: '#fff', color: '#0D5189' }}
 >
 
 
@@ -53,7 +53,7 @@ export default function Header1({ variant }) {
         </div> */}
 
         {/* Main Header */}
-        <div className="cs_main_header" style={{ backgroundColor: '#0D5189a7' ,color:'#fff'}}>
+        <div className="cs_main_header border " style={{ backgroundColor: '#fff', color: '#0D5189' }}>
           <div className="container">
             <div className="cs_main_header_in">
 
@@ -61,7 +61,7 @@ export default function Header1({ variant }) {
               <div className="cs_main_header_left">
                 <Link className="cs_site_branding" href="/">
                   <Image
-                    src="/assets/img/logo/logoWhite.png"
+                    src="/assets/img/logo/logo.png"
                     alt="Omega Foods"
                     width={167}
                     height={58}
@@ -75,7 +75,7 @@ export default function Header1({ variant }) {
                   <span
                     className={`cs-munu_toggle ${mobileToggle ? 'cs_teggle_active' : ''}`}
                     onClick={() => setMobileToggle(!mobileToggle)}
-                    style={{ color: '#fff' }}
+                    style={{ color: '#0D5189' }}
                   >
                     <span></span>
                   </span>
@@ -85,11 +85,11 @@ export default function Header1({ variant }) {
 
               {/* Contact */}
               <div className="cs_main_header_right">
-                <div className="header-contact-info text-white d-flex align-items-center">
+                <div className="header-contact-info d-flex align-items-center" style={{ color: '#0D5189' }}>
                   <i className="bi bi-telephone-fill me-2"></i>
                   <div>
                     <span className="d-block fs-12">Call Us</span>
-                    <strong>+971 56 888 8888</strong>
+                    <strong>+971 55 545 1188</strong>
                   </div>
                 </div>
               </div>

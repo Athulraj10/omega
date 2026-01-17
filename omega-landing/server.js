@@ -125,7 +125,7 @@ const getDefaultFooterData = () => ({
         phone: {
           icon: "bi bi-telephone-fill",
           title: "call",
-          value: "+971 56 888 8888"
+          value: "+971 55 545 1188"
         }
       },
       quickLinks: {
@@ -174,7 +174,7 @@ const getDefaultFooterData = () => ({
         phone: {
           icon: "bi bi-telephone-fill",
           title: "اتصل",
-          value: "+971 56 888 8888"
+          value: "+971 55 545 1188"
         }
       },
       quickLinks: {
@@ -268,7 +268,7 @@ app.get('/api/contact-info', (req, res) => {
         },
         phone: {
           title: "Call Us",
-          value: "+971 56 888 8888",
+          value: "+971 55 545 1188",
           icon: "/assets/img/icon/phone.png",
           description: "24/7/365 priority Live Chat and ticketing support for all your seafood needs."
         },
@@ -307,7 +307,7 @@ app.get('/api/contact-info', (req, res) => {
         },
         phone: {
           title: "اتصل بنا",
-          value: "+971 56 888 8888",
+          value: "+971 55 545 1188",
           icon: "/assets/img/icon/phone.png",
           description: "دعم مباشر على مدار الساعة لجميع احتياجاتك من المأكولات البحرية."
         },

@@ -59,7 +59,7 @@ const Contact3 = ({ locale = 'en' }) => {
         },
         phone: {
             title: "Call Us",
-            value: "+971 56 888 8888",
+            value: "+971 55 545 1188",
             icon: "/assets/img/icon/phone.png",
             description: "24/7/365 priority Live Chat and ticketing support for all your seafood needs."
         },
@@ -169,12 +169,12 @@ const Contact3 = ({ locale = 'en' }) => {
 
     return (
         <div>
-            <div className="contact-us-section section-padding fix">
+            <div className="contact-us-section section-padding fix ">
                 <div className="contact-box-wrapper style1">
                     <div className="container">
-                        <div className="row gy-4">
+                        <div className="row gy-4 ">
                             <div className="col-md-6 col-xl-3">
-                                <div className="contact-box style1">
+                                <div className="contact-box style1 h-100">
                                     <div className="contact-icon">
                                         <Image src={data.address.icon} alt="img" width={70} height={70} />
                                     </div>
@@ -184,7 +184,7 @@ const Contact3 = ({ locale = 'en' }) => {
                                 </div>
                             </div>
                             <div className="col-md-6 col-xl-3">
-                                <div className="contact-box style1">
+                                <div className="contact-box style1 h-100">
                                     <div className="contact-icon">
                                         <Image src={data.email.icon} alt="img" width={70} height={70} />
                                     </div>
@@ -193,7 +193,7 @@ const Contact3 = ({ locale = 'en' }) => {
                                 </div>
                             </div>
                             <div className="col-md-6 col-xl-3">
-                                <div className="contact-box style1">
+                                <div className="contact-box style1 h-100">
                                     <div className="contact-icon">
                                         <Image src={data.phone.icon} alt="img" width={70} height={70} />
                                     </div>
@@ -202,7 +202,7 @@ const Contact3 = ({ locale = 'en' }) => {
                                 </div>
                             </div>
                             <div className="col-md-6 col-xl-3">
-                                <div className="contact-box style1">
+                                <div className="contact-box style1 h-100">
                                     <div className="contact-icon">
                                         <Image src={data.hours.icon} alt="img" width={70} height={70} />
                                     </div>

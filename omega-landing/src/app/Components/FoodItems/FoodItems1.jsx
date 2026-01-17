@@ -28,72 +28,131 @@ const FoodItems1 = () => {
             settings: {
               slidesToShow: 2,
             }
-          },{
+          },
+          {
+            breakpoint: 767,
+            settings: {
+              slidesToShow: 2,
+            }
+          },
+          {
             breakpoint: 575,
             settings: {
               slidesToShow: 1,
             }
           }
         ]
-      }; 
+      };
 
     return (
         <>
             <style dangerouslySetInnerHTML={{__html: `
+                .best-food-items-section {
+                    background-color: #fff;
+                    padding: 60px 0;
+                }
                 .best-food-items-section .title-area .title {
                     color: #0D5189 !important;
+                    margin-bottom: 40px;
+                }
+                .best-food-items-section .food-items-grid {
+                    display: block;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+                .best-food-items-section .food-items-grid .slick-slide {
+                    padding: 0 15px;
+                }
+                .best-food-items-section .food-items-grid .slick-list {
+                    margin: 0 -15px;
+                }
+                .best-food-items-section .single-food-items {
+                    background-color: #fff;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+                    transition: box-shadow 0.3s ease, transform 0.3s ease;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                }
+                .best-food-items-section .single-food-items:hover {
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+                    transform: translateY(-4px);
+                }
+                .best-food-items-section .item-thumb {
+                    width: 100%;
+                    aspect-ratio: 1;
+                    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                }
+                .best-food-items-section .item-thumb .food-item-img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+                .best-food-items-section .item-thumb .circle-shape {
+                    display: none;
+                }
+                .best-food-items-section .item-content {
+               
+                    text-align: center;
+                    background-color: #fff;
                 }
                 .best-food-items-section .single-food-items .item-content h3 {
                     color: #0D5189 !important;
+                    font-size: 18px;
+                    font-weight: 700;
+                    margin-bottom: 8px;
+                    line-height: 1.3;
                 }
                 .best-food-items-section .single-food-items .item-content .text {
                     color: #0D5189 !important;
+                    font-size: 15px;
+                    font-weight: 400;
+                    margin-bottom: 0;
+                    line-height: 1.4;
                 }
                 .best-food-items-section .single-food-items .item-content h6 {
-                    color: #0D5189 !important;
+                    display: none;
                 }
             `}} />
-        <section className="best-food-items-section fix p-5" style={{ backgroundColor: '#fff' }}>
+        <section className="best-food-items-section">
         <div className="best-food-wrapper">
-            {/* <div className="shape1 float-bob-y d-none d-xxl-block"><img src="/assets/img/shape/bestFoodItemsShape1_1.png"
-                    alt="shape"  height={200} width={200}  /></div>
-            <div className="shape2  float-bob-x d-none d-xxl-block"><img height={200} width={200}  src="/assets/img/shape/bestFoodItemsShape1_2.png"
-                    alt="shape" /></div> */}
             <div className="container">
                 <div className="title-area">
                     <h2 className="title wow fadeInUp text-center" data-wow-delay="0.7s" style={{ color: '#0D5189' }}>
                         Popular Fresh Fish
                     </h2>
                 </div>
-                <div className="slider-area mb-n40">
-                    <div className="swiper bestFoodItems-slider">
-                        <div className="swiper-wrapper cs_slider_gap_301 food-slider-item">
+                <div className="food-items-container">
+                    <div className="food-items-grid">
                         <Slider {...settings}>
-                        {foodItems1Products.map((item) => (
-                            <div key={item.id} className="swiper-slide shadow rounded-3 mb-5 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl cursor-pointer">
-                                <div className="single-food-items transition-all duration-300" style={{ backgroundColor: '#fff' }}>
-                                    <div className="item-thumb overflow-hidden">
-                                        <Image src={item.img} width={158} height={158} alt="thumb" className="food-item-img transition-transform duration-300 hover:scale-110" />
-                                        <div className="circle-shape">
-                                            <Image className="cir36" src="/assets/img/food-items/circleShape.png" width={174} height={174} alt="shape" />
-                                        </div>
+                            {foodItems1Products.map((item) => (
+                                <div key={item.id} className="single-food-items">
+                                    <div className="item-thumb">
+                                        <Image 
+                                            src={item.img} 
+                                            width={500} 
+                                            height={500} 
+                                            alt={item.title} 
+                                            className="food-item-img"
+                                            style={{ width: '100%', height: '100%', objectFit: 'contain',borderRadius: '0%' }}
+                                        />
                                     </div>
                                     <div className="item-content">
-                                        <Link href="/menu">
-                                            <h3 className="transition-colors duration-300 hover:text-orange-500" style={{ color: '#0D5189' }}>{item.title}</h3>
+                                        <Link href="/menu" style={{ textDecoration: 'none' }}>
+                                            <h3>{item.title}</h3>
                                         </Link>
-                                        <div className="text" style={{ color: '#0D5189' }}>{item.content}</div>
-                                        <h6 className="transition-colors duration-300 hover:text-orange-600" style={{ color: '#0D5189' }}>{item.price}</h6>
+                                        <div className="text">{item.content}</div>
                                     </div>
                                 </div>
-                            </div>
                             ))}
-                            </Slider>
-                           
-                        </div>
+                        </Slider>
                     </div>
-
-                    <div className="bestFoodItems-pagination"></div>
                 </div>
             </div>
         </div>

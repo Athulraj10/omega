@@ -16,7 +16,7 @@ const footerSchema = new mongoose.Schema(
     phone: {
       type: String,
       maxLength: 50,
-      default: "+971 56 888 8888",
+      default: "+971 55 545 1188",
     },
     // Quick Links
     quickLinks: [

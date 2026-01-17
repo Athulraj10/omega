@@ -2,19 +2,19 @@ import Link from 'next/link';
 
 export default function Nav({ setMobileToggle }) {
   return (
-    <ul className="cs_nav_list fw-medium flex gap-6">
+    <ul className="cs_nav_list fw-medium flex gap-6" style={{ color: '#0D5189' }}>
       <li >
-        <Link href="/" className="text-white">Home</Link>
+        <Link href="/" style={{ color: '#0D5189' }}>Home</Link>
       </li>
 
       <li >
-        <Link href="/shop" onClick={() => setMobileToggle(false)} className="text-white">
+        <Link href="/shop" onClick={() => setMobileToggle(false)} style={{ color: '#0D5189' }}>
         Products
         </Link>
       </li>
 
       <li >
-        <Link href="/about" className="text-white">About Us</Link>
+        <Link href="/about" style={{ color: '#0D5189' }}>About Us</Link>
         {/* <DropDown>
           <ul>
           <li>
@@ -79,7 +79,7 @@ export default function Nav({ setMobileToggle }) {
 
 
       <li >
-        <Link href="/blog" onClick={() => setMobileToggle(false)} className="text-white">
+        <Link href="/blog" onClick={() => setMobileToggle(false)} style={{ color: '#0D5189' }}>
           Blog
         </Link></li>
 
@@ -87,7 +87,7 @@ export default function Nav({ setMobileToggle }) {
   
      
       <li >
-        <Link href="/contact" onClick={() => setMobileToggle(false)} className="text-white">
+        <Link href="/contact" onClick={() => setMobileToggle(false)} style={{ color: '#0D5189' }}>
         Contact
         </Link>
       </li>
