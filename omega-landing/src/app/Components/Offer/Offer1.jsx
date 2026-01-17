@@ -49,7 +49,7 @@ const Offer1 = () => {
                     }
                 }
             `}} />
-        <div className="offer-section fix bg-color2">
+        <div className="offer-section fix bg-color2  px-5">
         <div className="offer-wrapper">
             <div className="container">
                 <div className="row" style={{ gap: 'calc(2rem + 20px)' }}>

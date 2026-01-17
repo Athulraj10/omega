@@ -81,7 +81,7 @@ const HeroBanner1 = () => {
 
     return (
         <>
-            <div className="slider-area border-bottom">
+            <div className="slider-area border-bottom px-5">
                 <div className="swiper banner-slider">
                     <div className="swiper-wrapper">
 
