@@ -1,10 +1,14 @@
 "use client"
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Slider from "react-slick";
 import VideoModal from "../VideoModal/VideoModal";
 import Image from "next/image";
 
 const Testimonial1 = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const [scrollDirection, setScrollDirection] = useState('down');
+    const testimonialRef = useRef(null);
+    const lastScrollY = useRef(0);
 
     const settings = {
         dots: false,
@@ -59,6 +63,53 @@ const Testimonial1 = () => {
           setToggle(!toggle);
         };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > lastScrollY.current) {
+                setScrollDirection('down');
+            } else if (currentScrollY < lastScrollY.current) {
+                setScrollDirection('up');
+            }
+            
+            lastScrollY.current = currentScrollY;
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            setIsVisible(true);
+                        }, 10);
+                    } else {
+                        setIsVisible(false);
+                    }
+                });
+            },
+            {
+                threshold: 0.2,
+                rootMargin: '0px 0px -100px 0px'
+            }
+        );
+
+        const currentRef = testimonialRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+            observer.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     const tesItems = [
         {img:'/assets/img/testimonial/testimonialProfile1_1.png', title:'Al Mansoor', designation:'', content:'we are very happy with the quality of the products and the service we received from Omega Foods'},
         {img:'/assets/img/testimonial/testimonialProfile1_1.png', title:'Shahid Jafrial', designation:'', content:'Fresh and healthy products, delivered on time'},
@@ -78,10 +129,28 @@ const Testimonial1 = () => {
             .testimonial-image-wrapper picture img {
                 border-radius: 20px !important;
             }
+            .testimonial-section .testimonial-left {
+                opacity: 0;
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                transform: translateX(-50px);
+            }
+            .testimonial-section .testimonial-left.animate-from-left {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            .testimonial-section .testimonial-right {
+                opacity: 0;
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                transform: translateX(50px);
+            }
+            .testimonial-section .testimonial-right.animate-from-right {
+                opacity: 1;
+                transform: translateX(0);
+            }
         `}} />
     <section className="testimonial-section fix bg-color3">
-        <div className="testimonial-wrapper style1 section-padding" style={{ position: 'relative', minHeight: '100vh' }}>
-            <div className="shape" style={{ position: 'absolute', top: -50, left: 0, width: '50%', height: '100%', zIndex: 0, display: 'flex', alignItems: 'center' }}>
+        <div ref={testimonialRef} className="testimonial-wrapper style1 section-padding" style={{ position: 'relative', minHeight: '100vh' }}>
+            <div className={`shape testimonial-left ${isVisible ? 'animate-from-left' : ''}`} style={{ position: 'absolute', top: -50, left: 0, width: '50%', height: '100%', zIndex: 0, display: 'flex', alignItems: 'center' }}>
                 <div className="testimonial-image-wrapper" style={{ width: '100%', height: '100%', position: 'relative' }}>
                     <Image 
                         src="/assets/img/testimonial/testimonialThumb1_1.png" 
@@ -100,7 +169,7 @@ const Testimonial1 = () => {
                     <div className="col-xl-5 d-flex align-items-center justify-content-center">
                         {/* Image is displayed via background shape div */}
                     </div>
-                    <div className="col-xl-7" style={{ position: 'relative', zIndex: 1 }}>
+                    <div className={`col-xl-7 testimonial-right ${isVisible ? 'animate-from-right' : ''}`} style={{ position: 'relative', zIndex: 1 }}>
                         <div className="title-area">
                             <div className="sub-title text-center wow fadeInUp " style={{ color: '#0D5189' }} data-wow-delay="0.5s">
                                 Omega Foods 

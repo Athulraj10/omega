@@ -1,11 +1,62 @@
 "use client"
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import loadBackgroudImages from "../Common/loadBackgroudImages";
 const Offer1 = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const [scrollDirection, setScrollDirection] = useState('down');
+    const offerRef = useRef(null);
+    const lastScrollY = useRef(0);
 
     useEffect(() => {
         loadBackgroudImages();
-      }, []);
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > lastScrollY.current) {
+                setScrollDirection('down');
+            } else if (currentScrollY < lastScrollY.current) {
+                setScrollDirection('up');
+            }
+            
+            lastScrollY.current = currentScrollY;
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            setIsVisible(true);
+                        }, 10);
+                    } else {
+                        setIsVisible(false);
+                    }
+                });
+            },
+            {
+                threshold: 0.2,
+                rootMargin: '0px 0px -100px 0px'
+            }
+        );
+
+        const currentRef = offerRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+            observer.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
       const offerItems = [
         {
@@ -48,14 +99,46 @@ const Offer1 = () => {
                         max-width: 50%;
                     }
                 }
+                .offer-section .offer-card {
+                    opacity: 0;
+                    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                }
+                .offer-section .offer-card.slide-from-left {
+                    transform: translateX(-50px);
+                }
+                .offer-section .offer-card.slide-from-left.animate-from-left {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                .offer-section .offer-card.slide-from-right {
+                    transform: translateX(50px);
+                }
+                .offer-section .offer-card.slide-from-right.animate-from-right {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
             `}} />
         <div className="offer-section fix bg-color2  px-5">
         <div className="offer-wrapper">
             <div className="container">
-                <div className="row" style={{ gap: 'calc(2rem + 20px)' }}>
-                {offerItems.map((item, i) => (
+                <div ref={offerRef} className="row" style={{ gap: 'calc(2rem + 20px)' }}>
+                {offerItems.map((item, i) => {
+                    let positionClass = '';
+                    let animateClass = '';
+                    
+                    if (i === 0) {
+                        // Left image
+                        positionClass = 'slide-from-left';
+                        animateClass = isVisible ? 'animate-from-left' : '';
+                    } else if (i === 1) {
+                        // Right image
+                        positionClass = 'slide-from-right';
+                        animateClass = isVisible ? 'animate-from-right' : '';
+                    }
+                    
+                    return (
                     <div key={i} className="col-12 col-md-6 col-lg-6" style={{ padding: '1rem', flex: '0 0 auto', minWidth: 0 }}>
-                        <div className="offer-card style1-line wow fadeInUp" style={{backgroundImage: `url(${item.img})`, maxWidth: '100%', margin: '0 auto', padding: '20px', width: '100%'}} data-wow-delay="0.2s">  
+                        <div className={`offer-card style1-line wow fadeInUp ${positionClass} ${animateClass}`} style={{backgroundImage: `url(${item.img})`, maxWidth: '100%', margin: '0 auto', padding: '20px', width: '100%'}} data-wow-delay="0.2s">  
                             <div className="offer-content-line">
                                 <div className="offer-title-wrapper-line">
                                     <i className={`bi ${item.icon} offer-icon-line`}></i>
@@ -66,7 +149,8 @@ const Offer1 = () => {
                             </div>
                         </div>
                     </div>
-                    ))}
+                    );
+                })}
                 </div>
             </div>
         </div>

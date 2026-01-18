@@ -995,6 +995,83 @@ textarea.form-control:focus {
     top: 0px;
   }
 }
+
+/* Hero Banner Animations */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes headingSlideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes headingSlideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.welcome-slide-left {
+  animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.welcome-slide-right {
+  animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+.image-slide-up {
+  animation: slideInFromBottom 1s ease-out forwards;
+}
+
+.heading-slide-out {
+  animation: headingSlideOutLeft 0.6s ease-in forwards;
+}
+
+.heading-slide-in {
+  animation: headingSlideInLeft 0.6s ease-out forwards;
+}
+
 /* 08.Helping */
 ::-webkit-scrollbar {
   width: 8px;

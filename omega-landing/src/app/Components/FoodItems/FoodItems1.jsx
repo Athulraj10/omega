@@ -2,9 +2,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
+import { useState, useEffect, useRef } from "react";
 import { foodItems1Products } from "@/data/products";
 
 const FoodItems1 = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const foodItemsRef = useRef(null);
 
     const settings = {
         dots: false,
@@ -44,6 +47,37 @@ const FoodItems1 = () => {
         ]
       };
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true);
+                    } else {
+                        // Reset animation when element leaves viewport
+                        setIsVisible(false);
+                    }
+                });
+            },
+            {
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: '0px 0px -50px 0px' // Start animation slightly before element is fully visible
+            }
+        );
+
+        const currentRef = foodItemsRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+            observer.disconnect();
+        };
+    }, []);
+
     return (
         <>
             <style dangerouslySetInnerHTML={{__html: `
@@ -59,6 +93,13 @@ const FoodItems1 = () => {
                     display: block;
                     max-width: 1200px;
                     margin: 0 auto;
+                    opacity: 0;
+                    transform: translateY(50px);
+                    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                }
+                .best-food-items-section .food-items-grid.food-items-slide-up {
+                    opacity: 1;
+                    transform: translateY(0);
                 }
                 .best-food-items-section .food-items-grid .slick-slide {
                     padding: 0 15px;
@@ -129,7 +170,7 @@ const FoodItems1 = () => {
                     </h2>
                 </div>
                 <div className="food-items-container">
-                    <div className="food-items-grid">
+                    <div ref={foodItemsRef} className={`food-items-grid ${isVisible ? 'food-items-slide-up' : ''}`}>
                         <Slider {...settings}>
                             {foodItems1Products.map((item) => (
                                 <div key={item.id} className="single-food-items">

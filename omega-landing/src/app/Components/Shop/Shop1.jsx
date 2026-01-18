@@ -1,5 +1,5 @@
 "use client"
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import ShopCard from "../Card/ShopCard";
 import Image from "next/image";
@@ -12,6 +12,11 @@ const Shop1 = () => {
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(100);
     const [currentPage, setCurrentPage] = useState(1);
+    const [isVisible, setIsVisible] = useState(false);
+    const [scrollDirection, setScrollDirection] = useState('down');
+    const [animationKey, setAnimationKey] = useState(0);
+    const shopRef = useRef(null);
+    const lastScrollY = useRef(0);
     const productsPerPage = 12;
 
     const allProducts = getAllProducts();
@@ -85,6 +90,12 @@ const Shop1 = () => {
     const handleCategoryClick = (categoryId) => {
         setSelectedCategory(selectedCategory === categoryId ? "" : categoryId);
         setCurrentPage(1);
+        // Trigger animation reset when category changes
+        setIsVisible(false);
+        setAnimationKey(prev => prev + 1);
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 100);
     };
 
     const handlePriceFilter = (e) => {
