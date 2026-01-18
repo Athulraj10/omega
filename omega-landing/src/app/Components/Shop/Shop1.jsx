@@ -85,6 +85,12 @@ const Shop1 = () => {
     const handleSearch = (e) => {
         e.preventDefault();
         setCurrentPage(1); // Reset to first page on new search
+        // Trigger animation reset
+        setIsVisible(false);
+        setAnimationKey(prev => prev + 1);
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 100);
     };
 
     const handleCategoryClick = (categoryId) => {
@@ -101,19 +107,199 @@ const Shop1 = () => {
     const handlePriceFilter = (e) => {
         e.preventDefault();
         setCurrentPage(1);
+        // Trigger animation reset
+        setIsVisible(false);
+        setAnimationKey(prev => prev + 1);
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 100);
     };
 
     const handleSortChange = (e) => {
         setSortBy(e.target.value);
         setCurrentPage(1);
+        // Trigger animation reset
+        setIsVisible(false);
+        setAnimationKey(prev => prev + 1);
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 100);
     };
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
+        // Reset animations when page changes
+        setIsVisible(false);
+        setAnimationKey(prev => prev + 1);
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 100);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > lastScrollY.current) {
+                setScrollDirection('down');
+            } else if (currentScrollY < lastScrollY.current) {
+                setScrollDirection('up');
+            }
+            
+            lastScrollY.current = currentScrollY;
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            setIsVisible(true);
+                        }, 50);
+                    } else {
+                        setIsVisible(false);
+                    }
+                });
+            },
+            {
+                threshold: 0.05,
+                rootMargin: '0px 0px -50px 0px'
+            }
+        );
+
+        const currentRef = shopRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        // Fallback: always show after 1 second
+        const fallbackTimeout = setTimeout(() => {
+            setIsVisible(true);
+        }, 1000);
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            clearTimeout(fallbackTimeout);
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+            observer.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    // Reset animations when category, search, sort, or page changes
+    useEffect(() => {
+        setIsVisible(false);
+        setAnimationKey(prev => prev + 1);
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 150);
+    }, [selectedCategory, searchQuery, sortBy, currentPage]);
+
     return (
+        <>
+            <style dangerouslySetInnerHTML={{__html: `
+                .shop-section .shop-product-item {
+                    opacity: 0;
+                    transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.8s ease-out;
+                    will-change: transform, opacity, filter;
+                }
+                @keyframes showShopProduct {
+                    to {
+                        opacity: 1;
+                        transform: translate(0, 0) rotateY(0deg) rotateZ(0deg) rotateX(0deg) scale(1);
+                        filter: blur(0px);
+                    }
+                }
+                .shop-section .shop-product-item:not(.animate) {
+                    animation: showShopProduct 0.5s ease-out 1.5s forwards;
+                }
+                /* Different animation angles for products */
+                .shop-section .shop-product-item.slide-from-left {
+                    transform: translateX(-100px) rotateY(-25deg) scale(0.8);
+                    filter: blur(4px);
+                }
+                .shop-section .shop-product-item.slide-from-left.animate {
+                    opacity: 1;
+                    transform: translateX(0) rotateY(0deg) scale(1);
+                    filter: blur(0px);
+                }
+                .shop-section .shop-product-item.slide-from-right {
+                    transform: translateX(100px) rotateY(25deg) scale(0.8);
+                    filter: blur(4px);
+                }
+                .shop-section .shop-product-item.slide-from-right.animate {
+                    opacity: 1;
+                    transform: translateX(0) rotateY(0deg) scale(1);
+                    filter: blur(0px);
+                }
+                .shop-section .shop-product-item.slide-from-bottom-left {
+                    transform: translate(-80px, 80px) rotateZ(-20deg) rotateY(-10deg) scale(0.8);
+                    filter: blur(4px);
+                }
+                .shop-section .shop-product-item.slide-from-bottom-left.animate {
+                    opacity: 1;
+                    transform: translate(0, 0) rotateZ(0deg) rotateY(0deg) scale(1);
+                    filter: blur(0px);
+                }
+                .shop-section .shop-product-item.slide-from-bottom-right {
+                    transform: translate(80px, 80px) rotateZ(20deg) rotateY(10deg) scale(0.8);
+                    filter: blur(4px);
+                }
+                .shop-section .shop-product-item.slide-from-bottom-right.animate {
+                    opacity: 1;
+                    transform: translate(0, 0) rotateZ(0deg) rotateY(0deg) scale(1);
+                    filter: blur(0px);
+                }
+                .shop-section .shop-product-item.slide-from-top-left {
+                    transform: translate(-80px, -80px) rotateZ(20deg) rotateY(-10deg) scale(0.8);
+                    filter: blur(4px);
+                }
+                .shop-section .shop-product-item.slide-from-top-left.animate {
+                    opacity: 1;
+                    transform: translate(0, 0) rotateZ(0deg) rotateY(0deg) scale(1);
+                    filter: blur(0px);
+                }
+                .shop-section .shop-product-item.slide-from-top-right {
+                    transform: translate(80px, -80px) rotateZ(-20deg) rotateY(10deg) scale(0.8);
+                    filter: blur(4px);
+                }
+                .shop-section .shop-product-item.slide-from-top-right.animate {
+                    opacity: 1;
+                    transform: translate(0, 0) rotateZ(0deg) rotateY(0deg) scale(1);
+                    filter: blur(0px);
+                }
+                .shop-section .shop-product-item.slide-from-bottom {
+                    transform: translateY(100px) rotateX(-20deg) scale(0.8);
+                    filter: blur(4px);
+                }
+                .shop-section .shop-product-item.slide-from-bottom.animate {
+                    opacity: 1;
+                    transform: translateY(0) rotateX(0deg) scale(1);
+                    filter: blur(0px);
+                }
+                .shop-section .shop-product-item.slide-from-top {
+                    transform: translateY(-100px) rotateX(20deg) scale(0.8);
+                    filter: blur(4px);
+                }
+                .shop-section .shop-product-item.slide-from-top.animate {
+                    opacity: 1;
+                    transform: translateY(0) rotateX(0deg) scale(1);
+                    filter: blur(0px);
+                }
+                .shop-section .shop-product-item.slide-from-center {
+                    transform: scale(0.5) rotateZ(180deg);
+                    filter: blur(6px);
+                }
+                .shop-section .shop-product-item.slide-from-center.animate {
+                    opacity: 1;
+                    transform: scale(1) rotateZ(0deg);
+                    filter: blur(0px);
+                }
+            `}} />
         <div className="shop-section section-padding fix">
             <div className="shop-wrapper style1">
                 <div className="container">
@@ -324,7 +510,7 @@ const Shop1 = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="tab-content" id="pills-tabContent">
+                            <div ref={shopRef} className="tab-content" id="pills-tabContent">
                                 <div
                                     className="tab-pane fade show active"
                                     id="pills-grid"
@@ -334,17 +520,50 @@ const Shop1 = () => {
                                 >
                                     {productRows.length > 0 ? (
                                         productRows.map((row, rowIndex) => (
-                                            <div key={rowIndex} className="dishes-card-wrap style2">
-                                                {row.map((product, productIndex) => (
-                                                    <ShopCard
-                                                        key={`${rowIndex}-${productIndex}`}
-                                                        img={product.img}
-                                                        title={product.title}
-                                                        content={product.content}
-                                                        price={product.price}
-                                                        productId={product.id}
-                                                    />
-                                                ))}
+                                            <div key={`${animationKey}-${rowIndex}`} className="dishes-card-wrap style2">
+                                                {row.map((product, productIndex) => {
+                                                    // Different animation angles based on position and scroll direction
+                                                    const totalIndex = rowIndex * 4 + productIndex;
+                                                    const downAnimations = [
+                                                        'slide-from-left',
+                                                        'slide-from-bottom-left',
+                                                        'slide-from-bottom',
+                                                        'slide-from-bottom-right',
+                                                        'slide-from-right',
+                                                        'slide-from-bottom-right',
+                                                        'slide-from-bottom',
+                                                        'slide-from-bottom-left'
+                                                    ];
+                                                    const upAnimations = [
+                                                        'slide-from-left',
+                                                        'slide-from-top-left',
+                                                        'slide-from-top',
+                                                        'slide-from-top-right',
+                                                        'slide-from-right',
+                                                        'slide-from-top-right',
+                                                        'slide-from-top',
+                                                        'slide-from-top-left'
+                                                    ];
+                                                    const animationClasses = scrollDirection === 'down' ? downAnimations : upAnimations;
+                                                    const animClass = animationClasses[totalIndex % animationClasses.length];
+                                                    const shouldAnimate = isVisible;
+                                                    
+                                                    return (
+                                                        <div
+                                                            key={`${animationKey}-${rowIndex}-${productIndex}`}
+                                                            className={`shop-product-item ${animClass} ${shouldAnimate ? 'animate' : ''}`}
+                                                            style={{ transitionDelay: `${0.1 + totalIndex * 0.08}s` }}
+                                                        >
+                                                            <ShopCard
+                                                                img={product.img}
+                                                                title={product.title}
+                                                                content={product.content}
+                                                                price={product.price}
+                                                                productId={product.id}
+                                                            />
+                                                        </div>
+                                                    );
+                                                })}
                                             </div>
                                         ))
                                     ) : (
@@ -418,6 +637,7 @@ const Shop1 = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 
