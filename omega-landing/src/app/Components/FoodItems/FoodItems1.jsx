@@ -83,11 +83,9 @@ const FoodItems1 = () => {
             <style dangerouslySetInnerHTML={{__html: `
                 .best-food-items-section {
                     background-color: #fff;
-                    padding: 60px 0;
                 }
                 .best-food-items-section .title-area .title {
                     color: #0D5189 !important;
-                    margin-bottom: 40px;
                 }
                 .best-food-items-section .food-items-grid {
                     display: block;
@@ -102,10 +100,30 @@ const FoodItems1 = () => {
                     transform: translateY(0);
                 }
                 .best-food-items-section .food-items-grid .slick-slide {
-                    padding: 0 15px;
+                    padding: 0 8px;
+                }
+                @media (min-width: 576px) {
+                    .best-food-items-section .food-items-grid .slick-slide {
+                        padding: 0 12px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .best-food-items-section .food-items-grid .slick-slide {
+                        padding: 0 15px;
+                    }
                 }
                 .best-food-items-section .food-items-grid .slick-list {
-                    margin: 0 -15px;
+                    margin: 0 -8px;
+                }
+                @media (min-width: 576px) {
+                    .best-food-items-section .food-items-grid .slick-list {
+                        margin: 0 -12px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .best-food-items-section .food-items-grid .slick-list {
+                        margin: 0 -15px;
+                    }
                 }
                 .best-food-items-section .single-food-items {
                     background-color: #fff;
@@ -159,6 +177,54 @@ const FoodItems1 = () => {
                 }
                 .best-food-items-section .single-food-items .item-content h6 {
                     display: none;
+                }
+                .best-food-items-section {
+                    padding: 40px 0;
+                }
+                @media (min-width: 768px) {
+                    .best-food-items-section {
+                        padding: 60px 0;
+                    }
+                }
+                .best-food-items-section .single-food-items .item-content h3 {
+                    font-size: 16px;
+                }
+                @media (min-width: 576px) {
+                    .best-food-items-section .single-food-items .item-content h3 {
+                        font-size: 18px;
+                    }
+                }
+                .best-food-items-section .single-food-items .item-content .text {
+                    font-size: 13px;
+                }
+                @media (min-width: 576px) {
+                    .best-food-items-section .single-food-items .item-content .text {
+                        font-size: 15px;
+                    }
+                }
+                .best-food-items-section {
+                    overflow-x: hidden;
+                }
+                .best-food-items-section .title {
+                    font-size: 24px;
+                    margin-bottom: 30px;
+                }
+                @media (min-width: 576px) {
+                    .best-food-items-section .title {
+                        font-size: 32px;
+                        margin-bottom: 35px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .best-food-items-section .title {
+                        font-size: 40px;
+                        margin-bottom: 40px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .best-food-items-section .title {
+                        font-size: 48px;
+                    }
                 }
             `}} />
         <section className="best-food-items-section">

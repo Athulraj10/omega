@@ -88,6 +88,89 @@ const About1 = () => {
                     opacity: 1;
                     transform: translateY(0);
                 }
+                .about-us-section .sub-title {
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+                @media (min-width: 576px) {
+                    .about-us-section .sub-title {
+                        font-size: 16px;
+                        margin-bottom: 15px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .about-us-section .sub-title {
+                        font-size: 18px;
+                        margin-bottom: 20px;
+                    }
+                }
+                .about-us-section .title {
+                    font-size: 24px;
+                    line-height: 1.3;
+                    margin-bottom: 15px;
+                }
+                @media (min-width: 576px) {
+                    .about-us-section .title {
+                        font-size: 32px;
+                        margin-bottom: 20px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .about-us-section .title {
+                        font-size: 40px;
+                        margin-bottom: 25px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .about-us-section .title {
+                        font-size: 48px;
+                        margin-bottom: 30px;
+                    }
+                }
+                .about-us-section .text {
+                    font-size: 14px;
+                    line-height: 1.6;
+                    padding: 0 10px;
+                }
+                @media (min-width: 576px) {
+                    .about-us-section .text {
+                        font-size: 16px;
+                        padding: 0 20px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .about-us-section .text {
+                        font-size: 18px;
+                        padding: 0 40px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .about-us-section .text {
+                        font-size: 18px;
+                        padding: 0 60px;
+                    }
+                }
+                @media (min-width: 1200px) {
+                    .about-us-section .text {
+                        padding: 0 100px;
+                    }
+                }
+                .about-us-section {
+                    overflow-x: hidden;
+                }
+                .about-us-section .section-padding {
+                    padding: 40px 0;
+                }
+                @media (min-width: 768px) {
+                    .about-us-section .section-padding {
+                        padding: 60px 0;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .about-us-section .section-padding {
+                        padding: 80px 0;
+                    }
+                }
             `}} />
         <section className="about-us-section fix section-padding p-0 border border-gray-300 shadow">
         <div className="about-wrapper style1">

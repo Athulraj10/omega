@@ -117,8 +117,81 @@ const Offer1 = () => {
                     opacity: 1;
                     transform: translateX(0);
                 }
+                .offer-section-responsive {
+                    padding: 40px 15px;
+                }
+                @media (min-width: 576px) {
+                    .offer-section-responsive {
+                        padding: 50px 20px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .offer-section-responsive {
+                        padding: 60px 30px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .offer-section-responsive {
+                        padding: 70px 40px;
+                    }
+                }
+                .offer-section .offer-card {
+                    padding: 15px;
+                }
+                @media (min-width: 576px) {
+                    .offer-section .offer-card {
+                        padding: 18px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .offer-section .offer-card {
+                        padding: 20px;
+                    }
+                }
+                .offer-section {
+                    overflow-x: hidden;
+                }
+                .offer-section .offer-card {
+                    min-height: 300px;
+                }
+                @media (min-width: 576px) {
+                    .offer-section .offer-card {
+                        min-height: 350px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .offer-section .offer-card {
+                        min-height: 400px;
+                    }
+                }
+                .offer-section .offer-title-line {
+                    font-size: 18px;
+                }
+                @media (min-width: 576px) {
+                    .offer-section .offer-title-line {
+                        font-size: 20px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .offer-section .offer-title-line {
+                        font-size: 24px;
+                    }
+                }
+                .offer-section .offer-description-line {
+                    font-size: 14px;
+                }
+                @media (min-width: 576px) {
+                    .offer-section .offer-description-line {
+                        font-size: 15px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .offer-section .offer-description-line {
+                        font-size: 16px;
+                    }
+                }
             `}} />
-        <div className="offer-section fix bg-color2  px-5">
+        <div className="offer-section fix bg-color2 offer-section-responsive">
         <div className="offer-wrapper">
             <div className="container">
                 <div ref={offerRef} className="row" style={{ gap: 'calc(2rem + 20px)' }}>

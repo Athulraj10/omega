@@ -244,8 +244,103 @@ const Team1 = () => {
                     opacity: 1;
                     transform: translate(0, 0);
                 }
+                .chefe-section-responsive {
+                    padding: 20px 10px;
+                    margin: 20px 10px;
+                }
+                @media (min-width: 576px) {
+                    .chefe-section-responsive {
+                        padding: 30px 20px;
+                        margin: 30px 20px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .chefe-section-responsive {
+                        padding: 40px 30px;
+                        margin: 40px 30px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .chefe-section-responsive {
+                        padding: 50px;
+                        margin: 50px;
+                    }
+                }
+                .chefe-section .sub-title {
+                    font-size: 14px;
+                }
+                @media (min-width: 576px) {
+                    .chefe-section .sub-title {
+                        font-size: 16px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .chefe-section .sub-title {
+                        font-size: 18px;
+                    }
+                }
+                .chefe-section .title {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                }
+                @media (min-width: 576px) {
+                    .chefe-section .title {
+                        font-size: 32px;
+                        margin-bottom: 30px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .chefe-section .title {
+                        font-size: 40px;
+                        margin-bottom: 40px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .chefe-section .title {
+                        font-size: 48px;
+                        margin-bottom: 50px;
+                    }
+                }
+                .chefe-section .team-item img {
+                    width: 100%;
+                    height: auto;
+                }
+                .chefe-section .chefe-content h3 {
+                    font-size: 18px;
+                }
+                @media (min-width: 576px) {
+                    .chefe-section .chefe-content h3 {
+                        font-size: 20px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .chefe-section .chefe-content h3 {
+                        font-size: 24px;
+                    }
+                }
+                .chefe-section {
+                    overflow-x: hidden;
+                }
+                .chefe-section .row {
+                    margin-left: -10px;
+                    margin-right: -10px;
+                }
+                .chefe-section .row > * {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+                @media (min-width: 576px) {
+                    .chefe-section .row {
+                        margin-left: -15px;
+                        margin-right: -15px;
+                    }
+                    .chefe-section .row > * {
+                        padding-left: 15px;
+                        padding-right: 15px;
+                    }
+                }
             `}} />
-<section className="chefe-section fix p-5 border border-blue-300 m-5 border-top-0">
+<section className="chefe-section fix border border-blue-300 border-top-0 chefe-section-responsive">
         <div className="chefe-wrapper style1 mb-3">
             <div className="shape1 d-none d-xxl-block"><Image className="float-bob-y" src="/assets/img/shape/chefeShape1_1.png" alt="img" width={167} height={132}   /></div>
             <div className="container">

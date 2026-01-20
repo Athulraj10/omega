@@ -196,6 +196,159 @@ const FoodItem1 = () => {
                     transform: translateX(0) rotateY(0deg) rotateZ(0deg) scale(1);
                     filter: blur(0px);
                 }
+                .food-menu-section .title {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                }
+                @media (min-width: 576px) {
+                    .food-menu-section .title {
+                        font-size: 32px;
+                        margin-bottom: 25px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .food-menu-section .title {
+                        font-size: 40px;
+                        margin-bottom: 30px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .food-menu-section .title {
+                        font-size: 48px;
+                        margin-bottom: 40px;
+                    }
+                }
+                .food-menu-section .nav-pills {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 10px;
+                }
+                @media (min-width: 768px) {
+                    .food-menu-section .nav-pills {
+                        flex-wrap: nowrap;
+                        gap: 0;
+                    }
+                }
+                .food-menu-section .nav-item {
+                    flex: 1 1 auto;
+                    min-width: 120px;
+                }
+                @media (min-width: 768px) {
+                    .food-menu-section .nav-item {
+                        flex: 0 0 auto;
+                        min-width: auto;
+                    }
+                }
+                .food-menu-section .nav-link {
+                    padding: 10px 15px;
+                    font-size: 12px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 8px;
+                }
+                @media (min-width: 576px) {
+                    .food-menu-section .nav-link {
+                        padding: 12px 18px;
+                        font-size: 13px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .food-menu-section .nav-link {
+                        padding: 15px 20px;
+                        font-size: 14px;
+                    }
+                }
+                .food-menu-section .nav-link img {
+                    width: 40px;
+                    height: 40px;
+                }
+                @media (min-width: 576px) {
+                    .food-menu-section .nav-link img {
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .food-menu-section .nav-link img {
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .food-menu-section .nav-link img {
+                        width: 70px;
+                        height: 70px;
+                    }
+                }
+                .food-menu-section .col-lg-6 {
+                    margin-bottom: 20px;
+                }
+                @media (min-width: 992px) {
+                    .food-menu-section .col-lg-6 {
+                        margin-bottom: 0;
+                    }
+                }
+                .food-menu-tab-icon {
+                    width: 40px !important;
+                    height: 40px !important;
+                    object-fit: contain;
+                }
+                .food-menu-tab-icon-active {
+                    width: 45px !important;
+                    height: 45px !important;
+                }
+                @media (min-width: 576px) {
+                    .food-menu-tab-icon {
+                        width: 50px !important;
+                        height: 50px !important;
+                    }
+                    .food-menu-tab-icon-active {
+                        width: 55px !important;
+                        height: 55px !important;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .food-menu-tab-icon {
+                        width: 60px !important;
+                        height: 60px !important;
+                    }
+                    .food-menu-tab-icon-active {
+                        width: 65px !important;
+                        height: 65px !important;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .food-menu-tab-icon {
+                        width: 70px !important;
+                        height: 70px !important;
+                    }
+                    .food-menu-tab-icon-active {
+                        width: 75px !important;
+                        height: 75px !important;
+                    }
+                }
+                .food-menu-section .food-menu-tab-wrapper {
+                    padding: 20px 15px;
+                }
+                @media (min-width: 576px) {
+                    .food-menu-section .food-menu-tab-wrapper {
+                        padding: 30px 20px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .food-menu-section .food-menu-tab-wrapper {
+                        padding: 40px 30px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .food-menu-section .food-menu-tab-wrapper {
+                        padding: 50px 40px;
+                    }
+                }
+                .food-menu-section {
+                    overflow-x: hidden;
+                }
             `}} />
 <section className="food-menu-section fix section-padding" style={{backgroundColor: '#fff'}}>
         {/* <div className="burger-shape">
@@ -233,7 +386,13 @@ const FoodItem1 = () => {
                                             aria-controls={category.ariaControls}
                                             aria-selected={isActive === category.id}
                                         >
-                                            <Image src={category.icon} alt={category.name} width={isActive === category.id ? 70 : 60} height={isActive === category.id ? 70 : 60}  />
+                                            <Image 
+                                                src={category.icon} 
+                                                alt={category.name} 
+                                                width={isActive === category.id ? 70 : 60} 
+                                                height={isActive === category.id ? 70 : 60}
+                                                className={`food-menu-tab-icon ${isActive === category.id ? 'food-menu-tab-icon-active' : ''}`}
+                                            />
                                             <span style={{ color: '#0D5189' }}>{category.name}</span>
                                         </button>
                             </li>

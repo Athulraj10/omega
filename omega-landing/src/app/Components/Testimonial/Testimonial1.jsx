@@ -147,10 +147,137 @@ const Testimonial1 = () => {
                 opacity: 1;
                 transform: translateX(0);
             }
-        `}} />
+            .testimonial-section .testimonial-wrapper {
+                min-height: auto;
+            }
+            @media (min-width: 768px) {
+                .testimonial-section .testimonial-wrapper {
+                    min-height: 80vh;
+                }
+            }
+            @media (min-width: 992px) {
+                .testimonial-section .testimonial-wrapper {
+                    min-height: 100vh;
+                }
+            }
+            .testimonial-section .testimonial-left {
+                display: none;
+                width: 100%;
+                height: 300px;
+                top: 0;
+            }
+            @media (min-width: 992px) {
+                .testimonial-section .testimonial-left {
+                    display: flex;
+                    width: 50%;
+                    height: 100%;
+                    top: -50;
+                }
+            }
+            .testimonial-section .sub-title {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+            @media (min-width: 576px) {
+                .testimonial-section .sub-title {
+                    font-size: 16px;
+                    margin-bottom: 15px;
+                }
+            }
+            @media (min-width: 768px) {
+                .testimonial-section .sub-title {
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                }
+            }
+            .testimonial-section .title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            @media (min-width: 576px) {
+                .testimonial-section .title {
+                    font-size: 32px;
+                    margin-bottom: 25px;
+                }
+            }
+            @media (min-width: 768px) {
+                .testimonial-section .title {
+                    font-size: 40px;
+                    margin-bottom: 30px;
+                }
+            }
+            @media (min-width: 992px) {
+                .testimonial-section .title {
+                    font-size: 48px;
+                    margin-bottom: 40px;
+                }
+            }
+            .testimonial-section .testimonial-card {
+                min-height: 250px;
+                padding: 20px;
+            }
+            @media (min-width: 576px) {
+                .testimonial-section .testimonial-card {
+                    min-height: 280px;
+                    padding: 25px;
+                }
+            }
+            @media (min-width: 768px) {
+                .testimonial-section .testimonial-card {
+                    min-height: 300px;
+                    padding: 30px;
+                }
+            }
+            .testimonial-section .col-xl-7 {
+                padding-top: 20px;
+            }
+            @media (min-width: 992px) {
+                .testimonial-section .col-xl-7 {
+                    padding-top: 0;
+                }
+            }
+            .testimonial-section .col-xl-5 {
+                padding-bottom: 20px;
+            }
+                @media (min-width: 992px) {
+                    .testimonial-section .col-xl-5 {
+                        padding-bottom: 0;
+                    }
+                }
+                .testimonial-section {
+                    overflow-x: hidden;
+                }
+                .testimonial-section .testimonial-card p {
+                    font-size: 14px;
+                    line-height: 1.6;
+                }
+                @media (min-width: 576px) {
+                    .testimonial-section .testimonial-card p {
+                        font-size: 15px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .testimonial-section .testimonial-card p {
+                        font-size: 16px;
+                    }
+                }
+                .testimonial-section .testimonial-card h6 {
+                    font-size: 18px;
+                }
+                @media (min-width: 576px) {
+                    .testimonial-section .testimonial-card h6 {
+                        font-size: 20px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .testimonial-section .testimonial-card h6 {
+                        font-size: 22px;
+                    }
+                }
+            `}} />
     <section className="testimonial-section fix bg-color3">
-        <div ref={testimonialRef} className="testimonial-wrapper style1 section-padding" style={{ position: 'relative', minHeight: '100vh' }}>
-            <div className={`shape testimonial-left ${isVisible ? 'animate-from-left' : ''}`} style={{ position: 'absolute', top: -50, left: 0, width: '50%', height: '100%', zIndex: 0, display: 'flex', alignItems: 'center' }}>
+        <div ref={testimonialRef} className="testimonial-wrapper style1 section-padding" style={{ position: 'relative' }}>
+            <div className={`shape testimonial-left ${isVisible ? 'animate-from-left' : ''}`} style={{ position: 'absolute', zIndex: 0, display: 'flex', alignItems: 'center' }}>
                 <div className="testimonial-image-wrapper" style={{ width: '100%', height: '100%', position: 'relative' }}>
                     <Image 
                         src="/assets/img/testimonial/testimonialThumb1_1.png" 
@@ -158,18 +285,18 @@ const Testimonial1 = () => {
                         alt="img" 
                         fill
                         style={{ objectFit: 'contain', objectPosition: 'left center' }}
-                        sizes="50vw"
+                        sizes="(max-width: 991px) 100vw, 50vw"
                         priority
                     />
                 </div>
             </div>
-            <div className="shape2"><Image src="/assets/img/shape/testimonialShape1_1.png" alt="img" width={224} height={401}   /></div>
+            <div className="shape2 d-none d-md-block"><Image src="/assets/img/shape/testimonialShape1_1.png" alt="img" width={224} height={401}   /></div>
             <div className="container">
                 <div className="row d-flex justify-content-center align-items-center">
-                    <div className="col-xl-5 d-flex align-items-center justify-content-center">
-                        {/* Image is displayed via background shape div */}
+                    <div className="col-12 col-xl-5 d-flex align-items-center justify-content-center order-2 order-xl-1">
+                        {/* Image is displayed via background shape div on desktop */}
                     </div>
-                    <div className={`col-xl-7 testimonial-right ${isVisible ? 'animate-from-right' : ''}`} style={{ position: 'relative', zIndex: 1 }}>
+                    <div className={`col-12 col-xl-7 testimonial-right ${isVisible ? 'animate-from-right' : ''} order-1 order-xl-2`} style={{ position: 'relative', zIndex: 1 }}>
                         <div className="title-area">
                             <div className="sub-title text-center wow fadeInUp " style={{ color: '#0D5189' }} data-wow-delay="0.5s">
                                 Omega Foods 
