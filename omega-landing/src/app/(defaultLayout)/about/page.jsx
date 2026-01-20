@@ -1,8 +1,7 @@
 import BreadCumb from '@/app/Components/Common/BreadCumb';
 import CtaBanner1 from '@/app/Components/CtaBanner/CtaBanner1';
-import Gallery1 from '@/app/Components/Gallery/Gallery1';
-import Testimonial2 from '@/app/Components/Testimonial/Testimonial2';
 import Faq2 from '@/app/Components/Faq/Faq2';
+import Testimonial1 from '@/app/Components/Testimonial/Testimonial1';
 import React from 'react';
 
 const page = () => {
@@ -13,7 +12,7 @@ const page = () => {
                 Title="About Us"
             ></BreadCumb>
             <CtaBanner1></CtaBanner1>
-            <Testimonial2></Testimonial2>
+            <Testimonial1></Testimonial1>
             <Faq2></Faq2>
     </div>
   );
