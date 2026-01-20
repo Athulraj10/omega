@@ -6,8 +6,10 @@ import { useState, useEffect, useRef } from "react";
 
 const Team1 = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [sliderVisible, setSliderVisible] = useState(false);
     const [scrollDirection, setScrollDirection] = useState('down');
     const teamRef = useRef(null);
+    const sliderRef = useRef(null);
     const lastScrollY = useRef(0);
 
     const settings = {
@@ -54,8 +56,7 @@ const Team1 = () => {
         {img:'/assets/img/logo/clientLogo1_4.png'},
         {img:'/assets/img/logo/clientLogo1_5.png'},
         {img:'/assets/img/logo/clientLogo1_6.png'},
-        {img:'/assets/img/logo/clientLogo1_1.png'},
-        {img:'/assets/img/logo/clientLogo1_2.png'},        
+        {img:'/assets/img/logo/clientLogo1_7.png'},      
       ];
 
     useEffect(() => {
@@ -71,7 +72,7 @@ const Team1 = () => {
             lastScrollY.current = currentScrollY;
         };
 
-        const observer = new IntersectionObserver(
+        const teamObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
@@ -89,18 +90,46 @@ const Team1 = () => {
             }
         );
 
-        const currentRef = teamRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
+        const sliderObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            setSliderVisible(true);
+                        }, 100);
+                    } else {
+                        setSliderVisible(false);
+                    }
+                });
+            },
+            {
+                threshold: 0.3,
+                rootMargin: '0px 0px -50px 0px'
+            }
+        );
+
+        const currentTeamRef = teamRef.current;
+        const currentSliderRef = sliderRef.current;
+        
+        if (currentTeamRef) {
+            teamObserver.observe(currentTeamRef);
+        }
+        
+        if (currentSliderRef) {
+            sliderObserver.observe(currentSliderRef);
         }
 
         window.addEventListener('scroll', handleScroll, { passive: true });
 
         return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
+            if (currentTeamRef) {
+                teamObserver.unobserve(currentTeamRef);
             }
-            observer.disconnect();
+            if (currentSliderRef) {
+                sliderObserver.unobserve(currentSliderRef);
+            }
+            teamObserver.disconnect();
+            sliderObserver.disconnect();
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
@@ -130,11 +159,95 @@ const Team1 = () => {
                     opacity: 1;
                     transform: translateX(0);
                 }
+                .chefe-section .client-img img {
+                    max-width: 100%;
+                    height: auto;
+                    width: auto;
+                    object-fit: contain;
+                    max-height: 80px;
+                }
+                @media (min-width: 576px) {
+                    .chefe-section .client-img img {
+                        max-height: 70px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .chefe-section .client-img img {
+                        max-height: 60px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .chefe-section .client-img img {
+                        max-height: 50px;
+                    }
+                }
+                @media (min-width: 1200px) {
+                    .chefe-section .client-img img {
+                        max-height: 45px;
+                    }
+                }
+                @media (min-width: 1400px) {
+                    .chefe-section .client-img img {
+                        max-height: 100px;
+                    }
+                }
+                .chefe-section .logo-slide-item {
+                    opacity: 0;
+                    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                }
+                .chefe-section .logo-slide-item.logo-from-left {
+                    transform: translateX(-100px);
+                }
+                .chefe-section .logo-slide-item.logo-from-left.animate-logo {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                .chefe-section .logo-slide-item.logo-from-right {
+                    transform: translateX(100px);
+                }
+                .chefe-section .logo-slide-item.logo-from-right.animate-logo {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                .chefe-section .logo-slide-item.logo-from-top {
+                    transform: translateY(-100px);
+                }
+                .chefe-section .logo-slide-item.logo-from-top.animate-logo {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                .chefe-section .logo-slide-item.logo-from-bottom {
+                    transform: translateY(100px);
+                }
+                .chefe-section .logo-slide-item.logo-from-bottom.animate-logo {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                .chefe-section .logo-slide-item.logo-from-top-left {
+                    transform: translate(-100px, -100px);
+                }
+                .chefe-section .logo-slide-item.logo-from-top-left.animate-logo {
+                    opacity: 1;
+                    transform: translate(0, 0);
+                }
+                .chefe-section .logo-slide-item.logo-from-top-right {
+                    transform: translate(100px, -100px);
+                }
+                .chefe-section .logo-slide-item.logo-from-top-right.animate-logo {
+                    opacity: 1;
+                    transform: translate(0, 0);
+                }
+                .chefe-section .logo-slide-item.logo-from-bottom-left {
+                    transform: translate(-100px, 100px);
+                }
+                .chefe-section .logo-slide-item.logo-from-bottom-left.animate-logo {
+                    opacity: 1;
+                    transform: translate(0, 0);
+                }
             `}} />
 <section className="chefe-section fix p-5 border border-blue-300 m-5 border-top-0">
         <div className="chefe-wrapper style1 mb-3">
             <div className="shape1 d-none d-xxl-block"><Image className="float-bob-y" src="/assets/img/shape/chefeShape1_1.png" alt="img" width={167} height={132}   /></div>
-            <div className="shape2 d-none d-xxl-block"><Image className="float-bob-x" src="/assets/img/shape/chefeShape1_2.png" alt="img" width={142} height={90}   /></div>
             <div className="container">
                 <div className="title-area">
                     <div className="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
@@ -193,16 +306,37 @@ const Team1 = () => {
 
                     </div>
                 </div>
-                <div className="slider-area pt-5 mt-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div ref={sliderRef} className="slider-area wow fadeInUp" data-wow-delay="0.5s">
                     <div className="swiper clientSliderOne">
                         <div className="swiper-wrapper">
                         <Slider {...settings}>
-                        {logoItems.map((item, i) => (
-                            <div key={i} className="swiper-slide">
-                                <div className="client-img text-center"><img src={item.img} alt="thumb" />
+                        {logoItems.map((item, i) => {
+                            // Define different animation directions for each of the 7 images
+                            const directionClasses = [
+                                'logo-from-left',        // Image 0: from left
+                                'logo-from-right',       // Image 1: from right
+                                'logo-from-top',         // Image 2: from top
+                                'logo-from-bottom',      // Image 3: from bottom
+                                'logo-from-top-left',    // Image 4: from top-left (diagonal)
+                                'logo-from-top-right',   // Image 5: from top-right (diagonal)
+                                'logo-from-bottom-left'  // Image 6: from bottom-left (diagonal)
+                            ];
+                            
+                            const directionClass = directionClasses[i] || 'logo-from-left';
+                            const animateClass = sliderVisible ? 'animate-logo' : '';
+                            
+                            return (
+                                <div key={i} className="swiper-slide">
+                                    <div className={`client-img text-center logo-slide-item ${directionClass} ${animateClass}`} style={{ transitionDelay: `${i * 0.1}s` }}>
+                                        <img 
+                                            src={item.img} 
+                                            alt="thumb" 
+                                            className="img-fluid d-inline-block"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                         </Slider>
                         </div>
                     </div>
