@@ -729,6 +729,3 @@ const FoodItem1 = () => {
 };
 
 export default FoodItem1;
-export default FoodItem1;
-export default FoodItem1;
-export default FoodItem1;
