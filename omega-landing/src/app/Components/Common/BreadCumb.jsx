@@ -17,8 +17,8 @@ const BreadCumb = ({Title,bgimg}) => {
       
     return (
 
-        <div className="breadcumb-section">
-        <div className="breadcumb-wrapper" data-background={isContactPage ? "/assets/img/contact/breadcrums.webp" : bgimg} style={{ position: 'relative' }}>
+    <div className="breadcumb-section">
+        <div className={`breadcumb-wrapper ${isContactPage ? 'breadcumb-contact' : ''}`} data-background={isContactPage ? "/assets/img/contact/breadcrums.webp" : bgimg} style={{ position: 'relative' }}>
             {isShopPage && (
                 <div style={{
                     position: 'absolute',
@@ -34,11 +34,11 @@ const BreadCumb = ({Title,bgimg}) => {
                 <div className="row">
                     <div className="col-12">
                         <div className={`breadcumb-content ${isAboutPage ? 'breadcumb-about' : isShopPage ? 'breadcumb-shop' : ''}`}>
-                            <h1 className={`breadcumb-title ${isContactPage ? 'text-black!important' : 'text-white!important '}`}>{isContactPage ? ' ' : Title}</h1>
+                            <h1 className="breadcumb-title">{Title}</h1>
                             <ul className="breadcumb-menu">
                                 <li><Link href="/">Home</Link></li>
-                                <li className={`${isContactPage ? 'text-black!important' : 'text-white!important'}`}>/</li>
-                                <li className={`active ${isContactPage ? 'text-black!important' : 'text-white!important'}`}>{Title}</li>
+                                <li>/</li>
+                                <li className="active">{Title}</li>
                             </ul>
                         </div>
                     </div>
