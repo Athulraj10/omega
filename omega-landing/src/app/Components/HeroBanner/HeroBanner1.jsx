@@ -238,6 +238,36 @@ const HeroBanner1 = () => {
                 }
                 .slider-area {
                     overflow-x: hidden;
+                    overflow-y: hidden;
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
+                .swiper {
+                    overflow: hidden;
+                    margin-bottom: 0;
+                }
+                .swiper-wrapper {
+                    overflow: hidden;
+                    margin-bottom: 0;
+                }
+                .swiper-slide {
+                    overflow: hidden;
+                    margin-bottom: 0;
+                }
+                .style1 {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
+                .banner-image-area {
+                    margin-bottom: 0 !important;
+                    padding-bottom: 0 !important;
+                }
+                .slider-area .row {
+                    margin-bottom: 0;
+                }
+                .slider-area .container {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
                 }
                 .heading-container {
                     position: relative;
@@ -283,11 +313,11 @@ const HeroBanner1 = () => {
                    
                     {heroContent.map((item, i) => (
                         <div key={i} className="swiper-slide">
-                            <div className="style1 position-relative hero-min-height" style={{ overflow: 'visible !important' }}>
+                            <div className="style1 position-relative hero-min-height" style={{ overflow: 'hidden' }}>
                                 <div className="banner-background" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: '#ffffff', zIndex: 0 }}></div>
-                                <div className="banner-container" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, display: 'flex', alignItems: 'center'}}>
-                                    <div className="container">
-                                        <div className="row align-items-center">
+                                <div className="banner-container" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, display: 'flex', alignItems: 'center', overflow: 'hidden'}}>
+                                    <div className="container" style={{ marginBottom: 0, paddingBottom: 0 }}>
+                                        <div className="row align-items-center" style={{ marginBottom: 0 }}>
                                             {/* Left side - Animated text */}
                                             <div className="col-12 col-lg-6 order-1">
                                                 <div className="banner-title-area-left hero-padding">
@@ -330,8 +360,8 @@ const HeroBanner1 = () => {
                                             </div>
                                             {/* Right side - Banner Image */}
                                             <div className="col-12 col-lg-6 order-2">
-                                                <div className="banner-image-area hero-padding">
-                                                    <div className={`${isPageLoaded ? 'image-slide-up' : ''} hero-image-padding`} style={{ position: 'relative', width: '100%', maxWidth: '600px', margin: '0 auto', opacity: isPageLoaded ? 1 : 0 }}>
+                                                <div className="banner-image-area hero-padding" style={{ marginBottom: 0, paddingBottom: 0 }}>
+                                                    <div className={`${isPageLoaded ? 'image-slide-up' : ''} hero-image-padding`} style={{ position: 'relative', width: '100%', maxWidth: '600px', margin: '0 auto', marginBottom: 0, paddingBottom: 0, opacity: isPageLoaded ? 1 : 0 }}>
                                                         <Image
                                                             src="/assets/img/banner/banner2.webp"
                                                             alt="Tasty and Fresh Seafood"

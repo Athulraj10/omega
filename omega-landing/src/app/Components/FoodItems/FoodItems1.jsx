@@ -7,7 +7,9 @@ import { foodItems1Products } from "@/data/products";
 
 const FoodItems1 = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [isTitleVisible, setIsTitleVisible] = useState(false);
     const foodItemsRef = useRef(null);
+    const titleRef = useRef(null);
 
     const settings = {
         dots: false,
@@ -75,6 +77,37 @@ const FoodItems1 = () => {
                 observer.unobserve(currentRef);
             }
             observer.disconnect();
+        };
+    }, []);
+
+    useEffect(() => {
+        const titleObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsTitleVisible(true);
+                    } else {
+                        // Reset animation when element leaves viewport
+                        setIsTitleVisible(false);
+                    }
+                });
+            },
+            {
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: '0px 0px -50px 0px' // Start animation slightly before element is fully visible
+            }
+        );
+
+        const currentTitleRef = titleRef.current;
+        if (currentTitleRef) {
+            titleObserver.observe(currentTitleRef);
+        }
+
+        return () => {
+            if (currentTitleRef) {
+                titleObserver.unobserve(currentTitleRef);
+            }
+            titleObserver.disconnect();
         };
     }, []);
 
@@ -208,6 +241,13 @@ const FoodItems1 = () => {
                 .best-food-items-section .title {
                     font-size: 24px;
                     margin-bottom: 30px;
+                    opacity: 0;
+                    transform: translateY(50px);
+                    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                }
+                .best-food-items-section .title.title-slide-up {
+                    opacity: 1;
+                    transform: translateY(0);
                 }
                 @media (min-width: 576px) {
                     .best-food-items-section .title {
@@ -231,7 +271,7 @@ const FoodItems1 = () => {
         <div className="best-food-wrapper">
             <div className="container">
                 <div className="title-area">
-                    <h2 className="title wow fadeInUp text-center" data-wow-delay="0.7s" style={{ color: '#0D5189' }}>
+                    <h2 ref={titleRef} className={`title wow fadeInUp text-center ${isTitleVisible ? 'title-slide-up' : ''}`} data-wow-delay="0.7s" style={{ color: '#0D5189' }}>
                         Popular Fresh Fish
                     </h2>
                 </div>

@@ -7,9 +7,11 @@ import { useState, useEffect, useRef } from "react";
 const Team1 = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [sliderVisible, setSliderVisible] = useState(false);
+    const [isTitleVisible, setIsTitleVisible] = useState(false);
     const [scrollDirection, setScrollDirection] = useState('down');
     const teamRef = useRef(null);
     const sliderRef = useRef(null);
+    const titleRef = useRef(null);
     const lastScrollY = useRef(0);
 
     const settings = {
@@ -108,8 +110,25 @@ const Team1 = () => {
             }
         );
 
+        const titleObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsTitleVisible(true);
+                    } else {
+                        setIsTitleVisible(false);
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            }
+        );
+
         const currentTeamRef = teamRef.current;
         const currentSliderRef = sliderRef.current;
+        const currentTitleRef = titleRef.current;
         
         if (currentTeamRef) {
             teamObserver.observe(currentTeamRef);
@@ -117,6 +136,10 @@ const Team1 = () => {
         
         if (currentSliderRef) {
             sliderObserver.observe(currentSliderRef);
+        }
+
+        if (currentTitleRef) {
+            titleObserver.observe(currentTitleRef);
         }
 
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -128,8 +151,12 @@ const Team1 = () => {
             if (currentSliderRef) {
                 sliderObserver.unobserve(currentSliderRef);
             }
+            if (currentTitleRef) {
+                titleObserver.unobserve(currentTitleRef);
+            }
             teamObserver.disconnect();
             sliderObserver.disconnect();
+            titleObserver.disconnect();
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
@@ -282,6 +309,13 @@ const Team1 = () => {
                 .chefe-section .title {
                     font-size: 24px;
                     margin-bottom: 20px;
+                    opacity: 0;
+                    transform: translateY(50px);
+                    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                }
+                .chefe-section .title.title-slide-up {
+                    opacity: 1;
+                    transform: translateY(0);
                 }
                 @media (min-width: 576px) {
                     .chefe-section .title {
@@ -351,7 +385,7 @@ const Team1 = () => {
                         {/* <Image className="ms-1"
                             src="/assets/img/icon/titleIcon.svg" alt="img" width={20} height={20}   /> */}
                     </div>
-                    <h2 className="title  wow fadeInUp mb-5" style={{ color: '#0D5189' }} data-wow-delay="0.7s">
+                    <h2 ref={titleRef} className={`title wow fadeInUp mb-5 ${isTitleVisible ? 'title-slide-up' : ''}`} style={{ color: '#0D5189' }} data-wow-delay="0.7s">
                         Quality food and service categories
                     </h2>
                 </div>

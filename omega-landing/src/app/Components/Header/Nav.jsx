@@ -1,20 +1,26 @@
 import Link from 'next/link';
 
 export default function Nav({ setMobileToggle }) {
+  const handleLinkClick = () => {
+    if (setMobileToggle) {
+      setMobileToggle(false);
+    }
+  };
+
   return (
     <ul className="cs_nav_list fw-medium flex gap-6" style={{ color: '#0D5189' }}>
       <li >
-        <Link href="/" style={{ color: '#0D5189' }}>Home</Link>
+        <Link href="/" onClick={handleLinkClick} style={{ color: '#0D5189' }}>Home</Link>
       </li>
 
       <li >
-        <Link href="/shop" onClick={() => setMobileToggle(false)} style={{ color: '#0D5189' }}>
+        <Link href="/shop" onClick={handleLinkClick} style={{ color: '#0D5189' }}>
         Products
         </Link>
       </li>
 
       <li >
-        <Link href="/about" style={{ color: '#0D5189' }}>About Us</Link>
+        <Link href="/about" onClick={handleLinkClick} style={{ color: '#0D5189' }}>About Us</Link>
         {/* <DropDown>
           <ul>
           <li>
@@ -87,7 +93,7 @@ export default function Nav({ setMobileToggle }) {
   
      
       <li >
-        <Link href="/contact" onClick={() => setMobileToggle(false)} style={{ color: '#0D5189' }}>
+        <Link href="/contact" onClick={handleLinkClick} style={{ color: '#0D5189' }}>
         Contact
         </Link>
       </li>

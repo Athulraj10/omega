@@ -7,8 +7,12 @@ import { categories, productsByCategory } from "../../../data/products";
 const FoodItem1 = () => {
     const [isActive, setIsActive] = useState('Frozen fish');
     const [isVisible, setIsVisible] = useState(false);
+    const [isTitleVisible, setIsTitleVisible] = useState(false);
+    const [isNavVisible, setIsNavVisible] = useState(false);
     const [scrollDirection, setScrollDirection] = useState('down');
     const foodItemRef = useRef(null);
+    const titleRef = useRef(null);
+    const navRef = useRef(null);
     const lastScrollY = useRef(0);
 
     // Helper function to split products into two columns
@@ -52,9 +56,52 @@ const FoodItem1 = () => {
             }
         );
 
+        const titleObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsTitleVisible(true);
+                    } else {
+                        setIsTitleVisible(false);
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            }
+        );
+
+        const navObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsNavVisible(true);
+                    } else {
+                        setIsNavVisible(false);
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            }
+        );
+
         const currentRef = foodItemRef.current;
+        const currentTitleRef = titleRef.current;
+        const currentNavRef = navRef.current;
+        
         if (currentRef) {
             observer.observe(currentRef);
+        }
+
+        if (currentTitleRef) {
+            titleObserver.observe(currentTitleRef);
+        }
+
+        if (currentNavRef) {
+            navObserver.observe(currentNavRef);
         }
 
         // Fallback: always show after 1 second
@@ -69,7 +116,15 @@ const FoodItem1 = () => {
             if (currentRef) {
                 observer.unobserve(currentRef);
             }
+            if (currentTitleRef) {
+                titleObserver.unobserve(currentTitleRef);
+            }
+            if (currentNavRef) {
+                navObserver.unobserve(currentNavRef);
+            }
             observer.disconnect();
+            titleObserver.disconnect();
+            navObserver.disconnect();
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
@@ -197,106 +252,208 @@ const FoodItem1 = () => {
                     filter: blur(0px);
                 }
                 .food-menu-section .title {
-                    font-size: 24px;
-                    margin-bottom: 20px;
+                    font-size: 20px !important;
+                    line-height: 1.2;
+                    margin-bottom: 15px;
+                    padding: 0 10px;
+                    opacity: 0;
+                    transform: translateY(50px);
+                    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                }
+                .food-menu-section .title.title-slide-up {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                @media (min-width: 375px) {
+                    .food-menu-section .title {
+                        font-size: 22px !important;
+                        margin-bottom: 18px;
+                    }
                 }
                 @media (min-width: 576px) {
                     .food-menu-section .title {
-                        font-size: 32px;
+                        font-size: 28px !important;
                         margin-bottom: 25px;
+                        padding: 0 15px;
                     }
                 }
                 @media (min-width: 768px) {
                     .food-menu-section .title {
-                        font-size: 40px;
+                        font-size: 36px !important;
                         margin-bottom: 30px;
+                        padding: 0;
                     }
                 }
                 @media (min-width: 992px) {
                     .food-menu-section .title {
-                        font-size: 48px;
+                        font-size: 44px !important;
                         margin-bottom: 40px;
                     }
+                }
+                @media (min-width: 1200px) {
+                    .food-menu-section .title {
+                        font-size: 48px !important;
+                    }
+                }
+                .food-menu-section .nav-item {
+                    opacity: 0;
+                    transform: translateY(50px);
+                    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+                }
+                .food-menu-section .nav-item.nav-item-slide-up {
+                    opacity: 1;
+                    transform: translateY(0);
                 }
                 .food-menu-section .nav-pills {
                     flex-wrap: wrap;
                     justify-content: center;
-                    gap: 10px;
+                    gap: 8px;
+                    margin-bottom: 20px !important;
+                }
+                @media (min-width: 375px) {
+                    .food-menu-section .nav-pills {
+                        gap: 10px;
+                        margin-bottom: 25px !important;
+                    }
+                }
+                @media (min-width: 576px) {
+                    .food-menu-section .nav-pills {
+                        margin-bottom: 30px !important;
+                    }
                 }
                 @media (min-width: 768px) {
                     .food-menu-section .nav-pills {
                         flex-wrap: nowrap;
                         gap: 0;
+                        margin-bottom: 30px !important;
                     }
                 }
                 .food-menu-section .nav-item {
-                    flex: 1 1 auto;
-                    min-width: 120px;
+                    flex: 1 1 calc(50% - 5px);
+                    min-width: 0;
+                    max-width: calc(50% - 5px);
+                }
+                @media (min-width: 375px) {
+                    .food-menu-section .nav-item {
+                        flex: 1 1 calc(33.333% - 7px);
+                        max-width: calc(33.333% - 7px);
+                    }
+                }
+                @media (min-width: 576px) {
+                    .food-menu-section .nav-item {
+                        flex: 1 1 auto;
+                        min-width: 100px;
+                        max-width: none;
+                    }
                 }
                 @media (min-width: 768px) {
                     .food-menu-section .nav-item {
                         flex: 0 0 auto;
                         min-width: auto;
+                        max-width: none;
                     }
                 }
                 .food-menu-section .nav-link {
-                    padding: 10px 15px;
-                    font-size: 12px;
+                    padding: 8px 10px !important;
+                    font-size: 10px !important;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    gap: 8px;
+                    gap: 5px;
+                    width: 100%;
+                    text-align: center;
+                }
+                @media (min-width: 375px) {
+                    .food-menu-section .nav-link {
+                        padding: 10px 12px !important;
+                        font-size: 11px !important;
+                        gap: 6px;
+                    }
                 }
                 @media (min-width: 576px) {
                     .food-menu-section .nav-link {
-                        padding: 12px 18px;
-                        font-size: 13px;
+                        padding: 12px 16px !important;
+                        font-size: 12px !important;
+                        gap: 8px;
                     }
                 }
                 @media (min-width: 768px) {
                     .food-menu-section .nav-link {
-                        padding: 15px 20px;
-                        font-size: 14px;
+                        padding: 15px 20px !important;
+                        font-size: 13px !important;
+                        gap: 8px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .food-menu-section .nav-link {
+                        font-size: 14px !important;
                     }
                 }
                 .food-menu-section .nav-link img {
-                    width: 40px;
-                    height: 40px;
+                    width: 35px !important;
+                    height: 35px !important;
+                }
+                @media (min-width: 375px) {
+                    .food-menu-section .nav-link img {
+                        width: 40px !important;
+                        height: 40px !important;
+                    }
                 }
                 @media (min-width: 576px) {
                     .food-menu-section .nav-link img {
-                        width: 50px;
-                        height: 50px;
+                        width: 50px !important;
+                        height: 50px !important;
                     }
                 }
                 @media (min-width: 768px) {
                     .food-menu-section .nav-link img {
-                        width: 60px;
-                        height: 60px;
+                        width: 60px !important;
+                        height: 60px !important;
                     }
                 }
                 @media (min-width: 992px) {
                     .food-menu-section .nav-link img {
-                        width: 70px;
-                        height: 70px;
+                        width: 70px !important;
+                        height: 70px !important;
                     }
                 }
                 .food-menu-section .col-lg-6 {
-                    margin-bottom: 20px;
+                    margin-bottom: 15px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+                @media (min-width: 576px) {
+                    .food-menu-section .col-lg-6 {
+                        margin-bottom: 20px;
+                        padding-left: 15px;
+                        padding-right: 15px;
+                    }
                 }
                 @media (min-width: 992px) {
                     .food-menu-section .col-lg-6 {
                         margin-bottom: 0;
+                        padding-left: 15px;
+                        padding-right: 15px;
                     }
                 }
                 .food-menu-tab-icon {
-                    width: 40px !important;
-                    height: 40px !important;
+                    width: 35px !important;
+                    height: 35px !important;
                     object-fit: contain;
                 }
                 .food-menu-tab-icon-active {
-                    width: 45px !important;
-                    height: 45px !important;
+                    width: 38px !important;
+                    height: 38px !important;
+                }
+                @media (min-width: 375px) {
+                    .food-menu-tab-icon {
+                        width: 40px !important;
+                        height: 40px !important;
+                    }
+                    .food-menu-tab-icon-active {
+                        width: 43px !important;
+                        height: 43px !important;
+                    }
                 }
                 @media (min-width: 576px) {
                     .food-menu-tab-icon {
@@ -329,11 +486,19 @@ const FoodItem1 = () => {
                     }
                 }
                 .food-menu-section .food-menu-tab-wrapper {
-                    padding: 20px 15px;
+                    padding: 15px 10px;
+                    margin: 0 10px;
+                }
+                @media (min-width: 375px) {
+                    .food-menu-section .food-menu-tab-wrapper {
+                        padding: 18px 15px;
+                        margin: 0 15px;
+                    }
                 }
                 @media (min-width: 576px) {
                     .food-menu-section .food-menu-tab-wrapper {
                         padding: 30px 20px;
+                        margin: 0;
                     }
                 }
                 @media (min-width: 768px) {
@@ -349,32 +514,89 @@ const FoodItem1 = () => {
                 .food-menu-section {
                     overflow-x: hidden;
                 }
+                .food-menu-section .container {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+                @media (min-width: 375px) {
+                    .food-menu-section .container {
+                        padding-left: 15px;
+                        padding-right: 15px;
+                    }
+                }
+                @media (min-width: 576px) {
+                    .food-menu-section .container {
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .food-menu-section .container {
+                        padding-left: 30px;
+                        padding-right: 30px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .food-menu-section .container {
+                        padding-left: 15px;
+                        padding-right: 15px;
+                    }
+                }
+                /* Mobile-optimized animations - reduce transform values */
+                @media (max-width: 767px) {
+                    .food-menu-section .product-item.slide-from-left {
+                        transform: translateX(-50px) rotateY(-15deg) scale(0.9);
+                    }
+                    .food-menu-section .product-item.slide-from-right {
+                        transform: translateX(50px) rotateY(15deg) scale(0.9);
+                    }
+                    .food-menu-section .product-item.slide-from-bottom-left {
+                        transform: translate(-40px, 40px) rotateZ(-10deg) scale(0.9);
+                    }
+                    .food-menu-section .product-item.slide-from-top-left {
+                        transform: translate(-40px, -40px) rotateZ(10deg) scale(0.9);
+                    }
+                    .food-menu-section .product-item.slide-from-bottom-right {
+                        transform: translate(40px, 40px) rotateZ(10deg) scale(0.9);
+                    }
+                    .food-menu-section .product-item.slide-from-top-right {
+                        transform: translate(40px, -40px) rotateZ(-10deg) scale(0.9);
+                    }
+                    .food-menu-section .product-item.slide-from-bottom {
+                        transform: translateY(50px) rotateX(-10deg) scale(0.9);
+                    }
+                    .food-menu-section .product-item.slide-from-top {
+                        transform: translateY(-50px) rotateX(10deg) scale(0.9);
+                    }
+                    .food-menu-section .product-item.slide-from-center-left {
+                        transform: translateX(-60px) rotateY(-15deg) scale(0.85);
+                    }
+                    .food-menu-section .product-item.slide-from-center-right {
+                        transform: translateX(60px) rotateY(15deg) scale(0.85);
+                    }
+                }
             `}} />
 <section className="food-menu-section fix section-padding" style={{backgroundColor: '#fff'}}>
-        {/* <div className="burger-shape">
-                <Image src="/assets/img/shape/burger-shape.png" alt="img" width={148} height={160} />
-        </div>
-        <div className="fry-shape">
-                <Image src="/assets/img/shape/fry-shape.png" alt="img" width={137} height={158} />
-        </div> */}
+
         <div className="food-menu-wrapper style1">
             <div className="container">
                 <div className="food-menu-tab-wrapper style-bg border border-gray-200 rounded-lg">
                     <div className="title-area">
                    
-                        <h2 className="title wow fadeInUp" style={{ color: '#0D5189' }} data-wow-delay="0.7s">
+                        <h2 ref={titleRef} className={`title wow fadeInUp ${isTitleVisible ? 'title-slide-up' : ''}`} style={{ color: '#0D5189' }} data-wow-delay="0.7s">
                             Omega Foods Menu
                         </h2>
                     </div>
 
                     <div className="food-menu-tab">
-                        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                {categories.map((category) => (
+                        <ul ref={navRef} className="nav nav-pills" id="pills-tab" role="tablist">
+                                {categories.map((category, index) => (
                                     <li
                                         key={category.id}
-                                        className={`nav-item ${isActive === category.id ? 'active' : ''}`}
+                                        className={`nav-item ${isActive === category.id ? 'active' : ''} ${isNavVisible ? 'nav-item-slide-up' : ''}`}
                                         onClick={() => setIsActive(category.id)}
                                         role="presentation"
+                                        style={{ transitionDelay: `${index * 0.1}s` }}
                                     >
                                         <button
                                             className="nav-link"
@@ -414,8 +636,8 @@ const FoodItem1 = () => {
                                             aria-labelledby={`${category.tabId}-tab`}
                                             tabIndex="0"
                                         >
-                                            <div className={`row ${isFirstCategory ? 'gx-60' : 'gx-30'}`}>
-                                    <div className="col-lg-6">
+                                            <div className={`row ${isFirstCategory ? 'gx-60' : 'gx-30'} g-2 g-md-3 g-lg-4`}>
+                                    <div className="col-12 col-lg-6">
                                                     {left.map((product, index) => {
                                                         // Different animation angles based on scroll direction
                                                         const downAnimations = [
@@ -453,7 +675,7 @@ const FoodItem1 = () => {
                                                         );
                                                     })}
                                     </div>
-                                    <div className="col-lg-6">
+                                    <div className="col-12 col-lg-6">
                                                     {right.map((product, index) => {
                                                         // Different animation angles based on scroll direction
                                                         const downAnimations = [
@@ -506,4 +728,7 @@ const FoodItem1 = () => {
     );
 };
 
+export default FoodItem1;
+export default FoodItem1;
+export default FoodItem1;
 export default FoodItem1;
