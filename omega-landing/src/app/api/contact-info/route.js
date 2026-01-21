@@ -12,7 +12,7 @@ export async function GET(request) {
           title: "Our Address",
           value: "Abu Dhabi, UAE",
           icon: "/assets/img/icon/location_blue.png",
-          description: "Visit our location for fresh seafood"
+          description: ""
         },
         email: {
           title: "Email Us",
@@ -30,7 +30,7 @@ export async function GET(request) {
           title: "Opening Hours",
           value: "Monday – Friday: 8am – 4pm\nSaturday: 8am – 12pm\nSunday: Closed",
           icon: "/assets/img/icon/clock_blue.png",
-          description: "Visit us during our business hours for the freshest seafood selection."
+          description: ""
         },
         mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28821.965472924858!2d54.3773438!3d24.4538848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e6716b5e6b5e5%3A0x4b4b4b4b4b4b4b4b!2sAbu%20Dhabi%2C%20United%20Arab%20Emirates!5e0!3m2!1sen!2sae!4v1234567890!5m2!1sen!2sae",
         formTitle: "Get in Touch",
