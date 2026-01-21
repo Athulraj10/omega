@@ -37,7 +37,7 @@ const BreadCumb = ({Title,bgimg}) => {
                             <h1 className="breadcumb-title">{Title}</h1>
                             <ul className="breadcumb-menu">
                                 <li><Link href="/">Home</Link></li>
-                                <li>/</li>
+                                <li style={{ color: '#fff' }}>/</li>
                                 <li className="active">{Title}</li>
                             </ul>
                         </div>

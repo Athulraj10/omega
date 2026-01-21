@@ -238,10 +238,11 @@ const Contact3 = ({ locale = 'en' }) => {
                         height: 70px;
                     }
                 }
-                .contact-box .title {
+                .contact-box .title,
+                .contact-box h3.title {
                     font-size: 18px;
                     margin-bottom: 12px;
-                    color: #0D5189;
+                    color: #0D5189 !important;
                     font-weight: 600;
                 }
                 @media (min-width: 576px) {
@@ -260,7 +261,7 @@ const Contact3 = ({ locale = 'en' }) => {
                     font-size: 14px;
                     line-height: 1.6;
                     margin-bottom: 10px;
-                    color: #333;
+                    color: #0D5189;
                 }
                 @media (min-width: 576px) {
                     .contact-box p {
@@ -276,6 +277,7 @@ const Contact3 = ({ locale = 'en' }) => {
                     font-size: 12px;
                     display: block;
                     margin-top: 8px;
+                    color: #0D5189;
                 }
                 @media (min-width: 576px) {
                     .contact-box small {
@@ -461,7 +463,7 @@ const Contact3 = ({ locale = 'en' }) => {
                 .contact-form p {
                     font-size: 14px;
                     line-height: 1.7;
-                    color: #666;
+                    color: #0D5189;
                     margin-bottom: 25px;
                 }
                 @media (min-width: 576px) {

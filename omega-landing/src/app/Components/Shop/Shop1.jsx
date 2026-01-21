@@ -617,69 +617,52 @@ const Shop1 = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div ref={shopRef} className="tab-content" id="pills-tabContent">
-                                <div
-                                    className="tab-pane fade show active"
-                                    id="pills-grid"
-                                    role="tabpanel"
-                                    aria-labelledby="pills-grid-tab"
-                                    tabIndex="0"
-                                >
-                                    {productRows.length > 0 ? (
-                                        productRows.map((row, rowIndex) => (
-                                            <div key={`${animationKey}-${rowIndex}`} className="dishes-card-wrap style2">
-                                                {row.map((product, productIndex) => {
-                                                    // Different animation angles based on position and scroll direction
-                                                    const totalIndex = rowIndex * 4 + productIndex;
-                                                    const downAnimations = [
-                                                        'slide-from-left',
-                                                        'slide-from-bottom-left',
-                                                        'slide-from-bottom',
-                                                        'slide-from-bottom-right',
-                                                        'slide-from-right',
-                                                        'slide-from-bottom-right',
-                                                        'slide-from-bottom',
-                                                        'slide-from-bottom-left'
-                                                    ];
-                                                    const upAnimations = [
-                                                        'slide-from-left',
-                                                        'slide-from-top-left',
-                                                        'slide-from-top',
-                                                        'slide-from-top-right',
-                                                        'slide-from-right',
-                                                        'slide-from-top-right',
-                                                        'slide-from-top',
-                                                        'slide-from-top-left'
-                                                    ];
-                                                    const animationClasses = scrollDirection === 'down' ? downAnimations : upAnimations;
-                                                    const animClass = animationClasses[totalIndex % animationClasses.length];
-                                                    const shouldAnimate = isVisible;
-                                                    
-                                                    return (
-                                                        <div
-                                                            key={`${animationKey}-${rowIndex}-${productIndex}`}
-                                                            className={`shop-product-item ${animClass} ${shouldAnimate ? 'animate' : ''}`}
-                                                            style={{ transitionDelay: `${0.1 + totalIndex * 0.08}s` }}
-                                                        >
-                                                            <ShopCard
-                                                                img={product.img}
-                                                                title={product.title}
-                                                                content={product.content}
-                                                                price={product.price}
-                                                                productId={product.id}
-                                                            />
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <div className="text-center py-5">
-                                            <p>No products found matching your criteria.</p>
-                                        </div>
-                                    )}
-                                </div>
+                          <div ref={shopRef} className="tab-content" id="pills-tabContent">
+    <div
+        className="tab-pane fade show active"
+        id="pills-grid"
+        role="tabpanel"
+        aria-labelledby="pills-grid-tab"
+        tabIndex="0"
+    >
+        {productRows.length > 0 ? (
+            productRows.map((row, rowIndex) => (
+                <div
+                    key={`${animationKey}-${rowIndex}`}
+                    className="dishes-card-wrap style2 mb-3"
+                >
+                    {row.map((product, productIndex) => {
+                        const totalIndex = rowIndex * 4 + productIndex;
+                        const shouldAnimate = isVisible;
+
+                        return (
+                            <div
+                                key={`${animationKey}-${rowIndex}-${productIndex}`}
+                                className={`shop-product-item slide-from-bottom ${
+                                    shouldAnimate ? 'animate' : ''
+                                }`}
+                                style={{ transitionDelay: `${0.1 + totalIndex * 0.08}s` }}
+                            >
+                                <ShopCard
+                                    img={product.img}
+                                    title={product.title}
+                                    content={product.content}
+                                    price={product.price}
+                                    productId={product.id}
+                                />
                             </div>
+                        );
+                    })}
+                </div>
+            ))
+        ) : (
+            <div className="text-center py-5">
+                <p>No products found matching your criteria.</p>
+            </div>
+        )}
+    </div>
+</div>
+
                             {totalPages > 1 && (
                                 <div className="page-nav-wrap text-center">
                                     <ul>

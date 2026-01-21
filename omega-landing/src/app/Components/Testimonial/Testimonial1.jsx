@@ -165,13 +165,18 @@ const Testimonial1 = () => {
                 width: 100%;
                 height: 300px;
                 top: 0;
+                left: 0;
+                overflow: hidden;
             }
             @media (min-width: 992px) {
                 .testimonial-section .testimonial-left {
                     display: flex;
                     width: 50%;
+                    max-width: 50%;
                     height: 100%;
-                    top: -50;
+                    top: 0;
+                    left: 0;
+                    overflow: hidden;
                 }
             }
             .testimonial-section .sub-title {
@@ -246,6 +251,139 @@ const Testimonial1 = () => {
                 }
                 .testimonial-section {
                     overflow-x: hidden;
+                    overflow-y: visible;
+                    position: relative;
+                    width: 100%;
+                }
+                .testimonial-section .testimonial-wrapper {
+                    position: relative;
+                    overflow: visible;
+                    width: 100%;
+                }
+                .testimonial-section .testimonial-wrapper .container {
+                    position: relative;
+                    z-index: 2;
+                    width: 100%;
+                    max-width: 100%;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+                @media (min-width: 576px) {
+                    .testimonial-section .testimonial-wrapper .container {
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .testimonial-section .testimonial-wrapper .container {
+                        padding-left: 30px;
+                        padding-right: 30px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .testimonial-section .testimonial-wrapper .container {
+                        padding-left: 15px;
+                        padding-right: 15px;
+                        max-width: 1140px;
+                    }
+                }
+                .testimonial-section .testimonial-left {
+                    left: 0;
+                    right: auto;
+                }
+                @media (min-width: 992px) {
+                    .testimonial-section .testimonial-left {
+                        left: 0;
+                        right: auto;
+                        max-width: 45%;
+                        overflow: visible;
+                    }
+                }
+                .testimonial-section .testimonial-right {
+                    position: relative;
+                    z-index: 2;
+                    width: 100%;
+                }
+                @media (min-width: 992px) {
+                    .testimonial-section .testimonial-right {
+                        width: 55% !important;
+                        margin-left: 45% !important;
+                        padding-left: 30px;
+                        flex: 0 0 55% !important;
+                        max-width: 55% !important;
+                    }
+                }
+                @media (min-width: 1200px) {
+                    .testimonial-section .testimonial-right {
+                        width: 55% !important;
+                        margin-left: 45% !important;
+                        padding-left: 50px;
+                        flex: 0 0 55% !important;
+                        max-width: 55% !important;
+                    }
+                }
+                .testimonial-section .slider-area {
+                    width: 100%;
+                    overflow: visible;
+                    position: relative;
+                    padding: 0;
+                    margin: 0;
+                }
+                .testimonial-section .testimonial-card {
+                    width: calc(100% - 20px);
+                    margin: 0 10px;
+                    box-sizing: border-box;
+                }
+                @media (min-width: 576px) {
+                    .testimonial-section .testimonial-card {
+                        width: calc(100% - 30px);
+                        margin: 0 15px;
+                    }
+                }
+                .testimonial-section .swiper-wrapper {
+                    overflow: visible;
+                    padding: 0;
+                    margin: 0;
+                }
+                .testimonial-section .swiper {
+                    overflow: visible;
+                    padding: 0;
+                    margin: 0;
+                }
+                .testimonial-section .swiper-slide {
+                    width: 100%;
+                    padding: 0;
+                    margin: 0;
+                }
+                .testimonial-section .row {
+                    margin-left: 0;
+                    margin-right: 0;
+                    width: 100%;
+                }
+                .testimonial-section .row > [class*="col-"] {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+                @media (min-width: 576px) {
+                    .testimonial-section .row > [class*="col-"] {
+                        padding-left: 15px;
+                        padding-right: 15px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .testimonial-section .row > [class*="col-"] {
+                        padding-left: 15px;
+                        padding-right: 15px;
+                    }
+                    .testimonial-section .row {
+                        justify-content: flex-end;
+                    }
+                    .testimonial-section .col-xl-5 {
+                        display: block;
+                        min-width: 45%;
+                        flex: 0 0 45%;
+                        max-width: 45%;
+                    }
                 }
                 .testimonial-section .testimonial-card p {
                     font-size: 14px;
@@ -292,8 +430,8 @@ const Testimonial1 = () => {
             </div>
             <div className="shape2 d-none d-md-block"><Image src="/assets/img/shape/testimonialShape1_1.png" alt="img" width={224} height={401}   /></div>
             <div className="container">
-                <div className="row d-flex justify-content-center align-items-center">
-                    <div className="col-12 col-xl-5 d-flex align-items-center justify-content-center order-2 order-xl-1">
+                <div className="row d-flex align-items-center">
+                    <div className="col-12 col-xl-5 d-flex align-items-center justify-content-center order-2 order-xl-1" style={{ minHeight: '1px' }}>
                         {/* Image is displayed via background shape div on desktop */}
                     </div>
                     <div className={`col-12 col-xl-7 testimonial-right ${isVisible ? 'animate-from-right' : ''} order-1 order-xl-2`} style={{ position: 'relative', zIndex: 1 }}>
