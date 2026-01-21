@@ -300,6 +300,38 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
                     transition: opacity 1.5s cubic-bezier(0.34, 1.56, 0.64, 1), transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 1.5s ease-out;
                     will-change: transform, opacity, filter;
                     animation: showDecorative 0.3s ease-out 2s forwards;
+                    position: absolute;
+                    z-index: 1;
+                    pointer-events: none;
+                    display: none;
+                }
+                @media (min-width: 1400px) {
+                    .footer-section .footer-decorative {
+                        display: block;
+                        bottom: 20%;
+                        right: 5%;
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+                @media (min-width: 1600px) {
+                    .footer-section .footer-decorative {
+                        width: 250px;
+                        height: 250px;
+                        right: 8%;
+                    }
+                }
+                @media (min-width: 1800px) {
+                    .footer-section .footer-decorative {
+                        width: 300px;
+                        height: 300px;
+                        right: 10%;
+                    }
+                }
+                .footer-section .footer-decorative img {
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: contain;
                 }
                 @keyframes showDecorative {
                     to {
@@ -358,6 +390,15 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
                 }
                 .footer-section .footer-widgets-wrapper {
                     position: relative;
+                    overflow: hidden;
+                }
+                .footer-section .footer-widgets-wrapper .container {
+                    position: relative;
+                    z-index: 2;
+                }
+                .footer-section .single-footer-widget {
+                    position: relative;
+                    z-index: 2;
                 }
                 @keyframes float {
                     0%, 100% {
@@ -590,40 +631,68 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
                         font-size: 16px;
                     }
                 }
+                /* Footer Bottom - Clean Styles */
                 .footer-section .footer-bottom {
-                    margin-top: 20px;
-                    padding-top: 20px;
+                    margin: 0 !important;
+                    padding: 15px 0 !important;
                     border-top: 1px solid rgba(255, 255, 255, 0.2);
-                }
-                @media (min-width: 375px) {
-                    .footer-section .footer-bottom {
-                        margin-top: 25px;
-                        padding-top: 25px;
-                    }
+                    width: 100%;
+                    position: relative;
+                    z-index: 2;
                 }
                 @media (min-width: 576px) {
                     .footer-section .footer-bottom {
-                        margin-top: 30px;
-                        padding-top: 30px;
+                        padding: 20px 0 !important;
                     }
                 }
                 @media (min-width: 768px) {
                     .footer-section .footer-bottom {
-                        margin-top: 40px;
-                        padding-top: 40px;
+                        padding: 25px 0 !important;
+                    }
+                }
+                .footer-section .footer-bottom .container {
+                    margin: 0 auto !important;
+                    padding: 0 15px !important;
+                    max-width: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                @media (min-width: 576px) {
+                    .footer-section .footer-bottom .container {
+                        padding: 0 20px !important;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .footer-section .footer-bottom .container {
+                        padding: 0 30px !important;
                     }
                 }
                 @media (min-width: 992px) {
-                    .footer-section .footer-bottom {
-                        margin-top: 50px;
-                        padding-top: 50px;
+                    .footer-section .footer-bottom .container {
+                        padding: 0 15px !important;
+                        max-width: 1140px;
                     }
+                }
+                .footer-section .footer-wrapper {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    text-align: center;
                 }
                 .footer-section .footer-copyright {
                     font-size: 12px;
-                    text-align: center;
-                    margin-bottom: 0;
-                    padding: 0;
+                    line-height: 1.5;
+                    margin: 0 auto !important;
+                    padding: 0 !important;
+                    color: #ffffff;
+                    text-align: center !important;
+                    width: 100%;
+                    display: block;
                 }
                 @media (min-width: 375px) {
                     .footer-section .footer-copyright {
@@ -643,8 +712,16 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
                 @media (min-width: 992px) {
                     .footer-section .footer-copyright {
                         font-size: 16px;
-                        text-align: left;
+                        text-align: center !important;
                     }
+                }
+                .footer-section .footer-copyright a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    transition: opacity 0.3s ease;
+                }
+                .footer-section .footer-copyright a:hover {
+                    opacity: 0.8;
                 }
                 .footer-section .container {
                     padding-left: 10px;
@@ -682,12 +759,13 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
             backgroundRepeat: 'no-repeat'
         }}>
         <div className="footer-widgets-wrapper">
-            <div className={`shape1 float-bob-y footer-decorative ${isVisible ? 'animate' : ''} d-none d-xxl-block`}>
+            <div className={`shape1 float-bob-y footer-decorative ${isVisible ? 'animate' : ''}`}>
                 <Image 
                     src={data.decorativeImage || "/assets/img/footer/mussels.png"} 
                     alt="img" 
                     width={300} 
-                    height={300}   
+                    height={300}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                 />
             </div>
            
@@ -804,9 +882,9 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
                 </div>
             </div>
         </div>
-        <div className="footer-bottom">
+        <div className="footer-bottom ">
             <div className="container">
-                <div className="footer-wrapper d-flex align-items-center justify-content-between">
+                <div className="footer-wrapper">
                     <p className={`footer-copyright ${isVisible ? 'animate' : ''} wow fadeInLeft`} data-wow-delay=".3s" style={{ transitionDelay: '1.7s' }}>
                         {data.copyright.text} <a href={data.copyright.companyLink}>{data.copyright.company}</a>
                     </p>

@@ -312,7 +312,7 @@ const FoodItem1 = () => {
                 }
                 @media (min-width: 375px) {
                     .food-menu-section .nav-pills {
-                        gap: 10px;
+                    gap: 10px;
                         margin-bottom: 25px !important;
                     }
                 }
@@ -340,8 +340,8 @@ const FoodItem1 = () => {
                     }
                 }
                 @media (min-width: 576px) {
-                    .food-menu-section .nav-item {
-                        flex: 1 1 auto;
+                .food-menu-section .nav-item {
+                    flex: 1 1 auto;
                         min-width: 100px;
                         max-width: none;
                     }
@@ -423,8 +423,8 @@ const FoodItem1 = () => {
                     padding-right: 10px;
                 }
                 @media (min-width: 576px) {
-                    .food-menu-section .col-lg-6 {
-                        margin-bottom: 20px;
+                .food-menu-section .col-lg-6 {
+                    margin-bottom: 20px;
                         padding-left: 15px;
                         padding-right: 15px;
                     }

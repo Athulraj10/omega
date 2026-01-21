@@ -15,9 +15,13 @@ const About1 = () => {
         img3:'/assets/img/shape/aboutShape1_4.png',  
         img4:'/assets/img/shape/aboutShape1_6.png',  
         subtitle:"About US",
-        title:'Variety of flavours from american cuisine',
-        content:'It is a long established fact that a reader will be distracted the readable content of a page when looking at layout the point established fact that',  
-      }
+        title:'Why Choose Omega Seafoods?',
+        content:`40+ years of industry expertise 
+         Abu Dhabi–based, UAE compliant operations
+         Local & international seafood sourcing
+         Strict hygiene & quality standards
+         Reliable bulk and commercial supply`            
+    }
 
     useEffect(() => {
         const handleScroll = () => {

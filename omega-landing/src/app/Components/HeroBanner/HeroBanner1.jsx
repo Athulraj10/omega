@@ -85,8 +85,8 @@ const HeroBanner1 = () => {
                     }
                 }
                 @media (min-width: 576px) {
-                    .hero-min-height {
-                        min-height: 400px;
+                .hero-min-height {
+                    min-height: 400px;
                         padding-top: 30px;
                         padding-bottom: 30px;
                     }

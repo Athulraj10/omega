@@ -299,6 +299,113 @@ const Shop1 = () => {
                     transform: scale(1) rotateZ(0deg);
                     filter: blur(0px);
                 }
+                /* Grid Layout Fixes */
+                .shop-section .dishes-card-wrap.style2 {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 15px;
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                }
+                @media (max-width: 1199px) {
+                    .shop-section .dishes-card-wrap.style2 {
+                        grid-template-columns: repeat(3, 1fr);
+                    }
+                }
+                @media (max-width: 991px) {
+                    .shop-section .dishes-card-wrap.style2 {
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 12px;
+                    }
+                }
+                @media (max-width: 575px) {
+                    .shop-section .dishes-card-wrap.style2 {
+                        grid-template-columns: repeat(1, 1fr);
+                        gap: 12px;
+                    }
+                }
+                .shop-section .shop-product-item {
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    align-items: stretch;
+                }
+                .shop-section .single-food-items {
+                    background-color: #fff;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+                    transition: box-shadow 0.3s ease, transform 0.3s ease;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                }
+                .shop-section .single-food-items:hover {
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+                    transform: translateY(-4px);
+                }
+                .shop-section .item-thumb {
+                    width: 100%;
+                    aspect-ratio: 1;
+                    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    overflow: hidden;
+                }
+                .shop-section .item-thumb img,
+                .shop-section .item-thumb .food-item-img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    display: block;
+                }
+                .shop-section .item-content {
+                    padding: 15px 12px;
+                    text-align: center;
+                    background-color: #fff;
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                }
+                @media (max-width: 575px) {
+                    .shop-section .item-content {
+                        padding: 12px 10px;
+                    }
+                }
+                .shop-section .item-content h3 {
+                    color: #0D5189 !important;
+                    font-size: 16px;
+                    font-weight: 700;
+                    margin-bottom: 5px;
+                    line-height: 1.3;
+                }
+                @media (min-width: 576px) {
+                    .shop-section .item-content h3 {
+                        font-size: 18px;
+                    }
+                }
+                .shop-section .item-content .text {
+                    color: #0D5189 !important;
+                    font-size: 13px;
+                    font-weight: 400;
+                    margin-bottom: 0;
+                    line-height: 1.4;
+                }
+                @media (min-width: 576px) {
+                    .shop-section .item-content .text {
+                        font-size: 15px;
+                    }
+                }
+                .shop-section .item-content h6 {
+                    display: none;
+                }
             `}} />
         <div className="shop-section section-padding fix">
             <div className="shop-wrapper style1">
