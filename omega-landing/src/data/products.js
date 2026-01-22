@@ -687,7 +687,7 @@ export const productsByCategory = {
       ),
     },
   ],
-  Spices: [
+  "Spices": [
     {
       id: "spice-1",
       img: "/assets/img/menu/Spices/spices1.png",
@@ -789,7 +789,7 @@ export const productsByCategory = {
       reviews: generateReviews("Fish Masala", "Spices", [4, 9, 14, 19]),
     },
   ],
-  Fruits: [
+  "Fruits": [
     {
       id: "fruit-1",
       img: "/assets/img/menu/Fruits/fruit1.png",
@@ -891,7 +891,7 @@ export const productsByCategory = {
       reviews: generateReviews("Strawberry", "Fruits", [4, 9, 14, 19]),
     },
   ],
-  Vegitables: [
+  "Vegitables": [
     {
       id: "veg-1",
       img: "/assets/img/menu/Vegetables/vegitable2.png",
@@ -985,6 +985,34 @@ export const productsByCategory = {
     {
       id: "veg-10",
       img: "/assets/img/menu/Vegetables/vegitable10.png",
+      title: "Tomato",
+      content: "India",
+      price: "$5.00",
+      description:
+        "Fresh tomatoes from India. Juicy and flavorful, essential for cooking.",
+      reviews: generateReviews("Tomato", "Vegitables", [4, 9, 14, 19]),
+    },
+    {
+      id: "veg-11",
+      img: "/assets/img/menu/Vegetables/vegitable11.png",
+      title: "Tomato",
+      content: "India",
+      price: "$5.00",
+      description:
+        "Fresh tomatoes from India. Juicy and flavorful, essential for cooking.",
+      reviews: generateReviews("Tomato", "Vegitables", [4, 9, 14, 19]),
+    },    {
+      id: "veg-12",
+      img: "/assets/img/menu/Vegetables/vegitable12.png",
+      title: "Tomato",
+      content: "India",
+      price: "$5.00",
+      description:
+        "Fresh tomatoes from India. Juicy and flavorful, essential for cooking.",
+      reviews: generateReviews("Tomato", "Vegitables", [4, 9, 14, 19]),
+    },    {
+      id: "veg-13",
+      img: "/assets/img/menu/Vegetables/vegitable13.png",
       title: "Tomato",
       content: "India",
       price: "$5.00",

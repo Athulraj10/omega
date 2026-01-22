@@ -11241,6 +11241,17 @@ input.main-search-input::placeholder {
   -o-border-radius: 16px;
 }
 
+.main-sidebar .single-sidebar-widgets-wrapper {
+  /* padding: 40px 30px; */
+  background-color: var(--white);
+  /* margin-bottom: 30px; */
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}
+
 .widget-title {
   margin-bottom: 25px;
   position: relative;

@@ -48,7 +48,7 @@ const Team1 = () => {
     const teamItems = [
       {img:'/assets/img/chefe/chefeThumb1_3.png', title:'Fresh Fish', content:'Chef Assistant', facebook:'#', linkedin:'#'},
       {img:'/assets/img/chefe/chefeThumb1_2.png', title:'Frozen Fish', content:'Chef Assistant', facebook:'#', linkedin:'#'},
-      {img:'/assets/img/chefe/chefeThumb1_1.png', title:'Powered by IOT', content:'Chef Lead', facebook:'#', linkedin:'#'},
+      {img:'/assets/img/chefe/chefeThumb1_1.png', title:'Value Added Packaging', content:'Chef Lead', facebook:'#', linkedin:'#'},
       ]; 
 
       const logoItems = [

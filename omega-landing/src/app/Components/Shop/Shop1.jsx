@@ -413,7 +413,7 @@ const Shop1 = () => {
                     <div className="row">
                         <div className="col-xl-3 col-lg-4 order-2 order-md-1 wow fadeInUp" data-wow-delay=".3s">
                             <div className="main-sidebar">
-                                <div className="single-sidebar-widget">
+                                <div className="single-sidebar-widgets-wrapper">
                                     <h5 className="widget-title">Search</h5>
                                     <div className="search-widget">
                                         <form onSubmit={handleSearch}>
@@ -428,7 +428,7 @@ const Shop1 = () => {
                                     </div>
                                 </div>
                               
-                                <div className="single-sidebar-widget">
+                                {/* <div className="single-sidebar-widget">
                                     <h5 className="widget-title">Filter By Price</h5>
                                     <div className="range__barcustom">
                                         <div className="slider">
@@ -486,7 +486,7 @@ const Shop1 = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="single-sidebar-widget">
                                     <h5 className="widget-title">Recent Products</h5>
                                     {recentProducts.map((product, index) => (
