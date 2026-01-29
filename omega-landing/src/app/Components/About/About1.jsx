@@ -161,6 +161,7 @@ const About1 = () => {
                 }
                 .about-us-section {
                     overflow-x: hidden;
+                    position: relative;
                 }
                 .about-us-section .section-padding {
                     padding: 40px 0;
@@ -175,12 +176,124 @@ const About1 = () => {
                         padding: 80px 0;
                     }
                 }
+                /* Mobile Decorative Images - Same size and animation as desktop */
+                .about-us-section .mobile-shape-left,
+                .about-us-section .mobile-shape-right {
+                    position: absolute;
+                    bottom: 0%;
+                    z-index: 2;
+                    pointer-events: none;
+                    opacity: 0;
+                    transition: opacity 1s ease-out, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    will-change: transform, opacity;
+                }
+                .about-us-section .mobile-shape-left {
+                    left: -10px;
+                    transform: translateX(-50px) scale(0.8) rotate(-10deg);
+                }
+                .about-us-section .mobile-shape-right {
+                    right: -10px;
+                    transform: translateX(50px) scale(0.8) rotate(10deg);
+                }
+                .about-us-section .mobile-shape-left.animate,
+                .about-us-section .mobile-shape-right.animate {
+                    opacity: 1;
+                    transform: translateX(0) scale(1) rotate(0deg);
+                }
+                /* Floating animation for mobile shapes */
+                @keyframes floatMobileLeft {
+                    0%, 100% {
+                        transform: translateY(0px) rotate(-2deg);
+                    }
+                    50% {
+                        transform: translateY(-15px) rotate(2deg);
+                    }
+                }
+                @keyframes floatMobileRight {
+                    0%, 100% {
+                        transform: translateY(0px) rotate(2deg);
+                    }
+                    50% {
+                        transform: translateY(-15px) rotate(-2deg);
+                    }
+                }
+                .about-us-section .mobile-shape-left.animate {
+                    animation: floatMobileLeft 4s ease-in-out infinite;
+                    animation-delay: 1s;
+                }
+                .about-us-section .mobile-shape-right.animate {
+                    animation: floatMobileRight 4s ease-in-out infinite;
+                    animation-delay: 1.5s;
+                }
+                /* Mobile shape sizing - responsive */
+                .about-us-section .mobile-shape-left img,
+                .about-us-section .mobile-shape-right img {
+                    width: 100px !important;
+                    height: 125px !important;
+                    object-fit: contain;
+                }
+                @media (min-width: 375px) {
+                    .about-us-section .mobile-shape-left img,
+                    .about-us-section .mobile-shape-right img {
+                        width: 120px !important;
+                        height: 150px !important;
+                    }
+                }
+                @media (min-width: 576px) {
+                    .about-us-section .mobile-shape-left {
+                        left: -15px;
+                    }
+                    .about-us-section .mobile-shape-right {
+                        right: -15px;
+                    }
+                    .about-us-section .mobile-shape-left img,
+                    .about-us-section .mobile-shape-right img {
+                        width: 140px !important;
+                        height: 175px !important;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .about-us-section .mobile-shape-left {
+                        left: 0;
+                    }
+                    .about-us-section .mobile-shape-right {
+                        right: 0;
+                    }
+                    .about-us-section .mobile-shape-left img,
+                    .about-us-section .mobile-shape-right img {
+                        width: 160px !important;
+                        height: 200px !important;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .about-us-section .mobile-shape-left img,
+                    .about-us-section .mobile-shape-right img {
+                        width: 180px !important;
+                        height: 225px !important;
+                    }
+                }
+                /* Hide mobile shapes on xxl screens where desktop shapes show */
+                @media (min-width: 1400px) {
+                    .about-us-section .mobile-shape-left,
+                    .about-us-section .mobile-shape-right {
+                        display: none !important;
+                    }
+                }
             `}} />
         <section className="about-us-section fix section-padding p-0 border border-gray-300 shadow">
         <div className="about-wrapper style1">
+            {/* Desktop decorative shapes - visible on xxl screens */}
             <div className="shape3 d-none d-xxl-block"><Image src={aboutContent.img2} alt="img" className="cir36" width={280} height={350}   /></div>
             <div className="shape6 d-none d-xxl-block"><Image src={aboutContent.img4} alt="img" className="cir36" width={280} height={350}   /></div>
             <div className="shape5 d-none d-xxl-block"><Image src="/assets/img/shape/aboutShape1_5.png" alt="img" width={173} height={277}   /></div>
+            
+            {/* Mobile decorative shapes - visible below xxl screens, same size & animation as desktop */}
+            <div className={`mobile-shape-left d-xxl-none ${isVisible ? 'animate' : ''}`}>
+                <Image src={aboutContent.img2} alt="decorative seafood" width={180} height={225} />
+            </div>
+            <div className={`mobile-shape-right d-xxl-none ${isVisible ? 'animate' : ''}`}>
+                <Image src={aboutContent.img4} alt="decorative seafood" width={180} height={225} />
+            </div>
          
          
             <div className="container">
