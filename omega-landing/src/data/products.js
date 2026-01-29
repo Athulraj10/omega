@@ -212,14 +212,14 @@ export const categories = [
   {
     id: "Frozen fish",
     name: "Frozen fish",
-    icon: "/assets/img/menu/frozen/LOGO.png",
+    icon: "/assets/img/menu/Frozen/LOGO.png",
     tabId: "pills-Frozen fish",
     ariaControls: "pills-Frozen fish",
   },
   {
     id: "Spices",
     name: "Spices",
-    icon: "/assets/img/menu/spices/LOGO.png",
+    icon: "/assets/img/menu/Spices/LOGO.png",
     tabId: "pills-Spices",
     ariaControls: "pills-Spices",
   },

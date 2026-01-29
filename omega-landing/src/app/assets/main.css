@@ -1329,7 +1329,7 @@ textarea.form-control:focus {
 }
 @media (max-width: 575px) {
   .mb-40 {
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
   }
 }
 
@@ -4742,22 +4742,23 @@ input.main-search-input::placeholder {
 }
 @media (max-width: 1199px) {
   .footer-widgets-wrapper {
-    padding: 70px 0 100px;
+    /* padding: 70px 0 100px; */
   }
 }
 @media (max-width: 991px) {
   .footer-widgets-wrapper {
-    padding: 50px 0 70px;
+    /* padding: 50px 0 70px; */
   }
 }
 .footer-widgets-wrapper .single-footer-widget {
   margin-top: 0px;
-  margin-bottom: 50px;
+  margin-bottom: 0px;
 }
+
 .footer-widgets-wrapper .single-footer-widget form .form-control {
   display: flex;
   min-width: 260px;
-  padding: 8px 16px;
+  /* padding: 8px 16px; */
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -4805,7 +4806,7 @@ input.main-search-input::placeholder {
   }
 }
 .footer-widgets-wrapper .single-footer-widget .widget-head {
-  margin-bottom: 30px;
+  margin-bottom: 00px;
 }
 @media (max-width: 575px) {
   .footer-widgets-wrapper .single-footer-widget .widget-head {
@@ -4947,7 +4948,7 @@ input.main-search-input::placeholder {
   font-weight: 500;
 }
 .footer-widgets-wrapper .single-footer-widget .list-area li:not(:last-child) {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 .footer-widgets-wrapper .single-footer-widget .list-area li a {
   color: var(--white);
@@ -5712,7 +5713,7 @@ input.main-search-input::placeholder {
 @media (max-width: 767px) {
   .banner-style3 .subtitle {
     font-size: 85px;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
   }
 }
 .banner-style3 .title {
@@ -6083,7 +6084,7 @@ input.main-search-input::placeholder {
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 .account-card h6 {
   color: var(--title);
@@ -7389,7 +7390,7 @@ input.main-search-input::placeholder {
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 .reservation-wrapper .get-in-touch .contact-info-wrapper {
   display: flex;
@@ -7538,7 +7539,7 @@ input.main-search-input::placeholder {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 @media (max-width: 470px) {
   .timer-wrap.style1 .timer-card.style1 .clock-wrapper {
@@ -12651,7 +12652,7 @@ span.select2-selection.select2-selection--single:focus {
 }
 .tinv-wishlist .tinv-header {
   color: var(--title);
-  margin-bottom: 25px;
+  /* margin-bottom: 25px; */
 }
 .tinv-wishlist .cart-empty {
   padding: 12px 25px;

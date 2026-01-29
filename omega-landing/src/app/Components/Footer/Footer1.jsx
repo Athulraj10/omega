@@ -10,8 +10,16 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
     const [error, setError] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
     const [scrollDirection, setScrollDirection] = useState('down');
+    const [expandedSections, setExpandedSections] = useState({});
     const footerRef = useRef(null);
     const lastScrollY = useRef(0);
+
+    const toggleSection = (sectionId) => {
+        setExpandedSections(prev => ({
+            ...prev,
+            [sectionId]: !prev[sectionId]
+        }));
+    };
 
     useEffect(() => {
         const fetchFooterData = async () => {
@@ -751,6 +759,131 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
                         padding-right: 15px;
                     }
                 }
+                
+                /* Mobile Accordion Styles */
+                .footer-accordion-header {
+                    display: none;
+                    width: 100%;
+                    background: transparent;
+                    border: none;
+                    padding: 15px 0;
+                    cursor: pointer;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+                    transition: all 0.3s ease;
+                }
+                .footer-accordion-header:hover {
+                    background: rgba(255, 255, 255, 0.05);
+                }
+                @media (max-width: 991px) {
+                    .footer-accordion-header {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                }
+                .footer-accordion-header h3 {
+                    margin: 0;
+                    font-size: 16px;
+                    color: #ffffff;
+                    font-weight: 600;
+                }
+                @media (min-width: 375px) {
+                    .footer-accordion-header h3 {
+                        font-size: 17px;
+                    }
+                }
+                @media (min-width: 576px) {
+                    .footer-accordion-header h3 {
+                        font-size: 18px;
+                    }
+                }
+                .footer-accordion-arrow {
+                    width: 24px;
+                    height: 24px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    color: #ffffff;
+                    font-size: 14px;
+                }
+                .footer-accordion-arrow.expanded {
+                    transform: rotate(180deg);
+                }
+                .footer-accordion-content {
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+                    padding: 0;
+                }
+                @media (max-width: 991px) {
+                    .footer-accordion-content {
+                        padding: 0 10px;
+                    }
+                    .footer-accordion-content.expanded {
+                        max-height: 500px;
+                        padding: 15px 10px;
+                    }
+                }
+                @media (min-width: 992px) {
+                    .footer-accordion-content {
+                        max-height: none !important;
+                        overflow: visible;
+                        padding: 0 !important;
+                    }
+                }
+                /* Hide desktop widget-head on mobile */
+                @media (max-width: 991px) {
+                    .footer-section .widget-head {
+                        display: none;
+                    }
+                    .footer-section .single-footer-widget {
+                        align-items: stretch !important;
+                        text-align: left !important;
+                    }
+                }
+                /* Mobile Grid Layout - 2 columns */
+                @media (max-width: 991px) {
+                    .footer-section .footer-mobile-grid {
+                        display: grid !important;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 0;
+                    }
+                    .footer-section .footer-mobile-grid > div {
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                    }
+                    .footer-section .footer-mobile-grid > div:nth-child(odd) {
+                        border-right: 1px solid rgba(255, 255, 255, 0.1);
+                    }
+                    .footer-section .footer-mobile-grid > div:last-child,
+                    .footer-section .footer-mobile-grid > div:nth-last-child(2):nth-child(odd) ~ div {
+                        border-bottom: none;
+                    }
+                }
+                @media (max-width: 575px) {
+                    .footer-section .footer-mobile-grid {
+                        grid-template-columns: 1fr;
+                    }
+                    .footer-section .footer-mobile-grid > div {
+                        border-right: none !important;
+                    }
+                }
+                /* Accordion list items animation */
+                .footer-accordion-content .list-area {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                    transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+                }
+                .footer-accordion-content.expanded .list-area {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                @media (min-width: 992px) {
+                    .footer-accordion-content .list-area {
+                        opacity: 1 !important;
+                        transform: none !important;
+                    }
+                }
             `}} />
         <footer ref={footerRef} className="footer-section fix" style={{
             backgroundImage: `url(${data.backgroundImage || '/assets/img/footer/footer.png'})`,
@@ -770,63 +903,33 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
             </div>
            
             <div className="container">
-                <div className="row justify-content-center text-center">
-                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                <div className="row justify-content-center text-center footer-mobile-grid">
+                    {/* Quick Links Section */}
+                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 m-0">
                         <div className={`single-footer-widget footer-widget fade-from-left ${isVisible ? 'animate' : ''} d-flex flex-column align-items-center`}>
+                            {/* Desktop Header */}
                             <div className={`widget-head ${isVisible ? 'animate' : ''}`}>
                                 <h3>{data.quickLinks.title}</h3>
                             </div>
-                            <ul className="list-area">
-                                {data.quickLinks.links.map((link, index) => (
-                                    <li 
-                                        key={index} 
-                                        className={`footer-list-item ${isVisible ? 'animate' : ''}`}
-                                        style={{ transitionDelay: `${0.4 + index * 0.12}s` }}
-                                    >
-                                        <Link href={link.href}>
-                                            <i className={link.icon}></i>
-                                            {link.text}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                        <div className={`single-footer-widget footer-widget fade-from-bottom ${isVisible ? 'animate' : ''} d-flex flex-column align-items-center`}>
-                            <div className={`widget-head ${isVisible ? 'animate' : ''}`} style={{ transitionDelay: '0.2s' }}>
-                                <h3>{data.menu.title}</h3>
-                            </div>
-                            <ul className="list-area">
-                                {data.menu.links.slice(0, 4).map((link, index) => (
-                                    <li 
-                                        key={index} 
-                                        className={`footer-list-item ${isVisible ? 'animate' : ''}`}
-                                        style={{ transitionDelay: `${0.5 + index * 0.12}s` }}
-                                    >
-                                        <Link href={link.href}>
-                                            <i className={link.icon}></i>
-                                            {link.text}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                           
-                        </div>
-                    </div>
-                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                        <div className={`single-footer-widget footer-widget fade-from-top ${isVisible ? 'animate' : ''} text-white d-flex flex-column align-items-center`}>
-                            <div className={`widget-head ${isVisible ? 'animate' : ''}`} style={{ transitionDelay: '0.4s' }}>
-                                <h3>Products</h3>
-                            </div>
-                            <ul className="list-area">
-                            {data.menu.links.length > 4 && (
-                                <ul className="list-area ">
-                                    {data.menu.links.slice(4).map((link, index) => (
+                            {/* Mobile Accordion Header */}
+                            <button 
+                                className="footer-accordion-header"
+                                onClick={() => toggleSection('quickLinks')}
+                                aria-expanded={expandedSections.quickLinks}
+                            >
+                                <h3>{data.quickLinks.title}</h3>
+                                <span className={`footer-accordion-arrow ${expandedSections.quickLinks ? 'expanded' : ''}`}>
+                                    <i className="bi bi-chevron-down"></i>
+                                </span>
+                            </button>
+                            {/* Content */}
+                            <div className={`footer-accordion-content ${expandedSections.quickLinks ? 'expanded' : ''}`}>
+                                <ul className="list-area">
+                                    {data.quickLinks.links.map((link, index) => (
                                         <li 
-                                            key={index + 4}
+                                            key={index} 
                                             className={`footer-list-item ${isVisible ? 'animate' : ''}`}
-                                            style={{ transitionDelay: `${0.7 + index * 0.12}s` }}
+                                            style={{ transitionDelay: `${0.4 + index * 0.12}s` }}
                                         >
                                             <Link href={link.href}>
                                                 <i className={link.icon}></i>
@@ -835,48 +938,141 @@ const Footer1 = ({ locale = 'en', context = 'default' }) => {
                                         </li>
                                     ))}
                                 </ul>
-                            )}
-                            </ul>
+                            </div>
                         </div>
                     </div>
-                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+
+                    {/* Menu Section */}
+                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 m-0">
+                        <div className={`single-footer-widget footer-widget fade-from-bottom ${isVisible ? 'animate' : ''} d-flex flex-column align-items-center`}>
+                            {/* Desktop Header */}
+                            <div className={`widget-head ${isVisible ? 'animate' : ''}`} style={{ transitionDelay: '0.2s' }}>
+                                <h3>{data.menu.title}</h3>
+                            </div>
+                            {/* Mobile Accordion Header */}
+                            <button 
+                                className="footer-accordion-header"
+                                onClick={() => toggleSection('menu')}
+                                aria-expanded={expandedSections.menu}
+                            >
+                                <h3>{data.menu.title}</h3>
+                                <span className={`footer-accordion-arrow ${expandedSections.menu ? 'expanded' : ''}`}>
+                                    <i className="bi bi-chevron-down"></i>
+                                </span>
+                            </button>
+                            {/* Content */}
+                            <div className={`footer-accordion-content ${expandedSections.menu ? 'expanded' : ''}`}>
+                                <ul className="list-area">
+                                    {data.menu.links.slice(0, 4).map((link, index) => (
+                                        <li 
+                                            key={index} 
+                                            className={`footer-list-item ${isVisible ? 'animate' : ''}`}
+                                            style={{ transitionDelay: `${0.5 + index * 0.12}s` }}
+                                        >
+                                            <Link href={link.href}>
+                                                <i className={link.icon}></i>
+                                                {link.text}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Products Section */}
+                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 m-0">
+                        <div className={`single-footer-widget footer-widget fade-from-top ${isVisible ? 'animate' : ''} text-white d-flex flex-column align-items-center`}>
+                            {/* Desktop Header */}
+                            <div className={`widget-head ${isVisible ? 'animate' : ''}`} style={{ transitionDelay: '0.4s' }}>
+                                <h3>Products</h3>
+                            </div>
+                            {/* Mobile Accordion Header */}
+                            <button 
+                                className="footer-accordion-header"
+                                onClick={() => toggleSection('products')}
+                                aria-expanded={expandedSections.products}
+                            >
+                                <h3>Products</h3>
+                                <span className={`footer-accordion-arrow ${expandedSections.products ? 'expanded' : ''}`}>
+                                    <i className="bi bi-chevron-down"></i>
+                                </span>
+                            </button>
+                            {/* Content */}
+                            <div className={`footer-accordion-content ${expandedSections.products ? 'expanded' : ''}`}>
+                                {data.menu.links.length > 4 && (
+                                    <ul className="list-area">
+                                        {data.menu.links.slice(4).map((link, index) => (
+                                            <li 
+                                                key={index + 4}
+                                                className={`footer-list-item ${isVisible ? 'animate' : ''}`}
+                                                style={{ transitionDelay: `${0.7 + index * 0.12}s` }}
+                                            >
+                                                <Link href={link.href}>
+                                                    <i className={link.icon}></i>
+                                                    {link.text}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Contact Info Section */}
+                    <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 m-0">
                         <div className={`single-footer-widget footer-widget fade-from-right ${isVisible ? 'animate' : ''} text-white d-flex flex-column align-items-center`}>
+                            {/* Desktop Header */}
                             <div className={`widget-head ${isVisible ? 'animate' : ''}`} style={{ transitionDelay: '0.6s' }}>
                                 <h3>Contact Info</h3>
                             </div>
-                            <ul className="list-area">
-                                <li 
-                                    className={`footer-list-item ${isVisible ? 'animate' : ''}`}
-                                    style={{ transitionDelay: '0.9s' }}
-                                >
-                                    <i className={data.contactInfo.address.icon}></i>
-                                    <span className="text-white">{data.contactInfo.address.value}</span>
-                                </li>
-                                {data.contactUs.hours.map((hour, index) => (
+                            {/* Mobile Accordion Header */}
+                            <button 
+                                className="footer-accordion-header"
+                                onClick={() => toggleSection('contact')}
+                                aria-expanded={expandedSections.contact}
+                            >
+                                <h3>Contact Info</h3>
+                                <span className={`footer-accordion-arrow ${expandedSections.contact ? 'expanded' : ''}`}>
+                                    <i className="bi bi-chevron-down"></i>
+                                </span>
+                            </button>
+                            {/* Content */}
+                            <div className={`footer-accordion-content ${expandedSections.contact ? 'expanded' : ''}`}>
+                                <ul className="list-area">
                                     <li 
-                                        key={index} 
-                                        className={`footer-list-item ${isVisible ? 'animate' : ''} ${index === 0 ? "mb-2" : ""}`}
-                                        style={{ transitionDelay: `${1.0 + index * 0.12}s` }}
+                                        className={`footer-list-item ${isVisible ? 'animate' : ''}`}
+                                        style={{ transitionDelay: '0.9s' }}
                                     >
-                                        {hour.day}: <span className="text-white">{hour.time}</span>
+                                        <i className={data.contactInfo.address.icon}></i>
+                                        <span className="text-white">{data.contactInfo.address.value}</span>
                                     </li>
-                                ))}
-                                <li 
-                                    className={`footer-list-item ${isVisible ? 'animate' : ''}`}
-                                    style={{ transitionDelay: '1.3s' }}
-                                >
-                                    <i className={data.contactInfo.email.icon}></i>
-                                    <a href={`mailto:${data.contactInfo.email.value}`} className="text-white">{data.contactInfo.email.value}</a>
-                                </li>
-                                <li 
-                                    className={`footer-list-item ${isVisible ? 'animate' : ''}`}
-                                    style={{ transitionDelay: '1.5s' }}
-                                >
-                                    <i className={data.contactInfo.phone.icon}></i>
-                                    <a href={`tel:${data.contactInfo.phone.value}`} className="text-white">{data.contactInfo.phone.value}</a>
-                                </li>
-                                
-                            </ul>
+                                    {data.contactUs.hours.map((hour, index) => (
+                                        <li 
+                                            key={index} 
+                                            className={`footer-list-item ${isVisible ? 'animate' : ''} ${index === 0 ? "mb-2" : ""}`}
+                                            style={{ transitionDelay: `${1.0 + index * 0.12}s` }}
+                                        >
+                                            {hour.day}: <span className="text-white">{hour.time}</span>
+                                        </li>
+                                    ))}
+                                    <li 
+                                        className={`footer-list-item ${isVisible ? 'animate' : ''}`}
+                                        style={{ transitionDelay: '1.3s' }}
+                                    >
+                                        <i className={data.contactInfo.email.icon}></i>
+                                        <a href={`mailto:${data.contactInfo.email.value}`} className="text-white">{data.contactInfo.email.value}</a>
+                                    </li>
+                                    <li 
+                                        className={`footer-list-item ${isVisible ? 'animate' : ''}`}
+                                        style={{ transitionDelay: '1.5s' }}
+                                    >
+                                        <i className={data.contactInfo.phone.icon}></i>
+                                        <a href={`tel:${data.contactInfo.phone.value}`} className="text-white">{data.contactInfo.phone.value}</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
