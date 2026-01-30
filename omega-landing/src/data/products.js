@@ -245,13 +245,13 @@ export const productsByCategory = {
     {
       id: "Fresh-1",
       img: "/assets/img/menu/Fresh/fish1.png",
-      title: "Fresh Shrimps 30-40",
+      title: "Fresh Hamour",
       content: "Origin : oman",
       price: "$24.00",
       description:
         "Premium Fresh shrimps sourced from Oman. Perfect size 30-40 count per pound. Freshly Fresh to preserve quality and taste.",
       reviews: generateReviews(
-        "Fresh Shrimps 30-40",
+        "Fresh Hamour",
         "Fresh fish",
         [0, 5, 10, 15]
       ),
@@ -259,13 +259,13 @@ export const productsByCategory = {
     {
       id: "Fresh-2",
       img: "/assets/img/menu/Fresh/fish2.png",
-      title: "Fresh Black Pomfret",
+      title: "Fresh Crab",
       content: "Origin: UAE",
       price: "$28.00",
       description:
         "High-quality black pomfret from UAE waters. Fresh at peak freshness to maintain flavor and texture.",
       reviews: generateReviews(
-        "Fresh Black Pomfret",
+        "Fresh Crab",
         "Fresh fish",
         [1, 6, 11, 16]
       ),
@@ -273,13 +273,13 @@ export const productsByCategory = {
     {
       id: "Fresh-3",
       img: "/assets/img/menu/Fresh/fish3.png",
-      title: "Fresh Salmon 2-3",
+      title: "Fresh King Fish",
       content: "Origin: Norway",
       price: "$32.00",
       description:
         "Premium Norwegian salmon, 2-3 kg portions. Rich in omega-3 fatty acids, Fresh to preserve nutritional value.",
       reviews: generateReviews(
-        "Fresh Salmon 2-3",
+        "Fresh King Fish",
         "Fresh fish",
         [2, 7, 12, 17]
       ),
@@ -287,43 +287,43 @@ export const productsByCategory = {
     {
       id: "Fresh-4",
       img: "/assets/img/menu/Fresh/fish4.png",
-      title: "Fresh Shark",
+      title: "Fresh Golden Anchovies",
       content: "Origin: UAE",
       price: "$35.00",
       description:
-        "Fresh Fresh shark from UAE. Cleaned and ready to cook. Maintains freshness and quality.",
-      reviews: generateReviews("Fresh Shark", "Fresh fish", [3, 8, 13, 18]),
+        "Fresh Fresh Golden Anchovies from UAE. Cleaned and ready to cook. Maintains freshness and quality.",
+      reviews: generateReviews("Fresh Golden Anchovies", "Fresh fish", [3, 8, 13, 18]),
     },
     {
       id: "Fresh-5",
       img: "/assets/img/menu/Fresh/fish5.png",
-      title: "Fresh Mussels",
+      title: "Fresh Lobestor",
       content: "Origin: Oman",
       price: "$20.00",
       description:
-        "Fresh Fresh mussels from Oman. Shelled and cleaned, ready for cooking. Perfect for seafood dishes.",
-      reviews: generateReviews("Fresh Mussels", "Fresh fish", [4, 9, 14, 19]),
+        "Fresh Fresh Lobestor from Oman. Shelled and cleaned, ready for cooking. Perfect for seafood dishes.",
+      reviews: generateReviews("Fresh Lobestor", "Fresh fish", [4, 9, 14, 19]),
     },
     {
       id: "Fresh-6",
       img: "/assets/img/menu/Fresh/fish6.png",
-      title: "Fresh Squid",
+      title: "Fresh Mackerel",
       content: "Origin: UAE",
       price: "$26.00",
       description:
-        "Premium Fresh squid from UAE. Cleaned and cut, ideal for grilling or frying.",
-      reviews: generateReviews("Fresh Squid", "Fresh fish", [0, 5, 10, 15]),
+        "Premium Fresh Mackerel from UAE. Cleaned and cut, ideal for grilling or frying.",
+      reviews: generateReviews("Fresh Mackerel", "Fresh fish", [0, 5, 10, 15]),
     },
     {
       id: "Fresh-7",
       img: "/assets/img/menu/Fresh/fish7.png",
-      title: "Fresh Crab Meat Sticks",
+      title: "Fresh Octopus",
       content: "Origin: UAE",
       price: "$30.00",
       description:
         "Delicious crab meat sticks from UAE. Ready to cook, perfect for appetizers and main dishes.",
       reviews: generateReviews(
-        "Fresh Crab Meat Sticks",
+        "Fresh Octopus",
         "Fresh fish",
         [1, 6, 11, 16]
       ),
@@ -331,13 +331,13 @@ export const productsByCategory = {
     {
       id: "Fresh-8",
       img: "/assets/img/menu/Fresh/fish8.png",
-      title: "Fresh Seabream",
+      title: "Fresh Red snapper",
       content: "Origin: Europe",
       price: "$40.00",
       description:
         "European seabream, Fresh fresh. Whole fish, cleaned and ready to prepare.",
       reviews: generateReviews(
-        "Fresh Seabream",
+        "Fresh Red snapper",
         "Fresh fish",
         [2, 7, 12, 17]
       ),
@@ -345,13 +345,13 @@ export const productsByCategory = {
     {
       id: "Fresh-9",
       img: "/assets/img/menu/Fresh/fish9.png",
-      title: "Fresh Lobester",
+      title: "Fresh Salmon",
       content: "Origin: UAE",
       price: "$58.00",
       description:
         "Premium Fresh lobster from UAE. Whole lobster, Fresh at peak freshness for the best taste.",
       reviews: generateReviews(
-        "Fresh Lobester",
+        "Fresh Salmon",
         "Fresh fish",
         [3, 8, 13, 18]
       ),
@@ -359,199 +359,70 @@ export const productsByCategory = {
     {
       id: "Fresh-10",
       img: "/assets/img/menu/Fresh/fish10.png",
-      title: "Fresh king fish",
+      title: "Fresh Sardin",
       content: "Origin: UAE",
       price: "$45.00",
       description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
+        "Fresh Fresh Sardin from UAE waters. Cleaned and cut into steaks, ready to cook.",
       reviews: generateReviews(
-        "Fresh king fish",
+        "Fresh Sardin",
         "Fresh fish",
         [4, 9, 14, 19]
       ),
     }, {
       id: "Fresh-11",
       img: "/assets/img/menu/Fresh/fish11.png",
-      title: "Fresh king fish",
+      title: "Fresh Seabass",
       content: "Origin: UAE",
       price: "$45.00",
       description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
+        "Fresh Fresh Seabass from UAE waters. Cleaned and cut into steaks, ready to cook.",
       reviews: generateReviews(
-        "Fresh king fish",
+        "Fresh Seabass",
         "Fresh fish",
         [4, 9, 14, 19]
       ),
     }, {
       id: "Fresh-12",
       img: "/assets/img/menu/Fresh/fish12.png",
-      title: "Fresh king fish",
+      title: "Fresh Seabream",
       content: "Origin: UAE",
       price: "$45.00",
       description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
+        "Fresh Fresh Seabream from UAE waters. Cleaned and cut into steaks, ready to cook.",
       reviews: generateReviews(
-        "Fresh king fish",
+        "Fresh Seabream",
         "Fresh fish",
         [4, 9, 14, 19]
       ),
-    }, {
-      id: "Fresh-13",
-      img: "/assets/img/menu/Fresh/fish13.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-14",
-      img: "/assets/img/menu/Fresh/fish10.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-15",
-      img: "/assets/img/menu/Fresh/fish14.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-16",
-      img: "/assets/img/menu/Fresh/fish10.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-17",
-      img: "/assets/img/menu/Fresh/fish15.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-18",
-      img: "/assets/img/menu/Fresh/fish10.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-19",
-      img: "/assets/img/menu/Fresh/fish10.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-10",
-      img: "/assets/img/menu/Fresh/fish16.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-20",
-      img: "/assets/img/menu/Fresh/fish17.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-21",
-      img: "/assets/img/menu/Fresh/fish18.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-22",
-      img: "/assets/img/menu/Fresh/fish19.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    }, {
-      id: "Fresh-23",
-      img: "/assets/img/menu/Fresh/fish20.png",
-      title: "Fresh king fish",
-      content: "Origin: UAE",
-      price: "$45.00",
-      description:
-        "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
-      reviews: generateReviews(
-        "Fresh king fish",
-        "Fresh fish",
-        [4, 9, 14, 19]
-      ),
-    },
+    }, 
+    // {
+    //   id: "Fresh-13",
+    //   img: "/assets/img/menu/Fresh/fish13.png",
+    //   title: "Fresh king fish",
+    //   content: "Origin: UAE",
+    //   price: "$45.00",
+    //   description:
+    //     "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
+    //   reviews: generateReviews(
+    //     "Fresh king fish",
+    //     "Fresh fish",
+    //     [4, 9, 14, 19]
+    //   ),
+    // }, {
+    //   id: "Fresh-14",
+    //   img: "/assets/img/menu/Fresh/fish14.png",
+    //   title: "Fresh king fish",
+    //   content: "Origin: UAE",
+    //   price: "$45.00",
+    //   description:
+    //     "Fresh Fresh king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
+    //   reviews: generateReviews(
+    //     "Fresh king fish",
+    //     "Fresh fish",
+    //     [4, 9, 14, 19]
+    //   ),
+    // }
   ],
 
 
@@ -561,13 +432,13 @@ export const productsByCategory = {
     {
       id: "frozen-1",
       img: "/assets/img/menu/Frozen/frozen1.png",
-      title: "Frozen Shrimps 30-40",
+      title: "Frozen Black pomfrot",
       content: "Origin : oman",
       price: "$24.00",
       description:
         "Premium frozen shrimps sourced from Oman. Perfect size 30-40 count per pound. Freshly frozen to preserve quality and taste.",
       reviews: generateReviews(
-        "Frozen Shrimps 30-40",
+        "Frozen Black pomfrot",
         "Frozen fish",
         [0, 5, 10, 15]
       ),
@@ -575,13 +446,13 @@ export const productsByCategory = {
     {
       id: "frozen-2",
       img: "/assets/img/menu/Frozen/frozen2.png",
-      title: "Frozen Black Pomfret",
+      title: "Frozen Shrimps 30/40",
       content: "Origin: UAE",
       price: "$28.00",
       description:
         "High-quality black pomfret from UAE waters. Frozen at peak freshness to maintain flavor and texture.",
       reviews: generateReviews(
-        "Frozen Black Pomfret",
+        "Frozen Shrimps 30/40",
         "Frozen fish",
         [1, 6, 11, 16]
       ),
@@ -589,13 +460,13 @@ export const productsByCategory = {
     {
       id: "frozen-3",
       img: "/assets/img/menu/Frozen/frozen3.png",
-      title: "Frozen Salmon 2-3",
+      title: "Frozen Crab meat",
       content: "Origin: Norway",
       price: "$32.00",
       description:
         "Premium Norwegian salmon, 2-3 kg portions. Rich in omega-3 fatty acids, frozen to preserve nutritional value.",
       reviews: generateReviews(
-        "Frozen Salmon 2-3",
+        "Frozen Crab meat",
         "Frozen fish",
         [2, 7, 12, 17]
       ),
@@ -603,43 +474,43 @@ export const productsByCategory = {
     {
       id: "frozen-4",
       img: "/assets/img/menu/Frozen/frozen4.png",
-      title: "Frozen Shark",
+      title: "Frozen Lobster",
       content: "Origin: UAE",
       price: "$35.00",
       description:
-        "Fresh frozen shark from UAE. Cleaned and ready to cook. Maintains freshness and quality.",
-      reviews: generateReviews("Frozen Shark", "Frozen fish", [3, 8, 13, 18]),
+        "Frozen Lobster from UAE. Cleaned and ready to cook. Maintains freshness and quality.",
+      reviews: generateReviews("Frozen Lobster", "Frozen fish", [3, 8, 13, 18]),
     },
     {
       id: "frozen-5",
       img: "/assets/img/menu/Frozen/frozen5.png",
-      title: "Frozen Mussels",
+      title: "Frozen king fish",
       content: "Origin: Oman",
       price: "$20.00",
       description:
-        "Fresh frozen mussels from Oman. Shelled and cleaned, ready for cooking. Perfect for seafood dishes.",
-      reviews: generateReviews("Frozen Mussels", "Frozen fish", [4, 9, 14, 19]),
+        "Frozen king fish from Oman. Shelled and cleaned, ready for cooking. Perfect for seafood dishes.",
+      reviews: generateReviews("Frozen king fish", "Frozen fish", [4, 9, 14, 19]),
     },
     {
       id: "frozen-6",
       img: "/assets/img/menu/Frozen/frozen6.png",
-      title: "Frozen Squid",
+      title: "Frozen Salmon",
       content: "Origin: UAE",
       price: "$26.00",
       description:
-        "Premium frozen squid from UAE. Cleaned and cut, ideal for grilling or frying.",
-      reviews: generateReviews("Frozen Squid", "Frozen fish", [0, 5, 10, 15]),
+        "Premium Frozen Salmon from UAE. Cleaned and cut, ideal for grilling or frying.",
+      reviews: generateReviews("Frozen Salmon", "Frozen fish", [0, 5, 10, 15]),
     },
     {
       id: "frozen-7",
       img: "/assets/img/menu/Frozen/frozen7.png",
-      title: "Frozen Crab Meat Sticks",
+      title: "Frozen Mussels",
       content: "Origin: UAE",
       price: "$30.00",
       description:
         "Delicious crab meat sticks from UAE. Ready to cook, perfect for appetizers and main dishes.",
       reviews: generateReviews(
-        "Frozen Crab Meat Sticks",
+        "Frozen Mussels",
         "Frozen fish",
         [1, 6, 11, 16]
       ),
@@ -651,23 +522,23 @@ export const productsByCategory = {
       content: "Origin: Europe",
       price: "$40.00",
       description:
-        "European seabream, frozen fresh. Whole fish, cleaned and ready to prepare.",
+        "European seabream, Frozen Seabream. Whole fish, cleaned and ready to prepare.",
       reviews: generateReviews(
         "Frozen Seabream",
-        "Frozen fish",
+        "Frozen Seabream fish",
         [2, 7, 12, 17]
       ),
     },
     {
       id: "frozen-9",
       img: "/assets/img/menu/Frozen/frozen9.png",
-      title: "Frozen Lobester",
+      title: "Frozen Squid",
       content: "Origin: UAE",
       price: "$58.00",
       description:
         "Premium frozen lobster from UAE. Whole lobster, frozen at peak freshness for the best taste.",
       reviews: generateReviews(
-        "Frozen Lobester",
+        "Frozen Squid",
         "Frozen fish",
         [3, 8, 13, 18]
       ),
@@ -675,13 +546,13 @@ export const productsByCategory = {
     {
       id: "frozen-10",
       img: "/assets/img/menu/Frozen/frozen10.png",
-      title: "Frozen king fish",
+      title: "Frozen Shark",
       content: "Origin: UAE",
       price: "$45.00",
       description:
-        "Fresh frozen king fish from UAE waters. Cleaned and cut into steaks, ready to cook.",
+        "Frozen Shark from UAE waters. Cleaned and cut into steaks, ready to cook.",
       reviews: generateReviews(
-        "Frozen king fish",
+        "Frozen Shark",
         "Frozen fish",
         [4, 9, 14, 19]
       ),

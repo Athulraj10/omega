@@ -140,13 +140,13 @@ const Shop1 = () => {
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-            
+
             if (currentScrollY > lastScrollY.current) {
                 setScrollDirection('down');
             } else if (currentScrollY < lastScrollY.current) {
                 setScrollDirection('up');
             }
-            
+
             lastScrollY.current = currentScrollY;
         };
 
@@ -201,7 +201,8 @@ const Shop1 = () => {
 
     return (
         <>
-            <style dangerouslySetInnerHTML={{__html: `
+            <style dangerouslySetInnerHTML={{
+                __html: `
                 .shop-section .shop-product-item {
                     opacity: 0;
                     transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.8s ease-out;
@@ -359,6 +360,9 @@ const Shop1 = () => {
                     position: relative;
                     overflow: hidden;
                 }
+                .shop-section.vegetable-category .item-thumb {
+                    aspect-ratio: 1/2;
+                }
                 .shop-section .item-thumb img,
                 .shop-section .item-thumb .food-item-img {
                     width: 100%;
@@ -407,28 +411,28 @@ const Shop1 = () => {
                     display: none;
                 }
             `}} />
-        <div className="shop-section section-padding fix">
-            <div className="shop-wrapper style1">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xl-3 col-lg-4 order-2 order-md-1 wow fadeInUp" data-wow-delay=".3s">
-                            <div className="main-sidebar">
-                                <div className="single-sidebar-widgets-wrapper">
-                                    <h5 className="widget-title">Search</h5>
-                                    <div className="search-widget">
-                                        <form onSubmit={handleSearch}>
-                                            <input
-                                                type="text"
-                                                placeholder="Search here"
-                                                value={searchQuery}
-                                                onChange={(e) => setSearchQuery(e.target.value)}
-                                            />
-                                            <button type="submit"><i className="bi bi-search"></i></button>
-                                        </form>
+            <div className={`shop-section section-padding fix ${selectedCategory === "Vegitables" ? "vegetable-category" : ""}`}>
+                <div className="shop-wrapper style1">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xl-3 col-lg-4 order-2 order-md-1 wow fadeInUp" data-wow-delay=".3s">
+                                <div className="main-sidebar">
+                                    <div className="single-sidebar-widgets-wrapper">
+                                        <h5 className="widget-title">Search</h5>
+                                        <div className="search-widget">
+                                            <form onSubmit={handleSearch}>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Search here"
+                                                    value={searchQuery}
+                                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                                />
+                                                <button type="submit"><i className="bi bi-search"></i></button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                              
-                                {/* <div className="single-sidebar-widget">
+
+                                    {/* <div className="single-sidebar-widget">
                                     <h5 className="widget-title">Filter By Price</h5>
                                     <div className="range__barcustom">
                                         <div className="slider">
@@ -487,246 +491,245 @@ const Shop1 = () => {
                                         </div>
                                     </div>
                                 </div> */}
-                                <div className="single-sidebar-widget">
-                                    <h5 className="widget-title">Recent Products</h5>
-                                    {recentProducts.map((product, index) => (
-                                        <div key={index} className="recent-box">
-                                            <div className="recent-thumb">
-                                                <Link href={`/shop/shop-details?id=${product.id}`}>
-                                                    <Image src={product.img} alt={product.title} width={78} height={78} style={{ cursor: 'pointer' }} />
-                                                </Link>
-                                            </div>
-                                            <div className="recent-content">
-                                                <Link href={`/shop/shop-details?id=${product.id}`}>{product.title}</Link>
-                                                <div className="star">
-                                                    <Image src="/assets/img/icon/star3.svg" alt="img" width={86} height={16} />
+                                    <div className="single-sidebar-widget">
+                                        <h5 className="widget-title">Recent Products</h5>
+                                        {recentProducts.map((product, index) => (
+                                            <div key={index} className="recent-box">
+                                                <div className="recent-thumb">
+                                                    <Link href={`/shop/shop-details?id=${product.id}`}>
+                                                        <Image src={product.img} alt={product.title} width={78} height={78} style={{ cursor: 'pointer' }} />
+                                                    </Link>
                                                 </div>
-                                                <div className="price">
-                                                    <div className="offer-price">{product.price}</div>
+                                                <div className="recent-content">
+                                                    <Link href={`/shop/shop-details?id=${product.id}`}>{product.title}</Link>
+                                                    <div className="star">
+                                                        <Image src="/assets/img/icon/star3.svg" alt="img" width={86} height={16} />
+                                                    </div>
+                                                    {/* <div className="price">
+                                                        <div className="offer-price">{product.price}</div>
+                                                    </div> */}
                                                 </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-xl-9 col-lg-8 order-1 order-md-2 wow fadeInUp" data-wow-delay=".5s">
-                            <div className="sort-bar">
-                                <div className="row g-sm-0 gy-20 justify-content-between align-items-center">
-                                   
-                                   
-                                <div className="single-sidebar-widget">
-                                    <ul className="tagcloud" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', listStyle: 'none', padding: 0, margin: 0 }}>
-                                        {categories.map((category) => {
-                                            const isActive = selectedCategory === category.id;
-                                            return (
-                                                <li key={category.id} style={{ listStyle: 'none' }}>
-                                                    <a
-                                                        href="#"
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            handleCategoryClick(category.id);
-                                                        }}
-                                                        className={isActive ? "active" : ""}
-                                                        style={{
-                                                            color: '#1e3a8a',
-                                                            backgroundColor: isActive ? '#f5f5f0' : 'transparent',
-                                                            padding: '8px 16px',
-                                                            borderRadius: '4px',
-                                                            textDecoration: 'none',
-                                                            display: 'inline-block',
-                                                            transition: 'all 0.3s ease',
-                                                            border: '1px solid #1e3a8a',
-                                                            cursor: 'pointer'
-                                                        }}
-                                                        onMouseEnter={(e) => {
-                                                            if (!isActive) {
-                                                                e.currentTarget.style.backgroundColor = '#f5f5f0';
-                                                            }
-                                                        }}
-                                                        onMouseLeave={(e) => {
-                                                            if (!isActive) {
-                                                                e.currentTarget.style.backgroundColor = 'transparent';
-                                                            }
-                                                        }}
+                            <div className="col-xl-9 col-lg-8 order-1 order-md-2 wow fadeInUp" data-wow-delay=".5s">
+                                <div className="sort-bar">
+                                    <div className="row g-sm-0 gy-20 justify-content-between align-items-center">
+
+
+                                        <div className="single-sidebar-widget">
+                                            <ul className="tagcloud" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', listStyle: 'none', padding: 0, margin: 0 }}>
+                                                {categories.map((category) => {
+                                                    const isActive = selectedCategory === category.id;
+                                                    return (
+                                                        <li key={category.id} style={{ listStyle: 'none' }}>
+                                                            <a
+                                                                href="#"
+                                                                onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    handleCategoryClick(category.id);
+                                                                }}
+                                                                className={isActive ? "active" : ""}
+                                                                style={{
+                                                                    color: '#1e3a8a',
+                                                                    backgroundColor: isActive ? '#f5f5f0' : 'transparent',
+                                                                    padding: '8px 16px',
+                                                                    borderRadius: '4px',
+                                                                    textDecoration: 'none',
+                                                                    display: 'inline-block',
+                                                                    transition: 'all 0.3s ease',
+                                                                    border: '1px solid #1e3a8a',
+                                                                    cursor: 'pointer'
+                                                                }}
+                                                                onMouseEnter={(e) => {
+                                                                    if (!isActive) {
+                                                                        e.currentTarget.style.backgroundColor = '#f5f5f0';
+                                                                    }
+                                                                }}
+                                                                onMouseLeave={(e) => {
+                                                                    if (!isActive) {
+                                                                        e.currentTarget.style.backgroundColor = 'transparent';
+                                                                    }
+                                                                }}
+                                                            >
+                                                                {category.name}
+                                                            </a>
+                                                        </li>
+                                                    );
+                                                })}
+                                            </ul>
+                                        </div>
+
+
+
+                                        <div className="col-md">
+                                            <p className="woocommerce-result-count">
+                                                Showing {startIndex + 1} - {Math.min(endIndex, filteredProducts.length)} of {filteredProducts.length} Results
+                                            </p>
+                                        </div>
+                                        <div className="col-md-auto">
+                                            <form className="woocommerce-ordering" method="get">
+                                                <select
+                                                    name="orderby"
+                                                    className="single-select"
+                                                    aria-label="Shop order"
+                                                    value={sortBy}
+                                                    onChange={handleSortChange}
+                                                >
+                                                    <option value="default">Default Sorting</option>
+                                                    <option value="popularity">Sort by popularity</option>
+                                                    <option value="rating">Sort by average rating</option>
+                                                    <option value="date">Sort by latest</option>
+                                                    <option value="price">Sort by price: low to high</option>
+                                                    <option value="price-desc">Sort by price: high to low</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                        <div className="col-md-auto">
+                                            <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                <li className="nav-item" role="presentation">
+                                                    <button
+                                                        className="nav-link active"
+                                                        id="pills-grid-tab"
+                                                        data-bs-toggle="pill"
+                                                        data-bs-target="#pills-grid"
+                                                        type="button"
+                                                        role="tab"
+                                                        aria-controls="pills-grid"
+                                                        aria-selected="true"
                                                     >
-                                                        {category.name}
-                                                    </a>
+                                                        <i className="fa-solid fa-grid"></i>
+                                                    </button>
                                                 </li>
-                                            );
-                                        })}
-                                    </ul>
+                                                <li className="nav-item" role="presentation">
+                                                    <button
+                                                        className="nav-link"
+                                                        id="pills-list-tab"
+                                                        data-bs-toggle="pill"
+                                                        data-bs-target="#pills-list"
+                                                        type="button"
+                                                        role="tab"
+                                                        aria-controls="pills-list"
+                                                        aria-selected="false"
+                                                    >
+                                                        <i className="fa-solid fa-list"></i>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ref={shopRef} className="tab-content" id="pills-tabContent">
+                                    <div
+                                        className="tab-pane fade show active"
+                                        id="pills-grid"
+                                        role="tabpanel"
+                                        aria-labelledby="pills-grid-tab"
+                                        tabIndex="0"
+                                    >
+                                        {productRows.length > 0 ? (
+                                            productRows.map((row, rowIndex) => (
+                                                <div
+                                                    key={`${animationKey}-${rowIndex}`}
+                                                    className="dishes-card-wrap style2 mb-3"
+                                                >
+                                                    {row.map((product, productIndex) => {
+                                                        const totalIndex = rowIndex * 4 + productIndex;
+                                                        const shouldAnimate = isVisible;
+
+                                                        return (
+                                                            <div
+                                                                key={`${animationKey}-${rowIndex}-${productIndex}`}
+                                                                className={`shop-product-item slide-from-bottom ${shouldAnimate ? 'animate' : ''
+                                                                    }`}
+                                                                style={{ transitionDelay: `${0.1 + totalIndex * 0.08}s` }}
+                                                            >
+                                                                <ShopCard
+                                                                    img={product.img}
+                                                                    title={product.title}
+                                                                    content={product.content}
+                                                                    price={product.price}
+                                                                    productId={product.id}
+                                                                />
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="text-center py-5">
+                                                <p>No products found matching your criteria.</p>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
 
-
-                                   
-                                    <div className="col-md">
-                                        <p className="woocommerce-result-count">
-                                            Showing {startIndex + 1} - {Math.min(endIndex, filteredProducts.length)} of {filteredProducts.length} Results
-                                        </p>
-                                    </div>
-                                    <div className="col-md-auto">
-                                        <form className="woocommerce-ordering" method="get">
-                                            <select
-                                                name="orderby"
-                                                className="single-select"
-                                                aria-label="Shop order"
-                                                value={sortBy}
-                                                onChange={handleSortChange}
-                                            >
-                                                <option value="default">Default Sorting</option>
-                                                <option value="popularity">Sort by popularity</option>
-                                                <option value="rating">Sort by average rating</option>
-                                                <option value="date">Sort by latest</option>
-                                                <option value="price">Sort by price: low to high</option>
-                                                <option value="price-desc">Sort by price: high to low</option>
-                                            </select>
-                                        </form>
-                                    </div>
-                                    <div className="col-md-auto">
-                                        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                            <li className="nav-item" role="presentation">
-                                                <button
-                                                    className="nav-link active"
-                                                    id="pills-grid-tab"
-                                                    data-bs-toggle="pill"
-                                                    data-bs-target="#pills-grid"
-                                                    type="button"
-                                                    role="tab"
-                                                    aria-controls="pills-grid"
-                                                    aria-selected="true"
+                                {totalPages > 1 && (
+                                    <div className="page-nav-wrap text-center">
+                                        <ul>
+                                            <li>
+                                                <a
+                                                    className={`previous ${currentPage === 1 ? "disabled" : ""}`}
+                                                    href="#"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        if (currentPage > 1) handlePageChange(currentPage - 1);
+                                                    }}
                                                 >
-                                                    <i className="fa-solid fa-grid"></i>
-                                                </button>
+                                                    <i className="bi bi-arrow-left"></i>
+                                                </a>
                                             </li>
-                                            <li className="nav-item" role="presentation">
-                                                <button
-                                                    className="nav-link"
-                                                    id="pills-list-tab"
-                                                    data-bs-toggle="pill"
-                                                    data-bs-target="#pills-list"
-                                                    type="button"
-                                                    role="tab"
-                                                    aria-controls="pills-list"
-                                                    aria-selected="false"
+                                            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                                                if (
+                                                    page === 1 ||
+                                                    page === totalPages ||
+                                                    (page >= currentPage - 1 && page <= currentPage + 1)
+                                                ) {
+                                                    return (
+                                                        <li key={page}>
+                                                            <a
+                                                                className={`page-numbers ${currentPage === page ? "active" : ""}`}
+                                                                href="#"
+                                                                onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    handlePageChange(page);
+                                                                }}
+                                                            >
+                                                                {page}
+                                                            </a>
+                                                        </li>
+                                                    );
+                                                } else if (page === currentPage - 2 || page === currentPage + 2) {
+                                                    return (
+                                                        <li key={page}>
+                                                            <span className="page-numbers">...</span>
+                                                        </li>
+                                                    );
+                                                }
+                                                return null;
+                                            })}
+                                            <li>
+                                                <a
+                                                    className={`next ${currentPage === totalPages ? "disabled" : ""}`}
+                                                    href="#"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        if (currentPage < totalPages) handlePageChange(currentPage + 1);
+                                                    }}
                                                 >
-                                                    <i className="fa-solid fa-list"></i>
-                                                </button>
+                                                    <i className="bi bi-arrow-right"></i>
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                )}
                             </div>
-                          <div ref={shopRef} className="tab-content" id="pills-tabContent">
-    <div
-        className="tab-pane fade show active"
-        id="pills-grid"
-        role="tabpanel"
-        aria-labelledby="pills-grid-tab"
-        tabIndex="0"
-    >
-        {productRows.length > 0 ? (
-            productRows.map((row, rowIndex) => (
-                <div
-                    key={`${animationKey}-${rowIndex}`}
-                    className="dishes-card-wrap style2 mb-3"
-                >
-                    {row.map((product, productIndex) => {
-                        const totalIndex = rowIndex * 4 + productIndex;
-                        const shouldAnimate = isVisible;
-
-                        return (
-                            <div
-                                key={`${animationKey}-${rowIndex}-${productIndex}`}
-                                className={`shop-product-item slide-from-bottom ${
-                                    shouldAnimate ? 'animate' : ''
-                                }`}
-                                style={{ transitionDelay: `${0.1 + totalIndex * 0.08}s` }}
-                            >
-                                <ShopCard
-                                    img={product.img}
-                                    title={product.title}
-                                    content={product.content}
-                                    price={product.price}
-                                    productId={product.id}
-                                />
-                            </div>
-                        );
-                    })}
-                </div>
-            ))
-        ) : (
-            <div className="text-center py-5">
-                <p>No products found matching your criteria.</p>
-            </div>
-        )}
-    </div>
-</div>
-
-                            {totalPages > 1 && (
-                                <div className="page-nav-wrap text-center">
-                                    <ul>
-                                        <li>
-                                            <a
-                                                className={`previous ${currentPage === 1 ? "disabled" : ""}`}
-                                                href="#"
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    if (currentPage > 1) handlePageChange(currentPage - 1);
-                                                }}
-                                            >
-                                                <i className="bi bi-arrow-left"></i>
-                                            </a>
-                                        </li>
-                                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
-                                            if (
-                                                page === 1 ||
-                                                page === totalPages ||
-                                                (page >= currentPage - 1 && page <= currentPage + 1)
-                                            ) {
-                                                return (
-                                                    <li key={page}>
-                                                        <a
-                                                            className={`page-numbers ${currentPage === page ? "active" : ""}`}
-                                                            href="#"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                handlePageChange(page);
-                                                            }}
-                                                        >
-                                                            {page}
-                                                        </a>
-                                                    </li>
-                                                );
-                                            } else if (page === currentPage - 2 || page === currentPage + 2) {
-                                                return (
-                                                    <li key={page}>
-                                                        <span className="page-numbers">...</span>
-                                                    </li>
-                                                );
-                                            }
-                                            return null;
-                                        })}
-                                        <li>
-                                            <a
-                                                className={`next ${currentPage === totalPages ? "disabled" : ""}`}
-                                                href="#"
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    if (currentPage < totalPages) handlePageChange(currentPage + 1);
-                                                }}
-                                            >
-                                                <i className="bi bi-arrow-right"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </>
     );
 };
