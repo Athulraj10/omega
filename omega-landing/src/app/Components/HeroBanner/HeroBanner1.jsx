@@ -232,27 +232,7 @@ const HeroBanner1 = () => {
                     }
                 }
                 .hero-padding {
-                    padding: 5px 0 !important;
-                }
-                @media (min-width: 375px) {
-                    .hero-padding {
-                        padding: 8px 0 !important;
-                    }
-                }
-                @media (min-width: 576px) {
-                    .hero-padding {
-                        padding: 15px 0 !important;
-                    }
-                }
-                @media (min-width: 768px) {
-                    .hero-padding {
-                        padding: 25px 0 !important;
-                    }
-                }
-                @media (min-width: 992px) {
-                    .hero-padding {
-                        padding: 35px 0 !important;
-                    }
+                    padding: 0 !important;
                 }
                 .hero-margin-bottom {
                     margin-bottom: 10px !important;
@@ -311,66 +291,29 @@ const HeroBanner1 = () => {
                     }
                 }
                 .hero-image-padding {
-                    padding: 5px !important;
-                    margin-top: 10px !important;
-                }
-                @media (min-width: 375px) {
-                    .hero-image-padding {
-                        padding: 8px !important;
-                        margin-top: 12px !important;
-                    }
-                }
-                @media (min-width: 576px) {
-                    .hero-image-padding {
-                        padding: 15px !important;
-                        margin-top: 15px !important;
-                    }
-                }
-                @media (min-width: 768px) {
-                    .hero-image-padding {
-                        padding: 25px !important;
-                        margin-top: 20px !important;
-                    }
+                    padding: 0 !important;
+                    margin-top: 20px !important;
                 }
                 @media (min-width: 992px) {
                     .hero-image-padding {
-                        padding: 35px !important;
                         margin-top: 0 !important;
                     }
                 }
                 .banner-title-area-left {
-                    text-align: center;
-                }
-                @media (min-width: 992px) {
-                    .banner-title-area-left {
-                        text-align: left;
-                    }
+                    text-align: left;
+                    padding-left: 0 !important;
+                    margin-left: 0 !important;
                 }
                 .hero-heading-container-justify {
-                    justify-content: center;
-                }
-                @media (min-width: 992px) {
-                    .hero-heading-container-justify {
-                        justify-content: flex-start;
-                    }
+                    justify-content: flex-start;
                 }
                 .hero-heading-text-align {
-                    text-align: center;
-                }
-                @media (min-width: 992px) {
-                    .hero-heading-text-align {
-                        text-align: left;
-                    }
+                    text-align: left;
                 }
                 .hero-section-title-wrapper {
-                    justify-content: center;
+                    justify-content: flex-start;
                     padding: 0 !important;
                     margin: 0 !important;
-                }
-                @media (min-width: 992px) {
-                    .hero-section-title-wrapper {
-                        justify-content: flex-start;
-                    }
                 }
                 .hero-section-title-wrapper .hero-animated-text {
                     padding: 0 !important;
@@ -528,7 +471,7 @@ const HeroBanner1 = () => {
                 .heading-item {
                     min-width: 100%;
                     flex-shrink: 0;
-                    padding: 5px 5px;
+                    padding: 0 !important;
                     line-height: 1.5 !important;
                     word-wrap: break-word;
                     overflow-wrap: break-word;
@@ -548,25 +491,21 @@ const HeroBanner1 = () => {
                 }
                 @media (min-width: 375px) {
                     .heading-item {
-                        padding: 6px 8px;
                         line-height: 1.6 !important;
                     }
                 }
                 @media (min-width: 576px) {
                     .heading-item {
-                        padding: 8px 10px;
                         line-height: 1.5 !important;
                     }
                 }
                 @media (min-width: 768px) {
                     .heading-item {
-                        padding: 10px 12px;
                         line-height: 1.4 !important;
                     }
                 }
                 @media (min-width: 992px) {
                     .heading-item {
-                        padding: 12px 15px;
                         line-height: 1.3 !important;
                     }
                 }
@@ -578,24 +517,10 @@ const HeroBanner1 = () => {
                     max-width: 100%;
                     padding: 0 !important;
                 }
-                @media (min-width: 576px) {
-                    .banner-style1 {
-                        padding: 0 5px !important;
-                    }
-                }
-                @media (min-width: 768px) {
-                    .banner-style1 {
-                        padding: 0 10px !important;
-                    }
-                }
-                @media (min-width: 992px) {
-                    .banner-style1 {
-                        padding: 0 !important;
-                    }
-                }
                 .welcome-text {
                     width: 100%;
                     margin-bottom: 0;
+                    text-align: left;
                 }
                 .welcome-text h1 {
                     margin-bottom: 5px;
@@ -667,7 +592,7 @@ const HeroBanner1 = () => {
                                                             <h1 className={`hero-welcome-title ${isPageLoaded ? 'welcome-slide-left' : ''}`} style={{ color: '#0D5189', fontWeight: '700', fontFamily: 'inherit', textTransform: 'uppercase', lineHeight: '1.1', margin: 0, opacity: isPageLoaded ? 1 : 0 }}>
                                                                 Welcome
                                                             </h1>
-                                                            <div className={`hero-subtitle hero-subtitle-letter-spacing ${isPageLoaded ? 'welcome-slide-right' : ''}`} style={{ display: 'flex', flexDirection: 'column', color: '#0D5189', fontWeight: '600', fontFamily: 'inherit', textTransform: 'uppercase', opacity: isPageLoaded ? 1 : 0 }}>
+                                                            <div className={`hero-subtitle hero-subtitle-letter-spacing ${isPageLoaded ? 'welcome-slide-right' : ''}`} style={{ display: 'flex', flexDirection: 'column', color: '#0D5189', fontWeight: '600', fontFamily: 'inherit', textTransform: 'uppercase', opacity: isPageLoaded ? 1 : 0, alignItems: 'flex-start' }}>
                                                                 <span style={{ color: '#0D5189' }}>to Omega SeaFoods</span>
                                                             </div>
                                                         </div>
