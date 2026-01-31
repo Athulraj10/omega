@@ -4966,7 +4966,6 @@ input.main-search-input::placeholder {
 .footer-bottom {
   position: relative;
   z-index: 9;
-  background: var(--theme);
 }
 .footer-bottom .footer-wrapper {
   padding: 18px 0;

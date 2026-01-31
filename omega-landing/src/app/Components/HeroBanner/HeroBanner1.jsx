@@ -139,30 +139,30 @@ const HeroBanner1 = () => {
                 .hero-subtitle {
                     font-size: 12px !important;
                     line-height: 1.5 !important;
-                    margin-top: 8px;
+                    // margin-top: 8px;
                 }
                 @media (min-width: 375px) {
                     .hero-subtitle {
                         font-size: 14px !important;
-                        margin-top: 10px;
+                        // margin-top: 10px;
                     }
                 }
                 @media (min-width: 576px) {
                     .hero-subtitle {
                         font-size: 18px !important;
-                        margin-top: 12px;
+                        // margin-top: 12px;
                     }
                 }
                 @media (min-width: 768px) {
                     .hero-subtitle {
                         font-size: 22px !important;
-                        margin-top: 15px;
+                        // margin-top: 15px;
                     }
                 }
                 @media (min-width: 992px) {
                     .hero-subtitle {
                         font-size: 27px !important;
-                        margin-top: 20px;
+                        // margin-top: 20px;
                     }
                 }
                 .hero-subtitle-letter-spacing {
