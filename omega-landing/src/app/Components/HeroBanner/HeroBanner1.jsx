@@ -133,7 +133,19 @@ const HeroBanner1 = () => {
                 }
                 @media (min-width: 1200px) {
                     .hero-welcome-title {
-                        font-size: 70px !important;
+                        font-size:76px !important;
+                    }
+                }
+                .responsive-hero-image {
+                    position: relative;
+                    width: 100%;
+                    margin: 0 auto;
+                }
+                @media (min-width: 992px) {
+                    .responsive-hero-image {
+                        width: 120%;
+                        margin-left: 100px;
+                        transform: translateY(100px);
                     }
                 }
                 .hero-subtitle {
@@ -295,7 +307,7 @@ const HeroBanner1 = () => {
                     margin-top: 20px !important;
                 }
                 @media (min-width: 992px) {
-                    .hero-image-padding {
+                    .hero-image-padding:not(.responsive-hero-image) {
                         margin-top: 0 !important;
                     }
                 }
@@ -376,6 +388,11 @@ const HeroBanner1 = () => {
                     margin-bottom: 0 !important;
                     padding-bottom: 0 !important;
                     width: 100%;
+                }
+                @media (min-width: 992px) {
+                    .banner-image-area.responsive-hero-image-parent {
+                        padding-top: 100px !important;
+                    }
                 }
                 .banner-image-area img {
                     width: 100% !important;
@@ -626,21 +643,26 @@ const HeroBanner1 = () => {
                                             </div>
                                             {/* Right side - Banner Image */}
                                             <div className="col-12 col-lg-6 order-2 order-lg-2">
-                                                <div className="banner-image-area hero-padding">
-                                                    <div className={`${isPageLoaded ? 'image-slide-up' : ''} hero-image-padding`} style={{ position: 'relative', width: '100%', margin: '0 auto', opacity: isPageLoaded ? 1 : 0, marginTop: '30px', marginLeft: '100px' }}>
+                                                <div className="banner-image-area hero-padding responsive-hero-image-parent">
+                                                    <div 
+                                                        className={`${isPageLoaded ? 'image-slide-up' : ''} hero-image-padding responsive-hero-image`} 
+                                                        style={{ 
+                                                            opacity: isPageLoaded ? 1 : 0
+                                                        }}
+                                                    >
                                                         <Image
-                                                            src="/assets/img/banner/banner6.webp"
+                                                            src="/assets/img/banner/banner2.webp"
                                                             alt="Tasty and Fresh Seafood"
-                                                            width={900}
-                                                            height={600}
+                                                            width={1200}
+                                                            height={400}
                                                             style={{
                                                                 width: '100%',
-                                                                height: '300px',
+                                                                height: 'auto',
                                                                 objectFit: 'contain',
                                                                 display: 'block'
                                                             }}
                                                             priority
-                                                            sizes="(max-width: 991px) 100vw, 50vw"
+                                                            sizes="(max-width: 991px) 100vw, 60vw"
                                                         />
                                                     </div>
                                                 </div>
