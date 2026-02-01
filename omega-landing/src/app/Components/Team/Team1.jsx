@@ -425,7 +425,7 @@ const Team1 = () => {
                                 <div className="">
                                 <Image src={item.img} className="shadow rounded-3" alt="img" width={400} height={300} />
                                 </div>
-                              <div className="mt-3 justify-content-center chefe-content">
+                              <div className="mt-3 mb-3 justify-content-center chefe-content">
                                         <h3 className="text-center" style={{ color: '#0D5189' }}>{item.title} </h3>
                                 </div>
                             </div>

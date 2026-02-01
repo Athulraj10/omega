@@ -56,17 +56,11 @@ const footerSchema = new mongoose.Schema(
         },
       },
     ],
-    // Operating Hours
     operatingHours: {
       weekdays: {
         type: String,
         maxLength: 100,
-        default: "Monday – Friday: 8am – 4pm",
-      },
-      saturday: {
-        type: String,
-        maxLength: 100,
-        default: "Saturday: 8am – 12am",
+        default: "24 Hours",
       },
     },
     // Footer Bottom

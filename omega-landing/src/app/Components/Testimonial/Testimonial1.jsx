@@ -199,6 +199,14 @@ const Testimonial1 = () => {
                 font-size: 24px;
                 margin-bottom: 20px;
             }
+            @media (max-width: 767px) {
+                .testimonial-section .title {
+                    color: #ffffff !important;
+                }
+                .testimonial-section .sub-title {
+                    color: #ffffff !important;
+                }
+            }
             @media (min-width: 576px) {
                 .testimonial-section .title {
                     font-size: 32px;

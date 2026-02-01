@@ -145,8 +145,7 @@ const getDefaultFooterData = () => ({
       contactUs: {
         title: "Contact Us",
         hours: [
-          { day: "Monday – Friday", time: "8am – 4pm" },
-          { day: "Saturday", time: "8am – 12am" }
+          { day: "24 Hours", time: "24 Hours" }
         ]
       },
       copyright: {

@@ -336,7 +336,7 @@ const Shop1 = () => {
                 .shop-section .single-food-items {
                     background-color: #fff;
                     border-radius: 12px;
-                    overflow: hidden;
+                   overflow: visible;
                     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
                     transition: box-shadow 0.3s ease, transform 0.3s ease;
                     display: flex;
@@ -345,6 +345,11 @@ const Shop1 = () => {
                     width: 100%;
                     margin: 0;
                     padding: 0;
+                }
+                @media (max-width: 767px) {
+                    .shop-section .single-food-items {
+                        overflow: visible;
+                    }
                 }
                 .shop-section .single-food-items:hover {
                     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
@@ -358,7 +363,30 @@ const Shop1 = () => {
                     align-items: center;
                     justify-content: center;
                     position: relative;
-                    overflow: hidden;
+                     overflow: visible;
+                }
+                @media (max-width: 767px) {
+                    .shop-section .item-thumb {
+                        aspect-ratio: auto !important;
+                        padding: 30px 15px 20px 15px !important;
+                        overflow: visible !important;
+                        min-height: 250px;
+                        height: auto;
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: center;
+                    }
+                    .shop-section .item-thumb img,
+                    .shop-section .item-thumb .food-item-img {
+                        object-fit: contain !important;
+                        object-position: center center !important;
+                        width: 100% !important;
+                        height: auto !important;
+                        max-height: none !important;
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        position: relative;
+                    }
                 }
                 .shop-section.vegetable-category .item-thumb {
                     aspect-ratio: 1/2;

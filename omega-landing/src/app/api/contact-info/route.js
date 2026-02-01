@@ -28,7 +28,7 @@ export async function GET(request) {
         },
         hours: {
           title: "Opening Hours",
-          value: "Monday – Friday: 8am – 4pm\nSaturday: 8am – 12pm\nSunday: Closed",
+          value: "24 Hours",
           icon: "/assets/img/icon/clock_blue.png",
           description: ""
         },

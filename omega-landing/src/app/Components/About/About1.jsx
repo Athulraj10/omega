@@ -180,7 +180,8 @@ const About1 = () => {
                 .about-us-section .mobile-shape-left,
                 .about-us-section .mobile-shape-right {
                     position: absolute;
-                    bottom: 0%;
+                    top: 200px;
+                    bottom: auto;
                     z-index: 2;
                     pointer-events: none;
                     opacity: 0;
@@ -242,9 +243,11 @@ const About1 = () => {
                 @media (min-width: 576px) {
                     .about-us-section .mobile-shape-left {
                         left: -15px;
+                        top: 140px;
                     }
                     .about-us-section .mobile-shape-right {
                         right: -15px;
+                        top: 140px;
                     }
                     .about-us-section .mobile-shape-left img,
                     .about-us-section .mobile-shape-right img {
