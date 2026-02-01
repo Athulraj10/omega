@@ -19,14 +19,11 @@ const page = () => {
             <FoodItems1></FoodItems1>
             <About1></About1>
             <Team1></Team1>
-            {/* <BestSelling1></BestSelling1> */}
             <CtaBanner1></CtaBanner1>
             <FoodItem1></FoodItem1>
-            {/* <Timer1></Timer1> */}
             <Offer1></Offer1>
             <Testimonial1></Testimonial1>
             <Blog1></Blog1>
-            {/* <Gallery1></Gallery1> */}
         </div>
     );
 };

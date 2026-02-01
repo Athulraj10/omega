@@ -382,6 +382,7 @@ const HeroBanner1 = () => {
                     height: auto !important;
                     max-width: 100%;
                     display: block;
+                    object-fit: contain;
                 }
                 @media (min-width: 992px) {
                     .banner-image-area img {
@@ -626,15 +627,15 @@ const HeroBanner1 = () => {
                                             {/* Right side - Banner Image */}
                                             <div className="col-12 col-lg-6 order-2 order-lg-2">
                                                 <div className="banner-image-area hero-padding">
-                                                    <div className={`${isPageLoaded ? 'image-slide-up' : ''} hero-image-padding`} style={{ position: 'relative', width: '100%', margin: '0 auto', opacity: isPageLoaded ? 1 : 0 }}>
+                                                    <div className={`${isPageLoaded ? 'image-slide-up' : ''} hero-image-padding`} style={{ position: 'relative', width: '100%', margin: '0 auto', opacity: isPageLoaded ? 1 : 0, marginTop: '30px', marginLeft: '100px' }}>
                                                         <Image
-                                                            src="/assets/img/banner/banner2.webp"
+                                                            src="/assets/img/banner/banner6.webp"
                                                             alt="Tasty and Fresh Seafood"
-                                                            width={600}
-                                                            height={400}
+                                                            width={900}
+                                                            height={600}
                                                             style={{
                                                                 width: '100%',
-                                                                height: 'auto',
+                                                                height: '300px',
                                                                 objectFit: 'contain',
                                                                 display: 'block'
                                                             }}
