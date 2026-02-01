@@ -918,14 +918,13 @@ export const foodItems1Products = [
   {
     id: "fooditem1-5",
     img: "/assets/img/food-items/item1_5.png",
-    title: "Fresh Seabream",
+    title: "Fresh Shrimps",
     content: "Europe",
   },
-  // { id: 'fooditem1-6', img: '/assets/img/food-items/item1_6.png', title: 'Fresh Seabream', content: 'Europe'},
   {
     id: "fooditem1-1",
     img: "/assets/img/food-items/item1_1.png",
-    title: "Fresh Shrimps",
+    title: "Fresh Hamour",
     content: "Oman",
   },
   {

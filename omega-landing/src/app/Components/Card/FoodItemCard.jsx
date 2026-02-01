@@ -253,7 +253,7 @@ const FoodItemCard = ({ img, title, content, price, productId }) => {
               <h4>{title}</h4>
             </Link>
             <p>{content}</p>
-            <h6>{price}</h6>
+            {/* <h6>{price}</h6> */}
           </div>
         </div>
       </div>
