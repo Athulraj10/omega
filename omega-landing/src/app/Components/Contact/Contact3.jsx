@@ -53,7 +53,7 @@ const Contact3 = ({ locale = 'en' }) => {
         },
         email: {
             title: "Email Us",
-            value: "info@omegafoods.com",
+            value: "omegaseafoods.general@gmail.com",
             icon: "/assets/img/icon/gmail_blue.png",
             description: "Email us anytime for any kind of query about our premium seafood products."
         },

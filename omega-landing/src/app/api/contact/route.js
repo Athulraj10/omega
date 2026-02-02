@@ -115,7 +115,7 @@ Please respond to the customer at: ${email}
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'Omega Seafoods <onboarding@resend.dev>',
-      to: process.env.CONTACT_EMAIL || 'info@omegafoods.com',
+      to: process.env.CONTACT_EMAIL || 'omegaseafoods.general@gmail.com',
       replyTo: email,
       subject: emailSubject,
       html: emailHtml,
@@ -159,7 +159,7 @@ Please respond to the customer at: ${email}
             </div>
             <div class="footer">
               <p>Omega Seafoods - Premium Seafood Delivered Fresh</p>
-              <p>Abu Dhabi, UAE | info@omegafoods.com | +971 55 545 1188</p>
+              <p>Abu Dhabi, UAE | omegaseafoods.general@gmail.com | +971 55 545 1188</p>
             </div>
           </div>
         </body>

@@ -1,6 +1,6 @@
 import BreadCumb from '@/app/Components/Common/BreadCumb';
 import Shop1 from '@/app/Components/Shop/Shop1';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 const page = () => {
   return (
@@ -9,7 +9,9 @@ const page = () => {
                 bgimg="/assets/img/bg/crabwhiteleg.webp"
                 Title="Products"
             ></BreadCumb>  
-            <Shop1></Shop1>       
+            <Suspense fallback={<div>Loading...</div>}>
+              <Shop1></Shop1>
+            </Suspense>       
     </div>
   );
 };

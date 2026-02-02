@@ -11,7 +11,7 @@ const footerSchema = new mongoose.Schema(
     email: {
       type: String,
       maxLength: 255,
-      default: "info@omegafoods.com",
+      default: "omegaseafoods.general@gmail.com",
     },
     phone: {
       type: String,

@@ -1,11 +1,13 @@
 "use client"
 import { useState, useMemo, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import ShopCard from "../Card/ShopCard";
 import Image from "next/image";
 import { categories, getAllProducts } from "../../../data/products";
 
 const Shop1 = () => {
+    const searchParams = useSearchParams();
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [sortBy, setSortBy] = useState("default");
@@ -189,6 +191,15 @@ const Shop1 = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    // Read category from URL query parameter on mount
+    useEffect(() => {
+        const categoryParam = searchParams.get('category');
+        if (categoryParam) {
+            setSelectedCategory(categoryParam);
+            setCurrentPage(1);
+        }
+    }, [searchParams]);
 
     // Reset animations when category, search, sort, or page changes
     useEffect(() => {

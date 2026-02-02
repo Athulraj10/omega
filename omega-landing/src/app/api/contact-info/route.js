@@ -16,7 +16,7 @@ export async function GET(request) {
         },
         email: {
           title: "Email Us",
-          value: "info@omegafoods.com",
+          value: "omegaseafoods.general@gmail.com",
           icon: "/assets/img/icon/gmail_blue.png",
           description: "Email us anytime for any kind of query about our premium seafood products."
         },
@@ -55,7 +55,7 @@ export async function GET(request) {
         },
         email: {
           title: "راسلنا",
-          value: "info@omegafoods.com",
+          value: "omegaseafoods.general@gmail.com",
           icon: "/assets/img/icon/gmail_blue.png",
           description: "راسلنا في أي وقت لأي نوع من الاستفسارات حول منتجاتنا البحرية المميزة."
         },

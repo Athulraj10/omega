@@ -26,7 +26,7 @@ const getDefaultFooterData = () => ({
         email: {
           icon: "bi bi-envelope-fill",
           title: "send email",
-          value: "info@omegafoods.com"
+          value: "omegaseafoods.general@gmail.com"
         },
         phone: {
           icon: "bi bi-telephone-fill",
@@ -73,7 +73,7 @@ const getDefaultFooterData = () => ({
         email: {
           icon: "bi bi-envelope-fill",
           title: "إرسال بريد إلكتروني",
-          value: "info@omegafoods.com"
+          value: "omegaseafoods.general@gmail.com"
         },
         phone: {
           icon: "bi bi-telephone-fill",

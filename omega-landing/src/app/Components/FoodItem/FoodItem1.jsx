@@ -1,10 +1,12 @@
 "use client"
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import FoodItemCard from "../Card/FoodItemCard";
 import Image from "next/image";
 import { categories, productsByCategory } from "../../../data/products";
 
 const FoodItem1 = () => {
+    const router = useRouter();
     const [isActive, setIsActive] = useState('Frozen fish');
     const [isVisible, setIsVisible] = useState(false);
     const [isTitleVisible, setIsTitleVisible] = useState(false);
@@ -594,7 +596,11 @@ const FoodItem1 = () => {
                                     <li
                                         key={category.id}
                                         className={`nav-item ${isActive === category.id ? 'active' : ''} ${isNavVisible ? 'nav-item-slide-up' : ''}`}
-                                        onClick={() => setIsActive(category.id)}
+                                        onClick={() => {
+                                            setIsActive(category.id);
+                                            // Navigate to shop page with category filter
+                                            router.push(`/shop?category=${encodeURIComponent(category.id)}`);
+                                        }}
                                         role="presentation"
                                         style={{ transitionDelay: `${index * 0.1}s` }}
                                     >
@@ -620,7 +626,7 @@ const FoodItem1 = () => {
                             </li>
                                 ))}
                         </ul>
-                        <div ref={foodItemRef} className="tab-content" id="pills-tabContent">
+                        {/* <div ref={foodItemRef} className="tab-content" id="pills-tabContent">
                                 {categories.map((category) => {
                                     const products = productsByCategory[category.id] || [];
                                     const { left, right } = splitProducts(products);
@@ -717,7 +723,7 @@ const FoodItem1 = () => {
                             </div>
                                     );
                                 })}
-                            </div>
+                            </div> */}
                         </div>
                 </div>
             </div>

@@ -120,7 +120,7 @@ const getDefaultFooterData = () => ({
         email: {
           icon: "bi bi-envelope-fill",
           title: "send email",
-          value: "info@omegafoods.com"
+          value: "omegaseafoods.general@gmail.com"
         },
         phone: {
           icon: "bi bi-telephone-fill",
@@ -168,7 +168,7 @@ const getDefaultFooterData = () => ({
         email: {
           icon: "bi bi-envelope-fill",
           title: "إرسال بريد إلكتروني",
-          value: "info@omegafoods.com"
+          value: "omegaseafoods.general@gmail.com"
         },
         phone: {
           icon: "bi bi-telephone-fill",
@@ -261,7 +261,7 @@ app.get('/api/contact-info', (req, res) => {
         },
         email: {
           title: "Email Us",
-          value: "info@omegafoods.com",
+          value: "omegaseafoods.general@gmail.com",
           icon: "/assets/img/icon/gmail.png",
           description: "Email us anytime for any kind of query about our premium seafood products."
         },
@@ -300,7 +300,7 @@ app.get('/api/contact-info', (req, res) => {
         },
         email: {
           title: "راسلنا",
-          value: "info@omegafoods.com",
+          value: "omegaseafoods.general@gmail.com",
           icon: "/assets/img/icon/gmail.png",
           description: "راسلنا في أي وقت لأي نوع من الاستفسارات حول منتجاتنا البحرية المميزة."
         },
